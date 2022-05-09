@@ -3,13 +3,34 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+<table class="table table-striped">
+    <div class="card-body">
+        <div class ="mb-4 text-center" >
+            <h1> Lista de clientes </h1>
+            <thead>
+                <tr>
+                    <th>Numero de cuenta</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                </tr>
+            </thead>
+            {{#each cliente}}
+            <tbody>
+                <tr>
+                    <td>{{a}}</td>
+                    <td>{{b}}</td>
+                    <td>{{c}}</td>
+                    <td>{{identificacion}}</td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </div>
+    </div>
+</table>
+<div class="form-group text-center">
+    <a class="btn btn-primary " href="/"> Consultar </a> 
+    <a href="../index.html">Cancelar</a>
+</div>
