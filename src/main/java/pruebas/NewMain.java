@@ -137,19 +137,20 @@ public class NewMain {
         controladorSala.vistaGUI.setLocationRelativeTo(null);
         */
         
-        
+        /*
         ConsultaGananciasCobroComisionesDelBanco vista = new ConsultaGananciasCobroComisionesDelBanco();
         ControladorConsultaGananciasCobroComisionesDelBanco controladorSala = new ControladorConsultaGananciasCobroComisionesDelBanco(vista);
         controladorSala.vistaGUI.setVisible(true);
         controladorSala.vistaGUI.setLocationRelativeTo(null);
+        */
         
         
-        /*
         ConsultaGananciasCobroComisionesPorCadaCuenta vista = new ConsultaGananciasCobroComisionesPorCadaCuenta();
         ControladorConsultaGananciasCobroComisionesPorCadaCuenta controladorSala = new ControladorConsultaGananciasCobroComisionesPorCadaCuenta(vista);
         controladorSala.vistaGUI.setVisible(true);
         controladorSala.vistaGUI.setLocationRelativeTo(null);
-        */
+        
+        
         /*
         ConsultaTipoCambioDeCompra vista = new ConsultaTipoCambioDeCompra();
         ControladorConsultaTipoCambioDeCompra controladorSala = new ControladorConsultaTipoCambioDeCompra(vista);

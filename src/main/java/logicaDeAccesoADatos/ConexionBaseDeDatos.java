@@ -20,8 +20,6 @@ public class ConexionBaseDeDatos {
         try{
             clusterBaseDeDatos = MongoClients.create("mongodb+srv://shadez:123Shadez@cluster0.jiren.mongodb.net/test");
             dataBase = clusterBaseDeDatos.getDatabase("SoftwareDesign");
-            
-            System.out.println("Conexión con la base de datos exitosa");
             return dataBase;
         } catch(Error e){
             System.out.println(e);

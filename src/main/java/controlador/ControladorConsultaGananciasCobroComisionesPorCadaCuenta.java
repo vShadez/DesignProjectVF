@@ -13,10 +13,8 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.Cuenta;
-import logicaDeNegocios.Operacion;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
-import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICuenta;
 import clasesUtilitarias.Conversion;
 import javax.swing.JTable;
@@ -46,8 +44,6 @@ public class ControladorConsultaGananciasCobroComisionesPorCadaCuenta implements
             int cantidadCuentas = cuentas.consultarCantidadCuentas();
             listaCuentas = cuentas.consultarListaDeCuentas();
             
-            IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
-            
             arregloCuentasOrdenadas = Conversion.convertirListaCuentaEnArreglo(listaCuentas, cantidadCuentas);
             
             JTable tabla = this.vistaGUI.tblMontosTotalesDeCadaCuenta; 
@@ -63,7 +59,7 @@ public class ControladorConsultaGananciasCobroComisionesPorCadaCuenta implements
                 double cantidadDepositosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorDepositos(numeroDeCuenta);
                 double cantidadRetirosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorRetiros(numeroDeCuenta);
                 double cantidadRetirosDepositosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorRetirosYDepositos(numeroDeCuenta);
-                model.addRow(new Object[]{numeroDeCuenta, cantidadRetirosDepositosRealizados, cantidadDepositosRealizados, cantidadRetirosRealizados});
+                model.addRow(new Object[]{numeroDeCuenta, cantidadRetirosDepositosRealizados +" ₡", cantidadDepositosRealizados+" ₡", cantidadRetirosRealizados+" ₡"});
             }
         
             tabla.setModel(model);
