@@ -26,15 +26,51 @@ public class ConsultaGananciasCobroComisionesDelBanco extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jDialog1 = new javax.swing.JDialog();
+        jFrame1 = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtMontoTotalOperacionesDepositos = new javax.swing.JTextField();
-        txtMontoTotalOperacionesRetiros = new javax.swing.JTextField();
-        txtMontoTotalOperacionesDepositosYRetiros = new javax.swing.JTextField();
+        txtMontoTotalOperacionesDepositosColones = new javax.swing.JTextField();
+        txtMontoTotalOperacionesRetiroColones = new javax.swing.JTextField();
+        txtMontoTotalOperacionesDepositosYRetirosColones = new javax.swing.JTextField();
         btnConsultarMontosPorCobroComision = new javax.swing.JButton();
         btnCancelarConsultaComision = new javax.swing.JButton();
+        txtMontoTotalOperacionesDepositosDolares = new javax.swing.JTextField();
+        txtMontoTotalOperacionesRetirosDolares = new javax.swing.JTextField();
+        txtMontoTotalOperacionesDepositosRetirosDolares = new javax.swing.JTextField();
+
+        jMenu1.setText("jMenu1");
+
+        jMenu2.setText("jMenu2");
+
+        jMenu3.setText("jMenu3");
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,15 +83,21 @@ public class ConsultaGananciasCobroComisionesDelBanco extends javax.swing.JFrame
 
         jLabel4.setText("Monto total por concepto de operaciones de retiros");
 
-        txtMontoTotalOperacionesDepositos.setEditable(false);
+        txtMontoTotalOperacionesDepositosColones.setEditable(false);
 
-        txtMontoTotalOperacionesRetiros.setEditable(false);
+        txtMontoTotalOperacionesRetiroColones.setEditable(false);
 
-        txtMontoTotalOperacionesDepositosYRetiros.setEditable(false);
+        txtMontoTotalOperacionesDepositosYRetirosColones.setEditable(false);
 
         btnConsultarMontosPorCobroComision.setText("Consultar");
 
         btnCancelarConsultaComision.setText("Cancelar");
+
+        txtMontoTotalOperacionesDepositosDolares.setEditable(false);
+
+        txtMontoTotalOperacionesRetirosDolares.setEditable(false);
+
+        txtMontoTotalOperacionesDepositosRetirosDolares.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,49 +106,62 @@ public class ConsultaGananciasCobroComisionesDelBanco extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnConsultarMontosPorCobroComision)
+                                .addGap(85, 85, 85)
+                                .addComponent(btnCancelarConsultaComision))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtMontoTotalOperacionesRetiroColones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                    .addComponent(txtMontoTotalOperacionesDepositosColones, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMontoTotalOperacionesDepositosYRetirosColones))))
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMontoTotalOperacionesDepositos)
-                            .addComponent(txtMontoTotalOperacionesDepositosYRetiros, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .addComponent(txtMontoTotalOperacionesRetiros))))
-                .addGap(72, 72, 72))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(btnConsultarMontosPorCobroComision)
-                .addGap(74, 74, 74)
-                .addComponent(btnCancelarConsultaComision)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtMontoTotalOperacionesDepositosDolares)
+                            .addComponent(txtMontoTotalOperacionesRetirosDolares)
+                            .addComponent(txtMontoTotalOperacionesDepositosRetirosDolares, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(jLabel1)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMontoTotalOperacionesDepositos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtMontoTotalOperacionesRetiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtMontoTotalOperacionesDepositosYRetiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel4)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMontoTotalOperacionesDepositosColones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMontoTotalOperacionesDepositosDolares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMontoTotalOperacionesRetiroColones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMontoTotalOperacionesRetirosDolares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMontoTotalOperacionesDepositosYRetirosColones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMontoTotalOperacionesDepositosRetirosDolares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConsultarMontosPorCobroComision)
                     .addComponent(btnCancelarConsultaComision))
-                .addGap(23, 23, 23))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -150,12 +205,20 @@ public class ConsultaGananciasCobroComisionesDelBanco extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnCancelarConsultaComision;
     public javax.swing.JButton btnConsultarMontosPorCobroComision;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    public javax.swing.JTextField txtMontoTotalOperacionesDepositos;
-    public javax.swing.JTextField txtMontoTotalOperacionesDepositosYRetiros;
-    public javax.swing.JTextField txtMontoTotalOperacionesRetiros;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    public javax.swing.JTextField txtMontoTotalOperacionesDepositosColones;
+    public javax.swing.JTextField txtMontoTotalOperacionesDepositosDolares;
+    public javax.swing.JTextField txtMontoTotalOperacionesDepositosRetirosDolares;
+    public javax.swing.JTextField txtMontoTotalOperacionesDepositosYRetirosColones;
+    public javax.swing.JTextField txtMontoTotalOperacionesRetiroColones;
+    public javax.swing.JTextField txtMontoTotalOperacionesRetirosDolares;
     // End of variables declaration//GEN-END:variables
 }

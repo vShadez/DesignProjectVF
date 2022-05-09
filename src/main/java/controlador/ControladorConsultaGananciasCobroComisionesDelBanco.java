@@ -7,6 +7,7 @@ import vistaGUI.ConsultaGananciasCobroComisionesDelBanco;
 import logicaDeAccesoADatos.IDAOOperacionCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import clasesUtilitarias.Conversion;
+import serviciosExternos.TipoCambioBCCR;
 /**
  *
  * @author estadm
@@ -28,9 +29,15 @@ public class ControladorConsultaGananciasCobroComisionesDelBanco implements Acti
             double comisionesTotalesDeposito = comisionesCobradas.consultarMontoTotalCobradoComisionesPorDepositos();
             double comisionesTotalesRetiros = comisionesCobradas.consultarMontoTotalCobradoComisionesPorRetiros();
             double comisionesTotalesDepositoRetiros = comisionesCobradas.consultarMontoTotalCobradoComisionesPorRetirosYDepositos();
-            vistaGUI.txtMontoTotalOperacionesDepositos.setText(""+comisionesTotalesDeposito);
-            vistaGUI.txtMontoTotalOperacionesRetiros.setText(""+comisionesTotalesRetiros);
-            vistaGUI.txtMontoTotalOperacionesDepositosYRetiros.setText(""+comisionesTotalesDepositoRetiros);
+            vistaGUI.txtMontoTotalOperacionesDepositosColones.setText(""+comisionesTotalesDeposito+" ₡");
+            vistaGUI.txtMontoTotalOperacionesRetiroColones.setText(""+comisionesTotalesRetiros+" ₡");
+            vistaGUI.txtMontoTotalOperacionesDepositosYRetirosColones.setText(""+comisionesTotalesDepositoRetiros+" ₡");
+            TipoCambioBCCR tc = new TipoCambioBCCR();
+            double tipoCompra = tc.obtenerValorCompra();
+            
+            vistaGUI.txtMontoTotalOperacionesDepositosDolares.setText(String.format("%.2f",comisionesTotalesDeposito/tipoCompra)+" $");
+            vistaGUI.txtMontoTotalOperacionesRetirosDolares.setText(String.format("%.2f",comisionesTotalesRetiros/tipoCompra)+" $");
+            vistaGUI.txtMontoTotalOperacionesDepositosRetirosDolares.setText(String.format("%.2f",comisionesTotalesDepositoRetiros/tipoCompra)+" $");
             
         }
     }

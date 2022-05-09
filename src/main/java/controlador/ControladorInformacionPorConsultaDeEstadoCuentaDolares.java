@@ -28,7 +28,6 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolares {
     public ControladorInformacionPorConsultaDeEstadoCuentaDolares(InformacionPorConsultaDeEstadoCuentaDolares pVistaGUI ,String pNumeroCuenta){
         this.vistaGUI = pVistaGUI;
         this.numeroCuenta = pNumeroCuenta;
-        Operacion[] arregloOperaciones;
         IDAOCuentaIndividual cuenta = new DAOCuentaIndividual();
         Cuenta cuentaRecibida = (Cuenta) cuenta.consultarCuenta(numeroCuenta);
         
