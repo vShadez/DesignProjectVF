@@ -4,9 +4,7 @@
  */
 package vistaCLI;
 
-import logicaDeAccesoADatos.DAOOperacionCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
-import logicaDeAccesoADatos.IDAOOperacionCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import serviciosExternos.TipoCambioBCCR;
 import validacion.ValidacionCuenta;
@@ -15,8 +13,8 @@ import validacion.ValidacionCuenta;
  *
  * @author Jairo Calderón
  */
-public class ConsultarGananciasParaUnaCuentaPorCobroDeComisiones {
-    public ConsultarGananciasParaUnaCuentaPorCobroDeComisiones() {
+public class ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones {
+    public ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones() {
         recibirNumeroDeCuenta();
     }
     

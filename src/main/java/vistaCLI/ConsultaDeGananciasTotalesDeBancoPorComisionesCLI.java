@@ -12,8 +12,8 @@ import serviciosExternos.TipoCambioBCCR;
  *
  * @author Jairo Calderón
  */
-public class ConsultarGananciasTotalesDeBancoPorComisionesCLI {
-    public ConsultarGananciasTotalesDeBancoPorComisionesCLI() {
+public class ConsultaDeGananciasTotalesDeBancoPorComisionesCLI {
+    public ConsultaDeGananciasTotalesDeBancoPorComisionesCLI() {
         mostrarGananciasTotalesDeBancoPorCobroDeComisiones();
     }
     

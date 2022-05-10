@@ -13,8 +13,8 @@ import validacion.ValidacionCuenta;
  *
  * @author Jairo Calderón
  */
-public class ConsultarSaldoActualCLI {
-    public ConsultarSaldoActualCLI() {
+public class ConsultaDeSaldoActualCLI {
+    public ConsultaDeSaldoActualCLI() {
         recibirDatos();
     }
     

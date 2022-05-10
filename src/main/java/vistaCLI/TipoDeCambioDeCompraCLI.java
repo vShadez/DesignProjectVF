@@ -11,17 +11,17 @@ import serviciosExternos.TipoCambioBCCR;
  *
  * @author Jairo Calderón
  */
-public class MostrarTipoDeCambioDeVentaCLI {
-    public MostrarTipoDeCambioDeVentaCLI() {
-        mostrarTipoDeCambioDeVenta();
+public class TipoDeCambioDeCompraCLI {
+    public TipoDeCambioDeCompraCLI() {
+        mostrarTipoDeCambioDeCompra();
     }
     
-    private void mostrarTipoDeCambioDeVenta() {
+    private void mostrarTipoDeCambioDeCompra() {
         TipoCambioBCCR tipoDeCambioDeDolar = new TipoCambioBCCR();
-        double tipoDeCambioDeVenta = tipoDeCambioDeDolar.obtenerValorVenta();
+        double tipoDeCambioDeCompra = tipoDeCambioDeDolar.obtenerValorCompra();
         String mensaje = "";
-        mensaje += "El tipo de cambio del dólar de venta para hoy: " + LocalDate.now().toString() + " es: ";
-        mensaje += tipoDeCambioDeVenta;
+        mensaje += "El tipo de cambio del dólar de compra para hoy: " + LocalDate.now().toString() + " es: ";
+        mensaje += tipoDeCambioDeCompra;
         System.out.println(mensaje);
     }
 }

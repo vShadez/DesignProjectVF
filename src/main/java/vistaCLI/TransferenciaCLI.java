@@ -21,11 +21,11 @@ import validacion.ValidacionCuenta;
  *
  * @author Jairo Calderón
  */
-public class RealizarTransferenciaCLI {
+public class TransferenciaCLI {
     private int cantidadDeIntentosRealizados = 0;
     private final int cantidadMaximaDeIntentosPermitida = 2;
     
-    public RealizarTransferenciaCLI() {
+    public TransferenciaCLI() {
         recibirDatosDeCuentaDeOrigen();
     }
     

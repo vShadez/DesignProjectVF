@@ -19,8 +19,8 @@ import validacion.ValidacionCuenta;
  *
  * @author Jairo Calderón
  */
-public class ConsultarEstadoDeCuentaCLI {
-    public ConsultarEstadoDeCuentaCLI() {
+public class ConsultaDeEstadoDeCuentaCLI {
+    public ConsultaDeEstadoDeCuentaCLI() {
         recibirDatos();
     }
     

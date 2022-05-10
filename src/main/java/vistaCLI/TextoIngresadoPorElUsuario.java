@@ -17,4 +17,20 @@ public class TextoIngresadoPorElUsuario {
         String textoIngresadoPorElUsuario = reader.readLine();
         return textoIngresadoPorElUsuario;
     }
+    
+    public static boolean regresarAMenuPrincipal() {
+        try {
+            String mensaje = "";
+            mensaje += "\nPulse 1 para volver al menú principal \n";
+            mensaje += "Pulse cualquier otra tecla para reintentar para volver al menú principal";
+            System.out.println(mensaje);
+            String seleccionDeUsuario = solicitarIngresoDeTextoAlUsuario();
+            boolean usuarioDeseaVolverAMenuPrincipal = seleccionDeUsuario.equals("1");
+            return usuarioDeseaVolverAMenuPrincipal;
+        } 
+        catch (Exception ex) {
+            System.out.println("Ha ocurrido un error al recibir el texto");
+            return false;
+        }
+    }
 }

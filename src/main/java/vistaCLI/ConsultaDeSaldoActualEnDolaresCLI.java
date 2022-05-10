@@ -14,7 +14,7 @@ import validacion.ValidacionCuenta;
  *
  * @author Jairo Calderón
  */
-public class ConsultarSaldoActualEnDolaresCLI {
+public class ConsultaDeSaldoActualEnDolaresCLI {
     private void recibirDatos() {
         try {
             System.out.println("Ingrese su número de cuenta");

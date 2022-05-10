@@ -16,9 +16,9 @@ import validacion.ValidacionTipoDeDato;
  *
  * @author Jairo Calderón
  */
-public class RegistroClientesCLI {
+public class RegistroDeClientesCLI {
     
-    public RegistroClientesCLI() {
+    public RegistroDeClientesCLI() {
         solicitarDatos();
     }
     

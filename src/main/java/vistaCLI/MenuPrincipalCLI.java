@@ -43,16 +43,27 @@ public class MenuPrincipalCLI {
         String opcionIngresada = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
         switch(opcionIngresada) {
             case "1":
+                RegistroDeClientesCLI abrirRegistroDeClientes = new RegistroDeClientesCLI();
             case "2":
+                RegistroDeCuentasCLI abrirRegistroDeCuentas = new RegistroDeCuentasCLI();
             case "3":
+                ConsultaDeDatosDeUnClienteCLI abrirConsultaDeClientes = new ConsultaDeDatosDeUnClienteCLI();
             case "4":
+                ConsultaDeDatosDeUnaCuentaCLI abrirConsultaDeCuentas = new ConsultaDeDatosDeUnaCuentaCLI();
             case "5":
+                CambiarPinCLI abrirMenuDeCambioDePin = new CambiarPinCLI();
             case "6":
+                DepositoEnColonesCLI abrirMenuDeDepositoEnColones = new DepositoEnColonesCLI();
             case "7":
+                DepositoEnDolaresCLI abrirMenuDeDepositoEnDolares = new DepositoEnDolaresCLI();
             case "8":
+                RetiroEnColonesCLI abrirMenuDeRetiroEnColones = new RetiroEnColonesCLI();
             case "9":
+                RetiroEnDolaresCLI abrirMenuDeRetiroEnDolares = new RetiroEnDolaresCLI();
             case "10":
+                TransferenciaCLI abrirMenuDeRealizarTransferencia = new TransferenciaCLI();
             case "11":
+                
             case "12":
             case "13":
             case "14":
