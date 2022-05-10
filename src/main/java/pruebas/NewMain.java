@@ -46,6 +46,8 @@ import vistaGUI.ConsultaGananciasCobroComisionesPorCadaCuenta;
 import vistaGUI.ConsultaTipoCambioDeCompra;
 import vistaGUI.ConsultaTipoCambioDeVenta;
 import controlador.ControladorConsultaTipoCambioDeVenta;
+import controlador.ControladorMenuPrincipal;
+import vistaGUI.MenuPrincipal;
 /**
  *
  * @author calde
@@ -144,12 +146,18 @@ public class NewMain {
         controladorSala.vistaGUI.setLocationRelativeTo(null);
         */
         
-        
+        /*
         ConsultaGananciasCobroComisionesPorCadaCuenta vista = new ConsultaGananciasCobroComisionesPorCadaCuenta();
         ControladorConsultaGananciasCobroComisionesPorCadaCuenta controladorSala = new ControladorConsultaGananciasCobroComisionesPorCadaCuenta(vista);
         controladorSala.vistaGUI.setVisible(true);
         controladorSala.vistaGUI.setLocationRelativeTo(null);
+        */
         
+        
+        MenuPrincipal vista = new MenuPrincipal();
+        ControladorMenuPrincipal controladorSala = new ControladorMenuPrincipal(vista);
+        controladorSala.vistaGUI.setVisible(true);
+        controladorSala.vistaGUI.setLocationRelativeTo(null);
         
         /*
         ConsultaTipoCambioDeCompra vista = new ConsultaTipoCambioDeCompra();
