@@ -47,6 +47,7 @@ import vistaGUI.ConsultaTipoCambioDeCompra;
 import vistaGUI.ConsultaTipoCambioDeVenta;
 import controlador.ControladorConsultaTipoCambioDeVenta;
 import controlador.ControladorMenuPrincipal;
+import java.io.IOException;
 import vistaGUI.MenuPrincipal;
 /**
  *
@@ -57,7 +58,7 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, IOException, IOException {
         /*
         RegistroCuentas r1 = new RegistroCuentas();
         r1.registrarCuenta("algo", 2000);
