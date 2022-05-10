@@ -16,7 +16,7 @@ import vistaGUI.SeleccionDeDeposito;
 public class ControladorSeleccionDeDeposito implements ActionListener{
     public SeleccionDeDeposito vistaGUI;
     
-    public ControladorSeleccionDeDeposito(SeleccionDeDeposito pVistaGUI, String pNumeroCuenta){
+    public ControladorSeleccionDeDeposito(SeleccionDeDeposito pVistaGUI){
         this.vistaGUI = pVistaGUI;
         this.vistaGUI.btnColonesTipoDeposito.addActionListener(this);
         this.vistaGUI.btnDolaresTipoDeposito.addActionListener(this);
