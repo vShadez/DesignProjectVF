@@ -47,6 +47,7 @@ import vistaGUI.ConsultaTipoCambioDeCompra;
 import vistaGUI.ConsultaTipoCambioDeVenta;
 import controlador.ControladorConsultaTipoCambioDeVenta;
 import controlador.ControladorMenuPrincipal;
+import controlador.ControladorMenuPrincipal1;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
@@ -54,11 +55,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import vistaGUI.MenuPrincipal;
+import vistaGUI.Menuuuuuuuuuuuu;
 /**
  *
  * @author calde
  */
-public class NewMain extends JPanel{
+public class NewMain {//extends JPanel
+    /*
     @Override
         public void paint(Graphics g){ 
         super.paint(g); 
@@ -66,14 +69,14 @@ public class NewMain extends JPanel{
         ImageIcon fondo = new ImageIcon(getClass().getResource("/resources/Imagen3.png")); 
         g2d.drawImage(fondo.getImage(),100,100, this);
     
-    }
+    }*/
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, IOException, IOException {
         
-         
+         /*
         JFrame ventana = new JFrame(); 
         NewMain panel = new NewMain(); 
         ventana.add(panel); 
@@ -82,7 +85,7 @@ public class NewMain extends JPanel{
         ventana.setSize(400,400); 
         ventana.setTitle("Mi Ventana"); 
         ventana.setVisible(true);
-
+        */
 
         /*
         RegistroCuentas r1 = new RegistroCuentas();
@@ -179,12 +182,12 @@ public class NewMain extends JPanel{
         controladorSala.vistaGUI.setLocationRelativeTo(null);
         */
         
-        /*
-        MenuPrincipal vista = new MenuPrincipal();
-        ControladorMenuPrincipal controladorSala = new ControladorMenuPrincipal(vista);
+        
+        Menuuuuuuuuuuuu vista = new Menuuuuuuuuuuuu();
+        ControladorMenuPrincipal1 controladorSala = new ControladorMenuPrincipal1(vista);
         controladorSala.vistaGUI.setVisible(true);
         controladorSala.vistaGUI.setLocationRelativeTo(null);
-        */
+        
         
         
         
