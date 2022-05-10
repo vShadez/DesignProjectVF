@@ -4,18 +4,36 @@
  */
 package vistaGUI;
 
+import java.awt.Font;
+import java.awt.Label;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author estadm
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+    //private javax.swing.JLabel jLabel3;
     /**
      * Creates new form CambiarPinPrimeraEtapa
      */
     public MenuPrincipal() {
         initComponents();
+        /*
+        jLabel3 = new javax.swing.JLabel();
+        Label lblTitulo = new Label();
+        lblTitulo.setLocation(15,15);
         
+        JLabel jLabel1 = new javax.swing.JLabel();
+        
+        ImageIcon imagenFondo = new ImageIcon("/imagenes/Imagen2.png");
+        jLabel3.setIcon(imagenFondo);
+        jLabel3.setText( "Etiqueta1" );
+        jLabel3.setFont( new Font( "Helvetica", Font.BOLD, 18 ) );
+        jLabel3.setLocation(5, 5);
+        add(jLabel3);*/
+        //panel.getChildren().add(lblTitulo);
     }
 
     /**
@@ -28,6 +46,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jInternalFrame2 = new javax.swing.JInternalFrame();
         btnRegistrarClienteMenu = new javax.swing.JButton();
         btnRegistrarCuentaMenu = new javax.swing.JButton();
         btnListaCuentaMenu = new javax.swing.JButton();
@@ -69,6 +88,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jInternalFrame2.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
+        jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
+        jInternalFrame2Layout.setHorizontalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame2Layout.setVerticalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -153,7 +185,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnListaClienteMenu.setBorder(null);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Imagen3.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen3.png"))); // NOI18N
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Imagen5.png"))); // NOI18N
@@ -194,7 +226,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Imagen25.png"))); // NOI18N
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Imagen2.png"))); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen2.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -394,7 +426,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -442,13 +474,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public javax.swing.JButton btnRetirarMenu;
     public javax.swing.JButton btnTransferenciaMenu;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    public javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
