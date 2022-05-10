@@ -43,7 +43,7 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
                     if(cuentaEstaActiva) {
                         double montoDeRetiroEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiro);
                         double montoComision = this.calcularMontoComision(montoDeRetiroEnFormatoDecimal);
-                        boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSufientes(this.numeroDeCuentaDeOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
+                        boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuentaDeOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {
                             
                         }

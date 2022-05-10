@@ -41,7 +41,7 @@ public class ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapa implements A
                     if(cuentaEstaActiva) {
                         double montoDeRetiroEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiro);
                         double montoComision = this.calcularMontoComision(montoDeRetiroEnFormatoDecimal);
-                        boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSufientes(this.numeroDeCuenta, montoDeRetiroEnFormatoDecimal + montoComision);
+                        boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuenta, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {
                             this.efectuarRetiro(numeroDeCuenta, montoDeRetiroEnFormatoDecimal);
                         }

@@ -27,7 +27,7 @@ public class ControladorCambioDePinPrimeraEtapa implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(evento.getActionCommand().equalsIgnoreCase("Aceptar")) {
+        if(evento.getActionCommand().equals("Aceptar")) {
             IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuenta.getText();
             Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);

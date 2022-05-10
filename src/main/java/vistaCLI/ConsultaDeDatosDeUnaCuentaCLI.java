@@ -7,17 +7,24 @@ package vistaCLI;
 import clasesUtilitarias.Conversion;
 import listaDinamica.Lista;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
+import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
+import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.Cuenta;
+import validacion.ValidacionCuenta;
 
 /**
  *
  * @author Jairo Calderón
  */
 public class ConsultaDeDatosDeUnaCuentaCLI {
-    public void cargarCuentasRegistradas() {
+    public ConsultaDeDatosDeUnaCuentaCLI() {
+        cargarCuentasRegistradas();
+    }
+    
+    private void cargarCuentasRegistradas() {
         Cuenta[] arregloCuentasOrdenadas;
         IDAOCatalogoDeCuentas daoCatalogoDeCuentas = new DAOCatalogoDeCuentas();
         int cantidadDeCuentas = daoCatalogoDeCuentas.consultarCantidadCuentas();
@@ -38,6 +45,43 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
             System.out.println("Identificacion del dueño de la cuenta: " + duenoDeCuenta.nombre + duenoDeCuenta.primerApellido + duenoDeCuenta.segundoApellido);
         }
         System.out.println("\nDigite el número de cuenta de la cuenta sobre la cual desea conocer los detalles:");
-        //this.recibirIdentificacionDeCliente();
+        this.recibirNumeroDeCuenta();
+    }
+    
+    private void recibirNumeroDeCuenta() {
+        try {
+            String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
+            boolean identificacionIngresadaEsCorrecta = validarDatos(numeroDeCuenta);
+            if(identificacionIngresadaEsCorrecta) {
+                this.mostrarDetallesDeCuenta(numeroDeCuenta);
+            }
+        } 
+        catch (Exception ex) {
+            System.out.println("Ha ocurrido un error al recibir el texto");
+        }
+    }
+    
+    private boolean validarDatos(String pNumeroDeCuenta) {
+        boolean existeCliente = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        if(existeCliente) {
+            return true;
+        }
+        else {
+            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            return false;
+        }
+    }
+    
+    private void mostrarDetallesDeCuenta(String pNumeroDeCuenta) {
+        IDAOCuentaIndividual daoCuentaIndividual = new DAOCuentaIndividual();
+        Cuenta cuenta = (Cuenta) daoCuentaIndividual.consultarCuenta(pNumeroDeCuenta);
+        Cliente clienteAsociadoACuenta = (Cliente) cuenta.propietario;
+        String nombreCompletoDeClienteAsociadoACuenta = clienteAsociadoACuenta.nombre + clienteAsociadoACuenta.primerApellido + clienteAsociadoACuenta.segundoApellido;
+        System.out.println("Información de la cuenta: ");
+        System.out.println("Número de la cuenta: " + cuenta.numeroCuenta);
+        System.out.println("Fecha de creación: " + cuenta.fechaCreacion.toString());
+        System.out.println("Saldo actual: " + cuenta.getSaldo());
+        System.out.println("Pin: " + cuenta.getPin());
+        System.out.println("Nombre del propietario de la cuenta: " + nombreCompletoDeClienteAsociadoACuenta);
     }
 }

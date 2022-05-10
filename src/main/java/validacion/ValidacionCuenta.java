@@ -26,7 +26,7 @@ public class ValidacionCuenta {
         return daoCuenta.verificarPinCorrespondeACuenta(pNumeroDeCuenta, pPin);
     }
     
-    public static boolean validarHayFondosSufientes(String pNumeroDeCuenta, double pMontoRetiro) {
+    public static boolean validarHayFondosSuficientes(String pNumeroDeCuenta, double pMontoRetiro) {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         IDAOOperacionCuenta daoOperacionCuenta = new DAOOperacionCuenta();
         int cantidadDeRetirosYDepositosRealizados = daoOperacionCuenta.consultarCantidadDeDepositosYRetirosRealizados(pNumeroDeCuenta);

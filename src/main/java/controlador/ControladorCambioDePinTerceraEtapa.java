@@ -28,7 +28,7 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(evento.getActionCommand().equalsIgnoreCase("Aceptar")) {
+        if(evento.getActionCommand().equals("Aceptar")) {
             String nuevoPin = this.vistaGUI.txtPinNuevo.getText();
             if(this.validarFormatoDePinCorrecto(nuevoPin)) {
                 IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();

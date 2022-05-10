@@ -55,7 +55,7 @@ public class ControladorDepositoEnColones implements ActionListener{
         }
     }
     
-    public void efectuarDeposito(String numeroDeCuenta, String montoDeDeposito) {
+    private void efectuarDeposito(String numeroDeCuenta, String montoDeDeposito) {
         int montoDeDepositoEnFormatoEntero = Conversion.convertirStringEnEntero(montoDeDeposito);
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);

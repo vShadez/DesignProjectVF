@@ -28,7 +28,7 @@ public class ControladorCambioDePinSegundaEtapa implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(evento.getActionCommand().equalsIgnoreCase("Aceptar")) {
+        if(evento.getActionCommand().equals("Aceptar")) {
             IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
             String pin = this.vistaGUI.txtPinCuenta.getText();
             boolean pinCorrespondeACuenta = daoCuenta.verificarPinCorrespondeACuenta(this.numeroDeCuenta, pin);

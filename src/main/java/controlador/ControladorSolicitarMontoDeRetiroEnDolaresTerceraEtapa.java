@@ -46,7 +46,7 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapa implements A
                         double tipoDeCambioDeDolarVenta = tipoDeCambioDolar.obtenerValorVenta();
                         double montoDeRetiroEnColones = montoDeRetiroEnDolaresEnFormatoDecimal * tipoDeCambioDeDolarVenta;
                         double montoComision = this.calcularMontoComision(montoDeRetiroEnColones);
-                        boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSufientes(this.numeroDeCuenta, montoDeRetiroEnColones + montoComision);
+                        boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuenta, montoDeRetiroEnColones + montoComision);
                         if(hayFondosSuficientes) {
                             this.efectuarRetiro(montoDeRetiroEnColones, montoDeRetiroEnDolaresEnFormatoDecimal, tipoDeCambioDeDolarVenta);
                         }
