@@ -10,15 +10,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <div class ="mb-4">
             <div class = " mb-4 text-center">
                 <h1> Ganancias totales por cobro de comision </h1>
+                <div>
+                    <img src="../imagenesVista/Imagen23.png"/>
+                </div>
+                <br>
                 <div class="row">
                     {{#each consultaOperaciones}}
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="card-header">
-                                    <p class = "lead"> Monto total por concepto de operaciones de depositos: {{montoDepositos}} </p>
-                                    <p class = "lead"> Monto total por concepto de operaciones de retiros: {{montoRetiros}}</p>
-                                    <p class = "lead"> Monto total por concepto de depositos y retiros: {{montoDepositosYRetiros}}</p>
+                                    <p class = "lead"> Monto total por concepto de operaciones de depositos: C:{{montoDepositos}}, $:{{montoDepositosDolares}} </p>
+                                    <p class = "lead"> Monto total por concepto de operaciones de retiros: C:{{montoRetiros}}, $:{{montoRetirosDolares}}</p>
+                                    <p class = "lead"> Monto total por concepto de depositos y retiros: C:{{montoDepositosYRetiros}}, $:{{montoDepositosYRetirosDolares}}</p>
                                 </div>
                             </div>
                         </div>
@@ -30,6 +34,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </div>
 </table>
 <div class="form-group text-center">
-    <a class="btn btn-primary " href="/"> Consultar </a> 
+    <button type="submit" class= "btn btn-primary">
+        Consultar
+    </button>
     <a href="../index.html">Cancelar</a>
 </div>

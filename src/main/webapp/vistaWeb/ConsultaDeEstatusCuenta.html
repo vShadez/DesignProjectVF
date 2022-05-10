@@ -10,14 +10,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <div class="card mt-8 text-center">
             <div class="card-header">
                 <h1>Consultar estatus de la cuenta</h1>
+                <div>
+                    <img src="../imagenesVista/Imagen21.png"/>
+                </div>
             </div>
+            <br>
             <form action="/" method="GET" >
                 <div class="form-group">
                     <label>Numero de cuenta</label>
                     <input type="text" class "form-control" name = "numeroCuenta" placeholder="Numero de cuenta" required>
                 </div>
                 <div class="box" style="text-align: center">
-                    <a class="btn btn-primary " href="/"> Consultar </a> 
+                    <button type="submit" class= "btn btn-primary">
+                        Consultar
+                    </button>
                     <a href="../index.html">Cancelar</a> 
                 </div>
             </form>

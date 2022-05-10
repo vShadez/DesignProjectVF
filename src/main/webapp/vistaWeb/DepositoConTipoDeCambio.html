@@ -9,8 +9,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <div class="col-md-8 mx-auto">
         <div class="card mt-8 text-center">
             <div class="card-header">
-                <h1>Deposito</h1>
+                <h1>Deposito en dolares</h1>
+                <div>
+                    <img src="../imagenesVista/Imagen9.png"/>
+                </div>
             </div>
+            <br>
             <form action="/" method="GET" >
                 <div class="form-group">
                     <label>Numero de cuenta</label>
@@ -21,7 +25,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <input type="number" class "form-control" name = "montoDepositado" placeholder="Monto a depositar" required>
                 </div>
                 <div class="box" style="text-align: center">
-                    <a class="btn btn-primary " href="/"> Aceptar </a> 
+                    <button type="submit" class= "btn btn-primary">
+                        Aceptar
+                    </button>
                     <a href="../index.html">Cancelar</a>
                 </div>
             </form>
