@@ -6,7 +6,6 @@ package vistaCLI;
 
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.PalabraSecreta;
-import controlador.MensajeEnPantallaCuenta;
 import logicaDeAccesoADatos.DAOClienteCuenta;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
@@ -16,22 +15,21 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import serviciosExternos.EnvioMensajeDeTexto;
-import serviciosExternos.TipoCambioBCCR;
 import validacion.ValidacionCuenta;
 
 /**
  *
  * @author Jairo Calderón
  */
-public class RetiroEnDolaresCLI {
+public class RealizarTransferenciaCLI {
     private int cantidadDeIntentosRealizados = 0;
     private final int cantidadMaximaDeIntentosPermitida = 2;
     
-    public RetiroEnDolaresCLI() {
-        recibirDatos();
+    public RealizarTransferenciaCLI() {
+        recibirDatosDeCuentaDeOrigen();
     }
     
-    private void recibirDatos() {
+    private void recibirDatosDeCuentaDeOrigen() {
         try {
             System.out.println("Ingrese su número de cuenta");
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -44,7 +42,7 @@ public class RetiroEnDolaresCLI {
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
-        }   
+        }
     }
     
     private boolean validarDatos(String pNumeroDeCuenta, String pPin) {
@@ -65,18 +63,18 @@ public class RetiroEnDolaresCLI {
         }
     }
     
-    private void enviarMensajeDeTexto(String pNumeroDeCuenta) {
+    private void enviarMensajeDeTexto(String pNumeroDeCuentaDeOrigen) {
         MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
-        Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
-        int numeroDeTelefonoDeDuenoDeLaCuenta = clienteAsociadoACuenta.numeroTelefono;
+        Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuentaDeOrigen);
+        int numeroDeTelefonoDeDuenoDeLaCuentaDeOrigen = clienteAsociadoACuenta.numeroTelefono;
         EnvioMensajeDeTexto mensajeDeTexto = new EnvioMensajeDeTexto();
         String mensajeSecreto = PalabraSecreta.generarPalabraSecreta();
-        String mensaje = "Estimado usuario de la cuenta: " + pNumeroDeCuenta + " su palabra secreta es: \n";
+        String mensaje = "Estimado usuario de la cuenta: " + pNumeroDeCuentaDeOrigen + " su palabra secreta es: \n";
         mensaje += mensajeSecreto + "\n";
-        mensaje += "Ingrese esta palabra correctamente para proceder con su retiro";
-        mensajeDeTexto.enviarMensaje(String.valueOf(numeroDeTelefonoDeDuenoDeLaCuenta), mensaje);
-        this.recibirMensajeDeTexto(pNumeroDeCuenta, mensajeSecreto);
+        mensaje += "Ingrese esta palabra correctamente para proceder con su transferencia";
+        mensajeDeTexto.enviarMensaje(String.valueOf(numeroDeTelefonoDeDuenoDeLaCuentaDeOrigen), mensaje);
+        this.recibirMensajeDeTexto(pNumeroDeCuentaDeOrigen, mensajeSecreto);
     }
     
     private void recibirMensajeDeTexto(String pNumeroDeCuenta, String pMensajeDeTextoEnviado) {
@@ -84,7 +82,7 @@ public class RetiroEnDolaresCLI {
             String mensajeIngresado = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             this.cantidadDeIntentosRealizados++;
             if(pMensajeDeTextoEnviado.equals(mensajeIngresado)) {
-                this.recibirMontoDeRetiro(pNumeroDeCuenta);
+                this.recibirMontoDeTransferencia(pNumeroDeCuenta);
             }
             else {
                 if(this.cantidadDeIntentosRealizados == this.cantidadMaximaDeIntentosPermitida) {
@@ -108,16 +106,14 @@ public class RetiroEnDolaresCLI {
         MensajeEnConsolaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta();
     }
     
-    private void recibirMontoDeRetiro(String pNumeroDeCuenta) {
+    private void recibirMontoDeTransferencia(String pNumeroDeCuenta) {
         try {
-            System.out.println("Ingrese el monto de su retiro en dólares");
-            String montoDeRetiro = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
-            boolean montoDeRetiroEsValido = this.validarMontoDeRetiro(pNumeroDeCuenta, montoDeRetiro);
-            if(montoDeRetiroEsValido) {
-                TipoCambioBCCR tipoDeCambio = new TipoCambioBCCR();
-                double tipoDeCambioDeVenta = tipoDeCambio.obtenerValorVenta();
-                double montoDeRetiroEnDolaresEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiro);
-                this.efectuarRetiro(pNumeroDeCuenta, montoDeRetiroEnDolaresEnFormatoDecimal, tipoDeCambioDeVenta);
+            System.out.println("Ingrese el monto que desea transferir");
+            String montoDeTransferencia = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
+            boolean montoDeTransferenciaEsValido = this.validarMontoDeTransferencia(pNumeroDeCuenta, montoDeTransferencia);
+            if(montoDeTransferenciaEsValido) {
+                double montoDeTransferenciaEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeTransferencia);
+                this.recibirCuentaDeDestino(pNumeroDeCuenta, montoDeTransferenciaEnFormatoDecimal);
             }
         } 
         catch (Exception ex) {
@@ -125,11 +121,11 @@ public class RetiroEnDolaresCLI {
         }   
     }
     
-    private boolean validarMontoDeRetiro(String pNumeroDeCuenta, String pMontoDeRetiro) {
-        boolean montoDeRetiroEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeRetiro);
-        if(montoDeRetiroEsValido) {
-            double montoDeRetiro = Conversion.convertirStringEnDecimal(pMontoDeRetiro);
-            boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeRetiro);
+    private boolean validarMontoDeTransferencia(String pNumeroDeCuenta, String pMontoDeTransferencia) {
+        boolean montoDeTransferenciaEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeTransferencia);
+        if(montoDeTransferenciaEsValido) {
+            double montoDeTransferencia = Conversion.convertirStringEnDecimal(pMontoDeTransferencia);
+            boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeTransferencia);
             if(hayFondosSuficientes) {
                 return true;
             }
@@ -144,21 +140,47 @@ public class RetiroEnDolaresCLI {
         }
     }
     
-    private double calcularMontoComision(String pNumeroDeCuenta, double pMontoPorRetirar) {
+    private void recibirCuentaDeDestino(String pNumeroDeCuenta, double pMontoTransferencia) {
+        try {
+            System.out.println("Ingrese el número de cuenta de destino");
+            String numeroDeCuentaDeDestino = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
+            boolean numeroDeCuentaEsValido = this.validarNumeroDeCuentaDeDestino(numeroDeCuentaDeDestino);
+            if(numeroDeCuentaEsValido) {
+                this.efectuarTransferencia(pNumeroDeCuenta, numeroDeCuentaDeDestino, pMontoTransferencia);
+            }
+        } 
+        catch (Exception ex) {
+            System.out.println("Ha ocurrido un error al recibir el texto");
+        }
+    }
+    
+    private boolean validarNumeroDeCuentaDeDestino(String pNumeroDeCuentaDeDestino) {
+        boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuentaDeDestino);
+        if(existeCuenta) {
+            return true;
+        }
+        else {
+            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuentaDeDestino));
+            return false;
+        }
+    }
+    
+    private double calcularMontoComision(String pNumeroDeCuenta, double pMontoPorTransferir) {
         IDAOOperacionCuenta daoOperacionCuenta = new DAOOperacionCuenta();
         int cantidadDeRetirosYDepositosRealizados = daoOperacionCuenta.consultarCantidadDeDepositosYRetirosRealizados(pNumeroDeCuenta);
         double montoComision = 0.0;
         if(cantidadDeRetirosYDepositosRealizados >= 3) {
-            montoComision += pMontoPorRetirar * 0.02;
+            montoComision += pMontoPorTransferir * 0.02;
         }
         return montoComision;
     }
     
-    private void efectuarRetiro(String pNumeroDeCuenta, double pMontoDeRetiro, double pTipoDeCambio) {
+    private void efectuarTransferencia(String numeroDeCuentaDeOrigen, String pNumeroDeCuentaDeDestino, double montoDeTransferencia) {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
-        Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuenta);
-        cuenta.retirar(pMontoDeRetiro * pTipoDeCambio);
-        double montoComision = this.calcularMontoComision(pNumeroDeCuenta, pMontoDeRetiro);
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeRetiroEnDolaresExitoso(pMontoDeRetiro, pMontoDeRetiro, pTipoDeCambio * pTipoDeCambio, montoComision));
+        Cuenta cuentaDeOrigen = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuentaDeOrigen);
+        Cuenta cuentaDeDestino = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuentaDeDestino);
+        cuentaDeOrigen.transferir(cuentaDeDestino, montoDeTransferencia);
+        double montoComision = this.calcularMontoComision(numeroDeCuentaDeOrigen, montoDeTransferencia);
+        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeTransferenciaExitosa(montoDeTransferencia, montoComision));
     }
 }

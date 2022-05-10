@@ -5,7 +5,6 @@
 package vistaCLI;
 
 import clasesUtilitarias.Conversion;
-import controlador.MensajeEnPantallaCuenta;
 import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
@@ -19,7 +18,11 @@ import validacion.ValidacionCuenta;
  *
  * @author Jairo Calderón
  */
-public class DepositoEnDolares {
+public class DepositoEnDolaresCLI {
+    public DepositoEnDolaresCLI() {
+        recibirDatos();
+    }
+    
     private void recibirDatos() {
         try {
             System.out.println("Ingrese el número de cuenta");
