@@ -10,7 +10,6 @@ import validacion.ValidacionCuenta;
 import vistaGUI.ConsultaDeSaldoActual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
-import clasesUtilitarias.Conversion;
 /**
  *
  * @author estadm

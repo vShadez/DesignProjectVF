@@ -23,14 +23,14 @@ public class ControladorConsultaDeEstatusCuenta implements ActionListener{
     
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Consultar")) {
-        String numeroDecuenta = this.vistaGUI.txtNumeroCuentaConsultarEstatus.getText();
-        
-        IDAOCuentaIndividual estadoCuenta = new DAOCuentaIndividual();
-        String estatusCuentaActual = estadoCuenta.consultarEstatusCuenta(numeroDecuenta);
-        
-        if(validarCuentaExiste(numeroDecuenta)){
-            MensajeEnPantallaCuenta.imprimirMensajeEstatusDeCuenta(numeroDecuenta, estatusCuentaActual);
-        }
+            String numeroDecuenta = this.vistaGUI.txtNumeroCuentaConsultarEstatus.getText();
+
+            IDAOCuentaIndividual estadoCuenta = new DAOCuentaIndividual();
+            String estatusCuentaActual = estadoCuenta.consultarEstatusCuenta(numeroDecuenta);
+
+            if(validarCuentaExiste(numeroDecuenta)){
+                MensajeEnPantallaCuenta.imprimirMensajeEstatusDeCuenta(numeroDecuenta, estatusCuentaActual);
+            }
         }
     }
     

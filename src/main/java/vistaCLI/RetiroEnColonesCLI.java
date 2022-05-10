@@ -6,7 +6,6 @@ package vistaCLI;
 
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.PalabraSecreta;
-import controlador.MensajeEnPantallaCuenta;
 import logicaDeAccesoADatos.DAOClienteCuenta;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
