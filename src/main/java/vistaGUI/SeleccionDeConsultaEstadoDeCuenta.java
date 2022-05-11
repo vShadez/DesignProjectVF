@@ -29,6 +29,7 @@ public class SeleccionDeConsultaEstadoDeCuenta extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnColonesEstadoCuenta = new javax.swing.JButton();
         btnDolaresEstadoCuenta = new javax.swing.JButton();
+        btnVolverEstadoCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,6 +39,8 @@ public class SeleccionDeConsultaEstadoDeCuenta extends javax.swing.JFrame {
         btnColonesEstadoCuenta.setText("Colones");
 
         btnDolaresEstadoCuenta.setText("Dólares");
+
+        btnVolverEstadoCuenta.setText("Volver");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,7 +55,10 @@ public class SeleccionDeConsultaEstadoDeCuenta extends javax.swing.JFrame {
                         .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnDolaresEstadoCuenta)
-                            .addComponent(btnColonesEstadoCuenta))))
+                            .addComponent(btnColonesEstadoCuenta)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolverEstadoCuenta)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -64,7 +70,9 @@ public class SeleccionDeConsultaEstadoDeCuenta extends javax.swing.JFrame {
                 .addComponent(btnColonesEstadoCuenta)
                 .addGap(30, 30, 30)
                 .addComponent(btnDolaresEstadoCuenta)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(btnVolverEstadoCuenta)
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -109,6 +117,7 @@ public class SeleccionDeConsultaEstadoDeCuenta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnColonesEstadoCuenta;
     public javax.swing.JButton btnDolaresEstadoCuenta;
+    public javax.swing.JButton btnVolverEstadoCuenta;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

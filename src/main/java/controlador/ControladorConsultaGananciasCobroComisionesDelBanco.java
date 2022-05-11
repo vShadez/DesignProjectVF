@@ -40,6 +40,10 @@ public class ControladorConsultaGananciasCobroComisionesDelBanco implements Acti
             vistaGUI.txtMontoTotalOperacionesDepositosRetirosDolares.setText(String.format("%.2f",comisionesTotalesDepositoRetiros/tipoCompra)+" $");
             
         }
+        if(evento.getActionCommand().equals("Cancelar")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
     
 }

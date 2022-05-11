@@ -71,6 +71,10 @@ public class ControladorRegistroCuentas implements ActionListener{
             }
             
         }
+        if(e.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
    
 }

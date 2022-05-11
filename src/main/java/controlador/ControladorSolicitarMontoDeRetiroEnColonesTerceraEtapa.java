@@ -13,6 +13,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import validacion.ValidacionCuenta;
+import vistaGUI.SeleccionDeRetiroEnDolaresOColones;
 import vistaGUI.SolicitarMontoDeRetiroEnColonesTerceraEtapa;
 
 /**
@@ -25,6 +26,7 @@ public class ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapa implements A
     
     public ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapa(SolicitarMontoDeRetiroEnColonesTerceraEtapa pVistaGUI, String pNumeroDeCuenta) {
         this.vistaGUI = pVistaGUI;
+        this.vistaGUI.btnVolverASeleccionDeRetiro.addActionListener(this);
         this.numeroDeCuenta = pNumeroDeCuenta;
         this.vistaGUI.btnRetirar.addActionListener(this);
     }
@@ -60,6 +62,10 @@ public class ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapa implements A
             else {
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
             }
+        }
+        if(evento.getActionCommand().equals("Volver")){
+            ControladorMenuPrincipal.volverMenuPrincipal();
+            vistaGUI.setVisible(false);
         }
     }
     

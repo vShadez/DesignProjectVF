@@ -14,22 +14,26 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeNegocios.Operacion;
 import clasesUtilitarias.Conversion;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import listaDinamica.Nodo;
+import vistaGUI.ConsultaEstadoDeCuenta;
 
 /**
  *
  * @author estadm
  */
-public class ControladorInformacionPorConsultaDeEstadoCuentaColones {
+public class ControladorInformacionPorConsultaDeEstadoCuentaColones implements ActionListener{
     public InformacionPorConsultaDeEstadoCuentaColones vistaGUI;
     private String numeroCuenta;
     
     public ControladorInformacionPorConsultaDeEstadoCuentaColones(InformacionPorConsultaDeEstadoCuentaColones pVistaGUI ,String pNumeroCuenta){
         this.vistaGUI = pVistaGUI;
         this.numeroCuenta = pNumeroCuenta;
+        this.vistaGUI.btnVolverEstadoCuentaColones.addActionListener(this);
         Operacion[] arregloOperaciones;
         IDAOCuentaIndividual cuenta = new DAOCuentaIndividual();
         Cuenta cuentaRecibida = (Cuenta) cuenta.consultarCuenta(numeroCuenta);
@@ -78,5 +82,16 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColones {
             puntero = puntero.siguiente;
         }
         tabla.setModel(model);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        if(evento.getActionCommand().equals("Volver")) {
+        ConsultaEstadoDeCuenta vistaConsultaEstadoDeCuenta = new ConsultaEstadoDeCuenta();
+        ControladorConsultaEstadoDeCuenta controladorConsultaEstadoDeCuenta = new ControladorConsultaEstadoDeCuenta(vistaConsultaEstadoDeCuenta);
+        controladorConsultaEstadoDeCuenta.vistaGUI.setVisible(true);
+        controladorConsultaEstadoDeCuenta.vistaGUI.setLocationRelativeTo(null);
+        vistaGUI.setVisible(false);
+        }
     }
 }

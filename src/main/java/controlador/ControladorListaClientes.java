@@ -19,28 +19,26 @@ import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICliente;
 import vistaGUI.DetalleCliente;
 import controlador.ControladorDetalleCliente;
+import java.awt.event.ActionListener;
 import vistaGUI.ColorCelda;
 
 /**
  *
  * @author estadm
  */
-public class ControladorListaClientes {
+public class ControladorListaClientes implements ActionListener{
     public ListaClientes  vistaGUI;
     
     public ControladorListaClientes(ListaClientes pVistaGUI) {
         this.vistaGUI = pVistaGUI;
+        this.vistaGUI.btnVolverListaClientes.addActionListener(this);
         iniciarListaClientes();
         this.vistaGUI.tblListaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             
-        //DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         @Override
         public void mouseClicked(java.awt.event.MouseEvent evt) {
-            //Obtiene la fila
             int filaSeleccionada = vistaGUI.tblListaClientes.getSelectedRow();
-            //Obtener la columna
             int columnaSeleccionada = vistaGUI.tblListaClientes.getSelectedColumn();
-            //si la columna es la 1era
             if (columnaSeleccionada == 3) {
                 String clienteSeleccionado = vistaGUI.tblListaClientes.getValueAt(filaSeleccionada, columnaSeleccionada).toString();
                 DetalleCliente vistaDetalleCliente = new DetalleCliente();
@@ -52,7 +50,7 @@ public class ControladorListaClientes {
         }
         
     }
-        ); //ListaClientes.pintarColumnaTabla(tabla);
+        ); 
     }
     
     public void iniciarListaClientes(){
@@ -85,5 +83,13 @@ public class ControladorListaClientes {
         tabla.setModel(model);
         ColorCelda color = new ColorCelda(3);
         tabla.getColumnModel().getColumn(3).setCellRenderer(color);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+       if(evento.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
 }

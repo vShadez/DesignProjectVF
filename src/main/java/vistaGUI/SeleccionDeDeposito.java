@@ -29,6 +29,7 @@ public class SeleccionDeDeposito extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnColonesTipoDeposito = new javax.swing.JButton();
         btnDolaresTipoDeposito = new javax.swing.JButton();
+        btnVolverTipoDeposito = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,6 +39,8 @@ public class SeleccionDeDeposito extends javax.swing.JFrame {
         btnColonesTipoDeposito.setText("Colones");
 
         btnDolaresTipoDeposito.setText("Dólares");
+
+        btnVolverTipoDeposito.setText("Volver");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,8 +55,11 @@ public class SeleccionDeDeposito extends javax.swing.JFrame {
                             .addComponent(btnColonesTipoDeposito)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addComponent(jLabel1)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(btnVolverTipoDeposito)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,7 +70,9 @@ public class SeleccionDeDeposito extends javax.swing.JFrame {
                 .addComponent(btnColonesTipoDeposito)
                 .addGap(30, 30, 30)
                 .addComponent(btnDolaresTipoDeposito)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(btnVolverTipoDeposito)
+                .addContainerGap())
         );
 
         pack();
@@ -111,6 +119,7 @@ public class SeleccionDeDeposito extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnColonesTipoDeposito;
     public javax.swing.JButton btnDolaresTipoDeposito;
+    public javax.swing.JButton btnVolverTipoDeposito;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

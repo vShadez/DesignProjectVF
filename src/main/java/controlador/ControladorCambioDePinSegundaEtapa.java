@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import vistaGUI.CambioDePinPrimeraEtapa;
 import vistaGUI.CambioDePinSegundaEtapa;
 import vistaGUI.CambioDePinTerceraEtapa;
 
@@ -23,7 +24,7 @@ public class ControladorCambioDePinSegundaEtapa implements ActionListener{
         this.numeroDeCuenta = pNumeroDeCuenta;
         this.vistaGUI = pVistaGUI;
         this.vistaGUI.btnAceptar.addActionListener(this);
-        this.vistaGUI.btnCancelar.addActionListener(this);
+        this.vistaGUI.btnCancelarCambioDePinSegundaEtapa.addActionListener(this);
     }
 
     @Override
@@ -43,5 +44,12 @@ public class ControladorCambioDePinSegundaEtapa implements ActionListener{
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
             }
         }
+        if(evento.getActionCommand().equals("Cancelar")) {
+            CambioDePinPrimeraEtapa vistaCambioDePinPrimeraEtapa = new CambioDePinPrimeraEtapa();
+            ControladorCambioDePinPrimeraEtapa controladorCambioDePinPrimeraEtapa = new ControladorCambioDePinPrimeraEtapa(vistaCambioDePinPrimeraEtapa);
+            controladorCambioDePinPrimeraEtapa.vistaGUI.setVisible(true);
+            controladorCambioDePinPrimeraEtapa.vistaGUI.setLocationRelativeTo(null);
+           vistaGUI.setVisible(false);
+       }
     }
 }

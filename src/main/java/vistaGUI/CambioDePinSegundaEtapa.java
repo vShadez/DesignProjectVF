@@ -30,7 +30,7 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtPinCuenta = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnCancelarCambioDePinSegundaEtapa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,7 +41,7 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
 
         btnAceptar.setText("Aceptar");
 
-        btnCancelar.setText("Cancelar");
+        btnCancelarCambioDePinSegundaEtapa.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,7 +61,7 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
                         .addGap(53, 53, 53)
                         .addComponent(btnAceptar)
                         .addGap(33, 33, 33)
-                        .addComponent(btnCancelar)))
+                        .addComponent(btnCancelarCambioDePinSegundaEtapa)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,7 +76,7 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelarCambioDePinSegundaEtapa))
                 .addGap(45, 45, 45))
         );
 
@@ -120,7 +120,7 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAceptar;
-    public javax.swing.JButton btnCancelar;
+    public javax.swing.JButton btnCancelarCambioDePinSegundaEtapa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JTextField txtPinCuenta;

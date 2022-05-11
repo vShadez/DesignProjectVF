@@ -5,6 +5,8 @@
 package controlador;
 
 import clasesUtilitarias.Conversion;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 import listaDinamica.Lista;
@@ -20,12 +22,13 @@ import vistaGUI.ListaCuentas;
  *
  * @author Jairo Calderón
  */
-public class ControladorListaCuentas{
+public class ControladorListaCuentas implements ActionListener{
     public ListaCuentas vistaGUI;
     private DefaultTableModel modeloDeTabla;
     
     public ControladorListaCuentas(ListaCuentas pVistaGUI) {
         this.vistaGUI = pVistaGUI;
+        this.vistaGUI.btnVolverListaCuentas.addActionListener(this);
         this.cargarCuentasDeTabla();
         this.vistaGUI.jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             
@@ -60,5 +63,13 @@ public class ControladorListaCuentas{
             this.modeloDeTabla.addRow(new Object[]{cuenta.numeroCuenta,cuenta.getSaldo(),cuenta.estatus, nombreCompletoDePropietarioDeCuenta,identificacionDePropietarioDeCuenta});
         }
         this.vistaGUI.jTable1.setModel(this.modeloDeTabla);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        if(evento.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
 }

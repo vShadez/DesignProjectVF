@@ -4,6 +4,8 @@
  */
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import serviciosExternos.TipoCambioBCCR;
 import vistaGUI.ConsultaTipoCambioDeVenta;
 
@@ -11,11 +13,12 @@ import vistaGUI.ConsultaTipoCambioDeVenta;
  *
  * @author estadm
  */
-public class ControladorConsultaTipoCambioDeVenta {
+public class ControladorConsultaTipoCambioDeVenta implements ActionListener{
     public ConsultaTipoCambioDeVenta vistaGUI;
     
     public ControladorConsultaTipoCambioDeVenta(ConsultaTipoCambioDeVenta pVistaGUI) {
         this.vistaGUI = pVistaGUI;
+        this.vistaGUI.btnVolverTipoCambioVenta.addActionListener(this);
         consultarTipoDeCambioVenta();
     }
     
@@ -24,5 +27,13 @@ public class ControladorConsultaTipoCambioDeVenta {
         double tipoVenta = tc.obtenerValorVenta();
         
         vistaGUI.txtCambioVenta.setText(""+tipoVenta+" ₡");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        if(evento.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
 }

@@ -33,6 +33,7 @@ public class ConsultaDeSaldoActual extends javax.swing.JFrame {
         btnConsultarDolares = new javax.swing.JButton();
         txtNumeroCuentaConsultaSaldo = new javax.swing.JTextField();
         txtPinCuentaConsultaSaldo = new javax.swing.JPasswordField();
+        btnVolverConsultarSaldoActual = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +59,8 @@ public class ConsultaDeSaldoActual extends javax.swing.JFrame {
             }
         });
 
+        btnVolverConsultarSaldoActual.setText("Volver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,13 +77,16 @@ public class ConsultaDeSaldoActual extends javax.swing.JFrame {
                             .addComponent(txtNumeroCuentaConsultaSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                             .addComponent(txtPinCuentaConsultaSaldo)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
                         .addComponent(btnConsultarColones)
                         .addGap(47, 47, 47)
                         .addComponent(btnConsultarDolares))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jLabel1)))
+                        .addContainerGap()
+                        .addComponent(btnVolverConsultarSaldoActual)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,11 +102,13 @@ public class ConsultaDeSaldoActual extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPinCuentaConsultaSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConsultarColones)
                     .addComponent(btnConsultarDolares))
-                .addGap(35, 35, 35))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(btnVolverConsultarSaldoActual)
+                .addContainerGap())
         );
 
         pack();
@@ -152,6 +160,7 @@ public class ConsultaDeSaldoActual extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnConsultarColones;
     public javax.swing.JButton btnConsultarDolares;
+    public javax.swing.JButton btnVolverConsultarSaldoActual;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

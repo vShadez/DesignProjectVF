@@ -31,6 +31,7 @@ public class ControladorVerificacionMensajeDeTexto implements ActionListener{
     
     public ControladorVerificacionMensajeDeTexto(VerificacionMensajeDeTexto pVistaGUI, String pNumeroDeCuenta, String pTransaccionAsociada) {
         this.vistaGUI = pVistaGUI;
+        this.vistaGUI.btnVolverValidacionCuenta.addActionListener(this);
         this.numeroDeCuenta = pNumeroDeCuenta;
         this.transaccionAsociada = pTransaccionAsociada;
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
@@ -72,6 +73,10 @@ public class ControladorVerificacionMensajeDeTexto implements ActionListener{
                 }
             }
         }
+        if(evento.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
     
     private void enviarMensaje() {

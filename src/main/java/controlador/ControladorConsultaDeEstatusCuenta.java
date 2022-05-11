@@ -32,6 +32,10 @@ public class ControladorConsultaDeEstatusCuenta implements ActionListener{
                 MensajeEnPantallaCuenta.imprimirMensajeEstatusDeCuenta(numeroDecuenta, estatusCuentaActual);
             }
         }
+        if(evento.getActionCommand().equals("Cancelar")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
     
     public boolean validarCuentaExiste(String pNumeroCuenta){

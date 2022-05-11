@@ -47,7 +47,6 @@ import vistaGUI.ConsultaTipoCambioDeCompra;
 import vistaGUI.ConsultaTipoCambioDeVenta;
 import controlador.ControladorConsultaTipoCambioDeVenta;
 import controlador.ControladorMenuPrincipal;
-import controlador.ControladorMenuPrincipal1;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
@@ -55,7 +54,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import vistaGUI.MenuPrincipal;
-import vistaGUI.Menuuuuuuuuuuuu;
+import vistaGUI.MenuPrincipal;
 /**
  *
  * @author calde
@@ -183,8 +182,8 @@ public class NewMain {//extends JPanel
         */
         
         
-        Menuuuuuuuuuuuu vista = new Menuuuuuuuuuuuu();
-        ControladorMenuPrincipal1 controladorSala = new ControladorMenuPrincipal1(vista);
+        MenuPrincipal vista = new MenuPrincipal();
+        ControladorMenuPrincipal controladorSala = new ControladorMenuPrincipal(vista);
         controladorSala.vistaGUI.setVisible(true);
         controladorSala.vistaGUI.setLocationRelativeTo(null);
         

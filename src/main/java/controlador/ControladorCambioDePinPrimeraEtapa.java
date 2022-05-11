@@ -42,5 +42,9 @@ public class ControladorCambioDePinPrimeraEtapa implements ActionListener{
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
             }
         }
+        if(evento.getActionCommand().equals("Cancelar")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
 }

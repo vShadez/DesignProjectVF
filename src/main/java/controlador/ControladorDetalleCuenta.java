@@ -4,23 +4,27 @@
  */
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import vistaGUI.DetalleCuenta;
+import vistaGUI.ListaCuentas;
 
 /**
  *
  * @author Jairo Calderón
  */
-public class ControladorDetalleCuenta {
+public class ControladorDetalleCuenta implements ActionListener{
     private String numeroDeCuenta;
     public DetalleCuenta vistaGUI;
     
     public ControladorDetalleCuenta(String pNumeroDeCuenta, DetalleCuenta pVistaGUI) {
         this.numeroDeCuenta = pNumeroDeCuenta;
         this.vistaGUI = pVistaGUI;
+        this.vistaGUI.btnVolverDetalleCuenta.addActionListener(this);
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(this.numeroDeCuenta);
         Cliente cliente = (Cliente) cuenta.propietario;
@@ -30,5 +34,16 @@ public class ControladorDetalleCuenta {
         this.vistaGUI.txtSaldoCuenta.setText(String.valueOf(cuenta.getSaldo()));
         this.vistaGUI.txtPin.setText(cuenta.getPin());
         this.vistaGUI.txtNombrePropietario.setText(nombreDePropietario);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        if(evento.getActionCommand().equals("Volver")) {
+            ListaCuentas vistaListaCuentass = new ListaCuentas();
+            ControladorListaCuentas controladorListaCuentas = new ControladorListaCuentas(vistaListaCuentass);
+            controladorListaCuentas.vistaGUI.setVisible(true);
+            controladorListaCuentas.vistaGUI.setLocationRelativeTo(null);
+            vistaGUI.setVisible(false);
+       }
     }
 }
