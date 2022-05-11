@@ -44,7 +44,7 @@ public class ControladorRegistroCuentas implements ActionListener{
             String pin = this.vistaGUI.txtPinDatosCuenta.getText();
             String montoInicial = this.vistaGUI.txtMontoInicial.getText();
             String identificacionCliente = this.vistaGUI.txtIdentificacionDatodCuenta.getText();
-            if(validacion.ExpresionRegular.verificarContieneCaracterEspecial(pin) && validacion.ExpresionRegular.verificarContieneLetraMayuscula(pin) && validacion.ExpresionRegular.verificarContieneNumero(pin) && validacion.ExpresionRegular.verificarContieneSeisCaracteresSinEspacios(pin) && validacion.ExpresionRegular.verificarEsNumero(montoInicial)){
+            if(validacion.ValidacionCuenta.validarFormatoDePin(pin) && validacion.ExpresionRegular.verificarEsNumero(montoInicial)){
                 try {
                     double montoInicialConvetidoDouble = Conversion.convertirStringEnDecimal(montoInicial);
                     IDAOCliente DAOCliente = new DAOCliente();

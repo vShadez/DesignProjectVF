@@ -181,14 +181,10 @@ public class NewMain {//extends JPanel
         controladorSala.vistaGUI.setLocationRelativeTo(null);
         */
         
-        
         MenuPrincipal vista = new MenuPrincipal();
         ControladorMenuPrincipal controladorSala = new ControladorMenuPrincipal(vista);
         controladorSala.vistaGUI.setVisible(true);
         controladorSala.vistaGUI.setLocationRelativeTo(null);
-        
-        
-        
         
         /*
         ConsultaTipoCambioDeCompra vista = new ConsultaTipoCambioDeCompra();
