@@ -42,6 +42,10 @@ public class ControladorConsultaEstadoDeCuenta implements ActionListener{
                 }
             }
         }
+        if(evento.getActionCommand().equals("Cancelar")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
 
 }

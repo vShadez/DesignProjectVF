@@ -60,6 +60,10 @@ public class ControladorRegistroClientes implements ActionListener{
                 MensajeEnPantallaCliente.imprimirMensajeCreadoExitoso(codigo, nombre, identificacion, fechaDeNacimiento, numeroDeTelefono);
             }
         }
+        if(evento.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
     
     public boolean validarTipoDeDatos(String pIdentificacion) {

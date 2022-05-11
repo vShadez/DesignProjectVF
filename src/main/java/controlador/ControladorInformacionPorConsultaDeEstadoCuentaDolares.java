@@ -1,6 +1,8 @@
 
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import serviciosExternos.TipoCambioBCCR;
 import java.time.LocalDate;
 import javax.swing.JTable;
@@ -14,6 +16,7 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
+import vistaGUI.ConsultaEstadoDeCuenta;
 import vistaGUI.InformacionPorConsultaDeEstadoCuentaColones;
 import vistaGUI.InformacionPorConsultaDeEstadoCuentaDolares;
 
@@ -21,13 +24,14 @@ import vistaGUI.InformacionPorConsultaDeEstadoCuentaDolares;
  *
  * @author estadm
  */
-public class ControladorInformacionPorConsultaDeEstadoCuentaDolares {
+public class ControladorInformacionPorConsultaDeEstadoCuentaDolares implements ActionListener{
     public InformacionPorConsultaDeEstadoCuentaDolares vistaGUI;
     private String numeroCuenta;
     
     public ControladorInformacionPorConsultaDeEstadoCuentaDolares(InformacionPorConsultaDeEstadoCuentaDolares pVistaGUI ,String pNumeroCuenta){
         this.vistaGUI = pVistaGUI;
         this.numeroCuenta = pNumeroCuenta;
+        this.vistaGUI.btnVolverEstadoCuentaDolares.addActionListener(this);
         IDAOCuentaIndividual cuenta = new DAOCuentaIndividual();
         Cuenta cuentaRecibida = (Cuenta) cuenta.consultarCuenta(numeroCuenta);
         
@@ -79,5 +83,16 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolares {
             puntero = puntero.siguiente;
         }
         tabla.setModel(model);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        if(evento.getActionCommand().equals("Volver")) {
+        ConsultaEstadoDeCuenta vistaConsultaEstadoDeCuenta = new ConsultaEstadoDeCuenta();
+        ControladorConsultaEstadoDeCuenta controladorConsultaEstadoDeCuenta = new ControladorConsultaEstadoDeCuenta(vistaConsultaEstadoDeCuenta);
+        controladorConsultaEstadoDeCuenta.vistaGUI.setVisible(true);
+        controladorConsultaEstadoDeCuenta.vistaGUI.setLocationRelativeTo(null);
+        vistaGUI.setVisible(false);
+        }
     }
 }

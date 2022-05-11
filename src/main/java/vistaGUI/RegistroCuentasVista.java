@@ -55,7 +55,7 @@ public class RegistroCuentasVista extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Volver");
 
         jLabel3.setText("Identificación cliente");
 
@@ -73,7 +73,7 @@ public class RegistroCuentasVista extends javax.swing.JFrame {
                         .addComponent(btnRegistrar)
                         .addGap(46, 46, 46)
                         .addComponent(btnCancelar)))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

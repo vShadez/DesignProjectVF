@@ -5,6 +5,8 @@
 package controlador;
 
 import clasesUtilitarias.Conversion;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -17,17 +19,19 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 import vistaGUI.DetalleCliente;
+import vistaGUI.ListaClientes;
 
 /**
  *
  * @author estadm
  */
-public class ControladorDetalleCliente {
+public class ControladorDetalleCliente implements ActionListener{
     public DetalleCliente vistaGUI;
     private int identificacionCliente;
     
     public ControladorDetalleCliente(int pIdentificacionCliente, DetalleCliente pDetalleCliente){
         this.vistaGUI = pDetalleCliente;
+        this.vistaGUI.btnVolverDetalleCliente.addActionListener(this);
         Cuenta[] arregloDeCuentasDeCliente;
         this.identificacionCliente = pIdentificacionCliente;
         
@@ -69,5 +73,16 @@ public class ControladorDetalleCliente {
         }
         
         tabla.setModel(model);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        if(evento.getActionCommand().equals("Volver")) {
+            ListaClientes vistaListaClientes = new ListaClientes();
+            ControladorListaClientes controladorListaClientes = new ControladorListaClientes(vistaListaClientes);
+            controladorListaClientes.vistaGUI.setVisible(true);
+            controladorListaClientes.vistaGUI.setLocationRelativeTo(null);
+            vistaGUI.setVisible(false);
+       }
     }
 }

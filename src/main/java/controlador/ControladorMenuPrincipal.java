@@ -161,4 +161,12 @@ public class ControladorMenuPrincipal implements ActionListener{
         }
     }
     
+    public static void volverMenuPrincipal(){
+        MenuPrincipal vistaMenuPrincipal = new MenuPrincipal();
+        ControladorMenuPrincipal controladorMenuPrincipal = new ControladorMenuPrincipal(vistaMenuPrincipal);
+        controladorMenuPrincipal.vistaGUI.setVisible(true);
+        controladorMenuPrincipal.vistaGUI.setLocationRelativeTo(null);
+        //pvistaGUI.setVisible(false);
+    }
+    
 }

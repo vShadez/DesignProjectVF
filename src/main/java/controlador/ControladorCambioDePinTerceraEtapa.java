@@ -39,6 +39,10 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, nuevoPin);
             }
         }
+        if(evento.getActionCommand().equals("Cancelar")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
     
     public boolean validarFormatoDePinCorrecto(String pPin) {

@@ -30,6 +30,7 @@ public class VerificacionMensajeDeTexto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtMensajeDeValidacion = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
+        btnVolverValidacionCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,6 +40,8 @@ public class VerificacionMensajeDeTexto extends javax.swing.JFrame {
         jLabel2.setText("Mensaje de texto");
 
         btnConfirmar.setText("Confirmar");
+
+        btnVolverValidacionCuenta.setText("Volver");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,8 +58,10 @@ public class VerificacionMensajeDeTexto extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(txtMensajeDeValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(btnConfirmar)))
+                        .addGap(88, 88, 88)
+                        .addComponent(btnConfirmar)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnVolverValidacionCuenta)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -68,9 +73,11 @@ public class VerificacionMensajeDeTexto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(txtMensajeDeValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(btnConfirmar)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirmar)
+                    .addComponent(btnVolverValidacionCuenta))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -116,6 +123,7 @@ public class VerificacionMensajeDeTexto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnConfirmar;
+    public javax.swing.JButton btnVolverValidacionCuenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JTextField txtMensajeDeValidacion;

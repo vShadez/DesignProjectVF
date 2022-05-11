@@ -20,6 +20,7 @@ public class ControladorSeleccionDeDeposito implements ActionListener{
         this.vistaGUI = pVistaGUI;
         this.vistaGUI.btnColonesTipoDeposito.addActionListener(this);
         this.vistaGUI.btnDolaresTipoDeposito.addActionListener(this);
+        this.vistaGUI.btnVolverTipoDeposito.addActionListener(this);
     }
 
     @Override
@@ -40,5 +41,9 @@ public class ControladorSeleccionDeDeposito implements ActionListener{
             controladorDepositoConTipoDeCambio.vistaGUI.setLocationRelativeTo(null);
             vistaGUI.setVisible(false);
         }
+        if(evento.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
 }
 }

@@ -14,6 +14,7 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import validacion.ValidacionCuenta;
 import vistaGUI.DepositoEnColones;
+import vistaGUI.SeleccionDeDeposito;
 
 /**
  *
@@ -52,6 +53,13 @@ public class ControladorDepositoEnColones implements ActionListener{
             else {
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
             }
+        }
+        if(evento.getActionCommand().equals("Cancelar")) {
+            SeleccionDeDeposito vistaSeleccionDeDeposito = new SeleccionDeDeposito();
+            ControladorSeleccionDeDeposito controladorSeleccionDeDeposito = new ControladorSeleccionDeDeposito(vistaSeleccionDeDeposito);
+            controladorSeleccionDeDeposito.vistaGUI.setVisible(true);
+            controladorSeleccionDeDeposito.vistaGUI.setLocationRelativeTo(null);
+            vistaGUI.setVisible(false);
         }
     }
     

@@ -65,5 +65,9 @@ public class ControladorConsultaGananciasCobroComisionesPorCadaCuenta implements
             tabla.setModel(model);
             
         }
+        if(evento.getActionCommand().equals("Cancelar")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
 }

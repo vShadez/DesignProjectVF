@@ -66,6 +66,10 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapa implements A
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
             }
         }
+        if(evento.getActionCommand().equals("Volver")){
+            ControladorMenuPrincipal.volverMenuPrincipal();
+            vistaGUI.setVisible(false);
+        }
     }
     
     private double calcularMontoComision(double pMontoPorRetirar) {

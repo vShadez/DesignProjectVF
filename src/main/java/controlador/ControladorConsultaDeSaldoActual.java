@@ -21,13 +21,20 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
         this.vistaGUI = pVistaGUI;
         this.vistaGUI.btnConsultarColones.addActionListener(this);
         this.vistaGUI.btnConsultarDolares.addActionListener(this);
+        this.vistaGUI.btnVolverConsultarSaldoActual.addActionListener(this);
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
         String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaConsultaSaldo.getText();
         String pin = this.vistaGUI.txtPinCuentaConsultaSaldo.getText();
-        boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
+        
+        if(evento.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+        } else{  
+            boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
         if(existeCuenta) {
             boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
             if(pinCorrespondeACuenta) {
@@ -50,8 +57,9 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
         } else {
             MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
           }
-        
+        }
+       }
     }
     
     
-}
+

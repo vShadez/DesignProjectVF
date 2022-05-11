@@ -63,6 +63,10 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
             }
         }
+        if(evento.getActionCommand().equals("Cancelar")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
     
     private double calcularMontoComision(double pMontoPorRetirar) {

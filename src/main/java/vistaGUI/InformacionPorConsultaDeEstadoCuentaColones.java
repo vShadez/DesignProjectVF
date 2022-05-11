@@ -41,6 +41,7 @@ public class InformacionPorConsultaDeEstadoCuentaColones extends javax.swing.JFr
         txtSaldoActualEstadoColones = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEstadoDeCuentaColones = new javax.swing.JTable();
+        btnVolverEstadoCuentaColones = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,6 +94,8 @@ public class InformacionPorConsultaDeEstadoCuentaColones extends javax.swing.JFr
         ));
         jScrollPane2.setViewportView(tblEstadoDeCuentaColones);
 
+        btnVolverEstadoCuentaColones.setText("Volver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,6 +127,10 @@ public class InformacionPorConsultaDeEstadoCuentaColones extends javax.swing.JFr
                                 .addComponent(jLabel1)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnVolverEstadoCuentaColones)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +159,9 @@ public class InformacionPorConsultaDeEstadoCuentaColones extends javax.swing.JFr
                     .addComponent(jLabel5))
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(btnVolverEstadoCuentaColones)
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -194,6 +203,7 @@ public class InformacionPorConsultaDeEstadoCuentaColones extends javax.swing.JFr
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnVolverEstadoCuentaColones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

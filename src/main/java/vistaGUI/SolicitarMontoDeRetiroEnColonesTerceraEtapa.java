@@ -30,6 +30,7 @@ public class SolicitarMontoDeRetiroEnColonesTerceraEtapa extends javax.swing.JFr
         jLabel2 = new javax.swing.JLabel();
         txtMontoRetiroColones = new javax.swing.JTextField();
         btnRetirar = new javax.swing.JButton();
+        btnVolverASeleccionDeRetiro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +46,8 @@ public class SolicitarMontoDeRetiroEnColonesTerceraEtapa extends javax.swing.JFr
             }
         });
 
+        btnVolverASeleccionDeRetiro.setText("Volver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,12 +61,14 @@ public class SolicitarMontoDeRetiroEnColonesTerceraEtapa extends javax.swing.JFr
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(btnRetirar))
+                        .addGap(100, 100, 100)
+                        .addComponent(btnRetirar)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnVolverASeleccionDeRetiro))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,7 +80,9 @@ public class SolicitarMontoDeRetiroEnColonesTerceraEtapa extends javax.swing.JFr
                     .addComponent(txtMontoRetiroColones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(btnRetirar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRetirar)
+                    .addComponent(btnVolverASeleccionDeRetiro))
                 .addGap(36, 36, 36))
         );
 
@@ -124,6 +131,7 @@ public class SolicitarMontoDeRetiroEnColonesTerceraEtapa extends javax.swing.JFr
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnRetirar;
+    public javax.swing.JButton btnVolverASeleccionDeRetiro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JTextField txtMontoRetiroColones;

@@ -22,6 +22,11 @@ public class ControladorSeccionDeConsultaEstadoDeCuenta implements ActionListene
         this.vistaGUI.btnDolaresEstadoCuenta.addActionListener(this);
         this.numeroCuenta = pNumeroCuenta;
     }
+     public ControladorSeccionDeConsultaEstadoDeCuenta(SeleccionDeConsultaEstadoDeCuenta pVistaGUI){
+        this.vistaGUI = pVistaGUI;
+        this.vistaGUI.btnColonesEstadoCuenta.addActionListener(this);
+        this.vistaGUI.btnDolaresEstadoCuenta.addActionListener(this);
+    }
 
     @Override
     public void actionPerformed(ActionEvent evento) {

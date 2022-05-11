@@ -16,6 +16,7 @@ import validacion.ValidacionCuenta;
 import vistaGUI.DepositoConTipoDeCambio;
 import serviciosExternos.TipoCambioBCCR;
 import java.time.LocalDate;
+import vistaGUI.SeleccionDeDeposito;
 
 /**
  *
@@ -54,6 +55,14 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
             else {
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
             }
+        }
+        
+        if(evento.getActionCommand().equals("Cancelar")) {
+            SeleccionDeDeposito vistaSeleccionDeDeposito = new SeleccionDeDeposito();
+            ControladorSeleccionDeDeposito controladorSeleccionDeDeposito = new ControladorSeleccionDeDeposito(vistaSeleccionDeDeposito);
+            controladorSeleccionDeDeposito.vistaGUI.setVisible(true);
+            controladorSeleccionDeDeposito.vistaGUI.setLocationRelativeTo(null);
+            vistaGUI.setVisible(false);
         }
     }
     

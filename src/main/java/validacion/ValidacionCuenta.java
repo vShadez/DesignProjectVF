@@ -9,7 +9,6 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
-
 /**
  *
  * @author Jairo Calderón
@@ -68,10 +67,8 @@ public class ValidacionCuenta {
                     boolean pinContieneUnCaracterEspecial = ExpresionRegular.verificarContieneCaracterEspecial(pPin);
                     if(pinContieneUnCaracterEspecial) {
                         return true;
-                    }
-                }
-            }
-        }
+                    } 
+        controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido();
         return false;
     }
 }

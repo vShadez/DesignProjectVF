@@ -6,6 +6,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import vistaGUI.RetiroPrimeraEtapa;
 import vistaGUI.SeleccionDeRetiroEnDolaresOColones;
 import vistaGUI.SolicitarMontoDeRetiroEnColonesTerceraEtapa;
 
@@ -19,10 +20,12 @@ public class ControladorSeleccionDeRetiroEnDolaresOColones implements ActionList
     
     public ControladorSeleccionDeRetiroEnDolaresOColones(SeleccionDeRetiroEnDolaresOColones pVistaGUI, String pNumeroDeCuenta) {
         this.vistaGUI = pVistaGUI;
+        this.vistaGUI.btnVolverRetiro.addActionListener(this);
         this.numeroDeCuenta = pNumeroDeCuenta;
         this.vistaGUI.jButton1.addActionListener(this);
         this.vistaGUI.jButton2.addActionListener(this);
     }
+    
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -36,5 +39,12 @@ public class ControladorSeleccionDeRetiroEnDolaresOColones implements ActionList
         if(evento.getActionCommand().equals("Dólares")) {
             
         }
+        if(evento.getActionCommand().equals("Volver")) {
+            RetiroPrimeraEtapa vistaRetiroPrimeraEtapa = new RetiroPrimeraEtapa();
+            ControladorRetiroPrimeraEtapa controladorRetiroPrimeraEtapa = new ControladorRetiroPrimeraEtapa(vistaRetiroPrimeraEtapa);
+            controladorRetiroPrimeraEtapa.vistaGUI.setVisible(true);
+            controladorRetiroPrimeraEtapa.vistaGUI.setLocationRelativeTo(null);
+            vistaGUI.setVisible(false);
+       }
     }
 }
