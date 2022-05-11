@@ -65,10 +65,15 @@ public class ExpresionRegular {
     }
     
     public static boolean verificarEsNumero(String textoPorVerificar) {
+        /*
         ExpresionRegular.patronDeComparacion = Pattern.compile("^[0-9]+[.]{0,1}[0-9]*[0-9]$");
         ExpresionRegular.comparacion = ExpresionRegular.patronDeComparacion.matcher(textoPorVerificar);
         boolean esPalabra = comparacion.find();
-        return esPalabra;
+        System.out.println(esPalabra);
+        */
+        boolean isNumeric =  textoPorVerificar.matches("[+-]?\\d*(\\.\\d+)?");
+        System.out.println(isNumeric);
+        return isNumeric;
     }
     
     public static boolean verificarFormatoDeFecha(String textoPorVerificar) {

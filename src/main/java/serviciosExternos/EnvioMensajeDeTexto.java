@@ -14,7 +14,7 @@ import com.twilio.rest.api.v2010.account.Message;
 public class EnvioMensajeDeTexto {
 
     public void enviarMensaje(String pNumeroReceptor, String pMensaje) {
-        Twilio.init("AC9fb2dd20b5d3b44904dfc5ad80ceadc8", "878e8b2510ce6fb9b516689d20f91ed2");
+        Twilio.init("AC9fb2dd20b5d3b44904dfc5ad80ceadc8", "a2f3868bf31fdbba1875edb689350549");
         Message.creator(
                 new com.twilio.type.PhoneNumber("+506" + pNumeroReceptor),
                 new com.twilio.type.PhoneNumber("+19794935549"),

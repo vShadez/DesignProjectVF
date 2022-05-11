@@ -4,8 +4,10 @@
  */
 package validacion;
 
+import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
+import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
@@ -15,9 +17,9 @@ import logicaDeNegocios.Cuenta;
  */
 public class ValidacionCuenta {
     public static boolean validarExisteCuenta(String pNumeroDeCuenta) {
-        IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
-        Cuenta cuentaEncontrada = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuenta);
-        return cuentaEncontrada != null;
+        IDAOCatalogoDeCuentas daoCuenta = new DAOCatalogoDeCuentas();
+        boolean cuentaEncontrada = daoCuenta.consultarSiExisteCuenta(pNumeroDeCuenta);
+        return cuentaEncontrada;
     }
     
     public static boolean validarPinCorrespondeACuenta(String pNumeroDeCuenta, String pPin) {

@@ -32,7 +32,7 @@ public class MensajeEnPantallaCuenta {
     public static void imprimirMensajeDepositoEnColonesExitoso(String pNumeroDeCuenta, int pMontoDepositado, double pMontoComision) {
         String mensajeDepositoExitoso = "";
         mensajeDepositoExitoso += "Estimado usuario, se han depositado correctamente " + pMontoDepositado + " colones \n";
-        mensajeDepositoExitoso += "[El monto real depositado a su cuenta" + pNumeroDeCuenta + "es de " + (pMontoDepositado - pMontoComision) + " colones] \n";
+        mensajeDepositoExitoso += "[El monto real depositado a su cuenta " + pNumeroDeCuenta + " es de " + (pMontoDepositado - pMontoComision) + " colones] \n";
         mensajeDepositoExitoso += "[El monto cobrado por concepto de comisión fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual]";
         JOptionPane.showMessageDialog(null, mensajeDepositoExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -42,7 +42,7 @@ public class MensajeEnPantallaCuenta {
         mensajeDepositoExitoso += "Estimado usuario, se han recibido correctamente " + pMontoDepositadoDolares + " dolares \n";
         mensajeDepositoExitoso += "[Según el BCCR, el tipo de cambio de compra del dólar de " + pFechaDeposito + " es: " + pTipoCambio + "] \n";
         mensajeDepositoExitoso += "[El monto equivalente en colones es " + pMontoDepositadoColones + "] \n";
-        mensajeDepositoExitoso += "[El monto real depositado a su cuenta " + pNumeroDeCuenta + " es de " + (pMontoDepositadoColones - pMontoComision) + " colones] \n";
+        mensajeDepositoExitoso += "[El monto real depositado a su cuenta " + pNumeroDeCuenta + " es de " + (String.format("%.2f",pMontoDepositadoColones - pMontoComision)) + " colones] \n";
         mensajeDepositoExitoso += "[El monto cobrado por concepto de comisión fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual]";
         JOptionPane.showMessageDialog(null, mensajeDepositoExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -108,6 +108,12 @@ public class MensajeEnPantallaCuenta {
     
     public static void imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto() {
         String mensajeDeError = "El formato del monto de retiro ingresado no es válido \n";
+        mensajeDeError += "El monto debe ser un valor numérico entero positivo";
+        JOptionPane.showMessageDialog(null, mensajeDeError, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public static void imprimirMensajeDeErrorFormatoDeMontoDeDepositoIncorrecto() {
+        String mensajeDeError = "El formato del monto de depósito ingresado no es válido \n";
         mensajeDeError += "El monto debe ser un valor numérico entero positivo";
         JOptionPane.showMessageDialog(null, mensajeDeError, "Error", JOptionPane.ERROR_MESSAGE);
     }

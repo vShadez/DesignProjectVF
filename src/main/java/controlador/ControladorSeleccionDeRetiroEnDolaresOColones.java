@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import vistaGUI.RetiroPrimeraEtapa;
 import vistaGUI.SeleccionDeRetiroEnDolaresOColones;
 import vistaGUI.SolicitarMontoDeRetiroEnColonesTerceraEtapa;
+import vistaGUI.SolicitarMontoDeRetiroEnDolaresTerceraEtapa;
 
 /**
  *
@@ -37,7 +38,11 @@ public class ControladorSeleccionDeRetiroEnDolaresOColones implements ActionList
             this.vistaGUI.setVisible(false);
         }
         if(evento.getActionCommand().equals("Dólares")) {
-            
+            SolicitarMontoDeRetiroEnDolaresTerceraEtapa vistaSolicitarMontoDeRetiroEnDolaresTerceraEtapa = new SolicitarMontoDeRetiroEnDolaresTerceraEtapa();
+            ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapa controladorSSolicitarMontoDeRetiroEnDolaresTerceraEtapa = new ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapa(vistaSolicitarMontoDeRetiroEnDolaresTerceraEtapa, numeroDeCuenta);
+            controladorSSolicitarMontoDeRetiroEnDolaresTerceraEtapa.vistaGUI.setVisible(true);
+            controladorSSolicitarMontoDeRetiroEnDolaresTerceraEtapa.vistaGUI.setLocationRelativeTo(null);
+            this.vistaGUI.setVisible(false);
         }
         if(evento.getActionCommand().equals("Volver")) {
             RetiroPrimeraEtapa vistaRetiroPrimeraEtapa = new RetiroPrimeraEtapa();
