@@ -63,16 +63,25 @@ public class MenuPrincipalCLI {
             case "10":
                 TransferenciaCLI abrirMenuDeRealizarTransferencia = new TransferenciaCLI();
             case "11":
-                
+                TipoDeCambioDeCompraCLI abrirMenuDeTipoDeCambioDeCompra = new TipoDeCambioDeCompraCLI();
             case "12":
+                TipoDeCambioDeVentaCLI abrirMenuDeTipoDeCambioDeVenta = new TipoDeCambioDeVentaCLI();
             case "13":
+                ConsultaDeSaldoActualCLI abrirMenuDeConsultaDeSaldoActual = new ConsultaDeSaldoActualCLI();
             case "14":
+                ConsultaDeSaldoActualEnDolaresCLI abrirMenuDeConsultaDeSaldoActualEnDolares = new ConsultaDeSaldoActualEnDolaresCLI();
             case "15":
+                ConsultaDeEstadoDeCuentaCLI abrirMenuDeConsultaDeEstadoDeCuenta = new ConsultaDeEstadoDeCuentaCLI();
             case "16":
+                ConsultaDeEstadoDeCuentaEnDolaresCLI abrirMenuDeConsultaDeEstadoDeCuentaEnDolares = new ConsultaDeEstadoDeCuentaEnDolaresCLI(); 
             case "17":
+                ConsultaDeEstatusDeCuentaCLI abrirMenuDeConsultaDeEstatusDeCuenta = new ConsultaDeEstatusDeCuentaCLI();
             case "18":
+                ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones abrirMenuDeConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones = new ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones();
             case "19":
+                ConsultaDeGananciasTotalesDeBancoPorComisionesCLI abrirMenuDeConsultaDeGananciasTotalesDeBancoPorComisiones = new ConsultaDeGananciasTotalesDeBancoPorComisionesCLI();
             case "20":
+                System.exit(0);
             default:
                 System.out.println("La opción ingresada no es válida");
         }
