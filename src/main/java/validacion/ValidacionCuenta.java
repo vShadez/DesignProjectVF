@@ -67,7 +67,10 @@ public class ValidacionCuenta {
                     boolean pinContieneUnCaracterEspecial = ExpresionRegular.verificarContieneCaracterEspecial(pPin);
                     if(pinContieneUnCaracterEspecial) {
                         return true;
-                    } 
+                    }
+                }
+            }
+        }
         controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido();
         return false;
     }
