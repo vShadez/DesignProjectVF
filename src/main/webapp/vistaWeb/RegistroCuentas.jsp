@@ -29,16 +29,14 @@
                     </div>
                 </div>
                 <br>
-                <form action="ControladorRegistroCuentas" method="POST" >
+                <form action="/" method="GET" >
                     <div class="form-group">
                         <label>Pin</label>
-                        Pin: <input type="text" name="pin" class="inputBox" value="<%out.print(pin); %>"/>
-                        
+                        <input type="password" class "form-control" name = "pin" placeholder="Pin" required>
                     </div>
                     <div class="form-group">
                         <label>Monto inicial</label>
-                        
-                        Monto inicial: <input type="text" name="montoInicial" class="inputBox" value="<% out.print(montoInicial); %>"/>
+                        <input type="number" class "form-control" name = "montoDepositoInicial" placeholder="Monto inicial" required>
                     </div>
                     <div class="form-group">
                         <label>Identificacion cliente</label>
