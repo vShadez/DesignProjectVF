@@ -5,7 +5,6 @@
 package vistaCLI;
 
 import clasesUtilitarias.Conversion;
-import controlador.MensajeEnPantallaCuenta;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCliente;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
@@ -54,14 +53,38 @@ public class RegistroDeCuentasCLI {
                     nuevaCuenta.asignarPropietario(clienteAsociadoConCuenta);
                     nuevaCuenta.depositar(montoInicialConvetidoDouble);
                     clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
-                    MensajeEnPantallaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, depositoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente);
+                    MensajeEnConsolaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, depositoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente);
                 } 
                 catch (Exception ex) {
-                    
+                    System.out.println("Ocurrio un error al ingresar los datos");
+                    boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                    if(usuarioDeseaVolverAMenuPrincipal) {
+                        MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                    }
+                    else {
+                        this.solicitarDatos();
+                    }
                 }
             }
-        } catch (Exception ex) {
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.solicitarDatos();
+                }
+            }
+        } 
+        catch (Exception ex) {
             System.out.println("Ocurrio un error al ingresar los datos");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.solicitarDatos();
+            }
         }
     }
     

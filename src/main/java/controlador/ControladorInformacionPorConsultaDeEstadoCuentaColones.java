@@ -60,8 +60,9 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColones implements A
         
         model.addColumn("Tipo de operación");
         model.addColumn("Fecha");
-        model.addColumn("Monto");
         model.addColumn("Comisión");
+        model.addColumn("Monto cobrado");
+        
         
         Nodo puntero = operacionesCuenta.inicio;
         while(puntero != null) {
@@ -78,7 +79,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColones implements A
             }else{
                 aplicaComisionSiNo = "No";
             }
-            model.addRow(new Object[]{tipoOperacion, fechaOperacionConvertidaString, montoComisionConvertidaADouble+" ₡", aplicaComisionSiNo});
+            model.addRow(new Object[]{tipoOperacion, fechaOperacionConvertidaString, aplicaComisionSiNo, montoComisionConvertidaADouble+" ₡"});
             puntero = puntero.siguiente;
         }
         tabla.setModel(model);

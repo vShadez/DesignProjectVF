@@ -27,7 +27,7 @@ public class DAOCatalogoDeCuentas implements IDAOCatalogoDeCuentas{
     
     @Override
     public Lista<ICuenta> consultarListaDeCuentas(){
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Lista<ICuenta> listaCuentas = new Lista<>();
         MongoCursor<Document> cursor = coleccionCuentas.find().cursor();
         while(cursor.hasNext()) {

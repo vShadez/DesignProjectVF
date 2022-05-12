@@ -62,6 +62,20 @@ public class DetalleCuenta extends javax.swing.JFrame {
 
         jLabel8.setText("Nombre propietario");
 
+        txtNumeroCuenta.setEditable(false);
+
+        txtFechaCreacion.setEditable(false);
+
+        txtSaldoCuenta.setEditable(false);
+
+        txtPin.setEditable(false);
+
+        txtEstatus.setEditable(false);
+
+        txtCantidadRD.setEditable(false);
+
+        txtNombrePropietario.setEditable(false);
+
         btnVolverDetalleCuenta.setText("Volver");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +198,7 @@ public class DetalleCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField txtCantidadRD;
+    public javax.swing.JTextField txtCantidadRD;
     public javax.swing.JTextField txtEstatus;
     public javax.swing.JTextField txtFechaCreacion;
     public javax.swing.JTextField txtNombrePropietario;

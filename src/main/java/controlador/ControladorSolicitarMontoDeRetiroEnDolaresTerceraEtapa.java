@@ -66,7 +66,7 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapa implements A
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
             }
         }
-        if(evento.getActionCommand().equals("Volver")){
+        if(evento.getActionCommand().equals("Cancelar")){
             ControladorMenuPrincipal.volverMenuPrincipal();
             vistaGUI.setVisible(false);
         }

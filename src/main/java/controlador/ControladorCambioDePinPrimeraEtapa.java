@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.Cuenta;
+import validacion.ValidacionCuenta;
 import vistaGUI.CambioDePinPrimeraEtapa;
 import vistaGUI.CambioDePinSegundaEtapa;
 
@@ -32,11 +33,16 @@ public class ControladorCambioDePinPrimeraEtapa implements ActionListener{
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuenta.getText();
             Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
             if(cuenta != null) {
+                boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
+                if(cuentaEstaActiva) {
                 CambioDePinSegundaEtapa vistaSegundaEtapa = new CambioDePinSegundaEtapa();
                 ControladorCambioDePinSegundaEtapa controladorSegundaEtapa = new ControladorCambioDePinSegundaEtapa(cuenta.numeroCuenta, vistaSegundaEtapa);
                 controladorSegundaEtapa.vistaGUI.setVisible(true);
                 controladorSegundaEtapa.vistaGUI.setLocationRelativeTo(null);
                 this.vistaGUI.setVisible(false);
+                }else{
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
+                }
             }
             else {
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);

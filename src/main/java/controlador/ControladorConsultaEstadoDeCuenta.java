@@ -32,15 +32,23 @@ public class ControladorConsultaEstadoDeCuenta implements ActionListener{
             String pin = this.vistaGUI.txtPinEstadoCuenta.getText();
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
             if(existeCuenta) {
-               boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
-                if(pinCorrespondeACuenta) {
-                    SeleccionDeConsultaEstadoDeCuenta vistaSeccionConsultaEstadoCuenta = new SeleccionDeConsultaEstadoDeCuenta();
-                    ControladorSeccionDeConsultaEstadoDeCuenta controladorSeccionConsultaEstadoCuenta = new ControladorSeccionDeConsultaEstadoDeCuenta(vistaSeccionConsultaEstadoCuenta, numeroDeCuenta);
-                    controladorSeccionConsultaEstadoCuenta.vistaGUI.setVisible(true);
-                    controladorSeccionConsultaEstadoCuenta.vistaGUI.setLocationRelativeTo(null);
-                    vistaGUI.setVisible(false);
+                boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
+                if(cuentaEstaActiva) {
+                    boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
+                    if(pinCorrespondeACuenta) {
+                        SeleccionDeConsultaEstadoDeCuenta vistaSeccionConsultaEstadoCuenta = new SeleccionDeConsultaEstadoDeCuenta();
+                        ControladorSeccionDeConsultaEstadoDeCuenta controladorSeccionConsultaEstadoCuenta = new ControladorSeccionDeConsultaEstadoDeCuenta(vistaSeccionConsultaEstadoCuenta, numeroDeCuenta);
+                        controladorSeccionConsultaEstadoCuenta.vistaGUI.setVisible(true);
+                        controladorSeccionConsultaEstadoCuenta.vistaGUI.setLocationRelativeTo(null);
+                        vistaGUI.setVisible(false);
+                    }
+                }else{
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
                 }
+            }else{
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
             }
+            
         }
         if(evento.getActionCommand().equals("Cancelar")) {
            ControladorMenuPrincipal.volverMenuPrincipal();

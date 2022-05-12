@@ -25,9 +25,25 @@ public class CambiarPinCLI {
             if(numeroDeCuentaEsValido) {
                 this.recibirPinActual(numeroDeCuenta);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirNumeroDeCuenta();
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirNumeroDeCuenta();
+            }
         }   
     }
     
@@ -50,9 +66,25 @@ public class CambiarPinCLI {
             if(pinIngresadoEsCorrecto) {
                 this.recibirNuevoPin(pNumeroDeCuenta);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirPinActual(pNumeroDeCuenta);
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirPinActual(pNumeroDeCuenta);
+            }
         }
     }
     
@@ -76,10 +108,27 @@ public class CambiarPinCLI {
                 IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
                 daoCuenta.cambiarPin(pNumeroDeCuenta, nuevoPin);
                 MensajeEnConsolaCuenta.imprimirMensajeCambioDePinExitoso(pNumeroDeCuenta);
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirNuevoPin(pNumeroDeCuenta);
+                }
             }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirNuevoPin(pNumeroDeCuenta);
+            }
         }
     }
     

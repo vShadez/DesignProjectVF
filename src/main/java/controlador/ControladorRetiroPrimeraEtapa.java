@@ -30,6 +30,8 @@ public class ControladorRetiroPrimeraEtapa implements ActionListener{
             String pin = this.vistaGUI.txtPinRetiro.getText();
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
             if(existeCuenta) {
+                boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
+                if(cuentaEstaActiva) {
                 boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
                 if(pinCorrespondeACuenta) {
                     VerificacionMensajeDeTexto vistaVerificacionMensajeDeTexto = new VerificacionMensajeDeTexto();
@@ -41,6 +43,9 @@ public class ControladorRetiroPrimeraEtapa implements ActionListener{
                 }
                 else {
                     MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                }
+                }else{
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
                 }
             }
             else {

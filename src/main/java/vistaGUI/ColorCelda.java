@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.*;
 import javax.swing.*;
+import validacion.ValidacionTipoDeDato;
 /**
  *
  * @author estadm
@@ -26,15 +27,22 @@ public class ColorCelda extends DefaultTableCellRenderer{
    @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean Selected, boolean hasFocus, int rowIndex, int columnIndex) {
        //azul = "BECB66";
-        int valor = Integer.parseInt(table.getValueAt(rowIndex, columna_patron).toString());
-
-        if (valor >= 1) {
+        
+        String cadena = table.getValueAt(rowIndex, columna_patron).toString();
+        if (validacion.ValidacionTipoDeDato.verificarEsEntero(cadena)){
+            int valor = Integer.parseInt(table.getValueAt(rowIndex, columna_patron).toString());
+            if (valor >= 1) {
+                setBackground(Color.LIGHT_GRAY);
+                setForeground(Color.black);
+            } else { //si no ponemos el else se pinta toda la columna
+                setBackground(Color.white);
+                setForeground(Color.black);
+              }
+        }else{
             setBackground(Color.LIGHT_GRAY);
             setForeground(Color.black);
-        } else { //si no ponemos el else se pinta toda la columna
-            setBackground(Color.white);
-            setForeground(Color.black);
         }
+        
         super.getTableCellRendererComponent(table, value, Selected, hasFocus, rowIndex, columnIndex);
         return this;
     }

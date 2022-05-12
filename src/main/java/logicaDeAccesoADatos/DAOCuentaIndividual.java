@@ -78,12 +78,23 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
     @Override
     public boolean retirar(String pNumeroCuenta, double pMontoRetiro){
         Document documento = (Document) coleccionCuentas.find(new BasicDBObject("numeroCuenta", pNumeroCuenta)).projection(Projections.fields(Projections.include("numeroCuenta"), Projections.include("saldo"))).first();
-        double pSaldo = documento.getDouble("saldo");
-        pSaldo = pSaldo - pMontoRetiro;
+        String saldoEncriptado = documento.getString("saldo");
+        String saldoNuevamenteEncriptado;
+        double saldo;
+        
+        try {
+            String saldoDesencriptado = Encriptacion.desencriptar(saldoEncriptado);
+            saldo = Conversion.convertirStringEnDecimal(saldoDesencriptado);
+            saldo = saldo - pMontoRetiro;
+            saldoNuevamenteEncriptado = Encriptacion.encriptar(String.valueOf(saldo));
+            
+        } catch (Exception ex) {
+            return false;
+        }
         
         Document actualizarDocumento = (Document) coleccionCuentas.find(new Document("numeroCuenta", pNumeroCuenta)).first();
         if (actualizarDocumento != null){
-            Bson updatedValue =  new Document("saldo",  pSaldo);
+            Bson updatedValue =  new Document("saldo",  saldoNuevamenteEncriptado);
             Bson updateOperation =  new Document("$set",  updatedValue);
             coleccionCuentas.updateOne(actualizarDocumento, updateOperation);
             return true;

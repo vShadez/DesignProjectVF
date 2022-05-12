@@ -32,7 +32,7 @@ public class TransferenciasEntreCuentas extends javax.swing.JFrame {
         btnContinuarTransferencia = new javax.swing.JButton();
         btnCancelarTransferencia = new javax.swing.JButton();
         txtNumeroCuentaOrigen = new javax.swing.JTextField();
-        txtPinCuentaOrigen = new javax.swing.JTextField();
+        txtPinCuentaOrigen = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,25 +55,22 @@ public class TransferenciasEntreCuentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(155, 155, 155)
-                                .addComponent(txtPinCuentaOrigen))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(36, 36, 36)
-                                .addComponent(txtNumeroCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtNumeroCuentaOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(txtPinCuentaOrigen)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
-                        .addComponent(jLabel1)))
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnContinuarTransferencia)
-                .addGap(57, 57, 57)
-                .addComponent(btnCancelarTransferencia)
-                .addGap(141, 141, 141))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(btnContinuarTransferencia)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelarTransferencia)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,11 +85,11 @@ public class TransferenciasEntreCuentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPinCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarTransferencia)
                     .addComponent(btnContinuarTransferencia))
-                .addGap(53, 53, 53))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,6 +137,6 @@ public class TransferenciasEntreCuentas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     public javax.swing.JTextField txtNumeroCuentaOrigen;
-    public javax.swing.JTextField txtPinCuentaOrigen;
+    public javax.swing.JPasswordField txtPinCuentaOrigen;
     // End of variables declaration//GEN-END:variables
 }

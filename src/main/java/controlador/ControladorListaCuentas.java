@@ -8,6 +8,7 @@ import clasesUtilitarias.Conversion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import listaDinamica.Lista;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
@@ -15,6 +16,7 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
+import vistaGUI.ColorCelda;
 import vistaGUI.DetalleCuenta;
 import vistaGUI.ListaCuentas;
 
@@ -30,15 +32,15 @@ public class ControladorListaCuentas implements ActionListener{
         this.vistaGUI = pVistaGUI;
         this.vistaGUI.btnVolverListaCuentas.addActionListener(this);
         this.cargarCuentasDeTabla();
-        this.vistaGUI.jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        this.vistaGUI.tblListaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
             
         @Override
         public void mouseClicked(MouseEvent evento) {
-            if(evento.getComponent() == vistaGUI.jTable1) {
-                int numeroDeFilaSeleccionada = vistaGUI.jTable1.getSelectedRow();
-                int numeroDeColumnaSeleccionada = vistaGUI.jTable1.getSelectedColumn();
-                if(numeroDeColumnaSeleccionada == 1) {
-                    String numeroDeCuentaSeleccionada = vistaGUI.jTable1.getValueAt(numeroDeFilaSeleccionada, numeroDeColumnaSeleccionada).toString();
+            if(evento.getComponent() == vistaGUI.tblListaCuentas) {
+                int numeroDeFilaSeleccionada = vistaGUI.tblListaCuentas.getSelectedRow();
+                int numeroDeColumnaSeleccionada = vistaGUI.tblListaCuentas.getSelectedColumn();
+                if(numeroDeColumnaSeleccionada == 0) {
+                    String numeroDeCuentaSeleccionada = vistaGUI.tblListaCuentas.getValueAt(numeroDeFilaSeleccionada, numeroDeColumnaSeleccionada).toString();
                     DetalleCuenta vistaDetalleCuenta = new DetalleCuenta();
                     ControladorDetalleCuenta controladorDetalleCuenta = new ControladorDetalleCuenta(numeroDeCuentaSeleccionada, vistaDetalleCuenta);
                     controladorDetalleCuenta.vistaGUI.setVisible(true);
@@ -51,18 +53,30 @@ public class ControladorListaCuentas implements ActionListener{
     }
     
     public void cargarCuentasDeTabla() {
-        this.modeloDeTabla = (DefaultTableModel) this.vistaGUI.jTable1.getModel();
+        JTable tablaCuentas = this.vistaGUI.tblListaCuentas; 
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        modelo.addColumn("Número de cuenta");
+        modelo.addColumn("Saldo");
+        modelo.addColumn("Estatus");
+        modelo.addColumn("Nombre completo");
+        modelo.addColumn("Identificación");
+        
         IDAOCatalogoDeCuentas daoCatalogoDeCuentas = new DAOCatalogoDeCuentas();
         Lista<ICuenta> listaDeCuentasDesordenada = daoCatalogoDeCuentas.consultarListaDeCuentas();
-        Cuenta[] listaDeCuentasOrdenada = Conversion.convertirListaCuentaEnArreglo(listaDeCuentasDesordenada, listaDeCuentasDesordenada.size);
-        for(int i = 0; i < listaDeCuentasDesordenada.size; i++) {
+        int tamanoListaCuenta = daoCatalogoDeCuentas.consultarCantidadCuentas();
+        System.err.println(tamanoListaCuenta);
+        Cuenta[] listaDeCuentasOrdenada = Conversion.convertirListaCuentaEnArreglo(listaDeCuentasDesordenada, tamanoListaCuenta);
+        for(int i = 0; i < tamanoListaCuenta; i++) {
             Cuenta cuenta = listaDeCuentasOrdenada[i];
             Cliente duenoDeCuenta = (Cliente) cuenta.propietario;
-            String nombreCompletoDePropietarioDeCuenta = duenoDeCuenta.nombre + duenoDeCuenta.primerApellido + duenoDeCuenta.segundoApellido;
+            String nombreCompletoDePropietarioDeCuenta = duenoDeCuenta.nombre +" "+ duenoDeCuenta.primerApellido +" "+ duenoDeCuenta.segundoApellido;
             int identificacionDePropietarioDeCuenta = duenoDeCuenta.identificacion;
-            this.modeloDeTabla.addRow(new Object[]{cuenta.numeroCuenta,cuenta.getSaldo(),cuenta.estatus, nombreCompletoDePropietarioDeCuenta,identificacionDePropietarioDeCuenta});
+            modelo.addRow(new Object[]{cuenta.numeroCuenta,cuenta.getSaldo(),cuenta.estatus, nombreCompletoDePropietarioDeCuenta,identificacionDePropietarioDeCuenta});
         }
-        this.vistaGUI.jTable1.setModel(this.modeloDeTabla);
+        tablaCuentas.setModel(modelo);
+        ColorCelda color = new ColorCelda(0);
+        tablaCuentas.getColumnModel().getColumn(0).setCellRenderer(color);
     }
 
     @Override

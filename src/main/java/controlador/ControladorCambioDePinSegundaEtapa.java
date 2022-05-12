@@ -19,6 +19,7 @@ import vistaGUI.CambioDePinTerceraEtapa;
 public class ControladorCambioDePinSegundaEtapa implements ActionListener{
     private String numeroDeCuenta;
     public CambioDePinSegundaEtapa vistaGUI;
+    private int cantidadDeIntentos = 0;
     
     public ControladorCambioDePinSegundaEtapa(String pNumeroDeCuenta, CambioDePinSegundaEtapa pVistaGUI) {
         this.numeroDeCuenta = pNumeroDeCuenta;
@@ -32,6 +33,7 @@ public class ControladorCambioDePinSegundaEtapa implements ActionListener{
         if(evento.getActionCommand().equals("Aceptar")) {
             IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
             String pin = this.vistaGUI.txtPinCuenta.getText();
+            this.cantidadDeIntentos++;
             boolean pinCorrespondeACuenta = daoCuenta.verificarPinCorrespondeACuenta(this.numeroDeCuenta, pin);
             if(pinCorrespondeACuenta) {
                 CambioDePinTerceraEtapa vistaTerceraEtapa = new CambioDePinTerceraEtapa();
@@ -40,8 +42,14 @@ public class ControladorCambioDePinSegundaEtapa implements ActionListener{
                 controladorTerceraEtapa.vistaGUI.setLocationRelativeTo(null);
                 this.vistaGUI.setVisible(false);
             }
-            else {
-                MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                else {
+                if(this.cantidadDeIntentos == 1) {
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                }
+                else {
+                    validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
+                }
+                
             }
         }
         if(evento.getActionCommand().equals("Cancelar")) {
@@ -52,4 +60,10 @@ public class ControladorCambioDePinSegundaEtapa implements ActionListener{
            vistaGUI.setVisible(false);
        }
     }
+    /*
+    private void inactivarCuenta() {
+        IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
+        daoCuenta.actualizarEstatus(this.numeroDeCuenta, "Inactiva");
+        MensajeEnPantallaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta();
+    }*/
 }

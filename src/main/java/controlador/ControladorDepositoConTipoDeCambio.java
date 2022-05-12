@@ -34,8 +34,8 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Aceptar")) {
-            String numeroDeCuenta = this.vistaGUI.txtMontoDolares.getText();
-            String montoDeDepositoEnDolares = this.vistaGUI.txtNumeroCuentaDepositarDolares.getText();
+            String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaDepositarDolares.getText();
+            String montoDeDepositoEnDolares = this.vistaGUI.txtMontoDolares.getText();
             boolean formatoDeMontoDeDepositoEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(montoDeDepositoEnDolares);
             if(formatoDeMontoDeDepositoEsCorrecto) {
                 boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
@@ -53,7 +53,7 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
                 }
             }
             else {
-                MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeDepositoIncorrecto();
             }
         }
         

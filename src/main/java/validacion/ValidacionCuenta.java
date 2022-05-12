@@ -4,8 +4,11 @@
  */
 package validacion;
 
+import controlador.MensajeEnPantallaCuenta;
+import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
+import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
@@ -15,9 +18,9 @@ import logicaDeNegocios.Cuenta;
  */
 public class ValidacionCuenta {
     public static boolean validarExisteCuenta(String pNumeroDeCuenta) {
-        IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
-        Cuenta cuentaEncontrada = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuenta);
-        return cuentaEncontrada != null;
+        IDAOCatalogoDeCuentas daoCuenta = new DAOCatalogoDeCuentas();
+        boolean cuentaEncontrada = daoCuenta.consultarSiExisteCuenta(pNumeroDeCuenta);
+        return cuentaEncontrada;
     }
     
     public static boolean validarPinCorrespondeACuenta(String pNumeroDeCuenta, String pPin) {
@@ -73,5 +76,11 @@ public class ValidacionCuenta {
         }
         controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido();
         return false;
+    }
+    
+    public static void inactivarCuenta(String pNumeroCuenta) {
+        IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
+        daoCuenta.actualizarEstatus(pNumeroCuenta, "Inactiva");
+        MensajeEnPantallaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta();
     }
 }

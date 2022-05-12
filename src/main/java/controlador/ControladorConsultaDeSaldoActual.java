@@ -36,24 +36,29 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
         } else{  
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
         if(existeCuenta) {
-            boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
-            if(pinCorrespondeACuenta) {
-                if(evento.getActionCommand().equals("Consultar colones")) {
-                    IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
-                    double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
-                    MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(""+saldoActualColones);
-                }
-                if(evento.getActionCommand().equals("Consultar dólares")) {
-                    TipoCambioBCCR tc = new TipoCambioBCCR();
-                    IDAOCuentaIndividual cuentaAconsultarDolares = new DAOCuentaIndividual();
-                    double saldoActualColones = cuentaAconsultarDolares.consultarSaldoActual(numeroDeCuenta);
-                    double valorDeCompra = tc.obtenerValorCompra();
-                    double saldoConvertidoADolares = saldoActualColones / valorDeCompra;
-                    MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra);
-                }
-            } else {
-                MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
-              }
+            boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
+            if(cuentaEstaActiva) {
+                boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
+                if(pinCorrespondeACuenta) {
+                    if(evento.getActionCommand().equals("Consultar colones")) {
+                        IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
+                        double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
+                        MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(""+saldoActualColones);
+                    }
+                    if(evento.getActionCommand().equals("Consultar dólares")) {
+                        TipoCambioBCCR tc = new TipoCambioBCCR();
+                        IDAOCuentaIndividual cuentaAconsultarDolares = new DAOCuentaIndividual();
+                        double saldoActualColones = cuentaAconsultarDolares.consultarSaldoActual(numeroDeCuenta);
+                        double valorDeCompra = tc.obtenerValorCompra();
+                        double saldoConvertidoADolares = saldoActualColones / valorDeCompra;
+                        MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra);
+                    }
+                } else {
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                    }
+            }else{
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
+            }
         } else {
             MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
           }

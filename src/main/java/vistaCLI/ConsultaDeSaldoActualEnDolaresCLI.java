@@ -15,6 +15,10 @@ import validacion.ValidacionCuenta;
  * @author Jairo Calderón
  */
 public class ConsultaDeSaldoActualEnDolaresCLI {
+    public ConsultaDeSaldoActualEnDolaresCLI() {
+        recibirDatos();
+    }
+    
     private void recibirDatos() {
         try {
             System.out.println("Ingrese su número de cuenta");
@@ -25,9 +29,25 @@ public class ConsultaDeSaldoActualEnDolaresCLI {
             if(datosIngresadosSonValidos) {
                 this.mostrarSaldoDeCuenta(numeroDeCuenta);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirDatos();
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirDatos();
+            }
         }   
     }
     
