@@ -25,10 +25,10 @@
                 <br>
                 <form action="/" method="GET" >
                     <div class="form-group">
-                        <a class="btn btn-primary " href="SolicitarMontoDeRetiroEnColonesTerceraEtapa.html"> Colones </a> 
+                        <a class="btn btn-primary " href="SolicitarMontoDeRetiroEnColonesTerceraEtapa.jsp"> Colones </a> 
                     </div>
                     <div class="form-group">
-                        <a class="btn btn-primary " href="SolicitarMontoDeRetiroEnDolaresTerceraEtapa.html"> Dolares </a> 
+                        <a class="btn btn-primary " href="SolicitarMontoDeRetiroEnDolaresTerceraEtapa.jsp"> Dolares </a> 
                     </div>
                     <div class="box" style="text-align: center">
                         <a href="../index.html">Cancelar</a>

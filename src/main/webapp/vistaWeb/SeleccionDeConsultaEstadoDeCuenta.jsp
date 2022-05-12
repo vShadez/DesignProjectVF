@@ -24,10 +24,10 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <a class="btn btn-primary " href="InformacionPorConsultaDeEstadoCuentaColones.html"> Colones </a> 
+                    <a class="btn btn-primary " href="InformacionPorConsultaDeEstadoCuentaColones.jsp"> Colones </a> 
                 </div>
                 <div class="form-group">
-                    <a class="btn btn-primary " href="InformacionPorConsultaDeEstadoCuentaDolares.html"> Dolares </a> 
+                    <a class="btn btn-primary " href="InformacionPorConsultaDeEstadoCuentaDolares.jsp"> Dolares </a> 
                 </div>
                 <div class="box" style="text-align: center">
                     <a href="../index.html">Cancelar</a>

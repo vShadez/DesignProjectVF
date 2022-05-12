@@ -25,10 +25,10 @@
                 <br>
                 <form action="/" method="GET" >
                     <div class="form-group">
-                        <a class="btn btn-primary " href="DepositoEnColones.html"> Colones </a> 
+                        <a class="btn btn-primary " href="DepositoEnColones.jsp"> Colones </a> 
                     </div>
                     <div class="form-group">
-                        <a class="btn btn-primary " href="DepositoConTipoDeCambio.html"> Dolares </a> 
+                        <a class="btn btn-primary " href="DepositoConTipoDeCambio.jsp"> Dolares </a> 
                     </div>
                     <div class="box" style="text-align: center">
                         <a href="../index.html">Cancelar</a>
