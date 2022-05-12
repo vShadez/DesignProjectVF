@@ -19,6 +19,7 @@ import logicaDeNegocios.ICliente;
 import validacion.ExpresionRegular;
 import validacion.ValidacionTipoDeDato;
 
+//
 /**
  *
  * @author calde
