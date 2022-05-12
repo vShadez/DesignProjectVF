@@ -20,6 +20,7 @@ import vistaGUI.RegistroCuentasVista;
 import logicaDeAccesoADatos.DAOCliente;
 import logicaDeAccesoADatos.IDAOCliente;
 import clasesUtilitarias.Conversion;
+import static controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorSaldoNoEsEntero;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
@@ -44,7 +45,8 @@ public class ControladorRegistroCuentas implements ActionListener{
             String pin = this.vistaGUI.txtPinDatosCuenta.getText();
             String montoInicial = this.vistaGUI.txtMontoInicial.getText();
             String identificacionCliente = this.vistaGUI.txtIdentificacionDatodCuenta.getText();
-            if(validacion.ValidacionCuenta.validarFormatoDePin(pin) && validacion.ExpresionRegular.verificarEsNumero(montoInicial)){
+            if(validacion.ValidacionCuenta.validarFormatoDePin(pin)){
+                if(validacion.ValidacionTipoDeDato.verificarEsEntero(montoInicial)){
                 try {
                     double montoInicialConvetidoDouble = Conversion.convertirStringEnDecimal(montoInicial);
                     IDAOCliente DAOCliente = new DAOCliente();
@@ -57,16 +59,20 @@ public class ControladorRegistroCuentas implements ActionListener{
                     String correoElectronicoCliente = cliente.correoElectronico;
                     IDAOCatalogoDeCuentas cantidadCuentas = new DAOCatalogoDeCuentas();
                     String estatusCuenta = "Activa";
-                    String numeroCuenta = "CU-" + cantidadCuentas.consultarCantidadCuentas();
+                    int obtenerCantidadCuentas = cantidadCuentas.consultarCantidadCuentas()+1;
+                    String numeroCuenta = "CU-" + obtenerCantidadCuentas;
                     ICuenta nuevaCuenta = null;
                     nuevaCuenta = new Cuenta(numeroCuenta, montoInicialConvetidoDouble, estatusCuenta, pin);
                     nuevaCuenta.asignarPropietario(clienteAsociadoConCuenta);
                     nuevaCuenta.depositar(montoInicialConvetidoDouble);
                     clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
-                    MensajeEnPantallaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, montoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente);
+                    MensajeEnPantallaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, String.format("%.2f",montoInicialConvetidoDouble)+" ₡", nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente);
                 } 
                 catch (Exception ex) {
                     
+                }
+            }else{
+                imprimirMensajeDeErrorSaldoNoEsEntero();
                 }
             }
             

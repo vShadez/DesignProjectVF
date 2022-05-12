@@ -5,6 +5,7 @@
 package controlador;
 
 import clasesUtilitarias.Conversion;
+import clasesUtilitarias.Ordenamiento;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -69,7 +70,8 @@ public class ControladorListaClientes implements ActionListener{
         Lista<ICliente> consultarListaCliente = daoCatalogoDeClientes.consultarListaDeClientes();
         
         arregloClientesOrdenados = Conversion.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
-        Cliente cliente[] = arregloClientesOrdenados;
+        Cliente cliente[] = Ordenamiento.ordenarAscendentemente(arregloClientesOrdenados);
+        //Cliente cliente[] = arregloClientesOrdenados;
       
         for (int i = 0; i < cantidadDeClientes; i++) {
             String primerApellido = cliente[i].primerApellido;

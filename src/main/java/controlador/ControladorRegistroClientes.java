@@ -54,7 +54,8 @@ public class ControladorRegistroClientes implements ActionListener{
             
             if(validarTipoDeDatos(identificacion) && validarFormatoDeDatos(numeroDeTelefono, correoElectronico) && validarExistenciaCliente(identificacionEnFormatoEntero)) {
                 IDAOCatalogoDeClientes cantidadDeClientes = new DAOCatalogoDeClientes();
-                String codigo = "CIF-" + cantidadDeClientes.consultarCantidadDeClientes();
+                int obtenerCantidadClientes = cantidadDeClientes.consultarCantidadDeClientes()+1;
+                String codigo = "CIF-" + obtenerCantidadClientes;
                 ICliente nuevoCliente = new Cliente(codigo, nombre, primerApellido, segundoApellido, identificacionEnFormatoEntero, dia, mes, ano, numeroTelefonicoEnFormatoEntero, correoElectronico);
                 
                 MensajeEnPantallaCliente.imprimirMensajeCreadoExitoso(codigo, nombre, identificacion, fechaDeNacimiento, numeroDeTelefono);

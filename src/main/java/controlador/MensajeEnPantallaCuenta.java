@@ -102,8 +102,8 @@ public class MensajeEnPantallaCuenta {
     }
     
     public static void imprimirMensajeDeErrorFormatoDePinInvalido() {
-        String mensajeDeError = "El formato del pin ingresado no es válido \n";
-        mensajeDeError += "Debe ingresar al menos una letra mayúscula, un número y un caracter especial";
+        String mensajeDeError = "El formato del pin ingresado no es válido. \n";
+        mensajeDeError += "Debe ingresar al menos una letra mayúscula, un número y un caracter especial.";
         JOptionPane.showMessageDialog(null, mensajeDeError, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
@@ -143,5 +143,10 @@ public class MensajeEnPantallaCuenta {
     public static void imprimirMensajeSaldoCuentaActualDolares(double pSaldoActual, double pValorDeCompra) {
         String mensajeCambioDePinExitoso = "Estimado usuario el saldo actual de su cuenta es " + String.format("%.2f", pSaldoActual) + " dólares\n" + "Para esta conversión se utilizó el tipo de cambio del dólar, precio de compra. \n" + "Según el BCCR, el tipo de cambio de compra del dólar de hoy es: "  + String.format("%.2f", pValorDeCompra);
         JOptionPane.showMessageDialog(null, mensajeCambioDePinExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public static void imprimirMensajeDeErrorSaldoNoEsEntero() {
+        String mensajeDeError = "El saldo de la cuenta no puede ir con decimales.";
+        JOptionPane.showMessageDialog(null, mensajeDeError, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
