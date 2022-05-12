@@ -24,12 +24,12 @@
                     </div>
                 </div>
                 <br>
-                <form action="<c:url value="/ControladorRegistroClientesWEB"/> method="post" >
+                <form method="post" action="<c:url value="/ControladorRegistroClientesWEB"/>" >
                     <div class="form-group">
                         <label>Nombre</label>
                         <input type="text" class "form-control" name = "nombre" placeholder="Nombre" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group">s
                         <label>Primer apellido</label>
                         <input type="text" class "form-control" name = "primerApellido" placeholder="Primer apellido" required>
                     </div>
