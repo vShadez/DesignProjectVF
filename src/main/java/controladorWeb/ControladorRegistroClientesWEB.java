@@ -36,12 +36,12 @@ public class ControladorRegistroClientesWEB extends HttpServlet {
         String numeroDeTelefono = solicitud.getParameter("numeroTelefono");
         String correoElectronico = solicitud.getParameter("correoElectronico");
         
-        String diaDeFechaDeNacimiento = fechaDeNacimiento.substring(0, 2);
-        String mesDeFechaDeNacimiento = fechaDeNacimiento.substring(3, 5);
-        String anoDeFechaDeNacimiento = fechaDeNacimiento.substring(6, 10);
-        int diaDeFechaDeNacimientoEnFormatoEntero = Conversion.convertirStringEnEntero(diaDeFechaDeNacimiento);
-        int mesDeFechaDeNacimientoEnFormatoEntero = Conversion.convertirStringEnEntero(mesDeFechaDeNacimiento);
-        int anoDeFechaDeNacimientoEnFormatoEntero = Conversion.convertirStringEnEntero(anoDeFechaDeNacimiento);
+        //String diaDeFechaDeNacimiento = fechaDeNacimiento.substring(0, 2);
+        //String mesDeFechaDeNacimiento = fechaDeNacimiento.substring(3, 5);
+        //String anoDeFechaDeNacimiento = fechaDeNacimiento.substring(6, 10);
+        //int diaDeFechaDeNacimientoEnFormatoEntero = Conversion.convertirStringEnEntero(diaDeFechaDeNacimiento);
+        //int mesDeFechaDeNacimientoEnFormatoEntero = Conversion.convertirStringEnEntero(mesDeFechaDeNacimiento);
+        //int anoDeFechaDeNacimientoEnFormatoEntero = Conversion.convertirStringEnEntero(anoDeFechaDeNacimiento);
         
         int identificacionEnFormatoEntero = Conversion.convertirStringEnEntero(identificacion);
         int numeroDeTelefonoEnFormatoEntero = Conversion.convertirStringEnEntero(numeroDeTelefono);
@@ -49,7 +49,7 @@ public class ControladorRegistroClientesWEB extends HttpServlet {
         if(validarTipoDeDatos(identificacion) && validarFormatoDeDatos(numeroDeTelefono, correoElectronico) && validarExistenciaCliente(identificacionEnFormatoEntero)) {
             IDAOCatalogoDeClientes cantidadDeClientes = new DAOCatalogoDeClientes();
             String codigo = "CIF-" + cantidadDeClientes.consultarCantidadDeClientes();
-            ICliente nuevoCliente = new Cliente(codigo, nombre, primerApellido, segundoApellido, identificacionEnFormatoEntero, diaDeFechaDeNacimientoEnFormatoEntero, mesDeFechaDeNacimientoEnFormatoEntero, anoDeFechaDeNacimientoEnFormatoEntero, numeroDeTelefonoEnFormatoEntero, correoElectronico);
+            ICliente nuevoCliente = new Cliente(codigo, nombre, primerApellido, segundoApellido, identificacionEnFormatoEntero, 23, 05, 2001, numeroDeTelefonoEnFormatoEntero, correoElectronico);
         }
         
         solicitud.getRequestDispatcher("/RegistroClientes.jsp").forward(solicitud, respuesta);
