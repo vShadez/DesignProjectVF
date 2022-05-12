@@ -55,6 +55,16 @@ public class ConsultaDeDatosDeUnClienteCLI {
         boolean identificacionIngresadaEsCorrecta = validarDatos(identificacion);
         if(identificacionIngresadaEsCorrecta) {
             this.mostrarDetallesDeCliente(identificacion);
+            MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+        }
+        else {
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.cargarClientesRegistrados();
+            }
         }
     }
     

@@ -54,10 +54,27 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
             boolean identificacionIngresadaEsCorrecta = validarDatos(numeroDeCuenta);
             if(identificacionIngresadaEsCorrecta) {
                 this.mostrarDetallesDeCuenta(numeroDeCuenta);
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.cargarCuentasRegistradas();
+                }
             }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.cargarCuentasRegistradas();
+            }
         }
     }
     

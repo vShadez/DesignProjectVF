@@ -34,10 +34,27 @@ public class DepositoEnDolaresCLI {
                 TipoCambioBCCR tipoDeCambio = new TipoCambioBCCR();
                 double tipoDeCambioDeCompra = tipoDeCambio.obtenerValorCompra();
                 this.efectuarDeposito(numeroDeCuenta, montoDeDeposito, tipoDeCambioDeCompra);
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirDatos();
+                }
             }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirDatos();
+            }
         }
     }
     

@@ -6,7 +6,6 @@ package vistaCLI;
 
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.PalabraSecreta;
-import controlador.MensajeEnPantallaCuenta;
 import logicaDeAccesoADatos.DAOClienteCuenta;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
@@ -41,9 +40,25 @@ public class RetiroEnDolaresCLI {
             if(datosIngresadosSonValidos) {
                 this.enviarMensajeDeTexto(numeroDeCuenta);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirDatos();
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirDatos();
+            }
         }   
     }
     
@@ -92,13 +107,27 @@ public class RetiroEnDolaresCLI {
                     MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
                 }
                 else {
-                    this.enviarMensajeDeTexto(pNumeroDeCuenta);
-                    MensajeEnConsolaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                    boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                    if(usuarioDeseaVolverAMenuPrincipal) {
+                        MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                    }
+                    else {
+                        this.enviarMensajeDeTexto(pNumeroDeCuenta);
+                        MensajeEnConsolaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                    }
                 }
             }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.enviarMensajeDeTexto(pNumeroDeCuenta);
+                this.cantidadDeIntentosRealizados = this.cantidadDeIntentosRealizados - 1;
+            }
         }
     }
     
@@ -119,9 +148,25 @@ public class RetiroEnDolaresCLI {
                 double montoDeRetiroEnDolaresEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiro);
                 this.efectuarRetiro(pNumeroDeCuenta, montoDeRetiroEnDolaresEnFormatoDecimal, tipoDeCambioDeVenta);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirMontoDeRetiro(pNumeroDeCuenta);
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirMontoDeRetiro(pNumeroDeCuenta);
+            }
         }   
     }
     

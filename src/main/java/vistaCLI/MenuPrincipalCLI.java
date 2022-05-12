@@ -84,6 +84,7 @@ public class MenuPrincipalCLI {
                 System.exit(0);
             default:
                 System.out.println("La opción ingresada no es válida");
+                this.imprimirOpciones();
         }
     }
 }

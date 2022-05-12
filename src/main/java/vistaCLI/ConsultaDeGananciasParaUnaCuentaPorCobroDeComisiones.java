@@ -4,8 +4,14 @@
  */
 package vistaCLI;
 
+import listaDinamica.Lista;
+import listaDinamica.Nodo;
+import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
+import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
+import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.ICuenta;
 import serviciosExternos.TipoCambioBCCR;
 import validacion.ValidacionCuenta;
 
@@ -15,40 +21,22 @@ import validacion.ValidacionCuenta;
  */
 public class ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones {
     public ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones() {
-        recibirNumeroDeCuenta();
+        mostrarGananciasTotalesDeBancoPorCobroDeComisiones();
     }
     
-    private void recibirNumeroDeCuenta() {
-        try {
-            System.out.println("Ingrese el número de cuenta");
-            String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
-            boolean numeroDeCuentaEsValido = this.validarNumeroDeCuenta(numeroDeCuenta);
-            if(numeroDeCuentaEsValido) {
-                this.mostrarGananciasTotalesDeBancoPorCobroDeComisiones(numeroDeCuenta);
-            }
-        } 
-        catch (Exception ex) {
-            System.out.println("Ha ocurrido un error al recibir el texto");
+    private void mostrarGananciasTotalesDeBancoPorCobroDeComisiones() {
+        IDAOCatalogoDeCuentas daoCuentas = new DAOCatalogoDeCuentas();
+        Lista<ICuenta> listaDeCuentas = daoCuentas.consultarListaDeCuentas();
+        Nodo puntero = listaDeCuentas.inicio;
+        while(puntero != null) {
+            Cuenta cuenta = (Cuenta) puntero.objeto;
+            String numeroDeCuenta = cuenta.numeroCuenta;
+            System.out.println("\nGanancias del Banco por el cobro de comisiones a la cuenta: " + numeroDeCuenta);
+            System.out.println("\nResultados en colones: ");
+            this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnColones(numeroDeCuenta);
+            System.out.println("\nResultados en dólares: ");
+            this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnDolares(numeroDeCuenta);
         }
-    }
-    
-    private boolean validarNumeroDeCuenta(String pNumeroDeCuenta) {
-        boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
-        if(existeCuenta) {
-            return true;
-        }
-        else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
-            return false;
-        }
-    }
-    
-    private void mostrarGananciasTotalesDeBancoPorCobroDeComisiones(String pNumeroDeCuenta) {
-        System.out.println("Ganancias del Banco por el cobro de comisiones a la cuenta: " + pNumeroDeCuenta);
-        System.out.println("\nResultados en colones: ");
-        this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnColones(pNumeroDeCuenta);
-        System.out.println("\nResultados en dólares: ");
-        this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnDolares(pNumeroDeCuenta);
     }
     
     private void mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnColones(String pNumeroDeCuenta) {
@@ -68,8 +56,8 @@ public class ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones {
         double comisionesDepositosYRetiros = comisionesCobradas.consultarMontoTotalCobradoComisionesPorRetirosYDepositos(pNumeroDeCuenta);
         TipoCambioBCCR tipoDeCambio = new TipoCambioBCCR();
         double valorDeCompraDelDolar = tipoDeCambio.obtenerValorCompra();
-        System.out.println("Ganancias por depositos: " + (comisionesDepositos * valorDeCompraDelDolar));
-        System.out.println("Ganancias por retiros: " + (comisionesRetiros * valorDeCompraDelDolar));
-        System.out.println("Ganancias por depositos y retiros: " + (comisionesDepositosYRetiros * valorDeCompraDelDolar));
+        System.out.println("Ganancias por depositos en dolares: " + (comisionesDepositos * valorDeCompraDelDolar));
+        System.out.println("Ganancias por retiros en dolares: " + (comisionesRetiros * valorDeCompraDelDolar));
+        System.out.println("Ganancias por depositos y retiros en dolares: " + (comisionesDepositosYRetiros * valorDeCompraDelDolar));
     }
 }

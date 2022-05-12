@@ -39,9 +39,25 @@ public class RetiroEnColonesCLI {
             if(datosIngresadosSonValidos) {
                 this.enviarMensajeDeTexto(numeroDeCuenta);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirDatos();
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirDatos();
+            }
         }   
     }
     
@@ -90,13 +106,27 @@ public class RetiroEnColonesCLI {
                     MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
                 }
                 else {
-                    this.enviarMensajeDeTexto(pNumeroDeCuenta);
-                    MensajeEnConsolaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                    boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                    if(usuarioDeseaVolverAMenuPrincipal) {
+                        MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                    }
+                    else {
+                        this.enviarMensajeDeTexto(pNumeroDeCuenta);
+                        MensajeEnConsolaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                    }
                 }
             }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.enviarMensajeDeTexto(pNumeroDeCuenta);
+                this.cantidadDeIntentosRealizados = this.cantidadDeIntentosRealizados - 1;
+            }
         }
     }
     
@@ -115,9 +145,25 @@ public class RetiroEnColonesCLI {
                 double montoDeRetiroEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiro);
                 this.efectuarRetiro(pNumeroDeCuenta, montoDeRetiroEnFormatoDecimal);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirMontoDeRetiro(pNumeroDeCuenta);
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirMontoDeRetiro(pNumeroDeCuenta);
+            }
         }   
     }
     

@@ -39,9 +39,25 @@ public class TransferenciaCLI {
             if(datosIngresadosSonValidos) {
                 this.enviarMensajeDeTexto(numeroDeCuenta);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirDatosDeCuentaDeOrigen();
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirDatosDeCuentaDeOrigen();
+            }
         }
     }
     
@@ -90,13 +106,27 @@ public class TransferenciaCLI {
                     MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
                 }
                 else {
-                    this.enviarMensajeDeTexto(pNumeroDeCuenta);
-                    MensajeEnConsolaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                    boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                    if(usuarioDeseaVolverAMenuPrincipal) {
+                        MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                    }
+                    else {
+                        this.enviarMensajeDeTexto(pNumeroDeCuenta);
+                        MensajeEnConsolaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                    }
                 }
             }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.enviarMensajeDeTexto(pNumeroDeCuenta);
+                this.cantidadDeIntentosRealizados = this.cantidadDeIntentosRealizados - 1;
+            }
         }
     }
     
@@ -115,9 +145,25 @@ public class TransferenciaCLI {
                 double montoDeTransferenciaEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeTransferencia);
                 this.recibirCuentaDeDestino(pNumeroDeCuenta, montoDeTransferenciaEnFormatoDecimal);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirMontoDeTransferencia(pNumeroDeCuenta);
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirMontoDeTransferencia(pNumeroDeCuenta);
+            }
         }   
     }
     
@@ -148,9 +194,25 @@ public class TransferenciaCLI {
             if(numeroDeCuentaEsValido) {
                 this.efectuarTransferencia(pNumeroDeCuenta, numeroDeCuentaDeDestino, pMontoTransferencia);
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.recibirCuentaDeDestino(pNumeroDeCuenta, pMontoTransferencia);
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al recibir el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.recibirCuentaDeDestino(pNumeroDeCuenta, pMontoTransferencia);
+            }
         }
     }
     

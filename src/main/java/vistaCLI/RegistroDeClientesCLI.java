@@ -49,9 +49,25 @@ public class RegistroDeClientesCLI {
                 this.registrarCliente(nombre, primerApellido, segundoApellido, identificacionEnFormatoEntero, dia, mes, ano, numeroDeTelefonoEnFormatoEntero, correoElectronico);
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }
+            else {
+                boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+                if(usuarioDeseaVolverAMenuPrincipal) {
+                    MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+                }
+                else {
+                    this.solicitarDatos();
+                }
+            }
         } 
         catch (Exception ex) {
             System.out.println("Ha ocurrido un error al ingresar el texto");
+            boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();
+            if(usuarioDeseaVolverAMenuPrincipal) {
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
+            }
+            else {
+                this.solicitarDatos();
+            }
         }
     }
     
