@@ -29,7 +29,9 @@ public class ControladorTransferenciasEntreCuentas implements ActionListener{
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaOrigen.getText();
             String pin = this.vistaGUI.txtPinCuentaOrigen.getText();
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
+            boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
             if(existeCuenta) {
+                if(cuentaEstaActiva) {
                 boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
                 if(pinCorrespondeACuenta) {
                     VerificacionMensajeDeTexto vistaVerificacionMensajeDeTexto = new VerificacionMensajeDeTexto();
@@ -41,6 +43,9 @@ public class ControladorTransferenciasEntreCuentas implements ActionListener{
                 }
                 else {
                     MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                }
+                } else{
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
                 }
             }
             else {

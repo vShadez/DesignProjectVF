@@ -32,7 +32,7 @@ public class RetiroPrimeraEtapa extends javax.swing.JFrame {
         btnContinuar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         txtNumeroCuentaRetiro = new javax.swing.JTextField();
-        txtPinRetiro = new javax.swing.JTextField();
+        txtPinRetiro = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,8 +70,8 @@ public class RetiroPrimeraEtapa extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPinRetiro, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                            .addComponent(txtNumeroCuentaRetiro)))
+                            .addComponent(txtNumeroCuentaRetiro, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                            .addComponent(txtPinRetiro)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(btnContinuar)
@@ -151,6 +151,6 @@ public class RetiroPrimeraEtapa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     public javax.swing.JTextField txtNumeroCuentaRetiro;
-    public javax.swing.JTextField txtPinRetiro;
+    public javax.swing.JPasswordField txtPinRetiro;
     // End of variables declaration//GEN-END:variables
 }

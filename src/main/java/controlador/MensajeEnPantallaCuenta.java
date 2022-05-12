@@ -74,19 +74,19 @@ public class MensajeEnPantallaCuenta {
     public static void imprimirMensajeNotificacionDeEnvioDeMensaje() {
         String mensajeNotificacionDeEnvioDeMensaje = "";
         mensajeNotificacionDeEnvioDeMensaje += "Estimado usuario se ha enviado una palabra por mensaje de texto. \n";
-        mensajeNotificacionDeEnvioDeMensaje += "Por favor revise sus mensajes y proceda a digitar la palabra enviada";
+        mensajeNotificacionDeEnvioDeMensaje += "Por favor revise sus mensajes y proceda a digitar la palabra enviada.";
         JOptionPane.showMessageDialog(null, mensajeNotificacionDeEnvioDeMensaje, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public static void imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta() {
         String mensajeAdvertenciaSegundoIntentoPalabraSecreta = "ATENCIÓN: se enviará nuevamente la palabra secreta por mensaje de texto \n";
-        mensajeAdvertenciaSegundoIntentoPalabraSecreta += "Si vuelve a ingresar una palabra incorrecta su cuenat será inactivada";
+        mensajeAdvertenciaSegundoIntentoPalabraSecreta += "Si vuelve a ingresar una palabra incorrecta su cuenta será inactivada.";
         JOptionPane.showMessageDialog(null, mensajeAdvertenciaSegundoIntentoPalabraSecreta, "Notificación", JOptionPane.WARNING_MESSAGE);
     }
     
     public static void imprimirMensajeAlertaDeInactivacionDeCuenta() {
         String mensajeAlertaDeInactivacionDeCuenta = "ATENCIÓN: su cuenta ha sido inactivada debido a cuestiones de seguridad \n";
-        mensajeAlertaDeInactivacionDeCuenta += "Se ha enviado un correo electrónico con detalles de la inactivación";
+        mensajeAlertaDeInactivacionDeCuenta += "Se ha enviado un correo electrónico con detalles de la inactivación.";
         JOptionPane.showMessageDialog(null, mensajeAlertaDeInactivacionDeCuenta, "Notificación", JOptionPane.WARNING_MESSAGE);
     }
     
@@ -96,7 +96,8 @@ public class MensajeEnPantallaCuenta {
     }
     
     public static void imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(String pNumeroDeCuenta, String pPin) {
-        String mensajeDeError = "El pin " + pPin + " no corresponde la cuenta " + pNumeroDeCuenta;
+        String mensajeDeError = "El pin " + pPin + " no corresponde a la cuenta " + pNumeroDeCuenta;
+        mensajeDeError += "\nSi vuelve a ingresar el pin de manera incorrecta su cuenta será inactivada.";
         JOptionPane.showMessageDialog(null, mensajeDeError, "Error", JOptionPane.ERROR_MESSAGE);
     }
     

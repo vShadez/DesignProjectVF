@@ -43,7 +43,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolares implements A
         double obtenerSaldo = cuentaRecibida.getSaldo();
         TipoCambioBCCR tc = new TipoCambioBCCR();
         double saldoConvertidoADolares = obtenerSaldo / tc.obtenerValorCompra();
-        this.vistaGUI.txtSaldoActualEstadoDolares.setText(String.format("%.2f",saldoConvertidoADolares));
+        this.vistaGUI.txtSaldoActualEstadoDolares.setText(String.format("%.2f",saldoConvertidoADolares)+" $");
         this.vistaGUI.txtPropietarioEstadoDolares.setText(clientePropietario.nombre);
         this.vistaGUI.txtCorreoEstadoDolares.setText(clientePropietario.correoElectronico);
         int obtenerNumeroCliente = clientePropietario.numeroTelefono;
@@ -59,8 +59,9 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolares implements A
         
         model.addColumn("Tipo de operación");
         model.addColumn("Fecha");
-        model.addColumn("Monto");
         model.addColumn("Comisión");
+        model.addColumn("Monto cobrado");
+        
         
         Nodo puntero = operacionesCuenta.inicio;
         while(puntero != null) {
@@ -71,7 +72,6 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolares implements A
             double montoComision = obtenerOperacion.montoComision;
             TipoCambioBCCR tc = new TipoCambioBCCR();
             double montoComisionEnDolares = montoComision / tc.obtenerValorCompra();
-            //String montoComisionConvertidaADouble = ""+montoComisionEnDolares;
             boolean aplicaComision = obtenerOperacion.seAplicoComision;
             String aplicaComisionSiNo;
             if (aplicaComision == true){
@@ -79,7 +79,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolares implements A
             }else{
                 aplicaComisionSiNo = "No";
             }
-            model.addRow(new Object[]{tipoOperacion, fechaOperacionConvertidaString, String.format("%.2f", montoComisionEnDolares)+" $", aplicaComisionSiNo});
+            model.addRow(new Object[]{tipoOperacion, fechaOperacionConvertidaString, aplicaComisionSiNo, String.format("%.2f", montoComisionEnDolares)+" $"});
             puntero = puntero.siguiente;
         }
         tabla.setModel(model);

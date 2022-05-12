@@ -4,6 +4,7 @@
  */
 package validacion;
 
+import controlador.MensajeEnPantallaCuenta;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
@@ -75,5 +76,11 @@ public class ValidacionCuenta {
         }
         controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido();
         return false;
+    }
+    
+    public static void inactivarCuenta(String pNumeroCuenta) {
+        IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
+        daoCuenta.actualizarEstatus(pNumeroCuenta, "Inactiva");
+        MensajeEnPantallaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta();
     }
 }

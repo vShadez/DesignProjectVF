@@ -12,6 +12,8 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import vistaGUI.DetalleCuenta;
 import vistaGUI.ListaCuentas;
+import logicaDeAccesoADatos.IDAOOperacionCuenta;
+import logicaDeAccesoADatos.DAOOperacionCuenta;
 
 /**
  *
@@ -28,12 +30,16 @@ public class ControladorDetalleCuenta implements ActionListener{
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(this.numeroDeCuenta);
         Cliente cliente = (Cliente) cuenta.propietario;
-        String nombreDePropietario = cliente.nombre + cliente.primerApellido + cliente.segundoApellido;
+        String nombreDePropietario = cliente.nombre +" " +cliente.primerApellido +" "+ cliente.segundoApellido;
         this.vistaGUI.txtNumeroCuenta.setText(cuenta.numeroCuenta);
         this.vistaGUI.txtFechaCreacion.setText(cuenta.fechaCreacion.toString());
-        this.vistaGUI.txtSaldoCuenta.setText(String.valueOf(cuenta.getSaldo()));
+        this.vistaGUI.txtSaldoCuenta.setText(String.valueOf((String.format("%.2f",cuenta.getSaldo()))));
         this.vistaGUI.txtPin.setText(cuenta.getPin());
         this.vistaGUI.txtNombrePropietario.setText(nombreDePropietario);
+        this.vistaGUI.txtEstatus.setText(cuenta.estatus);
+        IDAOOperacionCuenta obtenerCantidadRetirosYDepositos = new DAOOperacionCuenta();
+        
+        this.vistaGUI.txtCantidadRD.setText(""+obtenerCantidadRetirosYDepositos.consultarCantidadDeDepositosYRetirosRealizados(pNumeroDeCuenta));
     }
 
     @Override

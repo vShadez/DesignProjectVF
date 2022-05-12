@@ -59,7 +59,7 @@ public class ControladorConsultaGananciasCobroComisionesPorCadaCuenta implements
                 double cantidadDepositosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorDepositos(numeroDeCuenta);
                 double cantidadRetirosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorRetiros(numeroDeCuenta);
                 double cantidadRetirosDepositosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorRetirosYDepositos(numeroDeCuenta);
-                model.addRow(new Object[]{numeroDeCuenta, cantidadRetirosDepositosRealizados +" ₡", cantidadDepositosRealizados+" ₡", cantidadRetirosRealizados+" ₡"});
+                model.addRow(new Object[]{numeroDeCuenta, String.format("%.2f", cantidadRetirosDepositosRealizados) +" ₡",  String.format("%.2f",cantidadDepositosRealizados) +" ₡",  String.format("%.2f",cantidadRetirosRealizados)+" ₡"});
             }
         
             tabla.setModel(model);

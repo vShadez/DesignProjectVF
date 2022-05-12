@@ -29,9 +29,9 @@ public class ControladorConsultaGananciasCobroComisionesDelBanco implements Acti
             double comisionesTotalesDeposito = comisionesCobradas.consultarMontoTotalCobradoComisionesPorDepositos();
             double comisionesTotalesRetiros = comisionesCobradas.consultarMontoTotalCobradoComisionesPorRetiros();
             double comisionesTotalesDepositoRetiros = comisionesCobradas.consultarMontoTotalCobradoComisionesPorRetirosYDepositos();
-            vistaGUI.txtMontoTotalOperacionesDepositosColones.setText(""+comisionesTotalesDeposito+" ₡");
-            vistaGUI.txtMontoTotalOperacionesRetiroColones.setText(""+comisionesTotalesRetiros+" ₡");
-            vistaGUI.txtMontoTotalOperacionesDepositosYRetirosColones.setText(""+comisionesTotalesDepositoRetiros+" ₡");
+            vistaGUI.txtMontoTotalOperacionesDepositosColones.setText(String.format("%.2f",comisionesTotalesDeposito)+" ₡");
+            vistaGUI.txtMontoTotalOperacionesRetiroColones.setText(String.format("%.2f",comisionesTotalesRetiros)+" ₡");
+            vistaGUI.txtMontoTotalOperacionesDepositosYRetirosColones.setText(String.format("%.2f",comisionesTotalesDepositoRetiros)+" ₡");
             TipoCambioBCCR tc = new TipoCambioBCCR();
             double tipoCompra = tc.obtenerValorCompra();
             
