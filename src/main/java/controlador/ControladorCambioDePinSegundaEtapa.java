@@ -41,8 +41,7 @@ public class ControladorCambioDePinSegundaEtapa implements ActionListener{
                 controladorTerceraEtapa.vistaGUI.setVisible(true);
                 controladorTerceraEtapa.vistaGUI.setLocationRelativeTo(null);
                 this.vistaGUI.setVisible(false);
-            }
-                else {
+            } else {
                 if(this.cantidadDeIntentos == 1) {
                     MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
                 }

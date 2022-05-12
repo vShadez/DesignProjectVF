@@ -16,6 +16,7 @@ import vistaGUI.VerificacionMensajeDeTexto;
  */
 public class ControladorRetiroPrimeraEtapa implements ActionListener{
     public RetiroPrimeraEtapa vistaGUI;
+    private int cantidadDeIntentos = 0;
     
     public ControladorRetiroPrimeraEtapa(RetiroPrimeraEtapa pVistaGUI) {
         this.vistaGUI = pVistaGUI;
@@ -26,6 +27,7 @@ public class ControladorRetiroPrimeraEtapa implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Continuar")) {
+            this.cantidadDeIntentos++;
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaRetiro.getText();
             String pin = this.vistaGUI.txtPinRetiro.getText();
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
@@ -40,17 +42,20 @@ public class ControladorRetiroPrimeraEtapa implements ActionListener{
                     controladorVerificacionMensajeDeTexto.vistaGUI.setLocationRelativeTo(null);
                     this.vistaGUI.setVisible(false);
                     MensajeEnPantallaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
-                }
-                else {
-                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
-                }
-                }else{
+                } else {
+                    if(this.cantidadDeIntentos == 1) {
+                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                    }
+                    else {
+                        validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
+                    }
+                  }
+                } else{
                     MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
-                }
-            }
-            else {
+                  }
+            } else{
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
-            }
+              }
         }
         if(evento.getActionCommand().equals("Cancelar")) {
            ControladorMenuPrincipal.volverMenuPrincipal();

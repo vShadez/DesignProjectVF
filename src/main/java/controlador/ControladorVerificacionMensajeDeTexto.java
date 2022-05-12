@@ -47,8 +47,6 @@ public class ControladorVerificacionMensajeDeTexto implements ActionListener{
             this.cantidadDeIntentos++;
             String palabraIngresada = this.vistaGUI.txtMensajeDeValidacion.getText();
             String mensaje = this.mensajeSecreto;
-            System.out.println(mensaje);
-            System.out.println("Llega");
             if(this.mensajeSecreto.equals(palabraIngresada)) {
                 if(this.transaccionAsociada.equals("Retiro")) {
                     SeleccionDeRetiroEnDolaresOColones vistaSeleccionDeRetiroEnDolaresOColones = new SeleccionDeRetiroEnDolaresOColones();
