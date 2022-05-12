@@ -17,7 +17,7 @@ import vistaGUI.SeleccionDeConsultaEstadoDeCuenta;
  */
 public class ControladorConsultaEstadoDeCuenta implements ActionListener{
     public ConsultaEstadoDeCuenta vistaGUI;
-    
+    private int cantidadDeIntentos = 0;    
     
     public ControladorConsultaEstadoDeCuenta(ConsultaEstadoDeCuenta pVistaGUI) {
         this.vistaGUI = pVistaGUI;
@@ -28,6 +28,7 @@ public class ControladorConsultaEstadoDeCuenta implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Consultar")) {
+            this.cantidadDeIntentos++;
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaEstadoCuenta.getText();
             String pin = this.vistaGUI.txtPinEstadoCuenta.getText();
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
@@ -41,7 +42,15 @@ public class ControladorConsultaEstadoDeCuenta implements ActionListener{
                         controladorSeccionConsultaEstadoCuenta.vistaGUI.setVisible(true);
                         controladorSeccionConsultaEstadoCuenta.vistaGUI.setLocationRelativeTo(null);
                         vistaGUI.setVisible(false);
+                    } else {
+                    if(this.cantidadDeIntentos == 1) {
+                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
                     }
+                    else {
+                        validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
+                    }
+                  }
+                    
                 }else{
                     MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
                 }

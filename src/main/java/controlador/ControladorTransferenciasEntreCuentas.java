@@ -16,6 +16,7 @@ import vistaGUI.VerificacionMensajeDeTexto;
  */
 public class ControladorTransferenciasEntreCuentas implements ActionListener{
     public TransferenciasEntreCuentas vistaGUI;
+    private int cantidadDeIntentos = 0;
     
     public ControladorTransferenciasEntreCuentas(TransferenciasEntreCuentas pVistaGUI) {
         this.vistaGUI = pVistaGUI;
@@ -26,6 +27,7 @@ public class ControladorTransferenciasEntreCuentas implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Continuar")) {
+             this.cantidadDeIntentos++;
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaOrigen.getText();
             String pin = this.vistaGUI.txtPinCuentaOrigen.getText();
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
@@ -42,7 +44,12 @@ public class ControladorTransferenciasEntreCuentas implements ActionListener{
                     MensajeEnPantallaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
                 }
                 else {
-                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                    if(this.cantidadDeIntentos == 1) {
+                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                    }
+                    else {
+                        validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
+                    }
                 }
                 } else{
                     MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();

@@ -16,6 +16,7 @@ import logicaDeAccesoADatos.DAOCuentaIndividual;
  */
 public class ControladorConsultaDeSaldoActual implements ActionListener{
     public ConsultaDeSaldoActual vistaGUI;
+    private int cantidadDeIntentos = 0;
     
     public ControladorConsultaDeSaldoActual(ConsultaDeSaldoActual pVistaGUI) {
         this.vistaGUI = pVistaGUI;
@@ -29,7 +30,7 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
     public void actionPerformed(ActionEvent evento) {
         String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaConsultaSaldo.getText();
         String pin = this.vistaGUI.txtPinCuentaConsultaSaldo.getText();
-        
+        this.cantidadDeIntentos++;
         if(evento.getActionCommand().equals("Volver")) {
            ControladorMenuPrincipal.volverMenuPrincipal();
            vistaGUI.setVisible(false);
@@ -54,7 +55,12 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra);
                     }
                 } else {
-                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                    if(this.cantidadDeIntentos == 1) {
+                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                    }
+                    else {
+                        validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
+                    }
                     }
             }else{
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
