@@ -55,7 +55,7 @@ public class ControladorListaClientes implements ActionListener{
     }
     
     public void iniciarListaClientes(){
-        Cliente[] arregloClientesOrdenados;
+        Cliente[] arregloClientesDesordenados;
         IDAOCatalogoDeClientes daoCatalogoDeClientes = new DAOCatalogoDeClientes();
         int cantidadDeClientes = daoCatalogoDeClientes.consultarCantidadDeClientes();
         JTable tabla = this.vistaGUI.tblListaClientes; 
@@ -69,9 +69,8 @@ public class ControladorListaClientes implements ActionListener{
         
         Lista<ICliente> consultarListaCliente = daoCatalogoDeClientes.consultarListaDeClientes();
         
-        arregloClientesOrdenados = Conversion.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
-        Cliente cliente[] = Ordenamiento.ordenarAscendentemente(arregloClientesOrdenados);
-        //Cliente cliente[] = arregloClientesOrdenados;
+        arregloClientesDesordenados = Conversion.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
+        Cliente cliente[] = Ordenamiento.ordenarAscendentemente(arregloClientesDesordenados);
       
         for (int i = 0; i < cantidadDeClientes; i++) {
             String primerApellido = cliente[i].primerApellido;

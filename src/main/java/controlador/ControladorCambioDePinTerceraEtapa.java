@@ -36,7 +36,7 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
                 MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(this.numeroDeCuenta);
             }
             else {
-                MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, nuevoPin);
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido();
             }
         }
         if(evento.getActionCommand().equals("Cancelar")) {

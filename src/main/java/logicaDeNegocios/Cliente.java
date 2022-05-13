@@ -17,12 +17,12 @@ import logicaDeAccesoADatos.IDAOClienteCuenta;
  * @author Jairo Calderón
  */
 public class Cliente implements ICliente, Comparable{
-    String codigo;
+    public String codigo;
     public String nombre;
     public String primerApellido;
     public String segundoApellido;
     public int identificacion;
-    LocalDate fechaNacimiento;
+    public LocalDate fechaNacimiento;
     public int numeroTelefono;
     public String correoElectronico;
     Lista<ICuenta> misCuentas;

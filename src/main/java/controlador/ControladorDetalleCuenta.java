@@ -34,7 +34,7 @@ public class ControladorDetalleCuenta implements ActionListener{
         this.vistaGUI.txtNumeroCuenta.setText(cuenta.numeroCuenta);
         this.vistaGUI.txtFechaCreacion.setText(cuenta.fechaCreacion.toString());
         this.vistaGUI.txtSaldoCuenta.setText(String.valueOf((String.format("%.2f",cuenta.getSaldo()))));
-        this.vistaGUI.txtPin.setText(cuenta.getPin());
+        //this.vistaGUI.txtPin.setText(cuenta.getPin());
         this.vistaGUI.txtNombrePropietario.setText(nombreDePropietario);
         this.vistaGUI.txtEstatus.setText(cuenta.estatus);
         IDAOOperacionCuenta obtenerCantidadRetirosYDepositos = new DAOOperacionCuenta();

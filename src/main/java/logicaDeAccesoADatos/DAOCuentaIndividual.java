@@ -105,8 +105,15 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
     @Override
     public boolean cambiarPin(String pNumeroCuenta, String pNuevoPin){
         Document actualizarDocumento = (Document) coleccionCuentas.find(new Document("numeroCuenta", pNumeroCuenta)).first();
+        String pinEncriptado = null;
+        try {
+            pinEncriptado = Encriptacion.encriptar(pNuevoPin);
+        } catch (Exception ex) {
+            return false;
+        }
+        
         if (actualizarDocumento != null){
-            Bson updatedValue =  new Document("pin",  pNuevoPin);
+            Bson updatedValue =  new Document("pin",  pinEncriptado);
             Bson updateOperation =  new Document("$set",  updatedValue);
             coleccionCuentas.updateOne(actualizarDocumento, updateOperation);
             return true;

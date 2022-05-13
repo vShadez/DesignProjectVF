@@ -46,6 +46,8 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
                         boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuentaDeOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {
                             
+                            efectuarTransferencia(numeroDeCuentaDeDestino, montoDeRetiroEnFormatoDecimal);
+                            //calcularMontoComision(montoDeRetiroEnFormatoDecimal);
                         }
                         else {
                             MensajeEnPantallaCuenta.imprimirMensajeDeErrorFondosInsuficientes();

@@ -59,7 +59,7 @@ public class ControladorVerificacionMensajeDeTexto implements ActionListener{
                     SolicitarMontoDepositoYCuentaDestinoDeTransferencia vistaSolicitarMontoDepositoYCuentaDestinoDeTransferencia = new SolicitarMontoDepositoYCuentaDestinoDeTransferencia();
                     ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia controladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia = new ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia(vistaSolicitarMontoDepositoYCuentaDestinoDeTransferencia, numeroDeCuenta);
                     controladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia.vistaGUI.setVisible(true);
-                    controladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia.vistaGUI.setLocationRelativeTo(null);
+                    controladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia.vistaGUI.setLocationRelativeTo(null);          
                     this.vistaGUI.setVisible(false);
                 }
                 this.vistaGUI.setVisible(false);

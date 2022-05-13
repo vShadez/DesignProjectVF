@@ -5,6 +5,7 @@
 package clasesUtilitarias;
 
 import logicaDeNegocios.Cliente;
+import logicaDeNegocios.Cuenta;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Ordenamiento {
         return (Cliente[]) pArreglo;
     }
     
-    public static void ordenarDescendentemente(Comparable[] pArreglo) {
+    public static Cuenta[] ordenarDescendentemente(Comparable[] pArreglo) {
         for (int i = 1; i < pArreglo.length; i ++) { 
             Comparable nuevo = pArreglo [i] ; 
             int j = i - 1; 
@@ -35,5 +36,6 @@ public class Ordenamiento {
             } 
             pArreglo [j + 1] = nuevo; 
         }
+        return (Cuenta[]) pArreglo;
     }
 }
