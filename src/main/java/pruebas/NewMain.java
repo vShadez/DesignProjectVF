@@ -39,14 +39,16 @@ import controlador.ControladorDepositoEnColones;
 import vistaGUI.ConsultaGananciasCobroComisionesDelBanco;
 import vistaGUI.DepositoEnColones;
 import controlador.ControladorConsultaGananciasCobroComisionesDelBanco;
-import controlador.ControladorConsultaGananciasCobroComisionesPorCadaCuenta;
+import controlador.ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas;
 import controlador.ControladorConsultaTipoCambioDeCompra;
 import controlador.ControladorConsultaTipoCambioDeVenta;
-import vistaGUI.ConsultaGananciasCobroComisionesPorCadaCuenta;
+import vistaGUI.ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas;
 import vistaGUI.ConsultaTipoCambioDeCompra;
 import vistaGUI.ConsultaTipoCambioDeVenta;
 import controlador.ControladorConsultaTipoCambioDeVenta;
 import controlador.ControladorMenuPrincipal;
+import controlador.ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia;
+import controlador.ControladorTransferenciasEntreCuentas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
@@ -55,6 +57,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import vistaGUI.MenuPrincipal;
 import vistaGUI.MenuPrincipal;
+import vistaGUI.SolicitarMontoDepositoYCuentaDestinoDeTransferencia;
+import vistaGUI.TransferenciasEntreCuentas;
 /**
  *
  * @author calde
@@ -175,16 +179,36 @@ public class NewMain {//extends JPanel
         */
         
         /*
-        ConsultaGananciasCobroComisionesPorCadaCuenta vista = new ConsultaGananciasCobroComisionesPorCadaCuenta();
-        ControladorConsultaGananciasCobroComisionesPorCadaCuenta controladorSala = new ControladorConsultaGananciasCobroComisionesPorCadaCuenta(vista);
+        ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas vista = new ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas();
+        ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas controladorSala = new ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas(vista);
         controladorSala.vistaGUI.setVisible(true);
         controladorSala.vistaGUI.setLocationRelativeTo(null);
         */
+        
         
         MenuPrincipal vista = new MenuPrincipal();
         ControladorMenuPrincipal controladorSala = new ControladorMenuPrincipal(vista);
         controladorSala.vistaGUI.setVisible(true);
         controladorSala.vistaGUI.setLocationRelativeTo(null);
+        
+        
+        /*
+        SolicitarMontoDepositoYCuentaDestinoDeTransferencia vista = new SolicitarMontoDepositoYCuentaDestinoDeTransferencia();
+        ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia controladorSala = new ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia(vista, "CU-1");
+        controladorSala.vistaGUI.setVisible(true);
+        controladorSala.vistaGUI.setLocationRelativeTo(null);
+        */
+        
+        
+        
+        /*
+        TransferenciasEntreCuentas vista = new TransferenciasEntreCuentas();
+        ControladorTransferenciasEntreCuentas controladorSala = new ControladorTransferenciasEntreCuentas(vista);
+        controladorSala.vistaGUI.setVisible(true);
+        controladorSala.vistaGUI.setLocationRelativeTo(null);
+        
+        */
+        
         
         /*
         ConsultaTipoCambioDeCompra vista = new ConsultaTipoCambioDeCompra();

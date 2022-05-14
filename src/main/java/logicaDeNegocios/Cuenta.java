@@ -97,7 +97,7 @@ public class Cuenta implements ICuenta, Comparable{
     public void transferir(ICuenta pCuentaDestino, double pMontoTransferido) {
        Cuenta cuentaDestino = (Cuenta) pCuentaDestino;
        cuentaDestino.recibirTransferencia(pMontoTransferido);
-       this.retirar(pMontoTransferido);
+       //this.retirar(pMontoTransferido);
     }
     
     @Override

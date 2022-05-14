@@ -65,9 +65,9 @@ public class MensajeEnPantallaCuenta {
     
     public static void imprimirMensajeTransferenciaExitosa(double pMontoTransferido, double pMontoComision) {
         String mensajeTransferenciaExitosa = "";
-        mensajeTransferenciaExitosa += "Estimado usuario, la transferencia de fondos se ejecuto satisfactoriamente. \n";
-        mensajeTransferenciaExitosa += "El monto retirado de la cuenta origen y depositado en la cuenta destino es " + pMontoTransferido + "\n";
-        mensajeTransferenciaExitosa += "[El monto cobrado por concepto de comisión a la cuenta origen fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual] \n";
+        mensajeTransferenciaExitosa += "Estimado usuario, la transferencia de fondos se ejecutó satisfactoriamente. \n";
+        mensajeTransferenciaExitosa += "El monto retirado de la cuenta origen y depositado en la cuenta destino es " + String.format("%.2f",pMontoTransferido) + " ₡\n";
+        mensajeTransferenciaExitosa += "[El monto cobrado por concepto de comisión a la cuenta origen fue de " + String.format("%.2f",pMontoComision) + " colones, que fueron rebajados automáticamente de su saldo actual] \n";
         JOptionPane.showMessageDialog(null, mensajeTransferenciaExitosa, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
     
@@ -135,8 +135,8 @@ public class MensajeEnPantallaCuenta {
         JOptionPane.showMessageDialog(null, mensajeCambioDePinExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
     
-    public static void imprimirMensajeSaldoCuentaActualColones(String pSaldoActual) {
-        String mensajeCambioDePinExitoso = "Estimado usuario el saldo actual de su cuenta es " + pSaldoActual + " colones";
+    public static void imprimirMensajeSaldoCuentaActualColones(double pSaldoActual) {
+        String mensajeCambioDePinExitoso = "Estimado usuario el saldo actual de su cuenta es " + String.format("%.2f",pSaldoActual) + " colones.";
         JOptionPane.showMessageDialog(null, mensajeCambioDePinExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
     

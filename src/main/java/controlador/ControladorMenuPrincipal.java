@@ -11,7 +11,7 @@ import vistaGUI.ConsultaDeEstatusCuenta;
 import vistaGUI.ConsultaDeSaldoActual;
 import vistaGUI.ConsultaEstadoDeCuenta;
 import vistaGUI.ConsultaGananciasCobroComisionesDelBanco;
-import vistaGUI.ConsultaGananciasCobroComisionesPorCadaCuenta;
+import vistaGUI.ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas;
 import vistaGUI.ConsultaTipoCambioDeCompra;
 import vistaGUI.ConsultaTipoCambioDeVenta;
 import vistaGUI.ListaClientes;
@@ -153,8 +153,8 @@ public class ControladorMenuPrincipal implements ActionListener{
             vistaGUI.setVisible(false);
         }
         if(evento.getActionCommand().equals("Consultar ganancias por concepto de comisión en cada cuenta")) {
-            ConsultaGananciasCobroComisionesPorCadaCuenta vistaConsultaGananciasCobroComisionesPorCadaCuenta = new ConsultaGananciasCobroComisionesPorCadaCuenta();
-            ControladorConsultaGananciasCobroComisionesPorCadaCuenta controladorConsultaGananciasCobroComisionesPorCadaCuenta = new ControladorConsultaGananciasCobroComisionesPorCadaCuenta(vistaConsultaGananciasCobroComisionesPorCadaCuenta);
+            ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas vistaConsultaGananciasCobroComisionesPorCadaCuenta = new ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas();
+            ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas controladorConsultaGananciasCobroComisionesPorCadaCuenta = new ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas(vistaConsultaGananciasCobroComisionesPorCadaCuenta);
             controladorConsultaGananciasCobroComisionesPorCadaCuenta.vistaGUI.setVisible(true);
             controladorConsultaGananciasCobroComisionesPorCadaCuenta.vistaGUI.setLocationRelativeTo(null);
             vistaGUI.setVisible(false);
