@@ -11,6 +11,7 @@ import vistaGUI.ConsultaDeEstatusCuenta;
 import vistaGUI.ConsultaDeSaldoActual;
 import vistaGUI.ConsultaEstadoDeCuenta;
 import vistaGUI.ConsultaGananciasCobroComisionesDelBanco;
+import vistaGUI.ConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa;
 import vistaGUI.ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas;
 import vistaGUI.ConsultaTipoCambioDeCompra;
 import vistaGUI.ConsultaTipoCambioDeVenta;
@@ -49,6 +50,7 @@ public class ControladorMenuPrincipal implements ActionListener{
         this.vistaGUI.btnRegistrarCuentaMenu.addActionListener(this);
         this.vistaGUI.btnRetirarMenu.addActionListener(this);
         this.vistaGUI.btnTransferenciaMenu.addActionListener(this);
+        this.vistaGUI.btnConsultarGananciasComisionPorCadaCuenta.addActionListener(this);
         
     }
     @Override
@@ -157,6 +159,13 @@ public class ControladorMenuPrincipal implements ActionListener{
             ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas controladorConsultaGananciasCobroComisionesPorCadaCuenta = new ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas(vistaConsultaGananciasCobroComisionesPorCadaCuenta);
             controladorConsultaGananciasCobroComisionesPorCadaCuenta.vistaGUI.setVisible(true);
             controladorConsultaGananciasCobroComisionesPorCadaCuenta.vistaGUI.setLocationRelativeTo(null);
+            vistaGUI.setVisible(false);
+        }
+        if(evento.getActionCommand().equals("Consultar ganancias por concepto")) {
+            ConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa vistaConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa = new ConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa();
+            ControladorConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa controladorConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa = new ControladorConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa(vistaConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa);
+            controladorConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa.vistaGUI.setVisible(true);
+            controladorConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrimeraEtapa.vistaGUI.setLocationRelativeTo(null);
             vistaGUI.setVisible(false);
         }
     }
