@@ -21,7 +21,7 @@ import org.bson.Document;
  * @author sebashdez
  */
 public class DAOCatalogoDeClientes implements IDAOCatalogoDeClientes {
-    public static MongoCollection coleccionClientes = ConexionBaseDeDatos.ConectarBase().getCollection("Clientes");
+    final public static MongoCollection coleccionClientes = ConexionBaseDeDatos.ConectarBase().getCollection("Clientes");
     DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @Override
     public Lista<ICliente> consultarListaDeClientes() {

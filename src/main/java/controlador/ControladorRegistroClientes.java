@@ -66,7 +66,32 @@ public class ControladorRegistroClientes implements ActionListener{
        }
     }
     
-    public boolean validarTipoDeDatos(String pIdentificacion) {
+    public static void actionPerformed(String nombre, String primerApellido, String segundoApellido, String identificacion, String diaDeFechaDeNacimiento, String mesDeFechaDeNacimiento, String anoDeFechaDeNacimiento, String numeroDeTelefono, String correoElectronico) {
+            
+        int identificacionEnFormatoEntero = Conversion.convertirStringEnEntero(identificacion);
+        
+        int dia = Conversion.convertirStringEnEntero(diaDeFechaDeNacimiento);
+        int mes = Conversion.convertirStringEnEntero(mesDeFechaDeNacimiento);
+        int ano = Conversion.convertirStringEnEntero(anoDeFechaDeNacimiento);
+        
+        System.out.println("Dia"+ dia);
+        System.out.println("Mes"+ mes);
+        System.out.println("Ano"+ ano);
+        
+        
+        int numeroTelefonicoEnFormatoEntero = Conversion.convertirStringEnEntero(numeroDeTelefono);
+        String fechaDeNacimiento = dia+"/"+mes+"/"+ano;
+        if(validarTipoDeDatos(identificacion) && validarFormatoDeDatos(numeroDeTelefono, correoElectronico) && validarExistenciaCliente(identificacionEnFormatoEntero)) {
+            IDAOCatalogoDeClientes cantidadDeClientes = new DAOCatalogoDeClientes();
+            String codigo = "CIF-" + cantidadDeClientes.consultarCantidadDeClientes();
+            ICliente nuevoCliente = new Cliente(codigo, nombre, primerApellido, segundoApellido, identificacionEnFormatoEntero, dia, mes, ano, numeroTelefonicoEnFormatoEntero, correoElectronico);
+
+            MensajeEnPantallaCliente.imprimirMensajeCreadoExitoso(codigo, nombre, identificacion, fechaDeNacimiento, numeroDeTelefono);
+        }
+        
+    }
+    
+    public static boolean validarTipoDeDatos(String pIdentificacion) {
         if(ValidacionTipoDeDato.verificarEsEntero(pIdentificacion) == false) {
             MensajeEnPantallaCliente.imprimirErrorIdentificacionInvalida();
             return false;
@@ -76,7 +101,7 @@ public class ControladorRegistroClientes implements ActionListener{
         }
     }
     
-    public boolean validarFormatoDeDatos(String pNumeroDeTelefono, String pCorreoElectronico) {
+    public static boolean validarFormatoDeDatos(String pNumeroDeTelefono, String pCorreoElectronico) {
         if(ExpresionRegular.verificarFormatoCorreoElectronicoEsValido(pCorreoElectronico) == false) {
           MensajeEnPantallaCliente.imprimirErrorFormatoDeCorreoIncorrecto();
           return false;
@@ -90,7 +115,7 @@ public class ControladorRegistroClientes implements ActionListener{
         }
     }
     
-    public boolean validarExistenciaCliente(int pIdentificacion){
+    public static boolean validarExistenciaCliente(int pIdentificacion){
         IDAOCatalogoDeClientes prueb = new DAOCatalogoDeClientes();
         if(prueb.consultarSiExisteCliente(pIdentificacion) == false) {
             MensajeEnPantallaCliente.imprimirErrorIdentificacionExistente();

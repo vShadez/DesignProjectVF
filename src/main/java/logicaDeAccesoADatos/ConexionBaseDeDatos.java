@@ -13,10 +13,10 @@ import com.mongodb.client.MongoDatabase;
  * @author sebashdez
  */
 public class ConexionBaseDeDatos {
-    private static MongoClient clusterBaseDeDatos;
-    private static MongoDatabase dataBase;
+    static MongoClient clusterBaseDeDatos = null;
+    static MongoDatabase dataBase = null;
     
-    public static MongoDatabase ConectarBase() {
+    final public static MongoDatabase ConectarBase() {
         try{
             clusterBaseDeDatos = MongoClients.create("mongodb+srv://shadez:123Shadez@cluster0.jiren.mongodb.net/test");
             dataBase = clusterBaseDeDatos.getDatabase("SoftwareDesign");
