@@ -48,11 +48,12 @@ public class ControladorRegistroClientesWEB extends HttpServlet {
             out.println("Mes"+ mesDeFechaDeNacimiento);
             out.println("Ano"+ anoDeFechaDeNacimiento);
             
-            imprimirDatos(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
-            ControladorRegistroClientes.actionPerformed(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
+            //imprimirDatos(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
+            ControladorRegistroClientes.pasarDatos(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
         }
     }
     
+    /*
     public void imprimirDatos(String nombre, String primerApellido, String segundoApellido, String identificacion, String diaDeFechaDeNacimiento, String mesDeFechaDeNacimiento, String anoDeFechaDeNacimiento, String numeroDeTelefono, String correoElectronico){
         System.out.println("Nombre del cliente: "+ nombre);
         System.out.println("1 Apellido: "+ primerApellido);
@@ -75,5 +76,5 @@ public class ControladorRegistroClientesWEB extends HttpServlet {
         System.out.println("Numero telefono: "+ numeroTelefonicoEnFormatoEntero);
         System.out.println("Correo: "+ correoElectronico);
         
-    }
+    }*/
 }

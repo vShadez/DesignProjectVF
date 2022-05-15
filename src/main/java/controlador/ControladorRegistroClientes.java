@@ -68,19 +68,12 @@ public class ControladorRegistroClientes implements ActionListener{
     }
     
     public static void actionPerformed(String nombre, String primerApellido, String segundoApellido, String identificacion, String diaDeFechaDeNacimiento, String mesDeFechaDeNacimiento, String anoDeFechaDeNacimiento, String numeroDeTelefono, String correoElectronico) {
-            
         int identificacionEnFormatoEntero = Conversion.convertirStringEnEntero(identificacion);
-        
         int dia = Conversion.convertirStringEnEntero(diaDeFechaDeNacimiento);
         int mes = Conversion.convertirStringEnEntero(mesDeFechaDeNacimiento);
         int ano = Conversion.convertirStringEnEntero(anoDeFechaDeNacimiento);
-        
-        System.out.println("Dia"+ dia);
-        System.out.println("Mes"+ mes);
-        System.out.println("Ano"+ ano);
-        
-        
         int numeroTelefonicoEnFormatoEntero = Conversion.convertirStringEnEntero(numeroDeTelefono);
+        
         String fechaDeNacimiento = dia+"/"+mes+"/"+ano;
         if(validarTipoDeDatos(identificacion) && validarFormatoDeDatos(numeroDeTelefono, correoElectronico) && validarExistenciaCliente(identificacionEnFormatoEntero)) {
             IDAOCatalogoDeClientes cantidadDeClientes = new DAOCatalogoDeClientes();
@@ -100,6 +93,29 @@ public class ControladorRegistroClientes implements ActionListener{
         else {
             return true;
         }
+    }
+    
+    public static void pasarDatos(String nombre, String primerApellido, String segundoApellido, String identificacion, String diaDeFechaDeNacimiento, String mesDeFechaDeNacimiento, String anoDeFechaDeNacimiento, String numeroDeTelefono, String correoElectronico){
+        
+        String nombre1 = nombre;
+        String primerApellido1 = primerApellido;
+        String segundoApellido1 = segundoApellido;
+        String identificacion1 = identificacion;
+        String numeroDeTelefono1 = numeroDeTelefono;
+        String correoElectronico1 = correoElectronico;
+        
+        String diaDeFechaDeNacimiento1 = diaDeFechaDeNacimiento;
+        String mesDeFechaDeNacimiento1 = mesDeFechaDeNacimiento;
+        String anoDeFechaDeNacimiento1 = anoDeFechaDeNacimiento;
+        
+        System.out.println("Dia: "+ diaDeFechaDeNacimiento1);
+        System.out.println("Mes: "+ mesDeFechaDeNacimiento1);
+        System.out.println("Ano: "+ anoDeFechaDeNacimiento1);
+        
+        System.out.println("Numero telefono: "+ numeroDeTelefono1);
+        System.out.println("Correo: "+ correoElectronico);
+        
+        actionPerformed(nombre1, primerApellido1, segundoApellido1, identificacion1, diaDeFechaDeNacimiento1, mesDeFechaDeNacimiento1, anoDeFechaDeNacimiento1, numeroDeTelefono1, correoElectronico1);
     }
     
     public static boolean validarFormatoDeDatos(String pNumeroDeTelefono, String pCorreoElectronico) {
