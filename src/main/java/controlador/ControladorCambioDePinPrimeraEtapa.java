@@ -6,8 +6,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeNegocios.Cuenta;
 import validacion.ValidacionCuenta;
 import vistaGUI.CambioDePinPrimeraEtapa;
@@ -29,14 +31,14 @@ public class ControladorCambioDePinPrimeraEtapa implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Aceptar")) {
-            IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
+            IDAOCatalogoDeCuentas daoCuenta = new DAOCatalogoDeCuentas();
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuenta.getText();
-            Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
-            if(cuenta != null) {
+            boolean consultarExisteCuenta = daoCuenta.consultarSiExisteCuenta(numeroDeCuenta);
+            if(consultarExisteCuenta) {
                 boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
                 if(cuentaEstaActiva) {
                 CambioDePinSegundaEtapa vistaSegundaEtapa = new CambioDePinSegundaEtapa();
-                ControladorCambioDePinSegundaEtapa controladorSegundaEtapa = new ControladorCambioDePinSegundaEtapa(cuenta.numeroCuenta, vistaSegundaEtapa);
+                ControladorCambioDePinSegundaEtapa controladorSegundaEtapa = new ControladorCambioDePinSegundaEtapa(numeroDeCuenta, vistaSegundaEtapa);
                 controladorSegundaEtapa.vistaGUI.setVisible(true);
                 controladorSegundaEtapa.vistaGUI.setLocationRelativeTo(null);
                 this.vistaGUI.setVisible(false);

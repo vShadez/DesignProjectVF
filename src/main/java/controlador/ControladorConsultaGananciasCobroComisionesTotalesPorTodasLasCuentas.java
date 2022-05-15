@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import listaDinamica.Lista;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
-import vistaGUI.ConsultaGananciasCobroComisionesPorCadaCuenta;
+import vistaGUI.ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
@@ -24,10 +24,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author estadm
  */
-public class ControladorConsultaGananciasCobroComisionesPorCadaCuenta implements ActionListener{
-    public ConsultaGananciasCobroComisionesPorCadaCuenta vistaGUI;
+public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas implements ActionListener{
+    public ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas vistaGUI;
     
-    public ControladorConsultaGananciasCobroComisionesPorCadaCuenta(ConsultaGananciasCobroComisionesPorCadaCuenta pVistaGUI) {
+    public ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas(ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas pVistaGUI) {
         this.vistaGUI = pVistaGUI;
         this.vistaGUI.btnCancelarMontosCadaCuenta.addActionListener(this);
         this.vistaGUI.btnConsultarMontosCadaCuenta.addActionListener(this);

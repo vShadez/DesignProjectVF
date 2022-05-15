@@ -33,6 +33,7 @@ public class VerificacionMensajeDeTexto extends javax.swing.JFrame {
         btnVolverValidacionCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("    ");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Validación de cuenta");

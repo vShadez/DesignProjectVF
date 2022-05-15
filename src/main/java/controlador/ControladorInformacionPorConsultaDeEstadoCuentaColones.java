@@ -32,7 +32,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColones implements A
     
     public ControladorInformacionPorConsultaDeEstadoCuentaColones(InformacionPorConsultaDeEstadoCuentaColones pVistaGUI ,String pNumeroCuenta){
         this.vistaGUI = pVistaGUI;
-        this.numeroCuenta = pNumeroCuenta;
+        numeroCuenta = pNumeroCuenta;
         this.vistaGUI.btnVolverEstadoCuentaColones.addActionListener(this);
         Operacion[] arregloOperaciones;
         IDAOCuentaIndividual cuenta = new DAOCuentaIndividual();
@@ -41,6 +41,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColones implements A
         Cliente clientePropietario = (Cliente) cuentaRecibida.propietario;
         IDAOOperacionCuenta operacion = new DAOOperacionCuenta();
         Lista<Operacion> operaciones = operacion.consultarOperacionesCuenta(pNumeroCuenta);
+        
         
         this.vistaGUI.txtNumeroCuentaEstadoColones.setText(cuentaRecibida.numeroCuenta);
         double obtenerSaldo = cuentaRecibida.getSaldo();

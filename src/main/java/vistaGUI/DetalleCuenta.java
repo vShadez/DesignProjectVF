@@ -30,14 +30,12 @@ public class DetalleCuenta extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtNumeroCuenta = new javax.swing.JTextField();
         txtFechaCreacion = new javax.swing.JTextField();
         txtSaldoCuenta = new javax.swing.JTextField();
-        txtPin = new javax.swing.JTextField();
         txtEstatus = new javax.swing.JTextField();
         txtCantidadRD = new javax.swing.JTextField();
         txtNombrePropietario = new javax.swing.JTextField();
@@ -54,8 +52,6 @@ public class DetalleCuenta extends javax.swing.JFrame {
 
         jLabel4.setText("Saldo de la cuenta");
 
-        jLabel5.setText("Pin");
-
         jLabel6.setText("Estatus");
 
         jLabel7.setText("Cantidad de retiros/depósitos");
@@ -67,8 +63,6 @@ public class DetalleCuenta extends javax.swing.JFrame {
         txtFechaCreacion.setEditable(false);
 
         txtSaldoCuenta.setEditable(false);
-
-        txtPin.setEditable(false);
 
         txtEstatus.setEditable(false);
 
@@ -88,7 +82,6 @@ public class DetalleCuenta extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
@@ -97,7 +90,6 @@ public class DetalleCuenta extends javax.swing.JFrame {
                     .addComponent(txtNumeroCuenta)
                     .addComponent(txtFechaCreacion)
                     .addComponent(txtSaldoCuenta)
-                    .addComponent(txtPin)
                     .addComponent(txtCantidadRD)
                     .addComponent(txtEstatus)
                     .addComponent(txtNombrePropietario, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
@@ -129,10 +121,6 @@ public class DetalleCuenta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtSaldoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtPin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -145,9 +133,9 @@ public class DetalleCuenta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtNombrePropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(btnVolverDetalleCuenta)
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,7 +182,6 @@ public class DetalleCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -203,7 +190,6 @@ public class DetalleCuenta extends javax.swing.JFrame {
     public javax.swing.JTextField txtFechaCreacion;
     public javax.swing.JTextField txtNombrePropietario;
     public javax.swing.JTextField txtNumeroCuenta;
-    public javax.swing.JTextField txtPin;
     public javax.swing.JTextField txtSaldoCuenta;
     // End of variables declaration//GEN-END:variables
 }

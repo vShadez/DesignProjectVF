@@ -5,6 +5,7 @@
 package controlador;
 
 import clasesUtilitarias.Conversion;
+import clasesUtilitarias.Ordenamiento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -65,14 +66,15 @@ public class ControladorListaCuentas implements ActionListener{
         IDAOCatalogoDeCuentas daoCatalogoDeCuentas = new DAOCatalogoDeCuentas();
         Lista<ICuenta> listaDeCuentasDesordenada = daoCatalogoDeCuentas.consultarListaDeCuentas();
         int tamanoListaCuenta = daoCatalogoDeCuentas.consultarCantidadCuentas();
-        System.err.println(tamanoListaCuenta);
         Cuenta[] listaDeCuentasOrdenada = Conversion.convertirListaCuentaEnArreglo(listaDeCuentasDesordenada, tamanoListaCuenta);
+        Ordenamiento.ordenarDescendentemente(listaDeCuentasOrdenada);
+        
         for(int i = 0; i < tamanoListaCuenta; i++) {
             Cuenta cuenta = listaDeCuentasOrdenada[i];
             Cliente duenoDeCuenta = (Cliente) cuenta.propietario;
             String nombreCompletoDePropietarioDeCuenta = duenoDeCuenta.nombre +" "+ duenoDeCuenta.primerApellido +" "+ duenoDeCuenta.segundoApellido;
             int identificacionDePropietarioDeCuenta = duenoDeCuenta.identificacion;
-            modelo.addRow(new Object[]{cuenta.numeroCuenta,cuenta.getSaldo(),cuenta.estatus, nombreCompletoDePropietarioDeCuenta,identificacionDePropietarioDeCuenta});
+            modelo.addRow(new Object[]{cuenta.numeroCuenta,String.format("%.2f",cuenta.getSaldo())+" ₡",cuenta.estatus, nombreCompletoDePropietarioDeCuenta,identificacionDePropietarioDeCuenta});
         }
         tablaCuentas.setModel(modelo);
         ColorCelda color = new ColorCelda(0);

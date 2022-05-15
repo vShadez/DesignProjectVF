@@ -28,9 +28,9 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtPinCuenta = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnCancelarCambioDePinSegundaEtapa = new javax.swing.JButton();
+        txtPinCuenta = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +43,12 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
 
         btnCancelarCambioDePinSegundaEtapa.setText("Cancelar");
 
+        txtPinCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPinCuentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -50,13 +56,13 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel2)
-                        .addGap(43, 43, 43)
-                        .addComponent(txtPinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel2)
+                        .addGap(46, 46, 46)
+                        .addComponent(txtPinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(btnAceptar)
@@ -82,6 +88,10 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtPinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPinCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPinCuentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,6 +133,6 @@ public class CambioDePinSegundaEtapa extends javax.swing.JFrame {
     public javax.swing.JButton btnCancelarCambioDePinSegundaEtapa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    public javax.swing.JTextField txtPinCuenta;
+    public javax.swing.JPasswordField txtPinCuenta;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,11 +27,11 @@ public class ControladorRetiroPrimeraEtapa implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Continuar")) {
-            this.cantidadDeIntentos++;
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaRetiro.getText();
             String pin = this.vistaGUI.txtPinRetiro.getText();
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
             if(existeCuenta) {
+                this.cantidadDeIntentos++;
                 boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
                 if(cuentaEstaActiva) {
                 boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);

@@ -39,11 +39,11 @@ public class MensajeEnPantallaCuenta {
     
     public static void imprimirMensajeDepositoEnDolaresExitoso(String pNumeroDeCuenta,double pMontoDepositadoDolares, double pMontoDepositadoColones, double pTipoCambio, double pMontoComision, LocalDate pFechaDeposito) {
         String mensajeDepositoExitoso = "";
-        mensajeDepositoExitoso += "Estimado usuario, se han recibido correctamente " + pMontoDepositadoDolares + " dolares \n";
-        mensajeDepositoExitoso += "[Según el BCCR, el tipo de cambio de compra del dólar de " + pFechaDeposito + " es: " + pTipoCambio + "] \n";
+        mensajeDepositoExitoso += "Estimado usuario, se han recibido correctamente " + pMontoDepositadoDolares + " dólares. \n";
+        mensajeDepositoExitoso += "[Según el BCCR, el tipo de cambio de compra del dólar de " + pFechaDeposito + " es: " + pTipoCambio + " $] \n";
         mensajeDepositoExitoso += "[El monto equivalente en colones es " + pMontoDepositadoColones + "] \n";
         mensajeDepositoExitoso += "[El monto real depositado a su cuenta " + pNumeroDeCuenta + " es de " + (String.format("%.2f",pMontoDepositadoColones - pMontoComision)) + " colones] \n";
-        mensajeDepositoExitoso += "[El monto cobrado por concepto de comisión fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual]";
+        mensajeDepositoExitoso += "[El monto cobrado por concepto de comisión fue de " + String.format("%.2f",pMontoComision) + " colones, que fueron rebajados automáticamente de su saldo actual]";
         JOptionPane.showMessageDialog(null, mensajeDepositoExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
     
@@ -56,8 +56,8 @@ public class MensajeEnPantallaCuenta {
     
     public static void imprimirMensajeRetiroEnDolaresExitoso(double pMontoRetiradoColones, double pMontoRetiradoDolares, double pTipoCambio, double pMontoComision) {
         String mensajeRetiroExitoso = "";
-        mensajeRetiroExitoso += "Estimado usuario, el monto de este retiro es " + pMontoRetiradoDolares + " dolares \n";
-        mensajeRetiroExitoso += "[Según el BCCR, el tipo de cambio de venta del dólar es: " + pTipoCambio + "] \n";
+        mensajeRetiroExitoso += "Estimado usuario, el monto de este retiro es " + pMontoRetiradoDolares + " dolares. \n";
+        mensajeRetiroExitoso += "[Según el BCCR, el tipo de cambio de venta del dólar hoy es: " + pTipoCambio + " $] \n";
         mensajeRetiroExitoso += "[El monto equivalente de su retiro es es " + pMontoRetiradoColones + "] \n";
         mensajeRetiroExitoso += "[El monto cobrado por concepto de comisión fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual]";
         JOptionPane.showMessageDialog(null, mensajeRetiroExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
@@ -65,9 +65,9 @@ public class MensajeEnPantallaCuenta {
     
     public static void imprimirMensajeTransferenciaExitosa(double pMontoTransferido, double pMontoComision) {
         String mensajeTransferenciaExitosa = "";
-        mensajeTransferenciaExitosa += "Estimado usuario, la transferencia de fondos se ejecuto satisfactoriamente. \n";
-        mensajeTransferenciaExitosa += "El monto retirado de la cuenta origen y depositado en la cuenta destino es " + pMontoTransferido + "\n";
-        mensajeTransferenciaExitosa += "[El monto cobrado por concepto de comisión a la cuenta origen fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual] \n";
+        mensajeTransferenciaExitosa += "Estimado usuario, la transferencia de fondos se ejecutó satisfactoriamente. \n";
+        mensajeTransferenciaExitosa += "El monto retirado de la cuenta origen y depositado en la cuenta destino es " + String.format("%.2f",pMontoTransferido) + " ₡\n";
+        mensajeTransferenciaExitosa += "[El monto cobrado por concepto de comisión a la cuenta origen fue de " + String.format("%.2f",pMontoComision) + " colones, que fueron rebajados automáticamente de su saldo actual] \n";
         JOptionPane.showMessageDialog(null, mensajeTransferenciaExitosa, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
     
@@ -102,8 +102,8 @@ public class MensajeEnPantallaCuenta {
     }
     
     public static void imprimirMensajeDeErrorFormatoDePinInvalido() {
-        String mensajeDeError = "El formato del pin ingresado no es válido \n";
-        mensajeDeError += "Debe ingresar al menos una letra mayúscula, un número y un caracter especial";
+        String mensajeDeError = "El formato del pin ingresado no es válido. \n";
+        mensajeDeError += "Debe ingresar al menos una letra mayúscula, un número y un caracter especial.";
         JOptionPane.showMessageDialog(null, mensajeDeError, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
@@ -135,13 +135,18 @@ public class MensajeEnPantallaCuenta {
         JOptionPane.showMessageDialog(null, mensajeCambioDePinExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
     
-    public static void imprimirMensajeSaldoCuentaActualColones(String pSaldoActual) {
-        String mensajeCambioDePinExitoso = "Estimado usuario el saldo actual de su cuenta es " + pSaldoActual + " colones";
+    public static void imprimirMensajeSaldoCuentaActualColones(double pSaldoActual) {
+        String mensajeCambioDePinExitoso = "Estimado usuario el saldo actual de su cuenta es " + String.format("%.2f",pSaldoActual) + " colones.";
         JOptionPane.showMessageDialog(null, mensajeCambioDePinExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public static void imprimirMensajeSaldoCuentaActualDolares(double pSaldoActual, double pValorDeCompra) {
         String mensajeCambioDePinExitoso = "Estimado usuario el saldo actual de su cuenta es " + String.format("%.2f", pSaldoActual) + " dólares\n" + "Para esta conversión se utilizó el tipo de cambio del dólar, precio de compra. \n" + "Según el BCCR, el tipo de cambio de compra del dólar de hoy es: "  + String.format("%.2f", pValorDeCompra);
         JOptionPane.showMessageDialog(null, mensajeCambioDePinExitoso, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public static void imprimirMensajeDeErrorSaldoNoEsEntero() {
+        String mensajeDeError = "El saldo de la cuenta no puede ir con decimales.";
+        JOptionPane.showMessageDialog(null, mensajeDeError, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

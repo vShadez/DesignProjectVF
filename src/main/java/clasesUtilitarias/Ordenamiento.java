@@ -4,12 +4,16 @@
  */
 package clasesUtilitarias;
 
+import logicaDeNegocios.Cliente;
+import logicaDeNegocios.Cuenta;
+
 /**
  *
  * @author Jairo Calderón
  */
 public class Ordenamiento {
-    public void ordenarAscendentemente(Comparable[] pArreglo) {
+    public static Cliente[] ordenarAscendentemente(Comparable[] pArreglo) {
+        
         for (int i = 1; i < pArreglo.length; i ++) { 
             Comparable nuevo = pArreglo [i] ; 
             int j = i - 1; 
@@ -19,9 +23,10 @@ public class Ordenamiento {
             } 
             pArreglo [j + 1] = nuevo; 
         }
+        return (Cliente[]) pArreglo;
     }
     
-    public void ordenarDescendentemente(Comparable[] pArreglo) {
+    public static Cuenta[] ordenarDescendentemente(Comparable[] pArreglo) {
         for (int i = 1; i < pArreglo.length; i ++) { 
             Comparable nuevo = pArreglo [i] ; 
             int j = i - 1; 
@@ -31,5 +36,6 @@ public class Ordenamiento {
             } 
             pArreglo [j + 1] = nuevo; 
         }
+        return (Cuenta[]) pArreglo;
     }
 }

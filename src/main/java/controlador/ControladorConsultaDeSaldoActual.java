@@ -44,7 +44,7 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
                     if(evento.getActionCommand().equals("Consultar colones")) {
                         IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
                         double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
-                        MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(""+saldoActualColones);
+                        MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(saldoActualColones);
                     }
                     if(evento.getActionCommand().equals("Consultar dólares")) {
                         TipoCambioBCCR tc = new TipoCambioBCCR();
