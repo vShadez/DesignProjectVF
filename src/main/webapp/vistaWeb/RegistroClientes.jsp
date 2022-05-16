@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <br>
-                <form method="post" action="<c:url value="/ControladorRegistroClientesWEB"/>" >
+                <form method="post" action="<c:url value="/vistaWeb/RegistroClientes"/>" >
                     <div class="form-group">
                         <label>Nombre</label>
                         <input type="text" class "form-control" name = "nombre" placeholder="Nombre" required>

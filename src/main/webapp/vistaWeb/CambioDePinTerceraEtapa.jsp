@@ -29,6 +29,11 @@
                         <label>Digitar pin</label>
                         <input type="password" class "form-control" name = "pinNuevo" placeholder="Pin nuevo" required>
                         <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
+                        <br>
+                        <c:if test="${error != null}">
+                            <span>${error}</span>
+                            <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <button type="submit" class= "btn btn-primary">
