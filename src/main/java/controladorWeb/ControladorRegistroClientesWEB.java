@@ -41,40 +41,7 @@ public class ControladorRegistroClientesWEB extends HttpServlet {
         String mesDeFechaDeNacimiento = fechaDeNacimiento.substring(5, 7);
         String anoDeFechaDeNacimiento = fechaDeNacimiento.substring(0, 4);
         response.setContentType("text/html; charset=UTF-8");
-        try(PrintWriter out = response.getWriter()){
-            out.println("Nombre del cliente"+ nombre);
-            out.println("Apellido"+ primerApellido);
-            out.println("Dia"+ diaDeFechaDeNacimiento);
-            out.println("Mes"+ mesDeFechaDeNacimiento);
-            out.println("Ano"+ anoDeFechaDeNacimiento);
-            
-            //imprimirDatos(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
-            ControladorRegistroClientes.pasarDatos(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
-        }
+        
+        ControladorRegistroClientes.registrarCliente(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
     }
-    
-    /*
-    public void imprimirDatos(String nombre, String primerApellido, String segundoApellido, String identificacion, String diaDeFechaDeNacimiento, String mesDeFechaDeNacimiento, String anoDeFechaDeNacimiento, String numeroDeTelefono, String correoElectronico){
-        System.out.println("Nombre del cliente: "+ nombre);
-        System.out.println("1 Apellido: "+ primerApellido);
-        System.out.println("2 Apellido: "+ segundoApellido);
-        
-        int identificacionEnFormatoEntero = Conversion.convertirStringEnEntero(identificacion);
-        System.out.println("Identificacion: "+ identificacionEnFormatoEntero);
-        
-        int dia = Conversion.convertirStringEnEntero(diaDeFechaDeNacimiento);
-        int mes = Conversion.convertirStringEnEntero(mesDeFechaDeNacimiento);
-        int ano = Conversion.convertirStringEnEntero(anoDeFechaDeNacimiento);
-        
-        System.out.println("Dia: "+ dia);
-        System.out.println("Mes: "+ mes);
-        System.out.println("Ano: "+ ano);
-        
-        
-        int numeroTelefonicoEnFormatoEntero = Conversion.convertirStringEnEntero(numeroDeTelefono);
-        
-        System.out.println("Numero telefono: "+ numeroTelefonicoEnFormatoEntero);
-        System.out.println("Correo: "+ correoElectronico);
-        
-    }*/
 }

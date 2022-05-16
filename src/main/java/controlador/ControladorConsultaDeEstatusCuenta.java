@@ -8,6 +8,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import vistaGUI.ConsultaDeEstatusCuenta;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
+import validacion.ValidacionCuenta;
 /**
  *
  * @author estadm
@@ -23,28 +24,23 @@ public class ControladorConsultaDeEstatusCuenta implements ActionListener{
     
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Consultar")) {
-            String numeroDecuenta = this.vistaGUI.txtNumeroCuentaConsultarEstatus.getText();
-
-            IDAOCuentaIndividual estadoCuenta = new DAOCuentaIndividual();
-            String estatusCuentaActual = estadoCuenta.consultarEstatusCuenta(numeroDecuenta);
-
-            if(validarCuentaExiste(numeroDecuenta)){
-                MensajeEnPantallaCuenta.imprimirMensajeEstatusDeCuenta(numeroDecuenta, estatusCuentaActual);
-            }
+            String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaConsultarEstatus.getText();
+            consultarEstatusCuenta(numeroDeCuenta);
         }
         if(evento.getActionCommand().equals("Cancelar")) {
            ControladorMenuPrincipal.volverMenuPrincipal();
            vistaGUI.setVisible(false);
        }
     }
-    
-    public boolean validarCuentaExiste(String pNumeroCuenta){
-        IDAOCatalogoDeCuentas cuenta = new DAOCatalogoDeCuentas();
-        if(cuenta.consultarSiExisteCuenta(pNumeroCuenta)){
+    public static boolean consultarEstatusCuenta(String numeroDeCuenta){
+        IDAOCuentaIndividual estadoCuenta = new DAOCuentaIndividual();
+        String estatusCuentaActual = estadoCuenta.consultarEstatusCuenta(numeroDeCuenta);
+
+        if(ValidacionCuenta.validarExisteCuenta(numeroDeCuenta)){
+            MensajeEnPantallaCuenta.imprimirMensajeEstatusDeCuenta(numeroDeCuenta, estatusCuentaActual);
             return true;
-        }else{
-            MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroCuenta);
-            return false;
         }
+        MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
+        return false;
     }
 }

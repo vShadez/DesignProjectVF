@@ -30,14 +30,7 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Aceptar")) {
             String nuevoPin = this.vistaGUI.txtPinNuevo.getText();
-            if(this.validarFormatoDePinCorrecto(nuevoPin)) {
-                IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
-                daoCuenta.cambiarPin(this.numeroDeCuenta, nuevoPin);
-                MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(this.numeroDeCuenta);
-            }
-            else {
-                MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido();
-            }
+            registrarCambioDePin(nuevoPin, numeroDeCuenta);
         }
         if(evento.getActionCommand().equals("Cancelar")) {
            ControladorMenuPrincipal.volverMenuPrincipal();
@@ -45,16 +38,14 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
        }
     }
     
-    public boolean validarFormatoDePinCorrecto(String pPin) {
-        boolean contieneSeisCaracteres = ExpresionRegular.verificarContieneSeisCaracteresSinEspacios(pPin);
-        boolean contieneLetraMayuscula = ExpresionRegular.verificarContieneLetraMayuscula(pPin);
-        boolean contieneNumero = ExpresionRegular.verificarContieneNumero(pPin);
-        boolean contieneCaracterEspecial = ExpresionRegular.verificarContieneCaracterEspecial(pPin);
-        if(contieneSeisCaracteres && contieneLetraMayuscula && contieneNumero && contieneCaracterEspecial) {
+    public static boolean registrarCambioDePin(String nuevoPin, String numeroCuentaCambiada){
+        if(validacion.ValidacionCuenta.validarFormatoDePin(nuevoPin)) {
+            IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
+            daoCuenta.cambiarPin(numeroCuentaCambiada, nuevoPin);
+            MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(numeroCuentaCambiada);
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
+
 }

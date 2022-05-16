@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,10 +24,15 @@
                     </div>
                 </div>
                 <br>
-                <form action="/" method="GET" >
+                <form method="post" action="<c:url value="/vistaWeb/CambioDePinSegundaEtapa"/>" >
                     <div class="form-group">
                         <label>Digitar pin</label>
-                        <input type="password" class "form-control" name = "pinActual" placeholder="Pin actual" required>
+                        <input type="password" class "form-control" name = "pinActual" placeholder="Pin actual" required />
+                        <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
+
+                        <c:if test="${error != null}">
+                            <span>${error}</span>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <button type="submit" class= "btn btn-primary">

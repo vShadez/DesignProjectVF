@@ -48,11 +48,6 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.0.5</version>
-        </dependency>
-        <dependency>
             <groupId>com.toedter</groupId>
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
@@ -60,7 +55,7 @@
         <dependency>
             <groupId>com.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>2.7.1</version>
+            <version>3.12.11</version>
         </dependency>
         <dependency>
             <groupId>unknown.binary</groupId>

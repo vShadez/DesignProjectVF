@@ -22,29 +22,33 @@
                         <img src="../imagenesVista/Imagen23.png"/>
                     </div>
                     <br>
-                    <div class="row">
-                        {{#each consultaOperaciones}}
-                        <div class="form-group col-md-12">
-                            <div class="card mb-2">
-                                <div class="card-body">
-                                    <div class="card-header">
-                                        <p class = "lead"> Monto total por concepto de operaciones de depositos: C:{{montoDepositos}}, $:{{montoDepositosDolares}} </p>
-                                        <p class = "lead"> Monto total por concepto de operaciones de retiros: C:{{montoRetiros}}, $:{{montoRetirosDolares}}</p>
-                                        <p class = "lead"> Monto total por concepto de depositos y retiros: C:{{montoDepositosYRetiros}}, $:{{montoDepositosYRetirosDolares}}</p>
-                                    </div>
-                                </div>
-                            </div>
+                    
+                    <div class="row center-text">
+                        <div class="col">
+                            <p class = "lead"> Descripcion</p>
+                            <p class = "lead"> Monto total por concepto de operaciones de depositos: </p>
+                            <p class = "lead"> Monto total por concepto de operaciones de retiros:</p>
+                            <p class = "lead"> Monto total por concepto de depositos y retiros:</p>
+                                
                         </div>
-                        {{/each}}
+                        <div class="col">
+                            <p class = "lead"> Colones</p>
+                            <p class = "lead"> ₡ ${montoDepositos}</p>
+                            <p class = "lead"> ₡ ${montoRetiros}</p>
+                            <p class = "lead"> ₡ ${montoDepositosYRetiros}</p> 
+                        </div>
+                        <div class="col">
+                            <p class = "lead"> Dolares</p>
+                            <p class = "lead"> $ ${montoDepositosDolares} </p>
+                            <p class = "lead"> $ ${montoRetirosDolares}</p>
+                            <p class = "lead"> $ ${montoDepositosYRetirosDolares}</p>
+                        </div>      
                     </div>
                 </div>
             </div>
         </div>
     </table>
     <div class="form-group text-center">
-        <button type="submit" class= "btn btn-primary">
-            Consultar
-        </button>
         <a href="../index.html">Cancelar</a>
     </div>
 </html>

@@ -23,22 +23,18 @@
                     </div>
                 </div>
                 <br>
-                <form action="/" method="GET" >
-                    <div class="form-group">
-                        <table class="table table-striped">
-                            <div class="card-body">
-                                {{#each consultarTipoCambioVenta}}
-                                <h4>
-                                    1 dolar = {{tipoDeCambio}}
-                                </h4>
-                                {{/each}}
-                            </div>
-                        </table>
-                    </div>
-                    <div class="form-group">
-                        <a href="../index.html">Volver</a>
-                    </div>
-                </form>
+                <div class="form-group">
+                    <table class="table table-striped">
+                        <div class="card-body">
+                            <h4>
+                                1 dolar = ${tipoDeCambioVenta}
+                            </h4>
+                        </div>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <a href="../index.html">Volver</a>
+                </div>
             </div>
         </div>
     </div>

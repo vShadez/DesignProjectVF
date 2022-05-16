@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,10 +24,14 @@
                     </div>
                 </div>
                 <br>
-                <form action="/" method="GET" >
+                <form method="post" action="<c:url value="/vistaWeb/CambioDePinPrimeraEtapa"/>" >
                     <div class="form-group">
                         <label>Numero de cuenta</label>
                         <input type="text" class "form-control" name = "numeroCuenta" placeholder="Numero de cuenta" required>
+                        <br>
+                        <c:if test="${error != null}">
+                            <span>${error}</span>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <button type="submit" class= "btn btn-primary">

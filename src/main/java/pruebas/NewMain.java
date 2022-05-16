@@ -55,6 +55,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import vistaCLI.MenuPrincipalCLI;
 import vistaGUI.MenuPrincipal;
 import vistaGUI.MenuPrincipal;
 import vistaGUI.SolicitarMontoDepositoYCuentaDestinoDeTransferencia;
@@ -184,7 +185,7 @@ public class NewMain {//extends JPanel
         controladorSala.vistaGUI.setVisible(true);
         controladorSala.vistaGUI.setLocationRelativeTo(null);
         */
-        
+        //MenuPrincipalCLI();
         
         MenuPrincipal vista = new MenuPrincipal();
         ControladorMenuPrincipal controladorSala = new ControladorMenuPrincipal(vista);

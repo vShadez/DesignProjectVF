@@ -4,6 +4,7 @@
     Author     : sebashdez
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,31 +21,29 @@
                 <div>
                     <img src="../imagenesVista/Imagen2.png"/>
                 </div>
+                
                 <thead>
                     <tr>
-                        <th>Numero de cuenta</th>
-                        <th>A</th>
-                        <th>B</th>
-                        <th>C</th>
+                        <th>Primer apellido</th>
+                        <th>Segundo apellido</th>
+                        <th>Nombre</th>
+                        <th>Identificación</th>
                     </tr>
                 </thead>
-                {{#each cliente}}
                 <tbody>
-                    <tr>
-                        <td class= "btn btn-secondary" onClick="document.location.href='../index.html';"> Numero de cuenta </td>
-                        <td>{{b}}</td>
-                        <td>{{c}}</td>
-                        <td>{{identificacion}}</td>
-                    </tr>
+                    <c:forEach var="row" items="${dtos}">
+                        <tr>
+                            <td>${row.primerApellido}</td>
+                            <td>${row.segundoApellido}</td>
+                            <td>${row.nombre}</td>
+                            <td><a href="DetalleCliente?identificacion=${row.identificacion}">${row.identificacion}</a></td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
-                {{/each}}
             </div>
         </div>
     </table>
     <div class="form-group text-center">
-        <button type="submit" class= "btn btn-primary">
-            Consultar
-        </button>
         <a href="../index.html">Cancelar</a>
     </div>
 </html>
