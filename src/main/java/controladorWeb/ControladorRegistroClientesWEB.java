@@ -41,6 +41,10 @@ public class ControladorRegistroClientesWEB extends HttpServlet {
         String anoDeFechaDeNacimiento = fechaDeNacimiento.substring(0, 4);
         response.setContentType("text/html; charset=UTF-8");
         
-        ControladorRegistroClientes.registrarCliente(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
+        if (ControladorRegistroClientes.registrarCliente(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico) == true){
+            response.sendRedirect("../index.html");
+        } else {
+            request.getRequestDispatcher("RegistroClientes.jsp").forward(request, response);
+        }
     }
 }

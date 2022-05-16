@@ -59,7 +59,7 @@ public class ControladorRegistroClientes implements ActionListener{
        }
     }
     
-    public static void registrarCliente(String nombre, String primerApellido, String segundoApellido, String identificacion, String diaDeFechaDeNacimiento, String mesDeFechaDeNacimiento, String anoDeFechaDeNacimiento, String numeroDeTelefono, String correoElectronico) {
+    public static boolean registrarCliente(String nombre, String primerApellido, String segundoApellido, String identificacion, String diaDeFechaDeNacimiento, String mesDeFechaDeNacimiento, String anoDeFechaDeNacimiento, String numeroDeTelefono, String correoElectronico) {
         int identificacionEnFormatoEntero = Conversion.convertirStringEnEntero(identificacion);
         int dia = Conversion.convertirStringEnEntero(diaDeFechaDeNacimiento);
         int mes = Conversion.convertirStringEnEntero(mesDeFechaDeNacimiento);
@@ -73,7 +73,9 @@ public class ControladorRegistroClientes implements ActionListener{
             ICliente nuevoCliente = new Cliente(codigo, nombre, primerApellido, segundoApellido, identificacionEnFormatoEntero, dia, mes, ano, numeroTelefonicoEnFormatoEntero, correoElectronico);
 
             MensajeEnPantallaCliente.imprimirMensajeCreadoExitoso(codigo, nombre, identificacion, fechaDeNacimiento, numeroDeTelefono);
+            return true;
         }
+        return false;
     }
     
     public static boolean validarTipoDeDatos(String pIdentificacion) {

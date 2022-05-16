@@ -44,10 +44,9 @@ public class ControladorConsultaDeEstatusCuentaWEB extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         String numeroDeCuenta = request.getParameter("numeroCuenta");
-        System.out.println(numeroDeCuenta);
         
         if (consultarEstatusCuenta(numeroDeCuenta) == true){
-            request.getRequestDispatcher("../index.html").forward(request, response);
+            response.sendRedirect("../index.html");
         }else{
             request.setAttribute("error", "La cuenta no existe");
             request.getRequestDispatcher("ConsultaDeEstatusCuenta.jsp").forward(request, response);
