@@ -195,9 +195,12 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
     
     @Override
     public boolean verificarPinCorrespondeACuenta(String pNumeroCuenta, String pPin){
-        Document documento = (Document) coleccionCuentas.find(new BasicDBObject("numeroCuenta", pNumeroCuenta)).projection(Projections.fields(Projections.include("numeroCuenta"), Projections.include("pin"))).first();
-        String pinRealEncriptado = documento.getString("pin");
+        Document documento = null;
+        String pinRealEncriptado = "";
+        
         try {
+            documento = (Document) coleccionCuentas.find(new BasicDBObject("numeroCuenta", pNumeroCuenta)).projection(Projections.fields(Projections.include("numeroCuenta"), Projections.include("pin"))).first();
+            pinRealEncriptado = documento.getString("pin");
             String pinRealDesencriptado = Encriptacion.desencriptar(pinRealEncriptado);
             return pinRealDesencriptado.equals(pPin);
         } 

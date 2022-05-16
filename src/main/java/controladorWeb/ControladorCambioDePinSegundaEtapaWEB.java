@@ -26,7 +26,7 @@ import vistaGUI.CambioDePinTerceraEtapa;
  */
 @WebServlet(name = "ControladorCambioDePinSegundaEtapaWEB", urlPatterns = {"/vistaWeb/CambioDePinSegundaEtapa"})
 public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {
-    private int cantidadDeIntentos = 0;
+    private int cantidadDeIntentos;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -34,6 +34,7 @@ public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {
         String numeroDeCuenta = request.getParameter("numeroCuenta");
         
         request.setAttribute("numeroDeCuenta", numeroDeCuenta);
+        this.cantidadDeIntentos = 0;
         
         request.getRequestDispatcher("CambioDePinSegundaEtapa.jsp").forward(request, response);
     }
@@ -53,8 +54,9 @@ public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {
         } else {
             if(this.cantidadDeIntentos == 1) {
                 request.setAttribute("error", "El pin no corresponde al de la cuenta");
-
-                request.getRequestDispatcher("CambioDePinSegundaEtapa.jsp").forward(request, response);
+                
+                request.setAttribute("numeroDeCuenta", numeroDeCuenta);
+                request.getRequestDispatcher("CambioDePinSegundaEtapa.jsp?numeroCuenta=" + numeroDeCuenta).forward(request, response);
             }
             else {
                 validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);

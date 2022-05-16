@@ -30,7 +30,9 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Aceptar")) {
             String nuevoPin = this.vistaGUI.txtPinNuevo.getText();
-            registrarCambioDePin(nuevoPin, numeroDeCuenta);
+            if (registrarCambioDePin(nuevoPin, numeroDeCuenta)){
+                MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(numeroDeCuenta);
+            }
         }
         if(evento.getActionCommand().equals("Cancelar")) {
            ControladorMenuPrincipal.volverMenuPrincipal();
@@ -42,7 +44,6 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
         if(validacion.ValidacionCuenta.validarFormatoDePin(nuevoPin)) {
             IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
             daoCuenta.cambiarPin(numeroCuentaCambiada, nuevoPin);
-            MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(numeroCuentaCambiada);
             return true;
         }
         return false;
