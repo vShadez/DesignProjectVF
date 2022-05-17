@@ -54,7 +54,8 @@ public class RegistroDeCuentasCLI {
                     nuevaCuenta.depositar(montoInicialConvetidoDouble);
                     clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
                     System.out.println(MensajeEnConsolaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, depositoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente));
-                } 
+                    MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
+                }
                 catch (Exception ex) {
                     System.out.println("Ocurrio un error al ingresar los datos");
                     boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();

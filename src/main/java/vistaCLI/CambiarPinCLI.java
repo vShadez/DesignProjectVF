@@ -107,7 +107,7 @@ public class CambiarPinCLI {
             if(formatoDePinEsCorrecto) {
                 IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
                 daoCuenta.cambiarPin(pNumeroDeCuenta, nuevoPin);
-                MensajeEnConsolaCuenta.imprimirMensajeCambioDePinExitoso(pNumeroDeCuenta);
+                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeCambioDePinExitoso(pNumeroDeCuenta));
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }
             else {

@@ -25,6 +25,7 @@ public class ConsultaDeEstatusDeCuentaCLI {
             boolean datosIngresadosSonValidos = this.validarNumeroDeCuenta(numeroDeCuenta);
             if(datosIngresadosSonValidos) {
                 this.mostrarEstatusDeCuenta(numeroDeCuenta);
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }
             else {
                 boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();

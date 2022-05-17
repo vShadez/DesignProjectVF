@@ -91,16 +91,16 @@ public class DepositoEnDolaresCLI {
     }
     
     private void efectuarDeposito(String numeroDeCuenta, String montoDeDeposito, double pTipoDeCambio) {
-        int montoDeDepositoEnFormatoEntero = Conversion.convertirStringEnEntero(montoDeDeposito);
+        double montoDeDepositoEnFormatoDecimal = Conversion.convertirStringEnEntero(montoDeDeposito) * pTipoDeCambio;
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
-        cuenta.depositar(montoDeDepositoEnFormatoEntero);
+        cuenta.depositar(montoDeDepositoEnFormatoDecimal);
         IDAOOperacionCuenta daoOperacionCuenta = new DAOOperacionCuenta();
         int cantidadDeRetirosYDepositosRealizados = daoOperacionCuenta.consultarCantidadDeDepositosYRetirosRealizados(numeroDeCuenta);
         double montoComision = 0.0;
         if(cantidadDeRetirosYDepositosRealizados >= 3) {
-            montoComision += montoDeDepositoEnFormatoEntero * 0.02;
+            montoComision += montoDeDepositoEnFormatoDecimal * 0.02;
         }
-        MensajeEnConsolaCuenta.imprimirMensajeDepositoEnDolaresExitoso(numeroDeCuenta, (montoDeDepositoEnFormatoEntero / pTipoDeCambio), montoDeDepositoEnFormatoEntero, pTipoDeCambio, montoComision, LocalDate.now());
+        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDepositoEnDolaresExitoso(numeroDeCuenta, (montoDeDepositoEnFormatoDecimal / pTipoDeCambio), montoDeDepositoEnFormatoDecimal, pTipoDeCambio, montoComision, LocalDate.now()));
     }
 }

@@ -5,6 +5,7 @@
 package vistaCLI;
 
 import clasesUtilitarias.Conversion;
+import clasesUtilitarias.Ordenamiento;
 import listaDinamica.Lista;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
@@ -25,24 +26,25 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
     }
     
     private void cargarCuentasRegistradas() throws Exception {
-        Cuenta[] arregloCuentasOrdenadas;
         IDAOCatalogoDeCuentas daoCatalogoDeCuentas = new DAOCatalogoDeCuentas();
+        Lista<ICuenta> listaDeCuentasDesordenada = daoCatalogoDeCuentas.consultarListaDeCuentas();
         int cantidadDeCuentas = daoCatalogoDeCuentas.consultarCantidadCuentas();
-        Lista<ICuenta> consultarListaDeCuentas = daoCatalogoDeCuentas.consultarListaDeCuentas();
-        arregloCuentasOrdenadas = Conversion.convertirListaCuentaEnArreglo(consultarListaDeCuentas, cantidadDeCuentas);
-        Cuenta cuenta[] = arregloCuentasOrdenadas;
-        System.out.println("Lista de clientes registrados en el sistema:");
+        Cuenta[] listaDeCuentasOrdenada = Conversion.convertirListaCuentaEnArreglo(listaDeCuentasDesordenada, cantidadDeCuentas);
+        Ordenamiento.ordenarDescendentemente(listaDeCuentasOrdenada);
+        System.out.println("Lista de cuentas registradas en el sistema:");
         for (int i = 0; i < cantidadDeCuentas; i++) {
-            String numeroDeCuenta = cuenta[i].numeroCuenta;
-            String estatus = cuenta[i].estatus;
-            double saldo = cuenta[i].getSaldo();
-            System.out.println("\nCliente n°" + i+1 + ":");
+            Cuenta cuenta = listaDeCuentasOrdenada[i];
+            String numeroDeCuenta = cuenta.numeroCuenta;
+            String estatus = cuenta.estatus;
+            double saldo = cuenta.getSaldo();
+            int numeroPorImprimir = i + 1;
+            System.out.println("\nCuenta n°" + numeroPorImprimir + ":");
             System.out.println("Número de cuenta: " + numeroDeCuenta);
             System.out.println("Estatus: " + estatus);
             System.out.println("Saldo: " + saldo);
-            Cliente duenoDeCuenta = (Cliente) cuenta[i].propietario;
+            Cliente duenoDeCuenta = (Cliente) cuenta.propietario;
             System.out.println("Identificacion del dueño de la cuenta: " + duenoDeCuenta.identificacion);
-            System.out.println("Identificacion del dueño de la cuenta: " + duenoDeCuenta.nombre + duenoDeCuenta.primerApellido + duenoDeCuenta.segundoApellido);
+            System.out.println("Nombre del dueño de la cuenta: " + duenoDeCuenta.nombre + duenoDeCuenta.primerApellido + duenoDeCuenta.segundoApellido);
         }
         System.out.println("\nDigite el número de cuenta de la cuenta sobre la cual desea conocer los detalles:");
         this.recibirNumeroDeCuenta();
@@ -79,8 +81,8 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
     }
     
     private boolean validarDatos(String pNumeroDeCuenta) {
-        boolean existeCliente = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
-        if(existeCliente) {
+        boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        if(existeCuenta == true) {
             return true;
         }
         else {

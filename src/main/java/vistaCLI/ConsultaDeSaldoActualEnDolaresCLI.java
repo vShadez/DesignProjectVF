@@ -28,6 +28,7 @@ public class ConsultaDeSaldoActualEnDolaresCLI {
             boolean datosIngresadosSonValidos = this.validarDatos(numeroDeCuenta, pin);
             if(datosIngresadosSonValidos) {
                 this.mostrarSaldoDeCuenta(numeroDeCuenta);
+                MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
             }
             else {
                 boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();

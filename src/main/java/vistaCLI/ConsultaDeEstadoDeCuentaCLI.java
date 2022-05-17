@@ -33,6 +33,7 @@ public class ConsultaDeEstadoDeCuentaCLI {
             boolean datosIngresadosSonValidos = this.validarDatos(numeroDeCuenta, pin);
             if(datosIngresadosSonValidos) {
                 this.mostrarEstadoDeCuenta(numeroDeCuenta);
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }
             else {
                 boolean usuarioDeseaVolverAMenuPrincipal = TextoIngresadoPorElUsuario.regresarAMenuPrincipal();

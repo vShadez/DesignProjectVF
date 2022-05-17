@@ -34,6 +34,7 @@ public class ConsultaDeEstadoDeCuentaEnDolaresCLI {
             boolean datosIngresadosSonValidos = this.validarDatos(numeroDeCuenta, pin);
             if(datosIngresadosSonValidos) {
                 this.mostrarEstadoDeCuenta(numeroDeCuenta);
+                MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }
         } 
         catch (Exception ex) {
@@ -66,7 +67,7 @@ public class ConsultaDeEstadoDeCuentaEnDolaresCLI {
         double valorDeCompra = tipoDeCambioDelDolar.obtenerValorCompra();
         System.out.println("Información de la cuenta: ");
         System.out.println("Número de cuenta: " + cuentaConsultada.numeroCuenta);
-        System.out.println("Saldo: " + (cuentaConsultada.getSaldo() * valorDeCompra));
+        System.out.println("Saldo: " + (cuentaConsultada.getSaldo() / valorDeCompra));
         System.out.println("\nInformación del cliente asociado a la cuenta: ");
         Cliente clientePropietario = (Cliente) cuentaConsultada.propietario;
         this.mostrarDetallesDeClienteAsociado(clientePropietario);
@@ -96,7 +97,7 @@ public class ConsultaDeEstadoDeCuentaEnDolaresCLI {
                 aplicaComision = "No";
             }
             System.out.println("¿Se aplicó comisión? " + aplicaComision);
-            System.out.println("Monto de comisión: " + (operacion.montoComision * tipoDeCambio));
+            System.out.println("Monto de comisión: " + (operacion.montoComision / tipoDeCambio));
             puntero = puntero.siguiente;
         }
     }
