@@ -27,7 +27,7 @@ import vistaGUI.ColorCelda;
 
 /**
  *
- * @author erick
+ * @author 
  */
 @WebServlet(name = "ControladorListaClientesWEB", urlPatterns = {"/vistaWeb/ListaClientes"})
 public class ControladorListaClientesWEB extends HttpServlet {

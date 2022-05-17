@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author 
  */
 @WebServlet(name = "ControladorConsultaDeSaldoActualWEB", urlPatterns = {"/ControladorConsultaDeSaldoActualWEB"})
 public class ControladorConsultaDeSaldoActualWEB extends HttpServlet {

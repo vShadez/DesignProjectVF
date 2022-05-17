@@ -34,25 +34,7 @@ public class ControladorDepositoEnColones implements ActionListener{
         if(evento.getActionCommand().equals("Aceptar")) {
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaDeposito.getText();
             String montoDeDeposito = this.vistaGUI.txtMontoDeposito.getText();
-            boolean formatoDeMontoDeDepositoEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(montoDeDeposito);
-            if(formatoDeMontoDeDepositoEsCorrecto) {
-                boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
-                if(existeCuenta) {
-                    boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
-                    if(cuentaEstaActiva) {
-                        this.efectuarDeposito(numeroDeCuenta, montoDeDeposito);
-                    }
-                    else {
-                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
-                    }
-                }
-                else {
-                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
-                }
-            }
-            else {
-                MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
-            }
+            depositarColonesACuenta(numeroDeCuenta, montoDeDeposito);
         }
         if(evento.getActionCommand().equals("Cancelar")) {
             SeleccionDeDeposito vistaSeleccionDeDeposito = new SeleccionDeDeposito();
@@ -63,7 +45,31 @@ public class ControladorDepositoEnColones implements ActionListener{
         }
     }
     
-    private void efectuarDeposito(String numeroDeCuenta, String montoDeDeposito) {
+    public static boolean depositarColonesACuenta(String pNumeroDeCuenta, String pMontoDeDeposito){
+        boolean formatoDeMontoDeDepositoEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeDeposito);
+            if(formatoDeMontoDeDepositoEsCorrecto) {
+                boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+                if(existeCuenta) {
+                    boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(pNumeroDeCuenta);
+                    if(cuentaEstaActiva) {
+                        efectuarDeposito(pNumeroDeCuenta, pMontoDeDeposito);
+                        return true;
+                    }
+                    else {
+                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
+                    }
+                }
+                else {
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta);
+                }
+            }
+            else {
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
+            }
+            return false;
+    }
+    
+    private static void efectuarDeposito(String numeroDeCuenta, String montoDeDeposito) {
         int montoDeDepositoEnFormatoEntero = Conversion.convertirStringEnEntero(montoDeDeposito);
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
@@ -77,3 +83,4 @@ public class ControladorDepositoEnColones implements ActionListener{
         MensajeEnPantallaCuenta.imprimirMensajeDepositoEnColonesExitoso(numeroDeCuenta, montoDeDepositoEnFormatoEntero, montoComision);
     }
 }
+        

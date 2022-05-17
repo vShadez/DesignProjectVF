@@ -18,7 +18,7 @@ import validacion.ValidacionCuenta;
 
 /**
  *
- * @author erick
+ * @author 
  */
 @WebServlet(name = "ControladorCambioDePinPrimeraEtapaWEB", urlPatterns = {"/vistaWeb/CambioDePinPrimeraEtapa"})
 public class ControladorCambioDePinPrimeraEtapaWEB extends HttpServlet {

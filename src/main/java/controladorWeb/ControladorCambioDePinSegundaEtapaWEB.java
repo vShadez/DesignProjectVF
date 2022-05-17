@@ -22,7 +22,7 @@ import vistaGUI.CambioDePinTerceraEtapa;
 
 /**
  *
- * @author erick
+ * @author 
  */
 @WebServlet(name = "ControladorCambioDePinSegundaEtapaWEB", urlPatterns = {"/vistaWeb/CambioDePinSegundaEtapa"})
 public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {
