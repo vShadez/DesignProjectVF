@@ -53,7 +53,7 @@ public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {
             response.sendRedirect("CambioDePinTerceraEtapa?numeroCuenta=" + numeroDeCuenta);
         } else {
             if(this.cantidadDeIntentos == 1) {
-                request.setAttribute("error", "El pin no corresponde al de la cuenta");
+                request.setAttribute("Error", "El pin no corresponde al de la cuenta");
                 
                 request.setAttribute("numeroDeCuenta", numeroDeCuenta);
                 request.getRequestDispatcher("CambioDePinSegundaEtapa.jsp?numeroCuenta=" + numeroDeCuenta).forward(request, response);

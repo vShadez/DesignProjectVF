@@ -27,7 +27,7 @@ public class ControladorTransferenciasEntreCuentas implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Continuar")) {
-             this.cantidadDeIntentos++;
+            this.cantidadDeIntentos++;
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaOrigen.getText();
             String pin = this.vistaGUI.txtPinCuentaOrigen.getText();
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);

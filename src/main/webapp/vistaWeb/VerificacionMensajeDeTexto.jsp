@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,7 @@
                     </div>
                 </div>
                 <br>
-                <form action="/" method="GET" >
+                <form method="post" action="<c:url value="/vistaWeb/VerificacionMensajeDeTexto"/>" >
                     <div class="form-group">
                         <label>Mensaje de texto</label>
                         <input type="text" class "form-control" name = "mensajeTexto" placeholder="Palabra Secreta" required>

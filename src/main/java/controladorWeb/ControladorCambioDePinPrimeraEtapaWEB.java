@@ -42,13 +42,13 @@ public class ControladorCambioDePinPrimeraEtapaWEB extends HttpServlet {
                 response.sendRedirect("CambioDePinSegundaEtapa?numeroCuenta=" + numeroDeCuenta);
             
             }else{
-                request.setAttribute("error", "La cuenta esta inactiva");
+                request.setAttribute("Error", "La cuenta esta inactiva");
 
                 request.getRequestDispatcher("CambioDePinPrimeraEtapa.jsp").forward(request, response);
             }
         }
         else {
-            request.setAttribute("error", "La cuenta no existe");
+            request.setAttribute("Error", "La cuenta no existe");
             
             request.getRequestDispatcher("CambioDePinPrimeraEtapa.jsp").forward(request, response);
         }
