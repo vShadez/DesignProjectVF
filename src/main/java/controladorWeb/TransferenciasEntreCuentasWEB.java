@@ -51,6 +51,7 @@ public class TransferenciasEntreCuentasWEB extends HttpServlet {
                 boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
                 if(pinCorrespondeACuenta) {
                     //VerificacionMensajeDeTexto vistaVerificacionMensajeDeTexto = new VerificacionMensajeDeTexto();
+                    System.out.println("LLEGA");
                     String transferencia = "Transferencia";
                     response.sendRedirect("VerificacionMensajeDeTexto?numeroCuenta=" + numeroDeCuenta);
                     /*
