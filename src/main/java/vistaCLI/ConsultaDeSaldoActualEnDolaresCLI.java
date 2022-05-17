@@ -15,11 +15,11 @@ import validacion.ValidacionCuenta;
  * @author Jairo Calderón
  */
 public class ConsultaDeSaldoActualEnDolaresCLI {
-    public ConsultaDeSaldoActualEnDolaresCLI() {
+    public ConsultaDeSaldoActualEnDolaresCLI() throws Exception {
         recibirDatos();
     }
     
-    private void recibirDatos() {
+    private void recibirDatos() throws Exception {
         try {
             System.out.println("Ingrese su número de cuenta");
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();

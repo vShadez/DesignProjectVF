@@ -18,11 +18,11 @@ import validacion.ValidacionCuenta;
  * @author Jairo Calderón
  */
 public class DepositoEnColonesCLI {
-    public DepositoEnColonesCLI() {
+    public DepositoEnColonesCLI() throws Exception {
         recibirDatos();
     }
     
-    private void recibirDatos() {
+    private void recibirDatos() throws Exception {
         try {
             System.out.println("Ingrese el número de cuenta");
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();

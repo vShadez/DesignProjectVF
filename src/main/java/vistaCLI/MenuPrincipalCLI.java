@@ -9,11 +9,11 @@ package vistaCLI;
  * @author Jairo Calderón
  */
 public class MenuPrincipalCLI {
-    public MenuPrincipalCLI() {
+    public MenuPrincipalCLI() throws Exception {
         this.imprimirOpciones();
     }
     
-    public void imprimirOpciones() {
+    public void imprimirOpciones() throws Exception {
         String menuDeOpciones = "";
         menuDeOpciones += "¡BIENVENIDO AL SISTEMA! \n";
         menuDeOpciones += "PULSE 1 para registrar un cliente \n";
@@ -37,6 +37,7 @@ public class MenuPrincipalCLI {
         menuDeOpciones += "PULSE 19 para Consultar ganancias del banco producto del cobro de comisiones para una cuenta en específico \n";
         menuDeOpciones += "PULSE 20 para salir \n";
         System.out.println(menuDeOpciones);
+        this.leerOpcionIngresada();
     }
     
     public void leerOpcionIngresada() throws Exception {

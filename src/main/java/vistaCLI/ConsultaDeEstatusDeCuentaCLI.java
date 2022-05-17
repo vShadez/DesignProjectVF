@@ -14,11 +14,11 @@ import validacion.ValidacionCuenta;
  * @author Jairo Calderón
  */
 public class ConsultaDeEstatusDeCuentaCLI {
-    public ConsultaDeEstatusDeCuentaCLI() {
+    public ConsultaDeEstatusDeCuentaCLI() throws Exception {
         recibirNumeroDeCuenta();
     }
     
-    private void recibirNumeroDeCuenta() {
+    private void recibirNumeroDeCuenta() throws Exception {
         try {
             System.out.println("Ingrese su número de cuenta");
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();

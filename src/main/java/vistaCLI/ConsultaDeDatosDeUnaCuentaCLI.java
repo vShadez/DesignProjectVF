@@ -20,11 +20,11 @@ import validacion.ValidacionCuenta;
  * @author Jairo Calderón
  */
 public class ConsultaDeDatosDeUnaCuentaCLI {
-    public ConsultaDeDatosDeUnaCuentaCLI() {
+    public ConsultaDeDatosDeUnaCuentaCLI() throws Exception {
         cargarCuentasRegistradas();
     }
     
-    private void cargarCuentasRegistradas() {
+    private void cargarCuentasRegistradas() throws Exception {
         Cuenta[] arregloCuentasOrdenadas;
         IDAOCatalogoDeCuentas daoCatalogoDeCuentas = new DAOCatalogoDeCuentas();
         int cantidadDeCuentas = daoCatalogoDeCuentas.consultarCantidadCuentas();
@@ -48,7 +48,7 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
         this.recibirNumeroDeCuenta();
     }
     
-    private void recibirNumeroDeCuenta() {
+    private void recibirNumeroDeCuenta() throws Exception {
         try {
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             boolean identificacionIngresadaEsCorrecta = validarDatos(numeroDeCuenta);

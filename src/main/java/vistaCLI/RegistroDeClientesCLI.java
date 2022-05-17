@@ -18,11 +18,11 @@ import validacion.ValidacionTipoDeDato;
  */
 public class RegistroDeClientesCLI {
     
-    public RegistroDeClientesCLI() {
+    public RegistroDeClientesCLI() throws Exception {
         solicitarDatos();
     }
     
-    private void solicitarDatos() {
+    private void solicitarDatos() throws Exception {
         try {
             System.out.println("Ingrese su nombre");
             String nombre = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -72,7 +72,7 @@ public class RegistroDeClientesCLI {
     }
     
     private boolean validarDatos(String pIdentificacion, String pFechaDeNacimiento, String pNumeroDeTelefono, String pCorreoElectronico) {
-        boolean identificacionEsDeTipoEntero = ValidacionTipoDeDato.verificarEsEntero(pFechaDeNacimiento);
+        boolean identificacionEsDeTipoEntero = ValidacionTipoDeDato.verificarEsEntero(pNumeroDeTelefono);
         if(identificacionEsDeTipoEntero) {
             boolean fechaDeNacimientoEsValida = ValidacionCliente.validarFechaNacimiento(pFechaDeNacimiento);
             if(fechaDeNacimientoEsValida) {

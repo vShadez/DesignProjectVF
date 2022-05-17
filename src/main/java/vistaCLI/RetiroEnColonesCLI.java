@@ -25,11 +25,11 @@ public class RetiroEnColonesCLI {
     private int cantidadDeIntentosRealizados = 0;
     private final int cantidadMaximaDeIntentosPermitida = 2;
     
-    public RetiroEnColonesCLI() {
+    public RetiroEnColonesCLI() throws Exception {
         recibirDatos();
     }
     
-    private void recibirDatos() {
+    private void recibirDatos() throws Exception {
         try {
             System.out.println("Ingrese su número de cuenta");
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -79,7 +79,7 @@ public class RetiroEnColonesCLI {
         }
     }
     
-    private void enviarMensajeDeTexto(String pNumeroDeCuenta) {
+    private void enviarMensajeDeTexto(String pNumeroDeCuenta) throws Exception {
         MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
@@ -93,7 +93,7 @@ public class RetiroEnColonesCLI {
         this.recibirMensajeDeTexto(pNumeroDeCuenta, mensajeSecreto);
     }
     
-    private void recibirMensajeDeTexto(String pNumeroDeCuenta, String pMensajeDeTextoEnviado) {
+    private void recibirMensajeDeTexto(String pNumeroDeCuenta, String pMensajeDeTextoEnviado) throws Exception {
         try {
             String mensajeIngresado = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             this.cantidadDeIntentosRealizados++;
@@ -136,7 +136,7 @@ public class RetiroEnColonesCLI {
         MensajeEnConsolaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta();
     }
     
-    private void recibirMontoDeRetiro(String pNumeroDeCuenta) {
+    private void recibirMontoDeRetiro(String pNumeroDeCuenta) throws Exception {
         try {
             System.out.println("Ingrese el monto de su retiro en colones");
             String montoDeRetiro = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
