@@ -87,7 +87,7 @@ public class ConsultaDeDatosDeUnClienteCLI {
         }
     }
     
-    private void mostrarDetallesDeCliente(String pIdentificacionDeCliente) {
+    private void mostrarDetallesDeCliente(String pIdentificacionDeCliente) throws Exception {
         int identificacionDeCliente = Conversion.convertirStringEnEntero(pIdentificacionDeCliente);
         IDAOCliente daoCliente = new DAOCliente();
         Cliente cliente = (Cliente) daoCliente.consultarCliente(identificacionDeCliente);
@@ -106,5 +106,6 @@ public class ConsultaDeDatosDeUnClienteCLI {
             Cuenta cuenta = (Cuenta) puntero.objeto;
             System.out.println("Número de cuenta" + cuenta.numeroCuenta + ":");
         }
+        MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
     }
 }
