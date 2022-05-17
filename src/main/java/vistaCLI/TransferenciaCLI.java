@@ -80,7 +80,7 @@ public class TransferenciaCLI {
     }
     
     private void enviarMensajeDeTexto(String pNumeroDeCuentaDeOrigen) throws Exception {
-        MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
+        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje());
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuentaDeOrigen);
         int numeroDeTelefonoDeDuenoDeLaCuentaDeOrigen = clienteAsociadoACuenta.numeroTelefono;
@@ -237,12 +237,13 @@ public class TransferenciaCLI {
         return montoComision;
     }
     
-    private void efectuarTransferencia(String numeroDeCuentaDeOrigen, String pNumeroDeCuentaDeDestino, double montoDeTransferencia) {
+    private void efectuarTransferencia(String numeroDeCuentaDeOrigen, String pNumeroDeCuentaDeDestino, double montoDeTransferencia) throws Exception {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuentaDeOrigen = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuentaDeOrigen);
         Cuenta cuentaDeDestino = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuentaDeDestino);
         cuentaDeOrigen.transferir(cuentaDeDestino, montoDeTransferencia);
         double montoComision = this.calcularMontoComision(numeroDeCuentaDeOrigen, montoDeTransferencia);
         System.out.println(MensajeEnConsolaCuenta.imprimirMensajeTransferenciaExitosa(montoDeTransferencia, montoComision));
+        MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
     }
 }

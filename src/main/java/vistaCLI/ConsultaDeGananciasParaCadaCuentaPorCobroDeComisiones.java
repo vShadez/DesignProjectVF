@@ -14,13 +14,14 @@ import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 import serviciosExternos.TipoCambioBCCR;
 import validacion.ValidacionCuenta;
+import vistaGUI.MenuPrincipal;
 
 /**
  *
  * @author Jairo Calderón
  */
-public class ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones {
-    public ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones() {
+public class ConsultaDeGananciasParaCadaCuentaPorCobroDeComisiones {
+    public ConsultaDeGananciasParaCadaCuentaPorCobroDeComisiones() {
         mostrarGananciasTotalesDeBancoPorCobroDeComisiones();
     }
     
@@ -36,7 +37,9 @@ public class ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones {
             this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnColones(numeroDeCuenta);
             System.out.println("\nResultados en dólares: ");
             this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnDolares(numeroDeCuenta);
+            puntero = puntero.siguiente;
         }
+        MenuPrincipal volverAMenuPrincipal = new MenuPrincipal();
     }
     
     private void mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnColones(String pNumeroDeCuenta) {
