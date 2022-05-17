@@ -28,43 +28,35 @@ import logicaDeNegocios.ICuenta;
  */
 @WebServlet(name = "ControladorListaCuentasWEB", urlPatterns = {"/vistaWeb/ListaCuentas"})
 public class ControladorListaCuentasWEB extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        Cuenta[] arregloCuentasDesordenadas;
         IDAOCatalogoDeCuentas daoCatalogoDeCuentas = new DAOCatalogoDeCuentas();
-        Lista<ICuenta> listaDeCuentasDesordenada = daoCatalogoDeCuentas.consultarListaDeCuentas();
+        int cantidadDeCuentas = daoCatalogoDeCuentas.consultarCantidadCuentas();
         
-        int tamanoListaCuenta = daoCatalogoDeCuentas.consultarCantidadCuentas();
+        Lista<ICuenta> consultarListaCuentas = daoCatalogoDeCuentas.consultarListaDeCuentas();
         
-        Cuenta[] listaDeCuentasOrdenada = Conversion.convertirListaCuentaEnArreglo(listaDeCuentasDesordenada, tamanoListaCuenta);
+        arregloCuentasDesordenadas = Conversion.convertirListaCuentaEnArreglo(consultarListaCuentas, cantidadDeCuentas);
+        Cuenta cuenta[] = Ordenamiento.ordenarDescendentemente(arregloCuentasDesordenadas);
         
-        Ordenamiento.ordenarDescendentemente(listaDeCuentasOrdenada);
         List<CuentaDto> dtos =  new LinkedList<CuentaDto>();
         
-        for(int i = 0; i < tamanoListaCuenta; i++) {
-            Cuenta cuenta = listaDeCuentasOrdenada[i];
-            Cliente duenoDeCuenta = (Cliente) cuenta.propietario;
+        for(int i = 0; i < cantidadDeCuentas; i++) {
+            Cliente duenoDeCuenta = (Cliente) cuenta[i].propietario;
             String nombreCompletoDePropietarioDeCuenta = duenoDeCuenta.nombre +" "+ duenoDeCuenta.primerApellido +" "+ duenoDeCuenta.segundoApellido;
             int identificacionDePropietarioDeCuenta = duenoDeCuenta.identificacion;
-          dtos.add(new CuentaDto(cuenta.numeroCuenta, cuenta.getSaldo(),cuenta.estatus, nombreCompletoDePropietarioDeCuenta, identificacionDePropietarioDeCuenta));
+            
+            String saldoString = String.format("%.2f", cuenta[i].getSaldo());
+            double saldoConvertido = Conversion.convertirStringEnDecimal(saldoString);
+            
+            dtos.add(new CuentaDto(cuenta[i].numeroCuenta, saldoConvertido, cuenta[i].estatus, nombreCompletoDePropietarioDeCuenta, identificacionDePropietarioDeCuenta));
         }
         request.setAttribute("dtos", dtos);
         
         request.getRequestDispatcher("ListaCuentas.jsp").forward(request, response);
     }
-    
-    
     
     public class CuentaDto {
         private String numeroCuenta;        
@@ -73,11 +65,11 @@ public class ControladorListaCuentasWEB extends HttpServlet {
         private String propietario;
         private int identificacion;
 
-        public CuentaDto(String pNumeroCuenta, double pSaldo, String pEstatus, String pNombreCompleto, int pIdentificacion) {
+        public CuentaDto(String pNumeroCuenta, double pSaldo, String pEstatus, String pPropietario, int pIdentificacion) {
             this.numeroCuenta = pNumeroCuenta;
             this.saldo = pSaldo;
             this.estatus = pEstatus;
-            this.propietario = pNombreCompleto;
+            this.propietario = pPropietario;
             this.identificacion = pIdentificacion;
         }
 
@@ -92,7 +84,7 @@ public class ControladorListaCuentasWEB extends HttpServlet {
         public String getEstatus() {
             return estatus;
         }
-        public String getNombreCompleto() {
+        public String getPropietario() {
             return propietario;
         }
 
