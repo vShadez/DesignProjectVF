@@ -47,5 +47,9 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorCadaCuentaPrim
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
             }
         }
+        if(evento.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
     }
 }

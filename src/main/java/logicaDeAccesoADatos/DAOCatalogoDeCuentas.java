@@ -45,6 +45,7 @@ public class DAOCatalogoDeCuentas implements IDAOCatalogoDeCuentas{
                 IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
                 Cliente duenoDeCuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(numeroCuenta);
                 Cuenta cuentaEncontrada = new Cuenta(numeroCuenta, fechaCreacionEnFormatoLocalDate, saldoConvertido, estatus, pinDesencriptado, duenoDeCuenta);
+                //System.out.println("LLEGANDO");
                 listaCuentas.agregarNodo(cuentaEncontrada);
             } 
             catch (Exception ex) {

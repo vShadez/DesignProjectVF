@@ -51,6 +51,8 @@ public class ControladorMenuPrincipal implements ActionListener{
         this.vistaGUI.btnRetirarMenu.addActionListener(this);
         this.vistaGUI.btnTransferenciaMenu.addActionListener(this);
         this.vistaGUI.btnConsultarGananciasComisionPorCadaCuenta.addActionListener(this);
+        //this.vistaGUI.btnConsultaGananciasindividualCuentaMenu.addActionListener(this);
+        
         
     }
     @Override
@@ -154,7 +156,7 @@ public class ControladorMenuPrincipal implements ActionListener{
             controladorConsultaGananciasCobroComisionesDelBanco.vistaGUI.setLocationRelativeTo(null);
             vistaGUI.setVisible(false);
         }
-        if(evento.getActionCommand().equals("Consultar ganancias por concepto de comisión en cada cuenta")) {
+        if(evento.getActionCommand().equals("Consultar ganancias por concepto de comisión ")) {
             ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas vistaConsultaGananciasCobroComisionesPorCadaCuenta = new ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas();
             ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas controladorConsultaGananciasCobroComisionesPorCadaCuenta = new ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas(vistaConsultaGananciasCobroComisionesPorCadaCuenta);
             controladorConsultaGananciasCobroComisionesPorCadaCuenta.vistaGUI.setVisible(true);
