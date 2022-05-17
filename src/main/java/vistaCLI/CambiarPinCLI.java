@@ -13,11 +13,11 @@ import validacion.ValidacionCuenta;
  * @author Jairo Calderón
  */
 public class CambiarPinCLI {
-    public CambiarPinCLI() {
+    public CambiarPinCLI() throws Exception {
         recibirNumeroDeCuenta();
     }
     
-    private void recibirNumeroDeCuenta() {
+    private void recibirNumeroDeCuenta() throws Exception {
         try {
             System.out.println("Ingrese su número de cuenta");
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -58,7 +58,7 @@ public class CambiarPinCLI {
         }
     }
     
-    private void recibirPinActual(String pNumeroDeCuenta) {
+    private void recibirPinActual(String pNumeroDeCuenta) throws Exception {
         try {
             System.out.println("Ingrese el pin actual de su cuenta");
             String pin = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -99,7 +99,7 @@ public class CambiarPinCLI {
         }
     }
     
-    private void recibirNuevoPin(String pNumeroDeCuenta) {
+    private void recibirNuevoPin(String pNumeroDeCuenta) throws Exception {
         try {
             System.out.println("Ingrese el nuevo pin de su cuenta");
             String nuevoPin = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();

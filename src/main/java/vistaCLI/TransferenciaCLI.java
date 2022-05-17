@@ -25,11 +25,11 @@ public class TransferenciaCLI {
     private int cantidadDeIntentosRealizados = 0;
     private final int cantidadMaximaDeIntentosPermitida = 2;
     
-    public TransferenciaCLI() {
+    public TransferenciaCLI() throws Exception {
         recibirDatosDeCuentaDeOrigen();
     }
     
-    private void recibirDatosDeCuentaDeOrigen() {
+    private void recibirDatosDeCuentaDeOrigen() throws Exception {
         try {
             System.out.println("Ingrese su número de cuenta");
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -79,7 +79,7 @@ public class TransferenciaCLI {
         }
     }
     
-    private void enviarMensajeDeTexto(String pNumeroDeCuentaDeOrigen) {
+    private void enviarMensajeDeTexto(String pNumeroDeCuentaDeOrigen) throws Exception {
         MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuentaDeOrigen);
@@ -93,7 +93,7 @@ public class TransferenciaCLI {
         this.recibirMensajeDeTexto(pNumeroDeCuentaDeOrigen, mensajeSecreto);
     }
     
-    private void recibirMensajeDeTexto(String pNumeroDeCuenta, String pMensajeDeTextoEnviado) {
+    private void recibirMensajeDeTexto(String pNumeroDeCuenta, String pMensajeDeTextoEnviado) throws Exception {
         try {
             String mensajeIngresado = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             this.cantidadDeIntentosRealizados++;
@@ -136,7 +136,7 @@ public class TransferenciaCLI {
         MensajeEnConsolaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta();
     }
     
-    private void recibirMontoDeTransferencia(String pNumeroDeCuenta) {
+    private void recibirMontoDeTransferencia(String pNumeroDeCuenta) throws Exception {
         try {
             System.out.println("Ingrese el monto que desea transferir");
             String montoDeTransferencia = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -186,7 +186,7 @@ public class TransferenciaCLI {
         }
     }
     
-    private void recibirCuentaDeDestino(String pNumeroDeCuenta, double pMontoTransferencia) {
+    private void recibirCuentaDeDestino(String pNumeroDeCuenta, double pMontoTransferencia) throws Exception {
         try {
             System.out.println("Ingrese el número de cuenta de destino");
             String numeroDeCuentaDeDestino = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();

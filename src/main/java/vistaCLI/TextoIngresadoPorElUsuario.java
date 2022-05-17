@@ -22,7 +22,7 @@ public class TextoIngresadoPorElUsuario {
         try {
             String mensaje = "";
             mensaje += "\nPulse 1 para volver al menú principal \n";
-            mensaje += "Pulse cualquier otra tecla para reintentar para volver al menú principal";
+            mensaje += "Pulse cualquier otra tecla para reintentar";
             System.out.println(mensaje);
             String seleccionDeUsuario = solicitarIngresoDeTextoAlUsuario();
             boolean usuarioDeseaVolverAMenuPrincipal = seleccionDeUsuario.equals("1");

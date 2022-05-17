@@ -21,11 +21,11 @@ import validacion.ValidacionCuenta;
  * @author Jairo Calderón
  */
 public class RegistroDeCuentasCLI {
-    public RegistroDeCuentasCLI() {
+    public RegistroDeCuentasCLI() throws Exception {
         solicitarDatos();
     }
     
-    private void solicitarDatos() {
+    private void solicitarDatos() throws Exception {
         try {
             System.out.println("Ingrese el pin de la cuenta");
             String pin = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -53,7 +53,7 @@ public class RegistroDeCuentasCLI {
                     nuevaCuenta.asignarPropietario(clienteAsociadoConCuenta);
                     nuevaCuenta.depositar(montoInicialConvetidoDouble);
                     clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
-                    MensajeEnConsolaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, depositoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente);
+                    System.out.println(MensajeEnConsolaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, depositoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente));
                 } 
                 catch (Exception ex) {
                     System.out.println("Ocurrio un error al ingresar los datos");
@@ -93,8 +93,8 @@ public class RegistroDeCuentasCLI {
         if(formatoDePinEsCorrecto) {
             boolean formatoDeDepositoInicialEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pDepositoInicial);
             if(formatoDeDepositoInicialEsCorrecto) {
-                boolean existeCliente = ValidacionCliente.existeCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
-                if(existeCliente) {
+                boolean noExisteCliente = ValidacionCliente.existeCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
+                if(noExisteCliente == false) {
                     return true;
                 }
                 else {

@@ -42,8 +42,9 @@ public class ConsultaDeDatosDeUnClienteCLI {
             String segundoApellido = cliente[i].segundoApellido;
             String nombre = cliente[i].nombre;
             int identificacion = cliente[i].identificacion;
-            System.out.println("\nCliente n°" + i+1 + ":");
-            System.out.println("Nombre completo: " + nombre + primerApellido + segundoApellido);
+            int imprimirNumero = i+1;
+            System.out.println("\nCliente n°" + imprimirNumero + ":");
+            System.out.println("Nombre completo: " + nombre + " " + primerApellido + " " + segundoApellido);
             System.out.println("Identificación: " + identificacion);
         }
         System.out.println("\nDigite la identificación del cliente sobre el cual desea conocer los detalles:");
@@ -71,8 +72,8 @@ public class ConsultaDeDatosDeUnClienteCLI {
     private boolean validarDatos(String pIdentificacion) {
         boolean formatoDeIdentificacionEsCorrecto = ValidacionTipoDeDato.verificarEsEntero(pIdentificacion);
         if(formatoDeIdentificacionEsCorrecto) {
-            boolean existeCliente = ValidacionCliente.existeCliente(Conversion.convertirStringEnEntero(pIdentificacion));
-            if(existeCliente) {
+            boolean noExisteCliente = ValidacionCliente.existeCliente(Conversion.convertirStringEnEntero(pIdentificacion));
+            if(noExisteCliente == false) {
                 return true;
             }
             else {
@@ -86,7 +87,7 @@ public class ConsultaDeDatosDeUnClienteCLI {
         }
     }
     
-    private void mostrarDetallesDeCliente(String pIdentificacionDeCliente) {
+    private void mostrarDetallesDeCliente(String pIdentificacionDeCliente) throws Exception {
         int identificacionDeCliente = Conversion.convertirStringEnEntero(pIdentificacionDeCliente);
         IDAOCliente daoCliente = new DAOCliente();
         Cliente cliente = (Cliente) daoCliente.consultarCliente(identificacionDeCliente);
@@ -105,5 +106,6 @@ public class ConsultaDeDatosDeUnClienteCLI {
             Cuenta cuenta = (Cuenta) puntero.objeto;
             System.out.println("Número de cuenta" + cuenta.numeroCuenta + ":");
         }
+        MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
     }
 }
