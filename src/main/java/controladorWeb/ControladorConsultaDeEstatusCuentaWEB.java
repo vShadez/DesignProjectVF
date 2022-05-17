@@ -29,7 +29,7 @@ import validacion.ValidacionCuenta;
 
 /**
  *
- * @author erick
+ * @author 
  */
 @WebServlet(name = "ControladorConsultaDeEstatusCuentaWEB", urlPatterns = {"/vistaWeb/ConsultaDeEstatusCuenta"})
 public class ControladorConsultaDeEstatusCuentaWEB extends HttpServlet {

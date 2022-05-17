@@ -40,17 +40,29 @@ public class ControladorRegistroCuentas implements ActionListener{
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Registrar")){
+    public void actionPerformed(ActionEvent evento) {
+        if(evento.getActionCommand().equals("Registrar")){
             String pin = this.vistaGUI.txtPinDatosCuenta.getText();
             String montoInicial = this.vistaGUI.txtMontoInicial.getText();
             String identificacionCliente = this.vistaGUI.txtIdentificacionDatodCuenta.getText();
-            if(validacion.ValidacionCuenta.validarFormatoDePin(pin)){
-                if(validacion.ValidacionTipoDeDato.verificarEsEntero(montoInicial)){
+            
+            registrarCuenta(pin, montoInicial, identificacionCliente);
+            
+    }
+        if(evento.getActionCommand().equals("Volver")) {
+           ControladorMenuPrincipal.volverMenuPrincipal();
+           vistaGUI.setVisible(false);
+       }
+    }
+   
+    
+    public static boolean registrarCuenta(String pPin, String pMontoInicial, String pIdentificacionCliente){
+        if(validacion.ValidacionCuenta.validarFormatoDePin(pPin)){
+                if(validacion.ValidacionTipoDeDato.verificarEsEntero(pMontoInicial)){
                 try {
-                    double montoInicialConvetidoDouble = Conversion.convertirStringEnDecimal(montoInicial);
+                    double montoInicialConvetidoDouble = Conversion.convertirStringEnDecimal(pMontoInicial);
                     IDAOCliente DAOCliente = new DAOCliente();
-                    ICliente clienteAsociadoConCuenta = DAOCliente.consultarCliente(Conversion.convertirStringEnEntero(identificacionCliente));
+                    ICliente clienteAsociadoConCuenta = DAOCliente.consultarCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
                     Cliente cliente = (Cliente) clienteAsociadoConCuenta;
                     String nombreCliente = cliente.nombre;
                     String primerApellido = cliente.primerApellido;
@@ -62,11 +74,12 @@ public class ControladorRegistroCuentas implements ActionListener{
                     int obtenerCantidadCuentas = cantidadCuentas.consultarCantidadCuentas()+1;
                     String numeroCuenta = "CU-" + obtenerCantidadCuentas;
                     ICuenta nuevaCuenta = null;
-                    nuevaCuenta = new Cuenta(numeroCuenta, 0, estatusCuenta, pin);
+                    nuevaCuenta = new Cuenta(numeroCuenta, 0, estatusCuenta, pPin);
                     nuevaCuenta.asignarPropietario(clienteAsociadoConCuenta);
                     nuevaCuenta.depositar(montoInicialConvetidoDouble);
                     clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
                     MensajeEnPantallaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, String.format("%.2f",montoInicialConvetidoDouble)+" ₡", nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente);
+                    return true;
                 } 
                 catch (Exception ex) {
                     
@@ -75,12 +88,6 @@ public class ControladorRegistroCuentas implements ActionListener{
                 imprimirMensajeDeErrorSaldoNoEsEntero();
                 }
             }
-            
+            return false;
         }
-        if(e.getActionCommand().equals("Volver")) {
-           ControladorMenuPrincipal.volverMenuPrincipal();
-           vistaGUI.setVisible(false);
-       }
-    }
-   
 }

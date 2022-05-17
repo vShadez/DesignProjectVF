@@ -10,6 +10,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     
@@ -29,7 +30,7 @@
                     </div>
                 </div>
                 <br>
-                <form action="/" method="GET" >
+                <form method="post" action="<c:url value="/vistaWeb/RegistroCuentas"/>" >
                     <div class="form-group">
                         <label>Pin</label>
                         <input type="password" class "form-control" name = "pin" placeholder="Pin" required>

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,24 +30,24 @@
                         <th>Identificacion</th>
                     </tr>
                 </thead>
-                {{#each cuenta}}
                 <tbody>
-                    <tr>
-                        <td>{{cuenta}}</td>
-                        <td>{{estatus}}</td>
-                        <td>{{saldo}}</td>
-                        <td>{{propietario}}</td>
-                        <td>{{identificacion}}</td>
-                    </tr>
+                    <c:forEach var="row" items="${dtos}">
+                        <tr>
+                            <td><a href="DetalleCuenta?numeroCuenta=${row.numeroCuenta}">${row.numeroCuenta}</a></td>
+                            <td>${row.estatus}</td>
+                            <td>${row.saldo}</td>
+                            <td>${row.propietario}</td>
+                            <td>${row.identificacion}</td>
+                            
+                        </tr>
+                    </c:forEach>
+                        
                 </tbody>
-                {{/each}}
             </div>
         </div>
     </table>
     <div class="form-group text-center">
-        <button type="submit" class= "btn btn-primary">
-            Consultar
-        </button>
+        
         <a href="../index.html">Cancelar</a>
     </div>
 </html>

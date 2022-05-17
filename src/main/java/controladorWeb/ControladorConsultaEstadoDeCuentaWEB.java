@@ -28,7 +28,7 @@ import vistaGUI.SeleccionDeConsultaEstadoDeCuenta;
 
 /**
  *
- * @author erick
+ * @author 
  */
 @WebServlet(name = "ControladorConsultaEstadoDeCuentaWEB", urlPatterns = {"/ControladorConsultaEstadoDeCuentaWEB"})
 public class ControladorConsultaEstadoDeCuentaWEB extends HttpServlet {

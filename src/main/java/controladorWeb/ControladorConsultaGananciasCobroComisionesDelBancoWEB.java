@@ -17,7 +17,7 @@ import serviciosExternos.TipoCambioBCCR;
 
 /**
  *
- * @author erick
+ * @author 
  */
 @WebServlet(name = "ControladorConsultaGananciasCobroComisionesDelBancoWEB", urlPatterns = {"/vistaWeb/ConsultaGananciasCobroComisionesDelBanco"})
 public class ControladorConsultaGananciasCobroComisionesDelBancoWEB extends HttpServlet {

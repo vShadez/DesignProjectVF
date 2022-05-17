@@ -69,6 +69,7 @@ public class ControladorRegistroClientes implements ActionListener{
         String fechaDeNacimiento = dia+"/"+mes+"/"+ano;
         if(validarTipoDeDatos(identificacion) && validarFormatoDeDatos(numeroDeTelefono, correoElectronico) && validarExistenciaCliente(identificacionEnFormatoEntero)) {
             IDAOCatalogoDeClientes cantidadDeClientes = new DAOCatalogoDeClientes();
+            
             String codigo = "CIF-" + cantidadDeClientes.consultarCantidadDeClientes();
             ICliente nuevoCliente = new Cliente(codigo, nombre, primerApellido, segundoApellido, identificacionEnFormatoEntero, dia, mes, ano, numeroTelefonicoEnFormatoEntero, correoElectronico);
 

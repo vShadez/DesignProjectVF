@@ -29,7 +29,7 @@ import logicaDeNegocios.ICuenta;
 
 /**
  *
- * @author erick
+ * @author 
  */
 @WebServlet(name = "ControladorDetalleClienteWEB", urlPatterns = {"/vistaWeb/DetalleCliente"})
 public class ControladorDetalleClienteWEB extends HttpServlet {

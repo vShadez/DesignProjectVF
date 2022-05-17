@@ -18,7 +18,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 
 /**
  *
- * @author erick
+ * @author 
  */
 @WebServlet(name = "ControladorCambioDePinTerceraEtapaWEB", urlPatterns = {"/vistaWeb/CambioDePinTerceraEtapa"})
 public class ControladorCambioDePinTerceraEtapaWEB extends HttpServlet {
