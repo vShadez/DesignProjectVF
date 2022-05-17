@@ -13,7 +13,7 @@ import controlador.ControladorDepositoEnColones;
  *
  * @author estadm
  */
-@WebServlet(name = "ControladorRegistroClientesWEB", urlPatterns = {"/vistaWeb/DepositoEnColones"})
+@WebServlet(name = "ControladorDepositoEnColonesWEB", urlPatterns = {"/vistaWeb/DepositoEnColones"})
 public class ControladorDepositoEnColonesWEB extends HttpServlet{
     
     @Override
