@@ -44,7 +44,7 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
             System.out.println("Saldo: " + saldo);
             Cliente duenoDeCuenta = (Cliente) cuenta.propietario;
             System.out.println("Identificacion del dueño de la cuenta: " + duenoDeCuenta.identificacion);
-            System.out.println("Nombre del dueño de la cuenta: " + duenoDeCuenta.nombre + duenoDeCuenta.primerApellido + duenoDeCuenta.segundoApellido);
+            System.out.println("Nombre del dueño de la cuenta: " + duenoDeCuenta.nombre + " " + duenoDeCuenta.primerApellido + " " + duenoDeCuenta.segundoApellido);
         }
         System.out.println("\nDigite el número de cuenta de la cuenta sobre la cual desea conocer los detalles:");
         this.recibirNumeroDeCuenta();
@@ -95,7 +95,7 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
         IDAOCuentaIndividual daoCuentaIndividual = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuentaIndividual.consultarCuenta(pNumeroDeCuenta);
         Cliente clienteAsociadoACuenta = (Cliente) cuenta.propietario;
-        String nombreCompletoDeClienteAsociadoACuenta = clienteAsociadoACuenta.nombre + clienteAsociadoACuenta.primerApellido + clienteAsociadoACuenta.segundoApellido;
+        String nombreCompletoDeClienteAsociadoACuenta = clienteAsociadoACuenta.nombre + " " + clienteAsociadoACuenta.primerApellido + " " + clienteAsociadoACuenta.segundoApellido;
         System.out.println("Información de la cuenta: ");
         System.out.println("Número de la cuenta: " + cuenta.numeroCuenta);
         System.out.println("Fecha de creación: " + cuenta.fechaCreacion.toString());

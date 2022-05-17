@@ -7,6 +7,7 @@ package vistaCLI;
 import logicaDeAccesoADatos.DAOOperacionCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCatalogoDeCuentas;
 import serviciosExternos.TipoCambioBCCR;
+import vistaGUI.MenuPrincipal;
 
 /**
  *
@@ -14,7 +15,7 @@ import serviciosExternos.TipoCambioBCCR;
  */
 public class ConsultaDeGananciasTotalesDeBancoPorComisionesCLI {
     public ConsultaDeGananciasTotalesDeBancoPorComisionesCLI() {
-        mostrarGananciasTotalesDeBancoPorCobroDeComisiones();
+        this.mostrarGananciasTotalesDeBancoPorCobroDeComisiones();
     }
     
     private void mostrarGananciasTotalesDeBancoPorCobroDeComisiones() {
@@ -23,6 +24,7 @@ public class ConsultaDeGananciasTotalesDeBancoPorComisionesCLI {
         this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnColones();
         System.out.println("\nResultados en dólares: ");
         this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnDolares();
+        MenuPrincipal volverAMenuPrincipal = new MenuPrincipal();
     }
     
     private void mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnColones() {

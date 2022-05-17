@@ -81,7 +81,7 @@ public class RetiroEnDolaresCLI {
     }
     
     private void enviarMensajeDeTexto(String pNumeroDeCuenta) throws Exception {
-        MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
+        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje());
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
         int numeroDeTelefonoDeDuenoDeLaCuenta = clienteAsociadoACuenta.numeroTelefono;
@@ -199,11 +199,12 @@ public class RetiroEnDolaresCLI {
         return montoComision;
     }
     
-    private void efectuarRetiro(String pNumeroDeCuenta, double pMontoDeRetiro, double pTipoDeCambio) {
+    private void efectuarRetiro(String pNumeroDeCuenta, double pMontoDeRetiro, double pTipoDeCambio) throws Exception {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuenta);
         cuenta.retirar(pMontoDeRetiro * pTipoDeCambio);
-        double montoComision = this.calcularMontoComision(pNumeroDeCuenta, pMontoDeRetiro);
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeRetiroEnDolaresExitoso(pMontoDeRetiro, pMontoDeRetiro, pTipoDeCambio * pTipoDeCambio, montoComision));
+        double montoComision = this.calcularMontoComision(pNumeroDeCuenta, pMontoDeRetiro * pTipoDeCambio);
+        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeRetiroEnDolaresExitoso(pMontoDeRetiro * pTipoDeCambio, pMontoDeRetiro, pTipoDeCambio, montoComision));
+        MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
     }
 }

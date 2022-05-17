@@ -69,7 +69,7 @@ public class RetiroEnColonesCLI {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido());
+                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(pNumeroDeCuenta, pPin));
                 return false;
             }
         }
@@ -80,7 +80,7 @@ public class RetiroEnColonesCLI {
     }
     
     private void enviarMensajeDeTexto(String pNumeroDeCuenta) throws Exception {
-        MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
+        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje());
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
         int numeroDeTelefonoDeDuenoDeLaCuenta = clienteAsociadoACuenta.numeroTelefono;
@@ -196,11 +196,12 @@ public class RetiroEnColonesCLI {
         return montoComision;
     }
     
-    private void efectuarRetiro(String numeroDeCuenta, double montoDeRetiro) {
+    private void efectuarRetiro(String numeroDeCuenta, double montoDeRetiro) throws Exception {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
         cuenta.retirar(montoDeRetiro);
         double montoComision = this.calcularMontoComision(numeroDeCuenta, montoDeRetiro);
         System.out.println(MensajeEnConsolaCuenta.imprimirMensajeRetiroEnColonesExitoso(montoDeRetiro, montoComision));
+        MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
     }
 }

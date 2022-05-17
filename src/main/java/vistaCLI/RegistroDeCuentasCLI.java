@@ -47,7 +47,8 @@ public class RegistroDeCuentasCLI {
                     String correoElectronicoCliente = cliente.correoElectronico;
                     IDAOCatalogoDeCuentas cantidadCuentas = new DAOCatalogoDeCuentas();
                     String estatusCuenta = "Activa";
-                    String numeroCuenta = "CU-" + cantidadCuentas.consultarCantidadCuentas();
+                    int numeroDeRegistroDeCuenta = cantidadCuentas.consultarCantidadCuentas() + 1;
+                    String numeroCuenta = "CU-" + numeroDeRegistroDeCuenta;
                     ICuenta nuevaCuenta = null;
                     nuevaCuenta = new Cuenta(numeroCuenta, montoInicialConvetidoDouble, estatusCuenta, pin);
                     nuevaCuenta.asignarPropietario(clienteAsociadoConCuenta);

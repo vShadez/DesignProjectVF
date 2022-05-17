@@ -34,7 +34,7 @@ public class MenuPrincipalCLI {
         menuDeOpciones += "PULSE 16 para consultar el estado de cuenta en dólares \n";
         menuDeOpciones += "PULSE 17 para consultar el estatus de una cuenta \n";
         menuDeOpciones += "PULSE 18 para consultar ganancias totales del banco producto del cobro de comisiones \n";
-        menuDeOpciones += "PULSE 19 para Consultar ganancias del banco producto del cobro de comisiones para una cuenta en específico \n";
+        menuDeOpciones += "PULSE 19 para Consultar ganancias del banco producto del cobro de comisiones para cada cuenta \n";
         menuDeOpciones += "PULSE 20 para salir \n";
         System.out.println(menuDeOpciones);
         this.leerOpcionIngresada();
@@ -78,9 +78,9 @@ public class MenuPrincipalCLI {
             case "17":
                 ConsultaDeEstatusDeCuentaCLI abrirMenuDeConsultaDeEstatusDeCuenta = new ConsultaDeEstatusDeCuentaCLI();
             case "18":
-                ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones abrirMenuDeConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones = new ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones();
-            case "19":
                 ConsultaDeGananciasTotalesDeBancoPorComisionesCLI abrirMenuDeConsultaDeGananciasTotalesDeBancoPorComisiones = new ConsultaDeGananciasTotalesDeBancoPorComisionesCLI();
+            case "19":
+                ConsultaDeGananciasParaCadaCuentaPorCobroDeComisiones abrirMenuDeConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones = new ConsultaDeGananciasParaCadaCuentaPorCobroDeComisiones();
             case "20":
                 System.exit(0);
             default:
