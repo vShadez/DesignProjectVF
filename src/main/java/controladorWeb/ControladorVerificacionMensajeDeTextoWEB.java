@@ -26,7 +26,7 @@ import serviciosExternos.EnvioMensajeDeTexto;
  */
 @WebServlet(name = "ControladorVerificacionMensajeDeTextoWEB", urlPatterns = {"/vistaWeb/VerificacionMensajeDeTexto"})
 public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
-    private int cantidadDeIntentos;
+    private int cantidadDeIntentos = 0;
     private String numeroDeCuenta;
     private int numeroDeTelefono;
     private String mensajeSecreto;
@@ -35,32 +35,62 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            //String numeroDeCuenta = request.getParameter("numeroCuenta");
-        
-            //request.setAttribute("numeroDeCuenta", numeroDeCuenta);
+            String numeroDeCuenta = request.getParameter("numeroCuenta");
             
-            //request.setAttribute("transferencia", numeroDeCuenta);
-            //this.cantidadDeIntentos = 0;
-            request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp").forward(request, response);
-        }
-    /*
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            this.numeroDeCuenta = numeroDeCuenta;
-            //this.transaccionAsociada = pTransaccionAsociada;
+            request.setAttribute("numeroDeCuenta", numeroDeCuenta);
             IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
             Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(numeroDeCuenta);
             this.numeroDeTelefono = clienteAsociadoACuenta.numeroTelefono;
-            this.enviarMensaje();
-    }*/
+            enviarMensajeDeTexto();
+            request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp").forward(request, response);
+            
+    }
     
-    private void enviarMensaje() {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            System.out.println("Entre Segunda parte");
+            String numeroDeCuenta = request.getParameter("numeroDeCuenta");
+            String mensajeSecreto = request.getParameter("mensajeTexto");
+            //String numeroCuentaOrigen = set;
+            this.cantidadDeIntentos++;
+            //request.setAttribute("mensajeTexto", mensajeSecreto);
+            
+            //this.numeroDeCuenta = numeroDeCuenta;
+            //this.transaccionAsociada = pTransaccionAsociada;
+            
+            
+            if(this.mensajeSecreto.equals(mensajeSecreto)) {
+                response.sendRedirect("SolicitarMontoDepositoYCuentaDestinoDeTransferencia?numeroCuentaOrigen=" + numeroDeCuenta);
+            }else{
+                if(this.cantidadDeIntentos == 1) {
+                    //request.setAttribute("numeroDeCuenta", numeroDeCuenta);
+                    //request.setAttribute("numeroDeCuenta", numeroDeCuenta);
+                    MensajeEnPantallaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                    enviarMensajeDeTexto();
+                    request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp?numeroCuenta=" + numeroDeCuenta).forward(request, response);
+                }
+                else {
+                    // inactivar cuenta
+                    this.inactivarCuenta();
+                }
+                
+            }
+            //request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp").forward(request, response);
+        }
+    
+    
+    private void enviarMensajeDeTexto() {
         EnvioMensajeDeTexto mensajeDeTexto = new EnvioMensajeDeTexto();
         this.mensajeSecreto = PalabraSecreta.generarPalabraSecreta();
         String mensaje = "Estimado usuario de la cuenta: " + this.numeroDeCuenta + " su palabra secreta es: \n";
         mensaje += this.mensajeSecreto + "\n";
         mensaje += "Ingrese esta palabra correctamente para proceder con su retiro";
+        
         mensajeDeTexto.enviarMensaje(String.valueOf(this.numeroDeTelefono), mensaje);
+        MensajeEnPantallaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
+        System.out.println(this.numeroDeTelefono);
+        System.out.println(mensaje);
     }
     private void inactivarCuenta() {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();

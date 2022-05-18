@@ -28,6 +28,12 @@
                     <div class="form-group">
                         <label>Mensaje de texto</label>
                         <input type="text" class "form-control" name = "mensajeTexto" placeholder="Palabra Secreta" required>
+                        <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
+                        <br>
+                        <c:if test="${error != null}">
+                            <span>${error}</span>
+                            <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
+                        </c:if>
                     </div>
                     <div class="box" style="text-align: center">
                         <button type="submit" class= "btn btn-primary">

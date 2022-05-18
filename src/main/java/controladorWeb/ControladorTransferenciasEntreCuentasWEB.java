@@ -21,7 +21,7 @@ import vistaGUI.VerificacionMensajeDeTexto;
  * @author estadm
  */
 @WebServlet(name = "TransferenciasEntreCuentasWEB", urlPatterns = {"/vistaWeb/TransferenciasEntreCuentas"})
-public class TransferenciasEntreCuentasWEB extends HttpServlet {
+public class ControladorTransferenciasEntreCuentasWEB extends HttpServlet {
     private int cantidadDeIntentos = 0;
     
     @Override
@@ -34,7 +34,7 @@ public class TransferenciasEntreCuentasWEB extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.cantidadDeIntentos++;
+            this.cantidadDeIntentos++;
             String numeroDeCuenta = request.getParameter("numeroCuenta");
             String pin = request.getParameter("pin");
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
@@ -44,33 +44,35 @@ public class TransferenciasEntreCuentasWEB extends HttpServlet {
                 boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
                 if(pinCorrespondeACuenta) {
                     //VerificacionMensajeDeTexto vistaVerificacionMensajeDeTexto = new VerificacionMensajeDeTexto();
-                    System.out.println("LLEGA");
                     String transferencia = "Transferencia";
-                    System.out.println(numeroDeCuenta);
-                    System.out.println(pin);
+                    
                     response.sendRedirect("VerificacionMensajeDeTexto?numeroCuenta=" + numeroDeCuenta);
-                    System.out.println("LLEGA");
+                    
                     /*
                     ControladorVerificacionMensajeDeTexto controladorVerificacionMensajeDeTexto = new ControladorVerificacionMensajeDeTexto(vistaVerificacionMensajeDeTexto, numeroDeCuenta, "Transferencia");
                     controladorVerificacionMensajeDeTexto.vistaGUI.setVisible(true);
                     controladorVerificacionMensajeDeTexto.vistaGUI.setLocationRelativeTo(null);
                     this.vistaGUI.setVisible(false);
 */
-                    MensajeEnPantallaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
+                    //MensajeEnPantallaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
                 }
                 else {
+                    
                     if(this.cantidadDeIntentos == 1) {
                         MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
                     }
                     else {
                         validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
                     }
+                    request.getRequestDispatcher("TransferenciasEntreCuentas.jsp").forward(request, response);
                 }
                 } else{
+                    request.getRequestDispatcher("TransferenciasEntreCuentas.jsp").forward(request, response);
                     MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
                 }
             }
             else {
+                request.getRequestDispatcher("TransferenciasEntreCuentas.jsp").forward(request, response);
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
             }
         }
