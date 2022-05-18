@@ -48,10 +48,10 @@ public class ControladorListaCuentasWEB extends HttpServlet {
             String nombreCompletoDePropietarioDeCuenta = duenoDeCuenta.nombre +" "+ duenoDeCuenta.primerApellido +" "+ duenoDeCuenta.segundoApellido;
             int identificacionDePropietarioDeCuenta = duenoDeCuenta.identificacion;
             
-            String saldoString = String.format("%.2f", cuenta[i].getSaldo());
-            double saldoConvertido = Conversion.convertirStringEnDecimal(saldoString);
+            //String saldoString = String.format("%.2f", cuenta[i].getSaldo());
+            double saldoConvertido = cuenta[i].getSaldo();
             
-            dtos.add(new CuentaDto(cuenta[i].numeroCuenta, saldoConvertido, cuenta[i].estatus, nombreCompletoDePropietarioDeCuenta, identificacionDePropietarioDeCuenta));
+            dtos.add(new CuentaDto(cuenta[i].numeroCuenta, String.format("%.2f",saldoConvertido), cuenta[i].estatus, nombreCompletoDePropietarioDeCuenta, identificacionDePropietarioDeCuenta));
         }
         request.setAttribute("dtos", dtos);
         
@@ -60,12 +60,12 @@ public class ControladorListaCuentasWEB extends HttpServlet {
     
     public class CuentaDto {
         private String numeroCuenta;        
-        private double saldo;
+        private String saldo;
         private String estatus;
         private String propietario;
         private int identificacion;
 
-        public CuentaDto(String pNumeroCuenta, double pSaldo, String pEstatus, String pPropietario, int pIdentificacion) {
+        public CuentaDto(String pNumeroCuenta, String pSaldo, String pEstatus, String pPropietario, int pIdentificacion) {
             this.numeroCuenta = pNumeroCuenta;
             this.saldo = pSaldo;
             this.estatus = pEstatus;
@@ -77,7 +77,7 @@ public class ControladorListaCuentasWEB extends HttpServlet {
             return numeroCuenta;
         }
 
-        public double getSaldo() {
+        public String getSaldo() {
             return saldo;
         }
 
