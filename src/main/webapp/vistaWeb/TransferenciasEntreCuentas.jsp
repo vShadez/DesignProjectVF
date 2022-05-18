@@ -33,14 +33,18 @@
                         <label>Pin</label>
                         <input type="password" class "form-control" name = "pin" placeholder="Pin" required>
                     </div>
-                    <div class="box" style="text-align: center">
+                    <br>
+                        <c:if test="${error != null}">
+                            <span>${error}</span>
+                        </c:if>
+                    <div class="form-group">
                         <button type="submit" class= "btn btn-primary">
                             Continuar
                         </button>
                         <a href="../index.html">Cancelar</a>
+                        </div>
+                            </form>
                     </div>
-                </form>
             </div>
         </div>
-    </div>
 </html>

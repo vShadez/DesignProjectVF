@@ -35,15 +35,15 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String numeroDeCuenta = request.getParameter("numeroCuenta");
+            //String numeroDeCuenta = request.getParameter("numeroCuenta");
         
-            request.setAttribute("numeroDeCuenta", numeroDeCuenta);
+            //request.setAttribute("numeroDeCuenta", numeroDeCuenta);
             
             //request.setAttribute("transferencia", numeroDeCuenta);
-            this.cantidadDeIntentos = 0;
+            //this.cantidadDeIntentos = 0;
             request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp").forward(request, response);
         }
-    
+    /*
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             this.numeroDeCuenta = numeroDeCuenta;
@@ -52,7 +52,7 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
             Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(numeroDeCuenta);
             this.numeroDeTelefono = clienteAsociadoACuenta.numeroTelefono;
             this.enviarMensaje();
-    }
+    }*/
     
     private void enviarMensaje() {
         EnvioMensajeDeTexto mensajeDeTexto = new EnvioMensajeDeTexto();

@@ -41,8 +41,6 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
         try{
             Document Cuenta = new Document("numeroCuenta", pNumeroCuenta).append("pin", pPin).append("fechaCreacion", pFechaCreacion).append("saldo", pSaldo).append("estatus", pEstatus);
             coleccionCuentas.insertOne(Cuenta);
-        
-            System.out.println("Cuenta registrada en la base de datos");
             return true;
         } catch (Error e){
             return false;

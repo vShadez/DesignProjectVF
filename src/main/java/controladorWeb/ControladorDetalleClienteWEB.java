@@ -72,6 +72,7 @@ public class ControladorDetalleClienteWEB extends HttpServlet {
         for (int i = 0; i < cantidadCuentasCliente; i++) {
             cuentas.add(new CuentaDto(arregloDeCuentasDeCliente[i].numeroCuenta));
         }
+        
         request.setAttribute("cuentasAsociadas", cuentas);
         
         request.getRequestDispatcher("DetalleCliente.jsp").forward(request, response);
