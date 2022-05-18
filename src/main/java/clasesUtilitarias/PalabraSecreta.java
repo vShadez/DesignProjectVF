@@ -13,12 +13,12 @@ public class PalabraSecreta {
     public static String generarPalabraSecreta() {
         String palabraSecreta = "";
         for(int i = 0; i < 5; i++) {
-            palabraSecreta += generarCaracter();
+            palabraSecreta += generarCaracterAleatorio();
         }
         return palabraSecreta;
     }
     
-    private static char generarCaracter() {
+    private static char generarCaracterAleatorio() {
         int letraONumero = NumeroAleatorio.generarNumeroAleatorioEnRango(1, 2);
         if(letraONumero == 1) {
             int mayusculaOMinuscula = NumeroAleatorio.generarNumeroAleatorioEnRango(1, 2);

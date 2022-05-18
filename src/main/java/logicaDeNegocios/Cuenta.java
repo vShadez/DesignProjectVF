@@ -19,8 +19,8 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 public class Cuenta implements ICuenta, Comparable{
     public String numeroCuenta;
     public LocalDate fechaCreacion;
-    double saldo;
-    String pin;
+    private double saldo;
+    private String pin;
     public String estatus;
     Lista<Operacion> operacionesRealizadas;
     public ICliente propietario;  
@@ -97,7 +97,7 @@ public class Cuenta implements ICuenta, Comparable{
     public void transferir(ICuenta pCuentaDestino, double pMontoTransferido) {
        Cuenta cuentaDestino = (Cuenta) pCuentaDestino;
        cuentaDestino.recibirTransferencia(pMontoTransferido);
-       //this.retirar(pMontoTransferido);
+       this.retirar(pMontoTransferido);
     }
     
     @Override
