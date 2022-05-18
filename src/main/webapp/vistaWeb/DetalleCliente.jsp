@@ -18,12 +18,12 @@
         <div class="card-body">
             <div class ="mb-4">
                 <div class = " mb-4 text-center">
-                    
+                    <h1> Detalles del cliente </h1>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <div class="card mb-2">
                                 <div class="card-body">
-                                    <h1> Detalles del cliente </h1>
+                                    
                                     <div class="card-header">
                                         <p class = "lead"> Codigo: ${codigo} </p>
                                         <p class = "lead"> Primer apellido: ${primerApellido} </p>
