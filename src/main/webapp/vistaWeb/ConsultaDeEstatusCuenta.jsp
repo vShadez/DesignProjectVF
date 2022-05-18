@@ -10,10 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Consultar estatus de la cuenta</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     </head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-
+    
+    <body>
     <div class="row">
         <div class="col-md-8 mx-auto">
             <div class="card mt-8 text-center">
@@ -43,4 +44,5 @@
             </div>
         </div>
     </div>
+    </body>
 </html>

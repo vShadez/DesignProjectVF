@@ -29,7 +29,7 @@
                         <label>Nombre</label>
                         <input type="text" class "form-control" name = "nombre" placeholder="Nombre" required>
                     </div>
-                    <div class="form-group">s
+                    <div class="form-group">
                         <label>Primer apellido</label>
                         <input type="text" class "form-control" name = "primerApellido" placeholder="Primer apellido" required>
                     </div>
