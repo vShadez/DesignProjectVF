@@ -10,10 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Informacion del estado de cuenta en dolares</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     </head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 
+    <body>
     <table class="table table-striped">
         <div class="card-body">
             <div class ="mb-4">
@@ -67,4 +68,5 @@
     <div class="box" style="text-align: center">
         <a href="../index.html">Cancelar</a>
     </div>
+    </body>
 </html>
