@@ -59,7 +59,7 @@ public class ControladorVerificacionMensajeDeTextoRetiroWEB extends HttpServlet 
             System.out.println(numeroDeCuenta);
             
             if(this.mensajeSecreto.equals(mensajeSecretoIngresado)) {
-                response.sendRedirect("SolicitarMontoDepositoYCuentaDestinoDeTransferencia?numeroCuentaOrigen=" + numeroDeCuenta);
+                response.sendRedirect("SeleccionDeRetiroEnDolaresOColones?numeroCuenta=" + numeroDeCuenta);
             }else{
                 if(this.cantidadDeIntentos == 1) {
                     request.setAttribute("Error", "El texto ingresado no es correcto");

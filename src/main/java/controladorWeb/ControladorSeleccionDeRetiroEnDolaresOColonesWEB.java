@@ -37,7 +37,7 @@ public class ControladorSeleccionDeRetiroEnDolaresOColonesWEB extends HttpServle
             response.sendRedirect("SolicitarMontoDeRetiroEnColonesTerceraEtapa?numeroCuenta=" + numeroCuenta);
         }
         if(event.equals("Dolares")) {
-            response.sendRedirect("SolicitarMontoDeRetiroEnColonesTerceraEtapa?numeroCuenta=" + numeroCuenta);
+            response.sendRedirect("SolicitarMontoDeRetiroEnDolaresTerceraEtapa?numeroCuenta=" + numeroCuenta);
         }
     }
 }

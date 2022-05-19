@@ -28,6 +28,7 @@
                     <div class="form-group">
                         <label>Monto</label>
                         <input type="number" class "form-control" name = "montoRetirado" placeholder="Monto a retirar" required>
+                        <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
                     </div>
                     <div class="box" style="text-align: center">
                         <button type="submit" class= "btn btn-primary">

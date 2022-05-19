@@ -52,11 +52,11 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapaWEB extends H
                     double montoDeRetiroEnDolaresEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiroEnDolares);
                     TipoCambioBCCR tipoDeCambioDolar = new TipoCambioBCCR();
                     double tipoDeCambioDeDolarVenta = tipoDeCambioDolar.obtenerValorVenta();
-                    double montoDeRetiroEnColones = montoDeRetiroEnDolaresEnFormatoDecimal * tipoDeCambioDeDolarVenta;
-                    double montoComision = calcularMontoComision(montoDeRetiroEnColones, numeroDeCuentaOrigen);
-                    boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(numeroDeCuentaOrigen, montoDeRetiroEnColones + montoComision);
+                    double montoARetirarEnColones = montoDeRetiroEnDolaresEnFormatoDecimal * tipoDeCambioDeDolarVenta;
+                    double montoComision = calcularMontoComision(montoARetirarEnColones, numeroDeCuentaOrigen);
+                    boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(numeroDeCuentaOrigen, montoARetirarEnColones + montoComision);
                     if(hayFondosSuficientes) {
-                        efectuarRetiro(montoDeRetiroEnColones, montoDeRetiroEnDolaresEnFormatoDecimal, tipoDeCambioDeDolarVenta, numeroDeCuentaOrigen);
+                        efectuarRetiro(montoARetirarEnColones, montoDeRetiroEnDolaresEnFormatoDecimal, tipoDeCambioDeDolarVenta, numeroDeCuentaOrigen);
                         response.sendRedirect("../index.html");
                     }
                     else {

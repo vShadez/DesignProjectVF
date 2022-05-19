@@ -20,7 +20,7 @@
                 <div class="card-header">
                     <h1>Validacion de cuenta</h1>
                     <div>
-                        <img src="../imagenesVista/Imagen11.png"/>
+                        <img src="../imagenesVista/Imagen10.png"/>
                     </div>
                 </div>
                 <br>
