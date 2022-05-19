@@ -44,8 +44,9 @@
                             <tr>
                                 <th>Tipo de operacion</th>
                                 <th>Fecha</th>
-                                <th>Monto</th>
                                 <th>Comision</th>
+                                <th>Monto</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
