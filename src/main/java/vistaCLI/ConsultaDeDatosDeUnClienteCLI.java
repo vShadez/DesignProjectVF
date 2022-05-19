@@ -5,6 +5,7 @@
 package vistaCLI;
 
 import clasesUtilitarias.Conversion;
+import clasesUtilitarias.Ordenamiento;
 import listaDinamica.Lista;
 import logicaDeAccesoADatos.DAOCatalogoDeClientes;
 import logicaDeAccesoADatos.DAOCliente;
@@ -35,13 +36,13 @@ public class ConsultaDeDatosDeUnClienteCLI {
         int cantidadDeClientes = daoCatalogoDeClientes.consultarCantidadDeClientes();
         Lista<ICliente> consultarListaCliente = daoCatalogoDeClientes.consultarListaDeClientes();
         arregloClientesOrdenados = Conversion.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
-        Cliente cliente[] = arregloClientesOrdenados;
+        arregloClientesOrdenados = Ordenamiento.ordenarAscendentemente(arregloClientesOrdenados);
         System.out.println("Lista de clientes registrados en el sistema:");
         for (int i = 0; i < cantidadDeClientes; i++) {
-            String primerApellido = cliente[i].primerApellido;
-            String segundoApellido = cliente[i].segundoApellido;
-            String nombre = cliente[i].nombre;
-            int identificacion = cliente[i].identificacion;
+            String primerApellido = arregloClientesOrdenados[i].primerApellido;
+            String segundoApellido = arregloClientesOrdenados[i].segundoApellido;
+            String nombre = arregloClientesOrdenados[i].nombre;
+            int identificacion = arregloClientesOrdenados[i].identificacion;
             int imprimirNumero = i+1;
             System.out.println("\nCliente n°" + imprimirNumero + ":");
             System.out.println("Nombre completo: " + nombre + " " + primerApellido + " " + segundoApellido);
