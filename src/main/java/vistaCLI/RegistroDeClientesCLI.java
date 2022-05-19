@@ -105,7 +105,8 @@ public class RegistroDeClientesCLI {
     
     private void registrarCliente(String pNombre, String pPrimerApellido, String pSegundoApellido, int pIdentificacionEnFormatoEntero, int pDia, int pMes, int pAno, int pNumeroTelefonicoEnFormatoEntero, String pCorreoElectronico) {
         IDAOCatalogoDeClientes cantidadDeClientes = new DAOCatalogoDeClientes();
-        String codigo = "CIF-" + cantidadDeClientes.consultarCantidadDeClientes();
+        int numeroDeClientePorRegistrar = cantidadDeClientes.consultarCantidadDeClientes() + 1;
+        String codigo = "CIF-" + numeroDeClientePorRegistrar;
         String fecha = pDia + "/" + pMes + "/" + pAno;
         ICliente nuevoCliente = new Cliente(codigo, pNombre, pPrimerApellido, pSegundoApellido, pIdentificacionEnFormatoEntero, pDia, pMes, pAno, pNumeroTelefonicoEnFormatoEntero, pCorreoElectronico);
         System.out.println(MensajeEnConsolaCliente.imprimirMensajeCreadoExitoso(codigo, pNombre, String.valueOf(pIdentificacionEnFormatoEntero), fecha, String.valueOf(pNumeroTelefonicoEnFormatoEntero)));

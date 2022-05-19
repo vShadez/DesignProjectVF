@@ -10,7 +10,7 @@ import vistaCLI.MenuPrincipalCLI;
  *
  * @author Jairo Calderón
  */
-public class appWeb {
+public class appCLI {
 
     /**
      * @param args the command line arguments
