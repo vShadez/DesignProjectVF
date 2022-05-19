@@ -45,9 +45,6 @@
         </div>
     </table>
     <div class="form-group text-center">
-        <button type="submit" class= "btn btn-primary">
-            Consultar
-        </button>
         <a href="../index.html">Cancelar</a>
     </div>
     </body>
