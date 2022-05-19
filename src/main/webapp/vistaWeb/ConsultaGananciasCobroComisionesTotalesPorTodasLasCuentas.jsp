@@ -36,7 +36,7 @@
                     <tr>
                         <td>${row.cuenta}</td>
                         <td>${row.depositosYRetiros}</td>
-                        <td>${row.depositos}</td>
+                        <td>${row.depositos}</td>                        
                         <td>${row.retiros}</td>
                     </tr>
                     </c:forEach>
