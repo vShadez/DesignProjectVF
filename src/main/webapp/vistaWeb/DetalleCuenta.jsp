@@ -17,11 +17,15 @@
     <table class="table table-striped">
         <div class="card-body">
             <div class ="mb-4">
-                <div class = " mb-4 text-center">
+                <div class = "mb-4 text-center">
                     <h1> Detalle de la cuenta </h1>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <div class="card mb-2">
+                    <div>
+                        <img src="../imagenesVista/Imagen3.png"/>
+                    </div>
+                    <br>
+                    <div class="row text-center">
+                        <div class="form-group col">
+                            <div class="card">
                                 <div class="card-body">
                                     <div class="card-header">
                                         <p class = "lead"> Numero de cuenta: ${numeroCuenta} </p>

@@ -37,8 +37,8 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferenciaWEB e
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            numeroCuentaDestino =  request.getParameter("numeroCuentaDestino");
-            montoEnviado = request.getParameter("montoEnviado");
+        numeroCuentaDestino =  request.getParameter("numeroCuentaDestino");
+        montoEnviado = request.getParameter("montoEnviado");
             
         boolean formatoDeMontoDeRetiroEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(montoEnviado);
             if(formatoDeMontoDeRetiroEsCorrecto) {

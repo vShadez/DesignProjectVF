@@ -25,17 +25,12 @@
                 </div>
                 <br>
                 <form method="post" action="<c:url value="/vistaWeb/SeleccionDeConsultaEstadoDeCuenta"/>" >
+                    <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
                     <div class="form-group">
-                       
                         <input type="submit" class= "btn btn-primary " name="event" value="Colones">
-                         <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
-                        
                     </div>
                     <div class="form-group">
-                        
-                        <input type="submit" class= "btn btn-primary " name="event" value="Dolares">
-                        <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
-                        
+                        <input type="submit" class= "btn btn-primary " name="event" value="Dolares">   
                     </div>
                     <div class="box" style="text-align: center">
                         <a href="../index.html">Cancelar</a>

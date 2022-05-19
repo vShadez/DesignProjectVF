@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,12 +24,13 @@
                     </div>
                 </div>
                 <br>
-                <form action="/" method="GET" >
+                <form method="post" action="<c:url value="/vistaWeb/SeleccionDeRetiroEnDolaresOColones"/>" >
+                    <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
                     <div class="form-group">
-                        <a class="btn btn-primary " href="SolicitarMontoDeRetiroEnColonesTerceraEtapa.jsp"> Colones </a> 
+                        <input type="submit" class= "btn btn-primary " name="event" value="Colones">
                     </div>
                     <div class="form-group">
-                        <a class="btn btn-primary " href="SolicitarMontoDeRetiroEnDolaresTerceraEtapa.jsp"> Dolares </a> 
+                        <input type="submit" class= "btn btn-primary " name="event" value="Dolares">   
                     </div>
                     <div class="box" style="text-align: center">
                         <a href="../index.html">Cancelar</a>

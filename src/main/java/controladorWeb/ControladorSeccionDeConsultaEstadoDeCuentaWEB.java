@@ -27,15 +27,12 @@ public class ControladorSeccionDeConsultaEstadoDeCuentaWEB extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        
         String event = request.getParameter("event");
-                    if(event.equals("Colones")) {
-                        response.sendRedirect("InformacionPorConsultaDeEstadoCuentaColones?numeroCuenta=" + numeroCuenta);
-                    }
-                    if(event.equals("Dolares")) {
-                        response.sendRedirect("InformacionPorConsultaDeEstadoCuentaDolares?numeroCuenta=" + numeroCuenta);
-                    }
+        if(event.equals("Colones")) {
+            response.sendRedirect("InformacionPorConsultaDeEstadoCuentaColones?numeroCuenta=" + numeroCuenta);
         }
+        if(event.equals("Dolares")) {
+            response.sendRedirect("InformacionPorConsultaDeEstadoCuentaDolares?numeroCuenta=" + numeroCuenta);
+        }
+    }
 }

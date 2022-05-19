@@ -35,36 +35,38 @@ public class ControladorTransferenciasEntreCuentasWEB extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             this.cantidadDeIntentos++;
-            String numeroDeCuenta = request.getParameter("numeroCuenta");
-            String pin = request.getParameter("pin");
-            boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
-            boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
-            if(existeCuenta) {
-                if(cuentaEstaActiva) {
-                boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
-                if(pinCorrespondeACuenta) {
-                    response.sendRedirect("VerificacionMensajeDeTexto?numeroCuenta=" + numeroDeCuenta);
-                }
-                else {
-                    
-                    if(this.cantidadDeIntentos == 1) {
-                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
-                    }
-                    else {
-                        validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
-                    }
-                    request.getRequestDispatcher("TransferenciasEntreCuentas.jsp").forward(request, response);
-                }
-                } else{
-                    request.getRequestDispatcher("TransferenciasEntreCuentas.jsp").forward(request, response);
-                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
-                }
+        String numeroDeCuenta = request.getParameter("numeroCuenta");
+        String pin = request.getParameter("pin");
+        boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
+        boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
+        if(existeCuenta) {
+            if(cuentaEstaActiva) {
+            boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
+            if(pinCorrespondeACuenta) {
+                response.sendRedirect("VerificacionMensajeDeTexto?numeroCuenta=" + numeroDeCuenta);
             }
             else {
+
+                if(this.cantidadDeIntentos == 1) {
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                    response.sendRedirect("../index.html");
+                }
+                else {
+                    validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
+                    response.sendRedirect("../index.html");
+                }
                 request.getRequestDispatcher("TransferenciasEntreCuentas.jsp").forward(request, response);
-                MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
+            }
+            } else{
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
+                request.getRequestDispatcher("TransferenciasEntreCuentas.jsp").forward(request, response);
             }
         }
-                
+        else {
+            request.getRequestDispatcher("TransferenciasEntreCuentas.jsp").forward(request, response);
+            MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
+            response.sendRedirect("../index.html");
         }
+    }
+}
     

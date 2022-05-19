@@ -18,12 +18,16 @@
         <div class="card-body">
             <div class ="mb-4">
                 <div class = " mb-4 text-center">
-                    <h1> Detalles del cliente </h1>
+                    <h1> Cliente </h1>
+                    <div>
+                        <img src="../imagenesVista/Imagen5.png"/>
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <div class="card mb-2">
                                 <div class="card-body">
-                                    
+                                    <h2> Detalles </h2>
                                     <div class="card-header">
                                         <p class = "lead"> Codigo: ${codigo} </p>
                                         <p class = "lead"> Primer apellido: ${primerApellido} </p>
@@ -40,7 +44,7 @@
                         <div class="form-group col-md-6">
                             <div class="card mb-2">
                                 <div class="card-body">
-                                    <h1> Cuentas del cliente </h1>
+                                    <h2> Cuentas </h2>
                                     <div class="card-header">
                                         <c:forEach var="col" items="${cuentasAsociadas}">
                                             <p class = "lead"> ${col.numeroDeCuenta}</p>
