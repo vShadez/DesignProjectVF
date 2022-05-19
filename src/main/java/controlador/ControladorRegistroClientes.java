@@ -106,7 +106,7 @@ public class ControladorRegistroClientes implements ActionListener{
     public static boolean validarExistenciaCliente(int pIdentificacion){
         IDAOCatalogoDeClientes prueb = new DAOCatalogoDeClientes();
         if(prueb.consultarSiExisteCliente(pIdentificacion) == false) {
-            MensajeEnPantallaCliente.imprimirErrorIdentificacionExistente();
+            MensajeEnPantallaCliente.imprimirErrorIdentificacionYaExistente();
             return false;
         }
         else {

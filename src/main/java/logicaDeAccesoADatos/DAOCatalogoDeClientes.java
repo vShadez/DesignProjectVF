@@ -59,10 +59,24 @@ public class DAOCatalogoDeClientes implements IDAOCatalogoDeClientes {
         Document documento = (Document) coleccionClientes.find(new BasicDBObject("identificacion", pIdentificacion)).projection(Projections.fields(Projections.include("identificacion"))).first();
         
         if (documento == null){
-            return false;
+            return true;
         } else {
             int identificacion = documento.getInteger("identificacion");
             return identificacion != pIdentificacion;
+        }
+    }
+    
+    @Override
+    public boolean consultarSiNOExisteCliente(int pIdentificacion){
+        Document documento = (Document) coleccionClientes.find(new BasicDBObject("identificacion", pIdentificacion)).projection(Projections.fields(Projections.include("identificacion"))).first();
+        
+        if (documento == null){
+            System.out.println("llega");
+            return false;
+        } else {
+            int identificacion = documento.getInteger("identificacion");
+            System.out.println("llegaa abajo");
+            return identificacion == pIdentificacion;
         }
     }
 
