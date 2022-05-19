@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class= "btn btn-primary">
-                            Continuar
+                            Aceptar
                         </button>
                         <a href="../index.html">Cancelar</a>
                     </div>

@@ -5,6 +5,7 @@
 package controladorWeb;
 
 import static controlador.ControladorCambioDePinTerceraEtapa.registrarCambioDePin;
+import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,9 +45,8 @@ public class ControladorCambioDePinTerceraEtapaWEB extends HttpServlet {
             request.setAttribute("numeroDeCuenta", numeroDeCuenta);
             request.getRequestDispatcher("CambioDePinTerceraEtapa.jsp?numeroCuenta=" + numeroDeCuenta).forward(request, response);
         }else{
+            MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(numeroDeCuenta);
             response.sendRedirect("../index.html");
         }
-        
-        
     }
 }

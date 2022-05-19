@@ -4,6 +4,7 @@
  */
 package controladorWeb;
 
+import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,14 +41,14 @@ public class ControladorCambioDePinPrimeraEtapaWEB extends HttpServlet {
                 response.sendRedirect("CambioDePinSegundaEtapa?numeroCuenta=" + numeroDeCuenta);
             
             }else{
-                request.setAttribute("Error", "La cuenta esta inactiva");
-
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
+                request.setAttribute("error", "La cuenta esta inactiva");
                 request.getRequestDispatcher("CambioDePinPrimeraEtapa.jsp").forward(request, response);
             }
         }
         else {
-            request.setAttribute("Error", "La cuenta no existe");
-            
+            MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
+            request.setAttribute("error", "La cuenta no existe");
             request.getRequestDispatcher("CambioDePinPrimeraEtapa.jsp").forward(request, response);
         }
     }
