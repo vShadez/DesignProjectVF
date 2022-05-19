@@ -4,6 +4,7 @@
  */
 package controladorWeb;
 
+import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,77 +12,71 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logicaDeAccesoADatos.DAOCuentaIndividual;
+import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import serviciosExternos.TipoCambioBCCR;
+import validacion.ValidacionCuenta;
 
 /**
  *
  * @author 
  */
-@WebServlet(name = "ControladorConsultaDeSaldoActualWEB", urlPatterns = {"/ControladorConsultaDeSaldoActualWEB"})
+@WebServlet(name = "ControladorConsultaDeSaldoActualWEB", urlPatterns = {"/vistaWeb/ConsultaDeSaldoActual"})
 public class ControladorConsultaDeSaldoActualWEB extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorConsultaDeSaldoActualWEB</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorConsultaDeSaldoActualWEB at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private int cantidadDeIntentos;
+    
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("ConsultaDeSaldoActual.jsp").forward(request, response);
+        this.cantidadDeIntentos = 0;
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        processRequest(request, response);
+        String numeroDeCuenta = request.getParameter("numeroCuenta");
+        String pin = request.getParameter("pin");
+        this.cantidadDeIntentos++;
+        boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
+        if(existeCuenta) {
+            boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
+            if(cuentaEstaActiva) {
+                boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
+                if(pinCorrespondeACuenta) {
+                    String event = request.getParameter("event");
+                    if(event.equals("Consultar en colones")) {
+                        IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
+                        double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
+                        MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(saldoActualColones);
+                        response.sendRedirect("../index.html");
+                    }
+                    if(event.equals("Consultar en dolares")) {
+                        TipoCambioBCCR tc = new TipoCambioBCCR();
+                        IDAOCuentaIndividual cuentaAconsultarDolares = new DAOCuentaIndividual();
+                        double saldoActualColones = cuentaAconsultarDolares.consultarSaldoActual(numeroDeCuenta);
+                        double valorDeCompra = tc.obtenerValorCompra();
+                        double saldoConvertidoADolares = saldoActualColones / valorDeCompra;
+                        MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra);
+                        response.sendRedirect("../index.html");
+                    }
+                } else {
+                    if(this.cantidadDeIntentos == 1) {
+                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                        request.getRequestDispatcher("ConsultaDeSaldoActual.jsp").forward(request, response);
+                    }
+                    else {
+                        validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
+                        response.sendRedirect("../index.html");
+                    }
+                    }
+            }else{
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
+                response.sendRedirect("../index.html");
+            }
+        } else {
+            MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
+            response.sendRedirect("../index.html");
+          }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

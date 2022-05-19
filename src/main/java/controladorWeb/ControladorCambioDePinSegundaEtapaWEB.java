@@ -59,7 +59,6 @@ public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {
             else {
                 validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
             }
-
         }
     }
 }
