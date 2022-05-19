@@ -53,8 +53,9 @@
                                 <tr>
                                     <td>${row.tipoOperacion}</td>
                                     <td>${row.fecha}</td>
-                                    <td>${row.monto}</td>
                                     <td>${row.comision}</td>
+                                    <td>${row.monto}</td>
+                                  
                                 </tr>
                             </c:forEach>
                         </tbody>

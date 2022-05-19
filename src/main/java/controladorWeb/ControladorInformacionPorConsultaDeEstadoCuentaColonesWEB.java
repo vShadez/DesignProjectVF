@@ -43,20 +43,28 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
         IDAOOperacionCuenta operacion = new DAOOperacionCuenta();
         Lista<Operacion> operaciones = operacion.consultarOperacionesCuenta(numeroCuenta);
         int cantidadOperaciones = operacion.consultarCantidadDeDepositosYRetirosRealizados(numeroCuenta);
-        
+        System.out.println(cantidadOperaciones);
         request.setAttribute("numeroCuenta", cuentaRecibida.numeroCuenta);
-        request.setAttribute("saldo", cuentaRecibida.getSaldo());
-        request.setAttribute("propietario", clientePropietario.nombre +""+ clientePropietario.primerApellido +""+ clientePropietario.segundoApellido);
+        
+        request.setAttribute("saldo", String.format("%.2f", cuentaRecibida.getSaldo()));
+        request.setAttribute("propietario", clientePropietario.nombre +" "+ clientePropietario.primerApellido +" "+ clientePropietario.segundoApellido);
         request.setAttribute("correoElectronico", clientePropietario.correoElectronico);
         request.setAttribute("numeroTelefono", clientePropietario.numeroTelefono);
         
         operacionesTotales = Conversion.convertirListaOperacionEnArreglo(operaciones, cantidadOperaciones);
         
-        Operacion operacione[] = (operacionesTotales);
+        //Operacion operacione[] = (operacionesTotales);
         
         List<OperacionDto> operacionesAMostrar =  new LinkedList<>();
         for (int i = 0; i < cantidadOperaciones; i++) {
-            operacionesAMostrar.add(new OperacionDto(operacione[i].tipoOperacion, operacione[i].fechaOperacion,operacione[i].seAplicoComision, operacione[i].montoComision));
+            boolean aplicaComision = operacionesTotales[i].seAplicoComision;
+            String aplicaComisionSiNo;
+            if (aplicaComision == true){
+                aplicaComisionSiNo = "Sí";
+            }else{
+                aplicaComisionSiNo = "No";
+            }
+            operacionesAMostrar.add(new OperacionDto(operacionesTotales[i].tipoOperacion, operacionesTotales[i].fechaOperacion,aplicaComisionSiNo, operacionesTotales[i].montoComision));
         }
         
         request.setAttribute("operacionesAsociadas", operacionesAMostrar);
@@ -73,26 +81,26 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
     
     public class OperacionDto {
         private String tipoOperacion;
-        private String fecha;
-        private String monto;
+        private LocalDate fecha;
+        private double monto;
         private String comision;
 
-        public OperacionDto(String pTipoOperacion, LocalDate pFecha, String pMonto, String pComision) {
+        public OperacionDto(String pTipoOperacion, LocalDate pFecha, String pComision, double pMonto) {
             this.tipoOperacion = pTipoOperacion;
             this.fecha = pFecha;
-            this.monto = pMonto;
             this.comision = pComision;
+            this.monto = pMonto;
         }
 
         public String getTipoOperacion() {
             return tipoOperacion;
         }
 
-        public String getFecha() {
+        public LocalDate getFecha() {
             return fecha;
         }
 
-        public String getMont() {
+        public double getMonto() {
             return monto;
         }
         public String getComision() {
