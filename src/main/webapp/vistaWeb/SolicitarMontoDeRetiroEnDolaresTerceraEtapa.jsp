@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,7 @@
                     </div>
                 </div>
                 <br>
-                <form action="/" method="GET" >
+                <form method="post" action="<c:url value="/vistaWeb/SolicitarMontoDeRetiroEnDolaresTerceraEtapa"/>" >
                     <div class="form-group">
                         <label>Monto</label>
                         <input type="number" class "form-control" name = "montoRetirado" placeholder="Monto a retirar" required>
