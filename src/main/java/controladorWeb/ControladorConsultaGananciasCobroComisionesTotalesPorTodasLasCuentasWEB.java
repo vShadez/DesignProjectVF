@@ -56,19 +56,19 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
             }
         }
     public class OperacionDto {
-        private String numeroCuenta;
+        private String cuenta;
         private String depositos;
         private String retiros;
-        private String DepositosRetiros;
+        private String depositosYRetiros;
 
         public OperacionDto(String pNumeroCuenta, String cantDepositos, String cantRetiros, String cantDepositosRetiros) {
-            this.numeroCuenta = pNumeroCuenta;
+            this.cuenta = pNumeroCuenta;
             this.depositos = cantDepositos;
             this.retiros = cantRetiros;
-            this.DepositosRetiros = cantDepositosRetiros;
+            this.depositosYRetiros = cantDepositosRetiros;
         }
         public String getNumeroCuenta() {
-            return numeroCuenta;
+            return cuenta;
         }
         
         public String getDepositos() {
@@ -80,7 +80,7 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
         }
 
         public String getDepositoRetiro() {
-            return DepositosRetiros;
+            return depositosYRetiros;
         }
 
         
