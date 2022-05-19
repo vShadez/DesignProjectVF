@@ -29,6 +29,7 @@ import logicaDeNegocios.ICuenta;
  */
 @WebServlet(name = "ControladorDetalleClienteWEB", urlPatterns = {"/vistaWeb/DetalleCliente"})
 public class ControladorDetalleClienteWEB extends HttpServlet {
+    private Lista<ICuenta> consultarListaCuenta;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
@@ -42,9 +43,16 @@ public class ControladorDetalleClienteWEB extends HttpServlet {
         
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         int cantidadCuentasCliente = daoClienteCuenta.consultarCantidadDeCuentasDeCliente(identificacionCliente);
-        Lista<ICuenta> consultarListaCuenta = daoClienteCuenta.consultarCuentasDeCliente(identificacionCliente);
+        if(cantidadCuentasCliente > 0){
+            consultarListaCuenta = daoClienteCuenta.consultarCuentasDeCliente(identificacionCliente);
+            arregloDeCuentasDeCliente = Conversion.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
+            List<CuentaDto> cuentas =  new LinkedList<CuentaDto>();
+            for (int i = 0; i < cantidadCuentasCliente; i++) {
+                cuentas.add(new CuentaDto(arregloDeCuentasDeCliente[i].numeroCuenta));
+            }
         
-        arregloDeCuentasDeCliente = Conversion.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
+            request.setAttribute("cuentasAsociadas", cuentas);
+        }
         
         request.setAttribute("codigo",cliente.getCodigo());
         
@@ -64,12 +72,7 @@ public class ControladorDetalleClienteWEB extends HttpServlet {
         int telefonoConvertidoString = cliente.numeroTelefono;
         request.setAttribute("numeroTelefono",""+telefonoConvertidoString);
         
-        List<CuentaDto> cuentas =  new LinkedList<CuentaDto>();
-        for (int i = 0; i < cantidadCuentasCliente; i++) {
-            cuentas.add(new CuentaDto(arregloDeCuentasDeCliente[i].numeroCuenta));
-        }
         
-        request.setAttribute("cuentasAsociadas", cuentas);
         
         request.getRequestDispatcher("DetalleCliente.jsp").forward(request, response);
         
