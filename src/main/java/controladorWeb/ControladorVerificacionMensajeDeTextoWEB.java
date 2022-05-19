@@ -17,6 +17,7 @@ import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOClienteCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.Cliente;
+import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
 
 /**
@@ -91,5 +92,13 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         daoCuenta.actualizarEstatus(this.numeroDeCuenta, "Inactiva");
         MensajeEnPantallaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta();
+        IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
+        Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(this.numeroDeCuenta);
+        String correoDestinatario = clienteAsociadoACuenta.correoElectronico;
+        String mensajeDeCorreo = "";
+        mensajeDeCorreo += "Estimado cliente: su cuenta " + this.numeroDeCuenta + " ha sido desactividada \n";
+        mensajeDeCorreo += "La inactivación se debe a que realizó muchos intentos de validación de retiro/transferencia \n";
+        String asuntoDeCorreo = "Inactivación de cuenta " + this.numeroDeCuenta;
+        EnvioCorreoElectronico.enviarCorreo(correoDestinatario, asuntoDeCorreo, mensajeDeCorreo);
     }
 }
