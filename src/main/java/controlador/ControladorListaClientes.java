@@ -37,6 +37,7 @@ public class ControladorListaClientes implements ActionListener{
             int filaSeleccionada = vistaGUI.tblListaClientes.getSelectedRow();
             int columnaSeleccionada = vistaGUI.tblListaClientes.getSelectedColumn();
             if (columnaSeleccionada == 3) {
+                
                 String clienteSeleccionado = vistaGUI.tblListaClientes.getValueAt(filaSeleccionada, columnaSeleccionada).toString();
                 DetalleCliente vistaDetalleCliente = new DetalleCliente();
                 ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente(Conversion.convertirStringEnEntero(clienteSeleccionado), vistaDetalleCliente);

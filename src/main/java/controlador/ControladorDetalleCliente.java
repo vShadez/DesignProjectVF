@@ -8,6 +8,7 @@ import clasesUtilitarias.Conversion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import listaDinamica.Lista;
@@ -28,6 +29,7 @@ import vistaGUI.ListaClientes;
 public class ControladorDetalleCliente implements ActionListener{
     public DetalleCliente vistaGUI;
     private int identificacionCliente;
+    private Lista<ICuenta> consultarListaCuenta;
     
     public ControladorDetalleCliente(int pIdentificacionCliente, DetalleCliente pDetalleCliente){
         this.vistaGUI = pDetalleCliente;
@@ -41,9 +43,18 @@ public class ControladorDetalleCliente implements ActionListener{
         
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         int cantidadCuentasCliente = daoClienteCuenta.consultarCantidadDeCuentasDeCliente(pIdentificacionCliente);
-        Lista<ICuenta> consultarListaCuenta = daoClienteCuenta.consultarCuentasDeCliente(pIdentificacionCliente);
+        System.out.println(cantidadCuentasCliente);
+        if(cantidadCuentasCliente > 0){
+             consultarListaCuenta = daoClienteCuenta.consultarCuentasDeCliente(pIdentificacionCliente);
+             arregloDeCuentasDeCliente = Conversion.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
+             cargarCuentasATabla(arregloDeCuentasDeCliente,cantidadCuentasCliente);
+        }else{
+            Cuenta[] nombreArray = null;
+            cargarCuentasATabla(nombreArray,cantidadCuentasCliente);
+        }
+       
+     
         
-        arregloDeCuentasDeCliente = Conversion.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
         this.vistaGUI.txtCodigo.setText(cliente.getCodigo());
         int identificacionConvertidaString = cliente.identificacion;
         this.vistaGUI.txtIdentificacion.setText(""+identificacionConvertidaString);
@@ -56,8 +67,7 @@ public class ControladorDetalleCliente implements ActionListener{
         this.vistaGUI.txtCorreo.setText(cliente.correoElectronico);
         int telefonoConvertidoString = cliente.numeroTelefono;
         this.vistaGUI.txtTelefono.setText(""+telefonoConvertidoString);
-        
-        cargarCuentasATabla(arregloDeCuentasDeCliente, cantidadCuentasCliente);
+       
         
     }
     
@@ -68,7 +78,6 @@ public class ControladorDetalleCliente implements ActionListener{
         model.addColumn("Números de cuentas asociadas");
         for (int i = 0; i < pCantidadCuentas; i++) {
             String numeroDeCuenta = cuentas[i].numeroCuenta;
-            
             model.addRow(new Object[]{numeroDeCuenta});
         }
         

@@ -61,6 +61,7 @@ public class DAOClienteCuenta implements IDAOClienteCuenta{
                     String numeroDeCuenta = documentoClienteYCuenta.getString("numeroCuentaAsocidada");;
                     MongoCollection coleccionCuentas = ConexionBaseDeDatos.ConectarBase().getCollection("Cuentas");
                     Document documentoCuenta = (Document) coleccionCuentas.find(new BasicDBObject("numeroCuenta", numeroDeCuenta)).projection(Projections.fields(Projections.include("numeroCuenta"), Projections.include("pin"), Projections.include("fechaCreacion"), Projections.include("saldo"), Projections.include("estatus"))).first();
+                    if(documentoCuenta != null){
                     String pin = documentoCuenta.getString("pin");
                     String fechaCreacion = documentoCuenta.getString("fechaCreacion");
                     LocalDate localDate = LocalDate.parse(fechaCreacion, formato);
@@ -75,6 +76,9 @@ public class DAOClienteCuenta implements IDAOClienteCuenta{
                         Logger.getLogger(DAOClienteCuenta.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     listaDeResultados.agregarNodo(cuentaEncontrada);
+                    }else{
+                        listaDeResultados = null;
+                    }
                 }
             }
             return listaDeResultados;
