@@ -14,6 +14,7 @@ import serviciosExternos.EnvioMensajeDeTexto;
 import clasesUtilitarias.PalabraSecreta;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import serviciosExternos.EnvioCorreoElectronico;
 import vistaGUI.SeleccionDeRetiroEnDolaresOColones;
 import vistaGUI.SolicitarMontoDepositoYCuentaDestinoDeTransferencia;
 
@@ -94,5 +95,13 @@ public class ControladorVerificacionMensajeDeTexto implements ActionListener{
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         daoCuenta.actualizarEstatus(this.numeroDeCuenta, "Inactiva");
         MensajeEnPantallaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta();
+        IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
+        Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(this.numeroDeCuenta);
+        String correoDestinatario = clienteAsociadoACuenta.correoElectronico;
+        String mensajeDeCorreo = "";
+        mensajeDeCorreo += "Estimado cliente: su cuenta " + this.numeroDeCuenta + " ha sido desactividada \n";
+        mensajeDeCorreo += "La inactivación se debe a que realizó muchos intentos de validación de retiro/transferencia \n";
+        String asuntoDeCorreo = "Inactivación de cuenta " + this.numeroDeCuenta;
+        EnvioCorreoElectronico.enviarCorreo(correoDestinatario, asuntoDeCorreo, mensajeDeCorreo);
     }
 }

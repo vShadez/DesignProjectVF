@@ -14,6 +14,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
+import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
 import validacion.ValidacionCuenta;
 
@@ -133,7 +134,15 @@ public class TransferenciaCLI {
     private void inactivarCuenta(String pNumeroDeCuenta) {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         daoCuenta.actualizarEstatus(pNumeroDeCuenta, "Inactiva");
-        MensajeEnConsolaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta();
+        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta());
+        IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
+        Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
+        String correoDestinatario = clienteAsociadoACuenta.correoElectronico;
+        String mensajeDeCorreo = "";
+        mensajeDeCorreo += "Estimado cliente: su cuenta " + pNumeroDeCuenta + " ha sido desactividada \n";
+        mensajeDeCorreo += "La inactivación se debe a que realizó muchos intentos de validación de retiro/transferencia \n";
+        String asuntoDeCorreo = "Inactivación de cuenta " + pNumeroDeCuenta;
+        EnvioCorreoElectronico.enviarCorreo(correoDestinatario, asuntoDeCorreo, mensajeDeCorreo);
     }
     
     private void recibirMontoDeTransferencia(String pNumeroDeCuenta) throws Exception {
