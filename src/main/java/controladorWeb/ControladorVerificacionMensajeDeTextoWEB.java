@@ -53,13 +53,13 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
         
             
             request.setAttribute("numeroDeCuenta", numeroDeCuenta);
-            String mensajeSecreto = request.getParameter("mensajeTexto");
+            String mensajeSecretoIngresado = request.getParameter("mensajeTexto");
             //String numeroDeCuenta = request.getParameter("numeroDeCuenta");
             this.cantidadDeIntentos++;
             
             System.out.println(numeroDeCuenta);
             
-            if(this.mensajeSecreto.equals(mensajeSecreto)) {
+            if(this.mensajeSecreto.equals(mensajeSecretoIngresado)) {
                 response.sendRedirect("SolicitarMontoDepositoYCuentaDestinoDeTransferencia?numeroCuentaOrigen=" + numeroDeCuenta);
             }else{
                 if(this.cantidadDeIntentos == 1) {

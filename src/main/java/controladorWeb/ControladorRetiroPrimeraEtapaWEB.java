@@ -41,7 +41,7 @@ public class ControladorRetiroPrimeraEtapaWEB extends HttpServlet {
             if(cuentaEstaActiva) {
             boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
             if(pinCorrespondeACuenta) {
-                response.sendRedirect("VerificacionMensajeDeTexto?numeroCuenta=" + numeroDeCuenta);
+                response.sendRedirect("VerificacionMensajeDeTextoRetiro?numeroCuenta=" + numeroDeCuenta);
             }
             else {
 

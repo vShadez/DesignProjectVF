@@ -24,13 +24,12 @@ import serviciosExternos.EnvioMensajeDeTexto;
  *
  * @author estadm
  */
-@WebServlet(name = "ControladorVerificacionMensajeDeTextoWEB", urlPatterns = {"/vistaWeb/VerificacionMensajeDeTexto"})
-public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
+@WebServlet(name = "ControladorVerificacionMensajeDeTextoRetiroWEB", urlPatterns = {"/vistaWeb/VerificacionMensajeDeTextoRetiro"})
+public class ControladorVerificacionMensajeDeTextoRetiroWEB extends HttpServlet {
     private int cantidadDeIntentos = 0;
     private String numeroDeCuenta;
     private int numeroDeTelefono;
     private String mensajeSecreto;
-    private String transaccionAsociada;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +42,7 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
             this.numeroDeTelefono = clienteAsociadoACuenta.numeroTelefono;
             enviarMensajeDeTexto();
             MensajeEnPantallaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
-            request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp").forward(request, response);
+            request.getRequestDispatcher("VerificacionMensajeDeTextoRetiro.jsp").forward(request, response);
             
     }
     
@@ -53,13 +52,13 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
         
             
             request.setAttribute("numeroDeCuenta", numeroDeCuenta);
-            String mensajeSecreto = request.getParameter("mensajeTexto");
+            String mensajeSecretoIngresado = request.getParameter("mensajeTexto");
             //String numeroDeCuenta = request.getParameter("numeroDeCuenta");
             this.cantidadDeIntentos++;
             
             System.out.println(numeroDeCuenta);
             
-            if(this.mensajeSecreto.equals(mensajeSecreto)) {
+            if(this.mensajeSecreto.equals(mensajeSecretoIngresado)) {
                 response.sendRedirect("SolicitarMontoDepositoYCuentaDestinoDeTransferencia?numeroCuentaOrigen=" + numeroDeCuenta);
             }else{
                 if(this.cantidadDeIntentos == 1) {
@@ -71,11 +70,11 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
                 else {
                     // inactivar cuenta
                     this.inactivarCuenta();
+                    
                 }
             }
             //request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp").forward(request, response);
         }
-    
     
     private void enviarMensajeDeTexto() {
         EnvioMensajeDeTexto mensajeDeTexto = new EnvioMensajeDeTexto();
