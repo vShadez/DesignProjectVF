@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ganancias totales por cobro de comision</title>
+        <title>Ganancias totales de la cuenta por cobro de comisión</title>
     </head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 
@@ -18,18 +18,18 @@
         <div class="card-body">
             <div class ="mb-4">
                 <div class = " mb-4 text-center">
-                    <h1> Ganancias totales por cobro de comision </h1>
+                    <h1> Ganancias totales de la cuenta por cobro de comisión</h1>
                     <div>
-                        <img src="../imagenesVista/Imagen23.png"/>
+                        <img src="../imagenesVista/Imagen26.png"/>
                     </div>
                     <br>
                     
                     <div class="row center-text">
                         <div class="col">
                             <p class = "lead"> Descripcion</p>
-                            <p class = "lead"> Monto total por concepto de operaciones de depositos: </p>
-                            <p class = "lead"> Monto total por concepto de operaciones de retiros:</p>
-                            <p class = "lead"> Monto total por concepto de depositos y retiros:</p>
+                            <p class = "lead"> Monto total por depositos: </p>
+                            <p class = "lead"> Monto total por retiros:</p>
+                            <p class = "lead"> Monto total por depositos y retiros:</p>
                                 
                         </div>
                         <div class="col">
