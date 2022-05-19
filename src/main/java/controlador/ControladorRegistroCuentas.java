@@ -20,7 +20,7 @@ import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
 import logicaDeAccesoADatos.DAOCatalogoDeClientes;
-import static vistaCLI.MensajeEnConsolaCliente.imprimirErrorIdentificacionExistente;
+import controlador.MensajeEnPantallaCliente;
 /**
  *
  * @author estadm
@@ -54,43 +54,45 @@ public class ControladorRegistroCuentas implements ActionListener{
     public static boolean registrarCuenta(String pPin, String pMontoInicial, String pIdentificacionCliente){
         IDAOCatalogoDeClientes obtenerCliente = new DAOCatalogoDeClientes();
         boolean validarClienteSiYaExiste = obtenerCliente.consultarSiExisteCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
+        System.out.println(validarClienteSiYaExiste);
         if(validacion.ValidacionCuenta.validarFormatoDePin(pPin)){
                 if(validacion.ValidacionTipoDeDato.verificarEsEntero(pMontoInicial)){
                     if(validarClienteSiYaExiste){
-                try {
-                    double montoInicialConvetidoDouble = Conversion.convertirStringEnDecimal(pMontoInicial);
-                    IDAOCliente DAOCliente = new DAOCliente();
-                    ICliente clienteAsociadoConCuenta = DAOCliente.consultarCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
-                    Cliente cliente = (Cliente) clienteAsociadoConCuenta;
-                    String nombreCliente = cliente.nombre;
-                    String primerApellido = cliente.primerApellido;
-                    String segundoApellido = cliente.segundoApellido;
-                    int telefonoCliente = cliente.numeroTelefono;
-                    String correoElectronicoCliente = cliente.correoElectronico;
-                    IDAOCatalogoDeCuentas cantidadCuentas = new DAOCatalogoDeCuentas();
-                    String estatusCuenta = "Activa";
-                    int obtenerCantidadCuentas = cantidadCuentas.consultarCantidadCuentas()+1;
-                    String numeroCuenta = "CU-" + obtenerCantidadCuentas;
-                    ICuenta nuevaCuenta = null;
-                    nuevaCuenta = new Cuenta(numeroCuenta, 0, estatusCuenta, pPin);
-                    nuevaCuenta.asignarPropietario(clienteAsociadoConCuenta);
-                    nuevaCuenta.depositar(montoInicialConvetidoDouble);
-                    clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
-                    MensajeEnPantallaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, String.format("%.2f",montoInicialConvetidoDouble)+" ₡", nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente);
-                    return true;
-                } 
-                catch (Exception ex) {
-                    
-                }
+                        try {
+                            double montoInicialConvetidoDouble = Conversion.convertirStringEnDecimal(pMontoInicial);
+                            IDAOCliente DAOCliente = new DAOCliente();
+                            ICliente clienteAsociadoConCuenta = DAOCliente.consultarCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
+                            Cliente cliente = (Cliente) clienteAsociadoConCuenta;
+                            String nombreCliente = cliente.nombre;
+                            String primerApellido = cliente.primerApellido;
+                            String segundoApellido = cliente.segundoApellido;
+                            int telefonoCliente = cliente.numeroTelefono;
+                            String correoElectronicoCliente = cliente.correoElectronico;
+                            IDAOCatalogoDeCuentas cantidadCuentas = new DAOCatalogoDeCuentas();
+                            String estatusCuenta = "Activa";
+                            int obtenerCantidadCuentas = cantidadCuentas.consultarCantidadCuentas()+1;
+                            String numeroCuenta = "CU-" + obtenerCantidadCuentas;
+                            ICuenta nuevaCuenta = null;
+                            nuevaCuenta = new Cuenta(numeroCuenta, 0, estatusCuenta, pPin);
+                            nuevaCuenta.asignarPropietario(clienteAsociadoConCuenta);
+                            nuevaCuenta.depositar(montoInicialConvetidoDouble);
+                            clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
+                            MensajeEnPantallaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, String.format("%.2f",montoInicialConvetidoDouble)+" ₡", nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente);
+                            return true;
+                        } 
+                        catch (Exception ex) {
+
+                        }
                     }else{
-                        imprimirErrorIdentificacionExistente();
+                        controlador.MensajeEnPantallaCliente.imprimirErrorIdentificacionExistente();
                     }
             }else{
                 imprimirMensajeDeErrorSaldoNoEsEntero();
                 }
-            }
-        System.out.println(pPin);
-            imprimirMensajeDeErrorFormatoDePinInvalido();
+            }else{
+                imprimirMensajeDeErrorFormatoDePinInvalido();
+        }
+            
             return false;
         }
 }
