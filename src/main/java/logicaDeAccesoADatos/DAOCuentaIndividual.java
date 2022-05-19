@@ -12,10 +12,7 @@ import com.mongodb.client.model.Projections;
 import logicaDeNegocios.Cliente;
 import org.bson.conversions.Bson;
 import clasesUtilitarias.Encriptacion;
-import clasesUtilitarias.Conversion;
 import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import clasesUtilitarias.Conversion;
 
 

@@ -11,7 +11,6 @@ import com.mongodb.client.model.Projections;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import listaDinamica.Lista;
-import static logicaDeAccesoADatos.DAOCliente.coleccionClientes;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICliente;
 import org.bson.Document;

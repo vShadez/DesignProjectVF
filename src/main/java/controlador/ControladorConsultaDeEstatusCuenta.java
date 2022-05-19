@@ -6,9 +6,8 @@ import java.awt.event.ActionListener;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import vistaGUI.ConsultaDeEstatusCuenta;
-import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
-import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import validacion.ValidacionCuenta;
+
 /**
  *
  * @author estadm

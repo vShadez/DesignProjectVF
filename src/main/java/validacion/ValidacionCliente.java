@@ -24,12 +24,7 @@ public class ValidacionCliente {
             boolean existeFecha = ValidacionTipoDeDato.verificarFechaValida(dia, mes, ano);
             if(existeFecha) {
                 LocalDate fecha = Conversion.convertirStringEnLocalDate(pFechaPorValidar);
-                if(fecha.isBefore(LocalDate.now()) || fecha.equals(LocalDate.now())) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
+                return fecha.isBefore(LocalDate.now()) || fecha.equals(LocalDate.now());
             }
             else {
                 return true;

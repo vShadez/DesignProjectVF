@@ -5,7 +5,6 @@
 package controladorWeb;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +16,7 @@ import serviciosExternos.TipoCambioBCCR;
 
 /**
  *
- * @author 
+ * @author sebashdez
  */
 @WebServlet(name = "ControladorConsultaGananciasCobroComisionesDelBancoWEB", urlPatterns = {"/vistaWeb/ConsultaGananciasCobroComisionesDelBanco"})
 public class ControladorConsultaGananciasCobroComisionesDelBancoWEB extends HttpServlet {

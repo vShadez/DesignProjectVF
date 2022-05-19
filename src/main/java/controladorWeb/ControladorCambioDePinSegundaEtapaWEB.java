@@ -4,25 +4,18 @@
  */
 package controladorWeb;
 
-import controlador.ControladorCambioDePinTerceraEtapa;
-import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
-import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
-import validacion.ValidacionCuenta;
-import vistaGUI.CambioDePinTerceraEtapa;
 
 /**
  *
- * @author 
+ * @author sebashdez
  */
 @WebServlet(name = "ControladorCambioDePinSegundaEtapaWEB", urlPatterns = {"/vistaWeb/CambioDePinSegundaEtapa"})
 public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {

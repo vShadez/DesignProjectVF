@@ -1,13 +1,13 @@
 
 package controlador;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import logicaDeAccesoADatos.DAOOperacionCatalogoDeCuentas;
 import vistaGUI.ConsultaGananciasCobroComisionesDelBanco;
 import logicaDeAccesoADatos.IDAOOperacionCatalogoDeCuentas;
-import logicaDeAccesoADatos.DAOOperacionCuenta;
-import clasesUtilitarias.Conversion;
 import serviciosExternos.TipoCambioBCCR;
+
 /**
  *
  * @author estadm

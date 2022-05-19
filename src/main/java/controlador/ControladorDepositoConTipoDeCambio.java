@@ -5,7 +5,6 @@
 package controlador;
 
 import clasesUtilitarias.Conversion;
-import static controlador.ControladorDepositoEnColones.depositarColonesACuenta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import logicaDeAccesoADatos.DAOCuentaIndividual;

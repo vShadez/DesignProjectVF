@@ -4,7 +4,6 @@
  */
 package vistaCLI;
 
-import controlador.MensajeEnPantallaCuenta;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import validacion.ValidacionCuenta;

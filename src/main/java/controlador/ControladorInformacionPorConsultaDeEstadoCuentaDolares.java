@@ -17,7 +17,6 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
 import vistaGUI.ConsultaEstadoDeCuenta;
-import vistaGUI.InformacionPorConsultaDeEstadoCuentaColones;
 import vistaGUI.InformacionPorConsultaDeEstadoCuentaDolares;
 
 /**

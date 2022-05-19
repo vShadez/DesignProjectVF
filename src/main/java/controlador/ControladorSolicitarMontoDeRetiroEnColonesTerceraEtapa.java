@@ -13,7 +13,6 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import validacion.ValidacionCuenta;
-import vistaGUI.SeleccionDeRetiroEnDolaresOColones;
 import vistaGUI.SolicitarMontoDeRetiroEnColonesTerceraEtapa;
 
 /**

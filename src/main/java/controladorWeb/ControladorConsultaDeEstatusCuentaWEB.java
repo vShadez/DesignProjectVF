@@ -4,32 +4,17 @@
  */
 package controladorWeb;
 
-import clasesUtilitarias.Conversion;
 import static controlador.ControladorConsultaDeEstatusCuenta.consultarEstatusCuenta;
-import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import listaDinamica.Lista;
-import logicaDeAccesoADatos.DAOCliente;
-import logicaDeAccesoADatos.DAOClienteCuenta;
-import logicaDeAccesoADatos.DAOCuentaIndividual;
-import logicaDeAccesoADatos.IDAOCliente;
-import logicaDeAccesoADatos.IDAOClienteCuenta;
-import logicaDeAccesoADatos.IDAOCuentaIndividual;
-import logicaDeNegocios.Cliente;
-import logicaDeNegocios.Cuenta;
-import logicaDeNegocios.ICuenta;
-import validacion.ValidacionCuenta;
 
 /**
  *
- * @author 
+ * @author sebashdez
  */
 @WebServlet(name = "ControladorConsultaDeEstatusCuentaWEB", urlPatterns = {"/vistaWeb/ConsultaDeEstatusCuenta"})
 public class ControladorConsultaDeEstatusCuentaWEB extends HttpServlet {

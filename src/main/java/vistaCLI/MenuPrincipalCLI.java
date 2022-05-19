@@ -8,7 +8,7 @@ package vistaCLI;
  *
  * @author Jairo Calderón
  */
-public class MenuPrincipalCLI {
+public final class MenuPrincipalCLI {
     public MenuPrincipalCLI() throws Exception {
         this.imprimirOpciones();
     }

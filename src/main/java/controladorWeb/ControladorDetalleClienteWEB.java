@@ -5,9 +5,7 @@
 package controladorWeb;
 
 import clasesUtilitarias.Conversion;
-import clasesUtilitarias.Ordenamiento;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,10 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import listaDinamica.Lista;
-import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCliente;
 import logicaDeAccesoADatos.DAOClienteCuenta;
-import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCliente;
 import logicaDeAccesoADatos.IDAOClienteCuenta;
 import logicaDeNegocios.Cliente;

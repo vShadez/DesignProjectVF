@@ -9,7 +9,6 @@ import listaDinamica.Lista;
 import listaDinamica.Nodo;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
-import logicaDeNegocios.ICliente;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.ICliente;
 import logicaDeNegocios.Operacion;

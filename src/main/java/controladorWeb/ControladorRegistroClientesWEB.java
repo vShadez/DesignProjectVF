@@ -6,7 +6,6 @@ package controladorWeb;
 
 import controlador.ControladorRegistroClientes;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author sebashdez
  */
 @WebServlet(name = "ControladorRegistroClientesWEB", urlPatterns = {"/vistaWeb/RegistroClientes"})
 public class ControladorRegistroClientesWEB extends HttpServlet {

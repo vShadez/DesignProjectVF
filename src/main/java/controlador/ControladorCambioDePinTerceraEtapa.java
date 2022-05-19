@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
-import validacion.ExpresionRegular;
 import vistaGUI.CambioDePinTerceraEtapa;
 
 /**

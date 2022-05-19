@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vistaGUI.DepositoConTipoDeCambio;
 import vistaGUI.DepositoEnColones;
-import vistaGUI.InformacionPorConsultaDeEstadoCuentaColones;
-import vistaGUI.InformacionPorConsultaDeEstadoCuentaDolares;
 import vistaGUI.SeleccionDeDeposito;
 
 /**

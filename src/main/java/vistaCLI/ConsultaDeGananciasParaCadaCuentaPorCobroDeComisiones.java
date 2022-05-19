@@ -13,7 +13,6 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 import serviciosExternos.TipoCambioBCCR;
-import validacion.ValidacionCuenta;
 import vistaGUI.MenuPrincipal;
 
 /**

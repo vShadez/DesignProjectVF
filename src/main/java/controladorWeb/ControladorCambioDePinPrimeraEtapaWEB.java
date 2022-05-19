@@ -4,9 +4,7 @@
  */
 package controladorWeb;
 
-import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +16,7 @@ import validacion.ValidacionCuenta;
 
 /**
  *
- * @author 
+ * @author sebashdez
  */
 @WebServlet(name = "ControladorCambioDePinPrimeraEtapaWEB", urlPatterns = {"/vistaWeb/CambioDePinPrimeraEtapa"})
 public class ControladorCambioDePinPrimeraEtapaWEB extends HttpServlet {

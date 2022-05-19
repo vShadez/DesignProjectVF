@@ -11,7 +11,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
-import logicaDeNegocios.Cuenta;
+
 /**
  *
  * @author Jairo Calderón

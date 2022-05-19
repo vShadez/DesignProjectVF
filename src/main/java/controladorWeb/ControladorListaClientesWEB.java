@@ -6,9 +6,7 @@ package controladorWeb;
 
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.Ordenamiento;
-import controlador.ControladorListaClientes;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -16,18 +14,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import listaDinamica.Lista;
 import logicaDeAccesoADatos.DAOCatalogoDeClientes;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICliente;
-import vistaGUI.ColorCelda;
 
 /**
  *
- * @author 
+ * @author sebashdez
  */
 @WebServlet(name = "ControladorListaClientesWEB", urlPatterns = {"/vistaWeb/ListaClientes"})
 public class ControladorListaClientesWEB extends HttpServlet {
