@@ -6,11 +6,14 @@ package vistaCLI;
 
 import clasesUtilitarias.Conversion;
 import logicaDeAccesoADatos.DAOCatalogoDeClientes;
+import logicaDeAccesoADatos.DAOCliente;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
+import logicaDeAccesoADatos.IDAOCliente;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICliente;
 import validacion.ValidacionCliente;
 import validacion.ValidacionTipoDeDato;
+import clasesUtilitarias.Conversion;
 
 /**
  *
@@ -72,7 +75,7 @@ public class RegistroDeClientesCLI {
     }
     
     private boolean validarDatos(String pIdentificacion, String pFechaDeNacimiento, String pNumeroDeTelefono, String pCorreoElectronico) {
-        boolean identificacionEsDeTipoEntero = ValidacionTipoDeDato.verificarEsEntero(pNumeroDeTelefono);
+        boolean identificacionEsDeTipoEntero = ValidacionTipoDeDato.verificarEsEntero(pIdentificacion);
         if(identificacionEsDeTipoEntero) {
             boolean fechaDeNacimientoEsValida = ValidacionCliente.validarFechaNacimiento(pFechaDeNacimiento);
             if(fechaDeNacimientoEsValida) {
@@ -80,7 +83,16 @@ public class RegistroDeClientesCLI {
                 if(numeroDeTelefonoEsValido) {
                     boolean correoEsValido = ValidacionCliente.verificarFormatoDeCorreoElectronico(pCorreoElectronico);
                     if(correoEsValido) {
-                        return true;
+                        IDAOCatalogoDeClientes daoClientes = new DAOCatalogoDeClientes();
+                        int identificacion = Conversion.convertirStringEnEntero(pIdentificacion);
+                        boolean noExisteCliente = daoClientes.consultarSiExisteCliente(identificacion);
+                        if(noExisteCliente) {
+                            return true;
+                        }
+                        else {
+                            System.out.println(MensajeEnConsolaCliente.imprimirErrorIdentificacionExistente());
+                            return false;
+                        }
                     }
                     else {
                         System.out.println(MensajeEnConsolaCliente.imprimirErrorFormatoDeCorreoIncorrecto());

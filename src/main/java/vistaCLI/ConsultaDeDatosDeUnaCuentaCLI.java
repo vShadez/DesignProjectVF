@@ -6,6 +6,7 @@ package vistaCLI;
 
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.Ordenamiento;
+import java.text.DecimalFormat;
 import listaDinamica.Lista;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
@@ -41,7 +42,8 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
             System.out.println("\nCuenta n°" + numeroPorImprimir + ":");
             System.out.println("Número de cuenta: " + numeroDeCuenta);
             System.out.println("Estatus: " + estatus);
-            System.out.println("Saldo: " + saldo);
+            DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+            System.out.println("Saldo: " + formatoDeNumeroDecimal.format(saldo));
             Cliente duenoDeCuenta = (Cliente) cuenta.propietario;
             System.out.println("Identificacion del dueño de la cuenta: " + duenoDeCuenta.identificacion);
             System.out.println("Nombre del dueño de la cuenta: " + duenoDeCuenta.nombre + " " + duenoDeCuenta.primerApellido + " " + duenoDeCuenta.segundoApellido);
@@ -99,7 +101,8 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
         System.out.println("Información de la cuenta: ");
         System.out.println("Número de la cuenta: " + cuenta.numeroCuenta);
         System.out.println("Fecha de creación: " + cuenta.fechaCreacion.toString());
-        System.out.println("Saldo actual: " + cuenta.getSaldo());
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        System.out.println("Saldo actual: " + formatoDeNumeroDecimal.format(cuenta.getSaldo()));
         System.out.println("Pin: " + cuenta.getPin());
         System.out.println("Nombre del propietario de la cuenta: " + nombreCompletoDeClienteAsociadoACuenta);
     }

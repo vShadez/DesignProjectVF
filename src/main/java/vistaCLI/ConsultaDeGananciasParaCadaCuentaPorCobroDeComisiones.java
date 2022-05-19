@@ -4,6 +4,7 @@
  */
 package vistaCLI;
 
+import java.text.DecimalFormat;
 import listaDinamica.Lista;
 import listaDinamica.Nodo;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
@@ -46,9 +47,10 @@ public class ConsultaDeGananciasParaCadaCuentaPorCobroDeComisiones {
         double comisionesDepositos = comisionesCobradas.consultarMontoTotalCobradoComisionesPorDepositos(pNumeroDeCuenta);
         double comisionesRetiros = comisionesCobradas.consultarMontoTotalCobradoComisionesPorRetiros(pNumeroDeCuenta);
         double comisionesDepositosYRetiros = comisionesCobradas.consultarMontoTotalCobradoComisionesPorRetirosYDepositos(pNumeroDeCuenta);
-        System.out.println("Ganancias por depositos: " + comisionesDepositos);
-        System.out.println("Ganancias por retiros: " + comisionesRetiros);
-        System.out.println("Ganancias por depositos y retiros: " + comisionesDepositosYRetiros);
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        System.out.println("Ganancias por depositos: " + formatoDeNumeroDecimal.format(comisionesDepositos));
+        System.out.println("Ganancias por retiros: " + formatoDeNumeroDecimal.format(comisionesRetiros));
+        System.out.println("Ganancias por depositos y retiros: " + formatoDeNumeroDecimal.format(comisionesDepositosYRetiros));
     }
     
     private void mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnDolares(String pNumeroDeCuenta) {
@@ -58,8 +60,9 @@ public class ConsultaDeGananciasParaCadaCuentaPorCobroDeComisiones {
         double comisionesDepositosYRetiros = comisionesCobradas.consultarMontoTotalCobradoComisionesPorRetirosYDepositos(pNumeroDeCuenta);
         TipoCambioBCCR tipoDeCambio = new TipoCambioBCCR();
         double valorDeCompraDelDolar = tipoDeCambio.obtenerValorCompra();
-        System.out.println("Ganancias por depositos en dolares: " + (comisionesDepositos * valorDeCompraDelDolar));
-        System.out.println("Ganancias por retiros en dolares: " + (comisionesRetiros * valorDeCompraDelDolar));
-        System.out.println("Ganancias por depositos y retiros en dolares: " + (comisionesDepositosYRetiros * valorDeCompraDelDolar));
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        System.out.println("Ganancias por depositos en dolares: " + formatoDeNumeroDecimal.format((comisionesDepositos * valorDeCompraDelDolar)));
+        System.out.println("Ganancias por retiros en dolares: " + formatoDeNumeroDecimal.format((comisionesRetiros * valorDeCompraDelDolar)));
+        System.out.println("Ganancias por depositos y retiros en dolares: " + formatoDeNumeroDecimal.format((comisionesDepositosYRetiros * valorDeCompraDelDolar)));
     }
 }

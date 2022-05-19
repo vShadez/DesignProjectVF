@@ -4,6 +4,7 @@
  */
 package vistaCLI;
 
+import java.text.DecimalFormat;
 import listaDinamica.Lista;
 import listaDinamica.Nodo;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
@@ -67,7 +68,8 @@ public class ConsultaDeEstadoDeCuentaEnDolaresCLI {
         double valorDeCompra = tipoDeCambioDelDolar.obtenerValorCompra();
         System.out.println("Información de la cuenta: ");
         System.out.println("Número de cuenta: " + cuentaConsultada.numeroCuenta);
-        System.out.println("Saldo: " + (cuentaConsultada.getSaldo() / valorDeCompra));
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        System.out.println("Saldo: " + formatoDeNumeroDecimal.format((cuentaConsultada.getSaldo() / valorDeCompra)));
         System.out.println("\nInformación del cliente asociado a la cuenta: ");
         Cliente clientePropietario = (Cliente) cuentaConsultada.propietario;
         this.mostrarDetallesDeClienteAsociado(clientePropietario);

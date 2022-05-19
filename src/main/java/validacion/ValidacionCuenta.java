@@ -74,7 +74,6 @@ public class ValidacionCuenta {
                 }
             }
         }
-        controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido();
         return false;
     }
     
