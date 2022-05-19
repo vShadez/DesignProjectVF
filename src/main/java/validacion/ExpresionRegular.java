@@ -30,10 +30,10 @@ public class ExpresionRegular {
     }
     
     public static boolean verificarContieneCaracterEspecial(String textoPorVerificar) {
-        ExpresionRegular.patronDeComparacion = Pattern.compile("[^A-Z0-9]");
+        ExpresionRegular.patronDeComparacion = Pattern.compile("[^A-Za-z0-9]");
         ExpresionRegular.comparacion = ExpresionRegular.patronDeComparacion.matcher(textoPorVerificar);
-        boolean contieneNumero = comparacion.find();
-        return contieneNumero;
+        boolean contieneLetrasONumeros = comparacion.find();
+        return contieneLetrasONumeros;
     }
     
     public static boolean verificarContieneSeisCaracteresSinEspacios(String textoPorVerificar) {

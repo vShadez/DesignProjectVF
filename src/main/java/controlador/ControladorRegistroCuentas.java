@@ -14,10 +14,13 @@ import vistaGUI.RegistroCuentasVista;
 import logicaDeAccesoADatos.DAOCliente;
 import logicaDeAccesoADatos.IDAOCliente;
 import clasesUtilitarias.Conversion;
+import static controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido;
 import static controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorSaldoNoEsEntero;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
-
+import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
+import logicaDeAccesoADatos.DAOCatalogoDeClientes;
+import static vistaCLI.MensajeEnConsolaCliente.imprimirErrorIdentificacionExistente;
 /**
  *
  * @author estadm
@@ -49,8 +52,11 @@ public class ControladorRegistroCuentas implements ActionListener{
    
     
     public static boolean registrarCuenta(String pPin, String pMontoInicial, String pIdentificacionCliente){
+        IDAOCatalogoDeClientes obtenerCliente = new DAOCatalogoDeClientes();
+        boolean validarClienteSiYaExiste = obtenerCliente.consultarSiExisteCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
         if(validacion.ValidacionCuenta.validarFormatoDePin(pPin)){
                 if(validacion.ValidacionTipoDeDato.verificarEsEntero(pMontoInicial)){
+                    if(validarClienteSiYaExiste){
                 try {
                     double montoInicialConvetidoDouble = Conversion.convertirStringEnDecimal(pMontoInicial);
                     IDAOCliente DAOCliente = new DAOCliente();
@@ -76,10 +82,15 @@ public class ControladorRegistroCuentas implements ActionListener{
                 catch (Exception ex) {
                     
                 }
+                    }else{
+                        imprimirErrorIdentificacionExistente();
+                    }
             }else{
                 imprimirMensajeDeErrorSaldoNoEsEntero();
                 }
             }
+        System.out.println(pPin);
+            imprimirMensajeDeErrorFormatoDePinInvalido();
             return false;
         }
 }

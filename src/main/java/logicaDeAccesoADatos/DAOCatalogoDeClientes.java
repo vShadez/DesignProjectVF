@@ -59,7 +59,7 @@ public class DAOCatalogoDeClientes implements IDAOCatalogoDeClientes {
         Document documento = (Document) coleccionClientes.find(new BasicDBObject("identificacion", pIdentificacion)).projection(Projections.fields(Projections.include("identificacion"))).first();
         
         if (documento == null){
-            return true;
+            return false;
         } else {
             int identificacion = documento.getInteger("identificacion");
             return identificacion != pIdentificacion;

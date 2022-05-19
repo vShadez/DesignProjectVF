@@ -100,17 +100,17 @@ public class RegistroDeCuentasCLI {
                     return true;
                 }
                 else {
-                    MensajeEnConsolaCuenta.imprimirMensajeDeErrorClienteAsociadoNoExiste();
+                    System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorClienteAsociadoNoExiste());
                     return false;
                 }
             }
             else {
-                MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroODepositoIncorrecto();
+                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroODepositoIncorrecto());
                 return false;
             }
         }
         else {
-            MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido();
+            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido());
             return false;
         }
     }

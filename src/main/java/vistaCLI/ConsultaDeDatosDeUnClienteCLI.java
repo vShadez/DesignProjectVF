@@ -105,7 +105,8 @@ public class ConsultaDeDatosDeUnClienteCLI {
         System.out.println("Cuentas asignadas al cliente: \n");
         while(puntero != null) {
             Cuenta cuenta = (Cuenta) puntero.objeto;
-            System.out.println("Número de cuenta" + cuenta.numeroCuenta + ":");
+            System.out.println("Número de cuenta: " + cuenta.numeroCuenta);
+            puntero = puntero.siguiente;
         }
         MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
     }

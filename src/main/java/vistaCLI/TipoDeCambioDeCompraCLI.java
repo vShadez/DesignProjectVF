@@ -4,6 +4,7 @@
  */
 package vistaCLI;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import serviciosExternos.TipoCambioBCCR;
 
@@ -21,7 +22,8 @@ public class TipoDeCambioDeCompraCLI {
         double tipoDeCambioDeCompra = tipoDeCambioDeDolar.obtenerValorCompra();
         String mensaje = "";
         mensaje += "El tipo de cambio del dólar de compra para hoy: " + LocalDate.now().toString() + " es: ";
-        mensaje += tipoDeCambioDeCompra;
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        mensaje += formatoDeNumeroDecimal.format(tipoDeCambioDeCompra);
         System.out.println(mensaje);
         MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
     }

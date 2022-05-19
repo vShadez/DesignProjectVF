@@ -4,6 +4,7 @@
  */
 package vistaCLI;
 
+import java.text.DecimalFormat;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import validacion.ValidacionCuenta;
@@ -71,6 +72,7 @@ public class ConsultaDeSaldoActualCLI {
     private void mostrarSaldoDeCuenta(String pNumeroDeCuenta) {
         IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
         double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(pNumeroDeCuenta);
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeSaldoCuentaActualColones(""+saldoActualColones));
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeSaldoCuentaActualColones(""+formatoDeNumeroDecimal.format(saldoActualColones)));
     }
 }

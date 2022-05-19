@@ -37,7 +37,7 @@ public class MensajeEnPantallaCliente {
     }
        
     public static void imprimirErrorIdentificacionExistente() {
-        String mensaje = "La identificación ya existe";
+        String mensaje = "La identificación ya existe.";
         JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

@@ -4,6 +4,7 @@
  */
 package vistaCLI;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 /**
@@ -31,43 +32,48 @@ public class MensajeEnConsolaCuenta {
     
     public static String imprimirMensajeDepositoEnColonesExitoso(String pNumeroDeCuenta, int pMontoDepositado, double pMontoComision) {
         String mensajeDepositoExitoso = "";
-        mensajeDepositoExitoso += "Estimado usuario, se han depositado correctamente " + pMontoDepositado + " colones \n";
-        mensajeDepositoExitoso += "[El monto real depositado a su cuenta" + pNumeroDeCuenta + "es de " + (pMontoDepositado - pMontoComision) + " colones] \n";
-        mensajeDepositoExitoso += "[El monto cobrado por concepto de comisión fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual]";
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        mensajeDepositoExitoso += "Estimado usuario, se han depositado correctamente " + formatoDeNumeroDecimal.format(pMontoDepositado) + " colones \n";
+        mensajeDepositoExitoso += "[El monto real depositado a su cuenta" + pNumeroDeCuenta + "es de " + formatoDeNumeroDecimal.format((pMontoDepositado - pMontoComision)) + " colones] \n";
+        mensajeDepositoExitoso += "[El monto cobrado por concepto de comisión fue de " + formatoDeNumeroDecimal.format(pMontoComision) + " colones, que fueron rebajados automáticamente de su saldo actual]";
         return mensajeDepositoExitoso;
     }
     
     public static String imprimirMensajeDepositoEnDolaresExitoso(String pNumeroDeCuenta,double pMontoDepositadoDolares, double pMontoDepositadoColones, double pTipoCambio, double pMontoComision, LocalDate pFechaDeposito) {
         String mensajeDepositoExitoso = "";
-        mensajeDepositoExitoso += "Estimado usuario, se han recibido correctamente " + pMontoDepositadoDolares + " dolares \n";
-        mensajeDepositoExitoso += "[Según el BCCR, el tipo de cambio de compra del dólar de " + pFechaDeposito + " es: " + pTipoCambio + "] \n";
-        mensajeDepositoExitoso += "[El monto equivalente en colones es " + pMontoDepositadoColones + "] \n";
-        mensajeDepositoExitoso += "[El monto real depositado a su cuenta " + pNumeroDeCuenta + " es de " + (pMontoDepositadoColones - pMontoComision) + " colones] \n";
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        mensajeDepositoExitoso += "Estimado usuario, se han recibido correctamente " + formatoDeNumeroDecimal.format(pMontoDepositadoDolares) + " dolares \n";
+        mensajeDepositoExitoso += "[Según el BCCR, el tipo de cambio de compra del dólar de " + pFechaDeposito + " es: " + formatoDeNumeroDecimal.format(pTipoCambio) + "] \n";
+        mensajeDepositoExitoso += "[El monto equivalente en colones es " + formatoDeNumeroDecimal.format(pMontoDepositadoColones) + "] \n";
+        mensajeDepositoExitoso += "[El monto real depositado a su cuenta " + pNumeroDeCuenta + " es de " + formatoDeNumeroDecimal.format((pMontoDepositadoColones - pMontoComision)) + " colones] \n";
         mensajeDepositoExitoso += "[El monto cobrado por concepto de comisión fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual]";
         return mensajeDepositoExitoso;
     }
     
     public static String imprimirMensajeRetiroEnColonesExitoso(double pMontoRetirado, double pMontoComision) {
         String mensajeRetiroExitoso = "";
-        mensajeRetiroExitoso += "Estimado usuario, el monto de este retiro es " + pMontoRetirado + " colones \n";
-        mensajeRetiroExitoso += "[El monto cobrado por concepto de comisión fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual]";
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        mensajeRetiroExitoso += "Estimado usuario, el monto de este retiro es " + formatoDeNumeroDecimal.format(pMontoRetirado) + " colones \n";
+        mensajeRetiroExitoso += "[El monto cobrado por concepto de comisión fue de " + formatoDeNumeroDecimal.format(pMontoComision) + " colones, que fueron rebajados automáticamente de su saldo actual]";
         return mensajeRetiroExitoso;
     }
     
     public static String imprimirMensajeRetiroEnDolaresExitoso(double pMontoRetiradoColones, double pMontoRetiradoDolares, double pTipoCambio, double pMontoComision) {
         String mensajeRetiroExitoso = "";
-        mensajeRetiroExitoso += "Estimado usuario, el monto de este retiro es " + pMontoRetiradoDolares + " dolares \n";
-        mensajeRetiroExitoso += "[Según el BCCR, el tipo de cambio de venta del dólar es: " + pTipoCambio + "] \n";
-        mensajeRetiroExitoso += "[El monto equivalente de su retiro es es " + pMontoRetiradoColones + "] \n";
-        mensajeRetiroExitoso += "[El monto cobrado por concepto de comisión fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual]";
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        mensajeRetiroExitoso += "Estimado usuario, el monto de este retiro es " + formatoDeNumeroDecimal.format(pMontoRetiradoDolares) + " dolares \n";
+        mensajeRetiroExitoso += "[Según el BCCR, el tipo de cambio de venta del dólar es: " + formatoDeNumeroDecimal.format(pTipoCambio) + "] \n";
+        mensajeRetiroExitoso += "[El monto equivalente de su retiro es es " + formatoDeNumeroDecimal.format(pMontoRetiradoColones) + "] \n";
+        mensajeRetiroExitoso += "[El monto cobrado por concepto de comisión fue de " + formatoDeNumeroDecimal.format(pMontoComision) + " colones, que fueron rebajados automáticamente de su saldo actual]";
         return mensajeRetiroExitoso;
     }
     
     public static String imprimirMensajeTransferenciaExitosa(double pMontoTransferido, double pMontoComision) {
         String mensajeTransferenciaExitosa = "";
         mensajeTransferenciaExitosa += "Estimado usuario, la transferencia de fondos se ejecuto satisfactoriamente. \n";
-        mensajeTransferenciaExitosa += "El monto retirado de la cuenta origen y depositado en la cuenta destino es " + pMontoTransferido + "\n";
-        mensajeTransferenciaExitosa += "[El monto cobrado por concepto de comisión a la cuenta origen fue de " + pMontoComision + " colones, que fueron rebajados automáticamente de su saldo actual] \n";
+        DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
+        mensajeTransferenciaExitosa += "El monto retirado de la cuenta origen y depositado en la cuenta destino es " + formatoDeNumeroDecimal.format(pMontoTransferido) + "\n";
+        mensajeTransferenciaExitosa += "[El monto cobrado por concepto de comisión a la cuenta origen fue de " + formatoDeNumeroDecimal.format(pMontoComision) + " colones, que fueron rebajados automáticamente de su saldo actual] \n";
         return mensajeTransferenciaExitosa;
     }
     
@@ -96,7 +102,7 @@ public class MensajeEnConsolaCuenta {
     }
     
     public static String imprimirMensajeDeErrorClienteAsociadoNoExiste() {
-        String mensajeDeError = "No existe ninguna cuenta registrada con el número: ";
+        String mensajeDeError = "No existe ningún cliente con esa identificacion: ";
         return mensajeDeError;
     }
     
