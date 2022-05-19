@@ -1,6 +1,7 @@
 package controladorWeb;
 
 import clasesUtilitarias.Conversion;
+import clasesUtilitarias.Ordenamiento;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
+import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 
@@ -29,44 +31,45 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            System.out.println("Entrando 1");
-            Lista<ICuenta> listaCuentas;
-            Cuenta[] arregloCuentasOrdenadas;
+        Cuenta[] arregloCuentasDesordenadas;
+        IDAOCatalogoDeCuentas daoCatalogoDeCuentas = new DAOCatalogoDeCuentas();
+        int cantidadCuentas = daoCatalogoDeCuentas.consultarCantidadCuentas();
+        
+        Lista<ICuenta> consultarListaCuentas = daoCatalogoDeCuentas.consultarListaDeCuentas();
             
-            IDAOCatalogoDeCuentas cuentas = new DAOCatalogoDeCuentas();
-            int cantidadCuentas = cuentas.consultarCantidadCuentas();
-            listaCuentas = cuentas.consultarListaDeCuentas();
-            
-            arregloCuentasOrdenadas = Conversion.convertirListaCuentaEnArreglo(listaCuentas, cantidadCuentas);
-            List<OperacionDto> operacionesAMostrar =  new LinkedList<>();
-            for (int i = 0; i < cantidadCuentas; i++) {
-                System.out.println("Entrando 2");
-                String numeroDeCuenta = arregloCuentasOrdenadas[i].numeroCuenta;
-                IDAOOperacionCuenta operacionesCenta = new DAOOperacionCuenta();
-                double cantidadDepositosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorDepositos(numeroDeCuenta);
-                double cantidadRetirosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorRetiros(numeroDeCuenta);
-                double cantidadRetirosDepositosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorRetirosYDepositos(numeroDeCuenta);
-                
-                operacionesAMostrar.add(new OperacionDto(numeroDeCuenta, String.format("%.2f",cantidadDepositosRealizados),String.format("%.2f",cantidadRetirosRealizados), String.format("%.2f",cantidadRetirosDepositosRealizados)));
-                System.out.println(numeroDeCuenta);
-                request.setAttribute("operacionesAsociadas", operacionesAMostrar);
-            }
-                request.getRequestDispatcher("ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas.jsp").forward(request, response);
+        arregloCuentasDesordenadas = Conversion.convertirListaCuentaEnArreglo(consultarListaCuentas, cantidadCuentas);
+        Cuenta cuenta[] = Ordenamiento.ordenarDescendentemente(arregloCuentasDesordenadas);
+        
+        List<OperacionDto> operacionesAMostrar =  new LinkedList<OperacionDto>();
+        
+        for (int i = 0; i < cantidadCuentas; i++) {
+            String numeroCuentaConsultada = cuenta[i].numeroCuenta;
+            IDAOOperacionCuenta operacionesCenta = new DAOOperacionCuenta();
+            double cantidadDepositosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorDepositos(numeroCuentaConsultada);
+            double cantidadRetirosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorRetiros(numeroCuentaConsultada);
+            double cantidadRetirosDepositosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorRetirosYDepositos(numeroCuentaConsultada);
+
+            operacionesAMostrar.add(new OperacionDto(numeroCuentaConsultada, String.format("%.2f",cantidadDepositosRealizados), String.format("%.2f",cantidadRetirosRealizados), String.format("%.2f",cantidadRetirosDepositosRealizados)));
         }
+        
+        request.setAttribute("operacionesAMostrar", operacionesAMostrar);
+        
+        request.getRequestDispatcher("ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas.jsp").forward(request, response);
+    }
     public class OperacionDto {
-        private String cuenta;
+        private String numeroCuenta;
         private String depositos;
         private String retiros;
         private String depositosYRetiros;
 
         public OperacionDto(String pNumeroCuenta, String cantDepositos, String cantRetiros, String cantDepositosRetiros) {
-            this.cuenta = pNumeroCuenta;
+            this.numeroCuenta = pNumeroCuenta;
             this.depositos = cantDepositos;
             this.retiros = cantRetiros;
             this.depositosYRetiros = cantDepositosRetiros;
         }
         public String getNumeroCuenta() {
-            return cuenta;
+            return numeroCuenta;
         }
         
         public String getDepositos() {
@@ -77,7 +80,7 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
             return retiros;
         }
 
-        public String getDepositoRetiro() {
+        public String getDepositosYRetiros() {
             return depositosYRetiros;
         }
 

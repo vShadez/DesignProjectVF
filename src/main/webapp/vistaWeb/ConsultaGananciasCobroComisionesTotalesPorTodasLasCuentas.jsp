@@ -15,34 +15,34 @@
     </head>
     
     <body>
-    <table class="table table-striped">
-        <div class="card-body">
-            <div class ="mb-4 text-center" >
+        <div class="card-body text-center">
+            <div class ="mb-4">
                 <h1> Ganancias totales de cada cuenta por cobro de comision </h1>
                 <div>
                     <img src="../imagenesVista/Imagen25.png"/>
                 </div>
                 <br>
-                <thead>
-                    <tr>
-                        <th>Cuenta</th>
-                        <th>Total de depositos y retiros</th>
-                        <th>Total depositos</th>
-                        <th>Total retiros</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="row" items="${operacionesAsociadas}">
-                    <tr>
-                        <td>${row.cuenta}</td>
-                        <td>${row.depositosYRetiros}</td>
-                        <td>${row.depositos}</td>                        
-                        <td>${row.retiros}</td>
-                    </tr>
-                    </c:forEach>
-                </tbody>
             </div>
         </div>
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>
+                <th>Cuenta</th>
+                <th>Total depositos</th>
+                <th>Total retiros</th>
+                <th>Total de depositos y retiros</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="row" items="${operacionesAMostrar}">
+            <tr>
+                <td>${row.numeroCuenta}</td>
+                <td>${row.depositos}</td>                        
+                <td>${row.retiros}</td>
+                <td>${row.depositosYRetiros}</td>
+            </tr>
+            </c:forEach>
+        </tbody>
     </table>
     <div class="form-group text-center">
         <a href="../index.html">Cancelar</a>
