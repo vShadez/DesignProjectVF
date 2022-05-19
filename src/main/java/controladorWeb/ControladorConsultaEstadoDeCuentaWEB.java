@@ -41,8 +41,8 @@ public class ControladorConsultaEstadoDeCuentaWEB extends HttpServlet {
                 if(cuentaEstaActiva) {
                     boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
                     if(pinCorrespondeACuenta) {
-                        //response.sendRedirect("SeleccionDeConsultaEstadoDeCuenta?numeroCuenta=" + numeroDeCuenta);
-                        System.out.println("Leega");
+                        //System.out.println(numeroDeCuenta);
+                        response.sendRedirect("SeleccionDeConsultaEstadoDeCuenta?numeroCuenta=" + numeroDeCuenta);
                     } else {
                     if(this.cantidadDeIntentos == 1) {
                         MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);

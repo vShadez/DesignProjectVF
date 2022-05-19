@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,15 +24,23 @@
                     </div>
                 </div>
                 <br>
-                <div class="form-group">
-                    <a class="btn btn-primary " href="InformacionPorConsultaDeEstadoCuentaColones.jsp"> Colones </a> 
-                </div>
-                <div class="form-group">
-                    <a class="btn btn-primary " href="InformacionPorConsultaDeEstadoCuentaDolares.jsp"> Dolares </a> 
-                </div>
-                <div class="box" style="text-align: center">
-                    <a href="../index.html">Cancelar</a>
-                </div>
+                <form method="post" action="<c:url value="/vistaWeb/SeleccionDeConsultaEstadoDeCuenta"/>" >
+                    <div class="form-group">
+                       
+                        <input type="submit" class= "btn btn-primary " name="event" value="Colones">
+                         <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
+                        
+                    </div>
+                    <div class="form-group">
+                        
+                        <input type="submit" class= "btn btn-primary " name="event" value="Dolares">
+                        <input type="hidden" name = "numeroDeCuenta" value="${numeroDeCuenta}" />
+                        
+                    </div>
+                    <div class="box" style="text-align: center">
+                        <a href="../index.html">Cancelar</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

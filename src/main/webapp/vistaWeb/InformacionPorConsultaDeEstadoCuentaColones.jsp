@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,21 +24,19 @@
                     </div>
                     <br>
                     <div class="row">
-                        {{#each consultaEstadoCuenta}}
                         <div class="form-group col-md-6">
                             <div class="card mb-2">
                                 <div class="card-body">
                                     <div class="card-header">
-                                        <p class = "lead"> Numero de cuenta: {{numeroCuenta}} </p>
-                                        <p class = "lead"> Saldo actual: {{saldo}}</p>
-                                        <p class = "lead"> Propietario: {{propietario}}</p>
-                                        <p class = "lead"> Correo electronico: {{correoElectronico}}</p>
-                                        <p class = "lead"> Numero telefonico: {{numeroTelefono}}</p>
+                                        <p class = "lead"> Numero de cuenta: ${numeroCuenta} </p>
+                                        <p class = "lead"> Saldo actual: ${saldo}</p>
+                                        <p class = "lead"> Propietario: ${propietario}</p>
+                                        <p class = "lead"> Correo electronico: ${correoElectronico}</p>
+                                        <p class = "lead"> Numero telefonico: ${numeroTelefono}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {{/each}}
                     </div>
                     <div class ="mb-4 text-center" >
                         <h1> Operaciones </h1>
@@ -49,16 +48,16 @@
                                 <th>Comision</th>
                             </tr>
                         </thead>
-                        {{#each consultarOperacion}}
                         <tbody>
-                            <tr>
-                                <td>{{tipoOperacion}}</td>
-                                <td>{{fecha}}</td>
-                                <td>{{monto}}</td>
-                                <td>{{comision}}</td>
-                            </tr>
+                            <c:forEach var="row" items="${operacionesAsociadas}">
+                                <tr>
+                                    <td>${row.tipoOperacion}</td>
+                                    <td>${row.fecha}</td>
+                                    <td>${row.monto}</td>
+                                    <td>${row.comision}</td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
-                        {{/each}}
                     </div>
                 </div>
             </div>

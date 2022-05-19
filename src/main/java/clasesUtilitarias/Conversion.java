@@ -12,6 +12,7 @@ import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICliente;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.ICliente;
+import logicaDeNegocios.Operacion;
 
 /**
  *
@@ -58,5 +59,18 @@ public class Conversion {
             indiceArreglo++;
         }
         return arregloCuenta;
+    }
+    
+    public static Operacion[] convertirListaOperacionEnArreglo(Lista<Operacion> pLista, int tamano) {
+        Operacion[] arregloOperacion = new Operacion[tamano];
+        Nodo puntero = pLista.inicio;
+        int indiceArreglo = 0;
+        while(puntero != null) {
+            Operacion operacion = (Operacion) puntero.objeto;
+            arregloOperacion[indiceArreglo] = operacion;
+            puntero = puntero.siguiente;
+            indiceArreglo++;
+        }
+        return arregloOperacion;
     }
 }
