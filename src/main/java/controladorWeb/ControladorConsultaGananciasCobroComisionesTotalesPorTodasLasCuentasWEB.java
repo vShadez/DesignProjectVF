@@ -48,12 +48,10 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
                 double cantidadRetirosDepositosRealizados = operacionesCenta.consultarMontoTotalCobradoComisionesPorRetirosYDepositos(numeroDeCuenta);
                 
                 operacionesAMostrar.add(new OperacionDto(numeroDeCuenta, String.format("%.2f",cantidadDepositosRealizados),String.format("%.2f",cantidadRetirosRealizados), String.format("%.2f",cantidadRetirosDepositosRealizados)));
-         
+                System.out.println(numeroDeCuenta);
                 request.setAttribute("operacionesAsociadas", operacionesAMostrar);
-        
-                request.getRequestDispatcher("ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas.jsp").forward(request, response);
-               
             }
+                request.getRequestDispatcher("ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas.jsp").forward(request, response);
         }
     public class OperacionDto {
         private String cuenta;
