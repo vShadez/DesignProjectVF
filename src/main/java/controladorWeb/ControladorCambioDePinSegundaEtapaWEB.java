@@ -4,6 +4,7 @@
  */
 package controladorWeb;
 
+import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,6 +36,8 @@ public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+        
+        
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         String pin = request.getParameter("pinActual");
         this.cantidadDeIntentos++;
@@ -44,14 +47,17 @@ public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {
             response.sendRedirect("CambioDePinTerceraEtapa?numeroCuenta=" + numeroDeCuenta);
         } else {
             if(this.cantidadDeIntentos == 1) {
-                request.setAttribute("Error", "El pin no corresponde al de la cuenta");
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                request.setAttribute("error", "El pin no corresponde al de la cuenta");
                 
                 request.setAttribute("numeroDeCuenta", numeroDeCuenta);
                 request.getRequestDispatcher("CambioDePinSegundaEtapa.jsp?numeroCuenta=" + numeroDeCuenta).forward(request, response);
             }
             else {
                 validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
+                response.sendRedirect("../index.html");
             }
+
         }
     }
 }
