@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,16 +31,16 @@
                         <th>Total retiros</th>
                     </tr>
                 </thead>
-                {{#each cuenta}}
                 <tbody>
+                    <c:forEach var="row" items="${operacionesAsociadas}">
                     <tr>
-                        <td>{{cuenta}}</td>
-                        <td>{{depositosYRetiros}}</td>
-                        <td>{{depositos}}</td>
-                        <td>{{retiros}}</td>
+                        <td>${row.cuenta}</td>
+                        <td>${row.depositosYRetiros}</td>
+                        <td>${row.depositos}</td>
+                        <td>${row.retiros}</td>
                     </tr>
+                    </c:forEach>
                 </tbody>
-                {{/each}}
             </div>
         </div>
     </table>
