@@ -50,7 +50,7 @@ public class RegistroDeCuentasCLI {
                     int numeroDeRegistroDeCuenta = cantidadCuentas.consultarCantidadCuentas() + 1;
                     String numeroCuenta = "CU-" + numeroDeRegistroDeCuenta;
                     ICuenta nuevaCuenta = null;
-                    nuevaCuenta = new Cuenta(numeroCuenta, montoInicialConvetidoDouble, estatusCuenta, pin);
+                    nuevaCuenta = new Cuenta(numeroCuenta, 0, estatusCuenta, pin);
                     nuevaCuenta.asignarPropietario(clienteAsociadoConCuenta);
                     nuevaCuenta.depositar(montoInicialConvetidoDouble);
                     clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);

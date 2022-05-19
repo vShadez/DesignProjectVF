@@ -35,13 +35,14 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String numeroDeCuenta = request.getParameter("numeroCuenta");
-            
-            request.setAttribute("numeroDeCuenta", numeroDeCuenta);
+       
+            numeroDeCuenta = request.getParameter("numeroCuenta");
             IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
             Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(numeroDeCuenta);
+            this.cantidadDeIntentos = 0;
             this.numeroDeTelefono = clienteAsociadoACuenta.numeroTelefono;
             enviarMensajeDeTexto();
+            MensajeEnPantallaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
             request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp").forward(request, response);
             
     }
@@ -49,32 +50,28 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            System.out.println("Entre Segunda parte");
-            String numeroDeCuenta = request.getParameter("numeroDeCuenta");
+        
+            
+            request.setAttribute("numeroDeCuenta", numeroDeCuenta);
             String mensajeSecreto = request.getParameter("mensajeTexto");
-            //String numeroCuentaOrigen = set;
+            //String numeroDeCuenta = request.getParameter("numeroDeCuenta");
             this.cantidadDeIntentos++;
-            //request.setAttribute("mensajeTexto", mensajeSecreto);
             
-            //this.numeroDeCuenta = numeroDeCuenta;
-            //this.transaccionAsociada = pTransaccionAsociada;
-            
+            System.out.println(numeroDeCuenta);
             
             if(this.mensajeSecreto.equals(mensajeSecreto)) {
                 response.sendRedirect("SolicitarMontoDepositoYCuentaDestinoDeTransferencia?numeroCuentaOrigen=" + numeroDeCuenta);
             }else{
                 if(this.cantidadDeIntentos == 1) {
-                    //request.setAttribute("numeroDeCuenta", numeroDeCuenta);
-                    //request.setAttribute("numeroDeCuenta", numeroDeCuenta);
-                    MensajeEnPantallaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
-                    enviarMensajeDeTexto();
+                    request.setAttribute("Error", "El texto ingresado no es correcto");
+                
+                    request.setAttribute("numeroDeCuenta", numeroDeCuenta);
                     request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp?numeroCuenta=" + numeroDeCuenta).forward(request, response);
                 }
                 else {
                     // inactivar cuenta
                     this.inactivarCuenta();
                 }
-                
             }
             //request.getRequestDispatcher("VerificacionMensajeDeTexto.jsp").forward(request, response);
         }
@@ -88,9 +85,8 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
         mensaje += "Ingrese esta palabra correctamente para proceder con su retiro";
         
         mensajeDeTexto.enviarMensaje(String.valueOf(this.numeroDeTelefono), mensaje);
-        MensajeEnPantallaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
-        System.out.println(this.numeroDeTelefono);
-        System.out.println(mensaje);
+        System.out.println(this.mensajeSecreto);
+        
     }
     private void inactivarCuenta() {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();

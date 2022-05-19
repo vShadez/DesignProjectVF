@@ -4,73 +4,64 @@
  */
 package controladorWeb;
 
-import clasesUtilitarias.Conversion;
 import controlador.ControladorSeccionDeConsultaEstadoDeCuenta;
 import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import listaDinamica.Lista;
-import logicaDeAccesoADatos.DAOCliente;
-import logicaDeAccesoADatos.DAOClienteCuenta;
-import logicaDeAccesoADatos.IDAOCliente;
-import logicaDeAccesoADatos.IDAOClienteCuenta;
-import logicaDeNegocios.Cliente;
-import logicaDeNegocios.Cuenta;
-import logicaDeNegocios.ICuenta;
 import validacion.ValidacionCuenta;
 import vistaGUI.SeleccionDeConsultaEstadoDeCuenta;
 
 /**
  *
- * @author 
+ * @author estadm
  */
-@WebServlet(name = "ControladorConsultaEstadoDeCuentaWEB", urlPatterns = {"/ControladorConsultaEstadoDeCuentaWEB"})
+@WebServlet(name = "ControladorConsultaEstadoDeCuentaWEB", urlPatterns = {"/vistaWeb/ConsultaEstadoDeCuenta"})
 public class ControladorConsultaEstadoDeCuentaWEB extends HttpServlet {
+    private int cantidadDeIntentos;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        this.cantidadDeIntentos++;
-//        String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaEstadoCuenta.getText();
-//        String pin = this.vistaGUI.txtPinEstadoCuenta.getText();
-//        boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
-//        if(existeCuenta) {
-//            boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
-//            if(cuentaEstaActiva) {
-//                boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
-//                if(pinCorrespondeACuenta) {
-//                    SeleccionDeConsultaEstadoDeCuenta vistaSeccionConsultaEstadoCuenta = new SeleccionDeConsultaEstadoDeCuenta();
-//                    ControladorSeccionDeConsultaEstadoDeCuenta controladorSeccionConsultaEstadoCuenta = new ControladorSeccionDeConsultaEstadoDeCuenta(vistaSeccionConsultaEstadoCuenta, numeroDeCuenta);
-//                    controladorSeccionConsultaEstadoCuenta.vistaGUI.setVisible(true);
-//                    controladorSeccionConsultaEstadoCuenta.vistaGUI.setLocationRelativeTo(null);
-//                    vistaGUI.setVisible(false);
-//                } else {
-//                if(this.cantidadDeIntentos == 1) {
-//                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
-//                }
-//                else {
-//                    validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
-//                }
-//              }
-//
-//            }else{
-//                MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
-//            }
-//        }else{
-//            MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
-//        }
-//        
+        request.getRequestDispatcher("ConsultaEstadoDeCuenta.jsp").forward(request, response);
+        }
+    
+     @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        this.cantidadDeIntentos++;
+        String numeroDeCuenta = request.getParameter("numeroCuenta");
+        String pin = request.getParameter("pin");
+        boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
+            if(existeCuenta) {
+                boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
+                if(cuentaEstaActiva) {
+                    boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
+                    if(pinCorrespondeACuenta) {
+                        //response.sendRedirect("SeleccionDeConsultaEstadoDeCuenta?numeroCuenta=" + numeroDeCuenta);
+                        System.out.println("Leega");
+                    } else {
+                    if(this.cantidadDeIntentos == 1) {
+                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
+                    request.getRequestDispatcher("ConsultaEstadoDeCuenta.jsp").forward(request, response);
+                    }
+                    else {
+                        validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
+                        request.getRequestDispatcher("ConsultaEstadoDeCuenta.jsp").forward(request, response);
+                    }
+                  }
+                    
+                }else{
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
+                    request.getRequestDispatcher("ConsultaEstadoDeCuenta.jsp").forward(request, response);
+                }
+            }else{
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
+                request.getRequestDispatcher("ConsultaEstadoDeCuenta.jsp").forward(request, response);
+            }
     }
     
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        
-    }
 }

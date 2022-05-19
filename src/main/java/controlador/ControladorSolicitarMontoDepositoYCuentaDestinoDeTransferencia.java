@@ -86,7 +86,7 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
         Cuenta cuentaDeDestino = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuentaDestino);
         double montoComision = cuentaDeOrigen.calcularMontoComision(pMontoTransferido);
         cuentaDeOrigen.transferir(cuentaDeDestino, pMontoTransferido);
-        cuentaDeOrigen.retirar(pMontoTransferido);
+        //cuentaDeOrigen.retirar(pMontoTransferido);
         MensajeEnPantallaCuenta.imprimirMensajeTransferenciaExitosa(pMontoTransferido, montoComision);
     }
 }

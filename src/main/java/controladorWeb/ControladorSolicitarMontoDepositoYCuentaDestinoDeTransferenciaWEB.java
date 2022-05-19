@@ -30,18 +30,16 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferenciaWEB e
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             numeroDeCuentaOrigen = request.getParameter("numeroCuentaOrigen");
-            numeroCuentaDestino =  request.getParameter("numeroCuentaDestino");
-            montoEnviado = request.getParameter("montoEnviado");
             
-            System.out.println(numeroDeCuentaOrigen);
-            System.out.println(numeroCuentaDestino);
-            System.out.println(montoEnviado);
             request.getRequestDispatcher("SolicitarMontoDepositoYCuentaDestinoDeTransferencia.jsp").forward(request, response);
         }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            numeroCuentaDestino =  request.getParameter("numeroCuentaDestino");
+            montoEnviado = request.getParameter("montoEnviado");
+            
         boolean formatoDeMontoDeRetiroEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(montoEnviado);
             if(formatoDeMontoDeRetiroEsCorrecto) {
                 boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroCuentaDestino);
@@ -73,6 +71,7 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferenciaWEB e
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
                 request.getRequestDispatcher("SolicitarMontoDepositoYCuentaDestinoDeTransferencia.jsp").forward(request, response);
             }
+            response.sendRedirect("../index.html");
     }
     
     private double calcularMontoComision(double pMontoPorRetirar) {

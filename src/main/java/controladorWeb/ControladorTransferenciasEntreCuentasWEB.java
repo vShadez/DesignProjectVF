@@ -22,7 +22,7 @@ import vistaGUI.VerificacionMensajeDeTexto;
  */
 @WebServlet(name = "TransferenciasEntreCuentasWEB", urlPatterns = {"/vistaWeb/TransferenciasEntreCuentas"})
 public class ControladorTransferenciasEntreCuentasWEB extends HttpServlet {
-    private int cantidadDeIntentos = 0;
+    private int cantidadDeIntentos;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -43,18 +43,7 @@ public class ControladorTransferenciasEntreCuentasWEB extends HttpServlet {
                 if(cuentaEstaActiva) {
                 boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
                 if(pinCorrespondeACuenta) {
-                    //VerificacionMensajeDeTexto vistaVerificacionMensajeDeTexto = new VerificacionMensajeDeTexto();
-                    String transferencia = "Transferencia";
-                    
                     response.sendRedirect("VerificacionMensajeDeTexto?numeroCuenta=" + numeroDeCuenta);
-                    
-                    /*
-                    ControladorVerificacionMensajeDeTexto controladorVerificacionMensajeDeTexto = new ControladorVerificacionMensajeDeTexto(vistaVerificacionMensajeDeTexto, numeroDeCuenta, "Transferencia");
-                    controladorVerificacionMensajeDeTexto.vistaGUI.setVisible(true);
-                    controladorVerificacionMensajeDeTexto.vistaGUI.setLocationRelativeTo(null);
-                    this.vistaGUI.setVisible(false);
-*/
-                    //MensajeEnPantallaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje();
                 }
                 else {
                     

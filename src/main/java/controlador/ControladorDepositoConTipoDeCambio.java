@@ -5,6 +5,7 @@
 package controlador;
 
 import clasesUtilitarias.Conversion;
+import static controlador.ControladorDepositoEnColones.depositarColonesACuenta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
@@ -36,25 +37,7 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
         if(evento.getActionCommand().equals("Aceptar")) {
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaDepositarDolares.getText();
             String montoDeDepositoEnDolares = this.vistaGUI.txtMontoDolares.getText();
-            boolean formatoDeMontoDeDepositoEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(montoDeDepositoEnDolares);
-            if(formatoDeMontoDeDepositoEsCorrecto) {
-                boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
-                if(existeCuenta) {
-                    boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
-                    if(cuentaEstaActiva) {
-                        this.efectuarDeposito(numeroDeCuenta, montoDeDepositoEnDolares);
-                    }
-                    else {
-                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
-                    }
-                }
-                else {
-                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
-                }
-            }
-            else {
-                MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeDepositoIncorrecto();
-            }
+            depositarDolaresACuenta(numeroDeCuenta, montoDeDepositoEnDolares);
         }
         
         if(evento.getActionCommand().equals("Cancelar")) {
@@ -66,7 +49,31 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
         }
     }
     
-    public void efectuarDeposito(String pNumeroDeCuenta, String pMontoDeDepositoEnDolares) {
+    public static boolean depositarDolaresACuenta(String pNumeroDeCuenta, String pMontoDeDeposito){
+        boolean formatoDeMontoDeDepositoEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeDeposito);
+            if(formatoDeMontoDeDepositoEsCorrecto) {
+                boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+                if(existeCuenta) {
+                    boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(pNumeroDeCuenta);
+                    if(cuentaEstaActiva) {
+                        efectuarDeposito(pNumeroDeCuenta, pMontoDeDeposito);
+                        return true;
+                    }
+                    else {
+                        MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
+                    }
+                }
+                else {
+                    MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta);
+                }
+            }
+            else {
+                MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeDepositoIncorrecto();
+            }
+        return false;
+    }
+    
+    public static void efectuarDeposito(String pNumeroDeCuenta, String pMontoDeDepositoEnDolares) {
         TipoCambioBCCR tipoDeCambioDeDolar = new TipoCambioBCCR();
         double tipoDeCambioDeDolarCompra = tipoDeCambioDeDolar.obtenerValorCompra();
         double montoDeDepositoEnColonesEnFormatoDecimal = (Conversion.convertirStringEnDecimal(pMontoDeDepositoEnDolares)) * tipoDeCambioDeDolarCompra;
