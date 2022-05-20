@@ -59,6 +59,7 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapaWEB extends H
                         response.sendRedirect("../index.html");
                     }
                     else {
+                        request.setAttribute("numeroDeCuenta", numeroDeCuenta);
                         MensajeEnPantallaCuenta.imprimirMensajeDeErrorFondosInsuficientes();
                         request.getRequestDispatcher("SolicitarMontoDeRetiroEnDolaresTerceraEtapa.jsp?numeroCuenta=" + numeroDeCuentaOrigen).forward(request, response);
                     }
