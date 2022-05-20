@@ -18,4 +18,5 @@ public interface IDAOOperacionCuenta {
     public abstract double consultarMontoTotalCobradoComisionesPorDepositos(String pNumeroCuenta);
     public abstract double consultarMontoTotalCobradoComisionesPorRetiros(String pNumeroCuenta);
     public abstract double consultarMontoTotalCobradoComisionesPorRetirosYDepositos(String pNumeroCuenta);
+    public abstract int consultarCantidadOperaciones(String pNumeroCuenta);
 }

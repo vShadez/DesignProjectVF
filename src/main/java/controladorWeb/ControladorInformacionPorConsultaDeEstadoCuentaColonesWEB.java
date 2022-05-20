@@ -42,7 +42,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
         Cliente clientePropietario = (Cliente) cuentaRecibida.propietario;
         IDAOOperacionCuenta operacion = new DAOOperacionCuenta();
         
-        int cantidadOperaciones = operacion.consultarCantidadDeDepositosYRetirosRealizados(numeroCuenta);
+        int cantidadOperaciones = operacion.consultarCantidadOperaciones(numeroCuenta);
 
         request.setAttribute("numeroCuenta", cuentaRecibida.numeroCuenta);
         

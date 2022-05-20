@@ -85,6 +85,21 @@ public class DAOOperacionCuenta implements IDAOOperacionCuenta{
             return -1;
         }
     }
+    
+    @Override
+    public int consultarCantidadOperaciones(String pNumeroCuenta) {
+        try {
+            MongoCursor<Document> cursorOperaciones = coleccionOperaciones.find().cursor();
+            int cantidadDeDepositosYRetirosRealizados = 0;
+            while(cursorOperaciones.hasNext()) {
+                cantidadDeDepositosYRetirosRealizados++;
+            }
+            return cantidadDeDepositosYRetirosRealizados;
+        }
+        catch(Error error) {
+            return -1;
+        }
+    }
 
     @Override
     public double consultarMontoTotalCobradoComisionesPorDepositos(String pNumeroCuenta) {
