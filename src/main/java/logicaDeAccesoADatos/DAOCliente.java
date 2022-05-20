@@ -38,7 +38,6 @@ public class DAOCliente implements IDAOCliente{
                         pNumeroTelefono).append("correoElectronico", pCorreoElectronico);
             coleccionClientes.insertOne(Cliente);
         
-            System.out.println("Cliente registrado en la base de datos");
             return true;
         } 
         catch (Error error){

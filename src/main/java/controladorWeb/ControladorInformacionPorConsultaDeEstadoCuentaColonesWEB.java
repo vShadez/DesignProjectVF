@@ -32,7 +32,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         numeroCuenta = request.getParameter("numeroCuenta");
-        System.out.println(numeroCuenta);
+        
         
         Operacion[] operacionesTotales;
         IDAOCuentaIndividual cuenta = new DAOCuentaIndividual();
@@ -42,7 +42,6 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
         IDAOOperacionCuenta operacion = new DAOOperacionCuenta();
         Lista<Operacion> operaciones = operacion.consultarOperacionesCuenta(numeroCuenta);
         int cantidadOperaciones = operacion.consultarCantidadDeDepositosYRetirosRealizados(numeroCuenta);
-        System.out.println(cantidadOperaciones);
         request.setAttribute("numeroCuenta", cuentaRecibida.numeroCuenta);
         
         request.setAttribute("saldo", String.format("%.2f", cuentaRecibida.getSaldo()));

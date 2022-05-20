@@ -35,7 +35,6 @@ public class DAOOperacionCuenta implements IDAOOperacionCuenta{
                 pSeAplicoComision).append("montoComision", pMontoComision);
             coleccionOperaciones.insertOne(Operacion);
             
-            System.out.println("Operación registrada en la base de datos");
             return true;
             
         } catch (Error e){

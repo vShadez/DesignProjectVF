@@ -8,6 +8,6 @@
     "\\src\\main\\java\\logicaDeAccesoADatos",
     "\\src\\main\\java\\logicaDeNegocios"
   ],
-  "SelectedNode": "\\src\\main\\java\\logicaDeNegocios\\Cuenta.java",
+  "SelectedNode": "\\src\\main\\java\\logicaDeAccesoADatos\\ConexionBaseDeDatos.java",
   "PreviewInSolutionExplorer": false
 }

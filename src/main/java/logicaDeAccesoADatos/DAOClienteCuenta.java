@@ -38,7 +38,6 @@ public class DAOClienteCuenta implements IDAOClienteCuenta{
         
             Document CuentaACliente = new Document("numeroCuentaAsocidada", pNumeroCuentaAsocidada).append("identificacion", pIdentificacion);
             coleccionClienteCuenta.insertOne(CuentaACliente);
-            System.out.println("Cuenta asociada a cliente");
             
             return true;
             
