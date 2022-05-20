@@ -56,7 +56,7 @@ public class ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapaWEB extends H
                         }
                         else {
                             MensajeEnPantallaCuenta.imprimirMensajeDeErrorFondosInsuficientes();
-                            request.getRequestDispatcher("CambioDePinTerceraEtapa.jsp?numeroCuenta=" + numeroDeCuentaOrigen).forward(request, response);
+                            request.getRequestDispatcher("SolicitarMontoDeRetiroEnColonesTerceraEtapa.jsp?numeroCuenta=" + numeroDeCuentaOrigen).forward(request, response);
                         }
                     }
                     else {
@@ -71,7 +71,7 @@ public class ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapaWEB extends H
             }
             else {
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroIncorrecto();
-                request.getRequestDispatcher("CambioDePinTerceraEtapa.jsp?numeroCuenta=" + numeroDeCuentaOrigen).forward(request, response);
+                request.getRequestDispatcher("SolicitarMontoDeRetiroEnColonesTerceraEtapa.jsp?numeroCuenta=" + numeroDeCuentaOrigen).forward(request, response);
             }
     }
     

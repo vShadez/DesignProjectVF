@@ -39,8 +39,8 @@ public class ControladorCambioDePinTerceraEtapaWEB extends HttpServlet {
         String numeroDeCuenta = request.getParameter("numeroDeCuenta");
         
         boolean cambioPinExitoso = registrarCambioDePin(nuevoPin, numeroDeCuenta);
-        System.out.println(cambioPinExitoso);
         if (cambioPinExitoso != true){
+            
             request.setAttribute("error", "El pin no cumple con el formato");
             request.setAttribute("numeroDeCuenta", numeroDeCuenta);
             request.getRequestDispatcher("CambioDePinTerceraEtapa.jsp?numeroCuenta=" + numeroDeCuenta).forward(request, response);

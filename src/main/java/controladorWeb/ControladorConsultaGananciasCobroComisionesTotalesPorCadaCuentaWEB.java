@@ -33,8 +33,8 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorCadaCuentaWEB 
         double montoTotalRetiros = operacionTipo.consultarMontoTotalCobradoComisionesPorRetiros(numeroCuenta);
         double montoTotalDepositosRetiros = operacionTipo.consultarMontoTotalCobradoComisionesPorRetirosYDepositos(numeroCuenta);
         request.setAttribute("montoDepositos",String.format("%.2f",montoTotalDepositos));
-        request.setAttribute("montoRetiros", String.format("%.2f",montoTotalDepositos));
-        request.setAttribute("montoDepositosYRetiros",String.format("%.2f",montoTotalDepositos));
+        request.setAttribute("montoRetiros", String.format("%.2f",montoTotalRetiros));
+        request.setAttribute("montoDepositosYRetiros",String.format("%.2f",montoTotalDepositosRetiros));
         
         request.setAttribute("montoDepositosDolares", String.format("%.2f",montoTotalDepositos/tipoCompra));
         request.setAttribute("montoRetirosDolares", String.format("%.2f",montoTotalRetiros/tipoCompra));

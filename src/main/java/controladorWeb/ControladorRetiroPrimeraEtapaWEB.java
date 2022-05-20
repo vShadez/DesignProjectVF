@@ -25,6 +25,7 @@ public class ControladorRetiroPrimeraEtapaWEB extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         request.getRequestDispatcher("RetiroPrimeraEtapa.jsp").forward(request, response);
+        cantidadDeIntentos = 0;
     }
     
   
@@ -46,13 +47,12 @@ public class ControladorRetiroPrimeraEtapaWEB extends HttpServlet {
 
                 if(this.cantidadDeIntentos == 1) {
                     MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
-                    response.sendRedirect("../index.html");
+                    request.getRequestDispatcher("RetiroPrimeraEtapa.jsp").forward(request, response);
                 }
                 else {
                     validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
                     response.sendRedirect("../index.html");
                 }
-                request.getRequestDispatcher("RetiroPrimeraEtapa.jsp").forward(request, response);
             }
             } else{
                 MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaInactiva();
@@ -60,9 +60,8 @@ public class ControladorRetiroPrimeraEtapaWEB extends HttpServlet {
             }
         }
         else {
-            request.getRequestDispatcher("RetiroPrimeraEtapa.jsp").forward(request, response);
             MensajeEnPantallaCuenta.imprimirMensajeDeErrorCuentaNoExiste(numeroDeCuenta);
-            response.sendRedirect("../index.html");
+            request.getRequestDispatcher("RetiroPrimeraEtapa.jsp").forward(request, response);
         }
     }
 }
