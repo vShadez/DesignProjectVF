@@ -89,7 +89,6 @@ public class ControladorVerificacionMensajeDeTexto implements ActionListener{
         mensaje += this.mensajeSecreto + "\n";
         mensaje += "Ingrese esta palabra correctamente para proceder con su retiro";
         mensajeDeTexto.enviarMensaje(String.valueOf(this.numeroDeTelefono), mensaje);
-        System.out.println(this.mensajeSecreto);
     }
     
     private void inactivarCuenta() {
