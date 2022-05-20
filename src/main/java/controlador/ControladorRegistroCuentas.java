@@ -42,7 +42,9 @@ public class ControladorRegistroCuentas implements ActionListener{
             String identificacionCliente = this.vistaGUI.txtIdentificacionDatodCuenta.getText();
             
             registrarCuenta(pin, montoInicial, identificacionCliente);
-            
+            this.vistaGUI.txtPinDatosCuenta.setText("");
+            this.vistaGUI.txtMontoInicial.setText("");
+            this.vistaGUI.txtIdentificacionDatodCuenta.setText("");
     }
         if(evento.getActionCommand().equals("Volver")) {
            ControladorMenuPrincipal.volverMenuPrincipal();

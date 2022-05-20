@@ -51,7 +51,12 @@ public class ControladorRegistroClientes implements ActionListener{
             String anoDeFechaDeNacimiento = split[2];
             
             registrarCliente(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
-            
+            this.vistaGUI.txtPrimerApellido.setText("");
+            this.vistaGUI.txtSegundoApellido.setText("");
+            this.vistaGUI.txtNombre.setText("");
+            this.vistaGUI.txtIdentificacion.setText("");
+            this.vistaGUI.txtNumeroDeTelefono.setText("");
+            this.vistaGUI.txtCorreoElectronico.setText("");
         }
         if(evento.getActionCommand().equals("Volver")) {
            ControladorMenuPrincipal.volverMenuPrincipal();
