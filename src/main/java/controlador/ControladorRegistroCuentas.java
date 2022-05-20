@@ -56,7 +56,6 @@ public class ControladorRegistroCuentas implements ActionListener{
     public static boolean registrarCuenta(String pPin, String pMontoInicial, String pIdentificacionCliente){
         IDAOCatalogoDeClientes obtenerCliente = new DAOCatalogoDeClientes();
         boolean validarClienteSiYaExiste = obtenerCliente.consultarSiNOExisteCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
-        System.out.println(validarClienteSiYaExiste);
         if(validacion.ValidacionCuenta.validarFormatoDePin(pPin)){
                 if(validacion.ValidacionTipoDeDato.verificarEsEntero(pMontoInicial)){
                     if(validarClienteSiYaExiste){

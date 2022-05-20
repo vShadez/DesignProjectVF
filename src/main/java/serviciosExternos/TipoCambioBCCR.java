@@ -44,7 +44,6 @@ public class TipoCambioBCCR {
             return xml.obtenerValorDeEtiqueta("NUM_VALOR");
         } 
         catch (Exception datosNoEncontrados) {
-            System.out.println("Error al obtener el valor del BCCR.");
             return "0";
         }
     }

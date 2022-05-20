@@ -7,6 +7,7 @@ package serviciosExternos;
 import java.util.Properties;
 import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -46,8 +47,7 @@ public class EnvioCorreoElectronico {
             transportar.close();
             return true;
         }
-        catch(Exception e){
-            System.out.println(e.toString());
+        catch(MessagingException e){
             return false;
         }
     }

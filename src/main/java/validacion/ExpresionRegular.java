@@ -69,10 +69,11 @@ public class ExpresionRegular {
         ExpresionRegular.patronDeComparacion = Pattern.compile("^[0-9]+[.]{0,1}[0-9]*[0-9]$");
         ExpresionRegular.comparacion = ExpresionRegular.patronDeComparacion.matcher(textoPorVerificar);
         boolean esPalabra = comparacion.find();
-        System.out.println(esPalabra);
+        
+        
+        .println(esPalabra);
         */
         boolean isNumeric =  textoPorVerificar.matches("[+-]?\\d*(\\.\\d+)?");
-        System.out.println(isNumeric);
         return isNumeric;
     }
     

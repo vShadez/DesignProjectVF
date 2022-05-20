@@ -38,7 +38,6 @@ public class ControladorConsultaEstadoDeCuentaWEB extends HttpServlet {
                 if(cuentaEstaActiva) {
                     boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(numeroDeCuenta, pin);
                     if(pinCorrespondeACuenta) {
-                        //System.out.println(numeroDeCuenta);
                         response.sendRedirect("SeleccionDeConsultaEstadoDeCuenta?numeroCuenta=" + numeroDeCuenta);
                     } else {
                     if(this.cantidadDeIntentos == 1) {

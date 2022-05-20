@@ -22,9 +22,7 @@ public class ConexionBaseDeDatos {
             dataBase = clusterBaseDeDatos.getDatabase("SoftwareDesign");
             return dataBase;
         } catch(Error e){
-            System.out.println(e);
+            return null;
         }
-        return null;
     }
-    
 }
