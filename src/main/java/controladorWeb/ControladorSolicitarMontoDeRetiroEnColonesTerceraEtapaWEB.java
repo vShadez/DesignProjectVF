@@ -55,6 +55,7 @@ public class ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapaWEB extends H
                             response.sendRedirect("../index.html");
                         }
                         else {
+                            request.setAttribute("numeroDeCuenta", numeroDeCuenta);
                             MensajeEnPantallaCuenta.imprimirMensajeDeErrorFondosInsuficientes();
                             request.getRequestDispatcher("SolicitarMontoDeRetiroEnColonesTerceraEtapa.jsp?numeroCuenta=" + numeroDeCuentaOrigen).forward(request, response);
                         }
