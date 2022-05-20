@@ -105,7 +105,6 @@ public class Cuenta implements ICuenta, Comparable{
         this.saldo =  this.saldo + pMontoTransferido;
         IDAOCuentaIndividual nuevoDeposito = new DAOCuentaIndividual();
         nuevoDeposito.depositar(this.numeroCuenta, pMontoTransferido);
-        this.registrarOperacion("Transferencia recibida", false, 0);
     }
     
     @Override

@@ -27,6 +27,7 @@ import logicaDeNegocios.Operacion;
 @WebServlet(name = "ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB", urlPatterns = {"/vistaWeb/InformacionPorConsultaDeEstadoCuentaColones"})
 public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends HttpServlet {
     private String numeroCuenta;
+    Lista<Operacion> operaciones;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,21 +41,14 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
         
         Cliente clientePropietario = (Cliente) cuentaRecibida.propietario;
         IDAOOperacionCuenta operacion = new DAOOperacionCuenta();
-        Lista<Operacion> operaciones = operacion.consultarOperacionesCuenta(numeroCuenta);
+        
         int cantidadOperaciones = operacion.consultarCantidadDeDepositosYRetirosRealizados(numeroCuenta);
-        System.out.println(cantidadOperaciones);
-        request.setAttribute("numeroCuenta", cuentaRecibida.numeroCuenta);
         
-        request.setAttribute("saldo", String.format("%.2f", cuentaRecibida.getSaldo()));
-        request.setAttribute("propietario", clientePropietario.nombre +" "+ clientePropietario.primerApellido +" "+ clientePropietario.segundoApellido);
-        request.setAttribute("correoElectronico", clientePropietario.correoElectronico);
-        request.setAttribute("numeroTelefono", clientePropietario.numeroTelefono);
-        
-        operacionesTotales = Conversion.convertirListaOperacionEnArreglo(operaciones, cantidadOperaciones);
-        
-        //Operacion operacione[] = (operacionesTotales);
-        
-        List<OperacionDto> operacionesAMostrar =  new LinkedList<>();
+        if(cantidadOperaciones > 0){
+         operaciones = operacion.consultarOperacionesCuenta(numeroCuenta);
+         operacionesTotales = Conversion.convertirListaOperacionEnArreglo(operaciones, cantidadOperaciones);
+         
+         List<OperacionDto> operacionesAMostrar =  new LinkedList<>();
         for (int i = 0; i < cantidadOperaciones; i++) {
             boolean aplicaComision = operacionesTotales[i].seAplicoComision;
             String aplicaComisionSiNo;
@@ -67,7 +61,14 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
         }
         
         request.setAttribute("operacionesAsociadas", operacionesAMostrar);
+        }
         
+        request.setAttribute("numeroCuenta", cuentaRecibida.numeroCuenta);
+        
+        request.setAttribute("saldo", String.format("%.2f", cuentaRecibida.getSaldo()));
+        request.setAttribute("propietario", clientePropietario.nombre +" "+ clientePropietario.primerApellido +" "+ clientePropietario.segundoApellido);
+        request.setAttribute("correoElectronico", clientePropietario.correoElectronico);
+        request.setAttribute("numeroTelefono", clientePropietario.numeroTelefono);
         request.getRequestDispatcher("InformacionPorConsultaDeEstadoCuentaColones.jsp").forward(request, response);
         }
   

@@ -41,7 +41,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolaresWEB extends H
         
         Cliente clientePropietario = (Cliente) cuentaRecibida.propietario;
         IDAOOperacionCuenta operacion = new DAOOperacionCuenta();
-        Lista<Operacion> operaciones = operacion.consultarOperacionesCuenta(numeroCuenta);
+        
         int cantidadOperaciones = operacion.consultarCantidadDeDepositosYRetirosRealizados(numeroCuenta);
         System.out.println(cantidadOperaciones);
         request.setAttribute("numeroCuenta", cuentaRecibida.numeroCuenta);
@@ -52,6 +52,8 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolaresWEB extends H
         request.setAttribute("correoElectronico", clientePropietario.correoElectronico);
         request.setAttribute("numeroTelefono", clientePropietario.numeroTelefono);
         
+        if(cantidadOperaciones > 0){
+        Lista<Operacion> operaciones = operacion.consultarOperacionesCuenta(numeroCuenta);
         operacionesTotales = Conversion.convertirListaOperacionEnArreglo(operaciones, cantidadOperaciones);
        
         List<OperacionDto> operacionesAMostrar =  new LinkedList<>();
@@ -70,7 +72,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolaresWEB extends H
         }
         
         request.setAttribute("operacionesAsociadas", operacionesAMostrar);
-        
+        }
         request.getRequestDispatcher("InformacionPorConsultaDeEstadoCuentaDolares.jsp").forward(request, response);
         }
     
