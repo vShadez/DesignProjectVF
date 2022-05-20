@@ -25,17 +25,20 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
         this.vistaGUI.btnConsultarDolares.addActionListener(this);
         this.vistaGUI.btnVolverConsultarSaldoActual.addActionListener(this);
         
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
         String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaConsultaSaldo.getText();
         String pin = this.vistaGUI.txtPinCuentaConsultaSaldo.getText();
-        this.cantidadDeIntentos++;
+        
         if(evento.getActionCommand().equals("Volver")) {
            ControladorMenuPrincipal.volverMenuPrincipal();
            vistaGUI.setVisible(false);
-        } else{  
+        } else{
+            
+            this.cantidadDeIntentos++;
             boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(numeroDeCuenta);
         if(existeCuenta) {
             boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
@@ -60,6 +63,7 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
                         MensajeEnPantallaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(numeroDeCuenta, pin);
                     }
                     else {
+                        cantidadDeIntentos = 0;
                         validacion.ValidacionCuenta.inactivarCuenta(numeroDeCuenta);
                     }
                     }

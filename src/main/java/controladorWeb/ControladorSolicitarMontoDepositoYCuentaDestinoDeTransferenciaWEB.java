@@ -87,9 +87,8 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferenciaWEB e
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuentaDeOrigen = (Cuenta) daoCuenta.consultarCuenta(this.numeroDeCuentaOrigen);
         Cuenta cuentaDeDestino = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuentaDestino);
-        double montoComision = cuentaDeOrigen.calcularMontoComision(pMontoTransferido);
+        double montoComision = calcularMontoComision(pMontoTransferido);
         cuentaDeOrigen.transferir(cuentaDeDestino, pMontoTransferido);
-        cuentaDeOrigen.retirar(pMontoTransferido);
         MensajeEnPantallaCuenta.imprimirMensajeTransferenciaExitosa(pMontoTransferido, montoComision);
     }
    
