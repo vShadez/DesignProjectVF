@@ -86,13 +86,18 @@ public class DAOOperacionCuenta implements IDAOOperacionCuenta{
         }
     }
     
-    @Override
+   @Override
     public int consultarCantidadOperaciones(String pNumeroCuenta) {
         try {
             MongoCursor<Document> cursorOperaciones = coleccionOperaciones.find().cursor();
             int cantidadDeDepositosYRetirosRealizados = 0;
             while(cursorOperaciones.hasNext()) {
-                cantidadDeDepositosYRetirosRealizados++;
+                Document documentoOperaciones = cursorOperaciones.next();
+                String numeroDeCuenta = documentoOperaciones.getString("numeroCuentaAsocidada");
+                String tipoDeOperacion = documentoOperaciones.getString("tipoOperacion");
+                if(numeroDeCuenta.equals(pNumeroCuenta) && (tipoDeOperacion.equals("Deposito") || tipoDeOperacion.equals("Retiro") || tipoDeOperacion.equals("Transferencia recibida"))) {
+                    cantidadDeDepositosYRetirosRealizados++;
+                }
             }
             return cantidadDeDepositosYRetirosRealizados;
         }
