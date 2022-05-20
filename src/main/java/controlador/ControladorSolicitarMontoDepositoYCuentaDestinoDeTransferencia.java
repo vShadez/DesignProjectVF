@@ -46,7 +46,8 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
                         boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuentaDeOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {
                             efectuarTransferencia(numeroDeCuentaDeDestino, montoDeRetiroEnFormatoDecimal);
-                            
+                            ControladorMenuPrincipal.volverMenuPrincipal();
+                            vistaGUI.setVisible(false);
                         }
                         else {
                             MensajeEnPantallaCuenta.imprimirMensajeDeErrorFondosInsuficientes();
@@ -84,7 +85,7 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuentaDeOrigen = (Cuenta) daoCuenta.consultarCuenta(this.numeroDeCuentaDeOrigen);
         Cuenta cuentaDeDestino = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuentaDestino);
-        double montoComision = cuentaDeOrigen.calcularMontoComision(pMontoTransferido);
+        double montoComision = calcularMontoComision(pMontoTransferido);
         cuentaDeOrigen.transferir(cuentaDeDestino, pMontoTransferido);
         //cuentaDeOrigen.retirar(pMontoTransferido);
         MensajeEnPantallaCuenta.imprimirMensajeTransferenciaExitosa(pMontoTransferido, montoComision);

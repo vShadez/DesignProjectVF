@@ -15,4 +15,5 @@ public interface IDAOCatalogoDeClientes {
     public abstract Lista<ICliente> consultarListaDeClientes();
     public abstract int consultarCantidadDeClientes();
     public abstract boolean consultarSiExisteCliente(int pIdentificacion);
+    public abstract boolean consultarSiNOExisteCliente(int pIdentificacion);
 }

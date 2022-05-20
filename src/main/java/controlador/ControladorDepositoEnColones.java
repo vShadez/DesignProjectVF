@@ -35,6 +35,10 @@ public class ControladorDepositoEnColones implements ActionListener{
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaDeposito.getText();
             String montoDeDeposito = this.vistaGUI.txtMontoDeposito.getText();
             depositarColonesACuenta(numeroDeCuenta, montoDeDeposito);
+            this.vistaGUI.txtNumeroCuentaDeposito.setText("");
+            this.vistaGUI.txtMontoDeposito.setText("");
+            ControladorMenuPrincipal.volverMenuPrincipal();
+            vistaGUI.setVisible(false);
         }
         if(evento.getActionCommand().equals("Cancelar")) {
             SeleccionDeDeposito vistaSeleccionDeDeposito = new SeleccionDeDeposito();
@@ -53,6 +57,7 @@ public class ControladorDepositoEnColones implements ActionListener{
                     boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(pNumeroDeCuenta);
                     if(cuentaEstaActiva) {
                         efectuarDeposito(pNumeroDeCuenta, pMontoDeDeposito);
+                        
                         return true;
                     }
                     else {

@@ -43,14 +43,14 @@ public class ControladorDetalleCliente implements ActionListener{
         
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         int cantidadCuentasCliente = daoClienteCuenta.consultarCantidadDeCuentasDeCliente(pIdentificacionCliente);
-        System.out.println(cantidadCuentasCliente);
+       
         if(cantidadCuentasCliente > 0){
              consultarListaCuenta = daoClienteCuenta.consultarCuentasDeCliente(pIdentificacionCliente);
              arregloDeCuentasDeCliente = Conversion.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
              cargarCuentasATabla(arregloDeCuentasDeCliente,cantidadCuentasCliente);
         }else{
-            Cuenta[] nombreArray = null;
-            cargarCuentasATabla(nombreArray,cantidadCuentasCliente);
+            Cuenta[] arrayCuentaVacio = null;
+            cargarCuentasATabla(arrayCuentaVacio,cantidadCuentasCliente);
         }
        
      

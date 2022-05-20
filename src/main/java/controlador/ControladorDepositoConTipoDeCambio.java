@@ -37,6 +37,9 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaDepositarDolares.getText();
             String montoDeDepositoEnDolares = this.vistaGUI.txtMontoDolares.getText();
             depositarDolaresACuenta(numeroDeCuenta, montoDeDepositoEnDolares);
+            this.vistaGUI.txtNumeroCuentaDepositarDolares.setText("");
+            this.vistaGUI.txtMontoDolares.setText("");
+            ControladorMenuPrincipal.volverMenuPrincipal();
         }
         
         if(evento.getActionCommand().equals("Cancelar")) {

@@ -49,6 +49,8 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapa implements A
                         boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuenta, montoDeRetiroEnColones + montoComision);
                         if(hayFondosSuficientes) {
                             this.efectuarRetiro(montoDeRetiroEnColones, montoDeRetiroEnDolaresEnFormatoDecimal, tipoDeCambioDeDolarVenta);
+                            ControladorMenuPrincipal.volverMenuPrincipal();
+                            vistaGUI.setVisible(false);
                         }
                         else {
                             MensajeEnPantallaCuenta.imprimirMensajeDeErrorFondosInsuficientes();
