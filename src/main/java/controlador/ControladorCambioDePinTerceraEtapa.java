@@ -31,6 +31,8 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
             String nuevoPin = this.vistaGUI.txtPinNuevo.getText();
             if (registrarCambioDePin(nuevoPin, numeroDeCuenta)){
                 MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(numeroDeCuenta);
+                ControladorMenuPrincipal.volverMenuPrincipal();
+                vistaGUI.setVisible(false);
             }
         }
         if(evento.getActionCommand().equals("Cancelar")) {
