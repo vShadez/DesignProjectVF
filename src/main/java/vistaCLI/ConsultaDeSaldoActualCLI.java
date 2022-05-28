@@ -7,6 +7,10 @@ package vistaCLI;
 import java.text.DecimalFormat;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -53,18 +57,19 @@ public class ConsultaDeSaldoActualCLI {
     
     private boolean validarDatos(String pNumeroDeCuenta, String pPin) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(pNumeroDeCuenta, pPin);
             if(pinCorrespondeACuenta) {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido());
+                System.out.println(mensajeDeError.imprimirMensajeFormatoDePinInvalido());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }
@@ -73,6 +78,7 @@ public class ConsultaDeSaldoActualCLI {
         IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
         double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(pNumeroDeCuenta);
         DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeSaldoCuentaActualColones(""+formatoDeNumeroDecimal.format(saldoActualColones)));
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
+        System.out.println(mensajeDeInformacion.imprimirMensajeSaldoCuentaActualColones(""+formatoDeNumeroDecimal.format(saldoActualColones)));
     }
 }

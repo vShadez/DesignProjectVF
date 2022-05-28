@@ -11,7 +11,11 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.TipoCambioBCCR;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -60,17 +64,19 @@ public class DepositoEnDolaresCLI {
     
     private boolean validarNumeroDeCuenta(String pNumeroDeCuenta) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             return true;
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }
     
     private boolean validarMontoDeDeposito(String pNumeroDeCuenta, String pMontoDeDeposito) {
         boolean montoDeDepositoEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeDeposito);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(montoDeDepositoEsValido) {
             TipoCambioBCCR tipoDeCambio = new TipoCambioBCCR();
             double tipoDeCambioDeCompra = tipoDeCambio.obtenerValorCompra();
@@ -80,12 +86,12 @@ public class DepositoEnDolaresCLI {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFondosInsuficientes());
+                System.out.println(mensajeDeError.imprimirMensajeFondosInsuficientes());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroODepositoIncorrecto());
+            System.out.println(mensajeDeError.imprimirMensajeFormatoDeMontoDeRetiroODepositoIncorrecto());
             return false;
         }
     }
@@ -101,6 +107,7 @@ public class DepositoEnDolaresCLI {
         if(cantidadDeRetirosYDepositosRealizados >= 3) {
             montoComision += montoDeDepositoEnFormatoDecimal * 0.02;
         }
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDepositoEnDolaresExitoso(numeroDeCuenta, (montoDeDepositoEnFormatoDecimal / pTipoDeCambio), montoDeDepositoEnFormatoDecimal, pTipoDeCambio, montoComision, LocalDate.now()));
+        MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
+        System.out.println(mensajeDeExito.imprimirMensajeDepositoEnDolaresExitoso(numeroDeCuenta, (montoDeDepositoEnFormatoDecimal / pTipoDeCambio), montoDeDepositoEnFormatoDecimal, pTipoDeCambio, montoComision, LocalDate.now()));
     }
 }

@@ -10,6 +10,12 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
+import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
+import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -56,17 +62,19 @@ public class DepositoEnColonesCLI {
     
     private boolean validarNumeroDeCuenta(String pNumeroDeCuenta) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             return true;
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }
     
     private boolean validarMontoDeDeposito(String pNumeroDeCuenta, String pMontoDeDeposito) {
         boolean montoDeDepositoEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeDeposito);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(montoDeDepositoEsValido) {
             double montoDeDeposito = Conversion.convertirStringEnDecimal(pMontoDeDeposito);
             boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeDeposito);
@@ -74,12 +82,12 @@ public class DepositoEnColonesCLI {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFondosInsuficientes());
+                System.out.println(mensajeDeError.imprimirMensajeFondosInsuficientes());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroODepositoIncorrecto());
+            System.out.println(mensajeDeError.imprimirMensajeFormatoDeMontoDeRetiroODepositoIncorrecto());
             return false;
         }
     }
@@ -95,6 +103,7 @@ public class DepositoEnColonesCLI {
         if(cantidadDeRetirosYDepositosRealizados >= 3) {
             montoComision += montoDeDepositoEnFormatoEntero * 0.02;
         }
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDepositoEnColonesExitoso(numeroDeCuenta, montoDeDepositoEnFormatoEntero, montoComision));
+        MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
+        System.out.println(mensajeDeExito.imprimirMensajeDepositoEnColonesExitoso(numeroDeCuenta, montoDeDepositoEnFormatoEntero, montoComision));
     }
 }

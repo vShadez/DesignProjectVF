@@ -14,7 +14,9 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import serviciosExternos.TipoCambioBCCR;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -45,18 +47,19 @@ public class ConsultaDeEstadoDeCuentaEnDolaresCLI {
     
     private boolean validarDatos(String pNumeroDeCuenta, String pPin) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(pNumeroDeCuenta, pPin);
             if(pinCorrespondeACuenta) {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido());
+                System.out.println(mensajeDeError.imprimirMensajeFormatoDePinInvalido());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }

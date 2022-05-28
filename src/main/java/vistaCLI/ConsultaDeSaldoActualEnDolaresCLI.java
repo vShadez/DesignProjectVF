@@ -6,7 +6,11 @@ package vistaCLI;
 
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
 import serviciosExternos.TipoCambioBCCR;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -53,18 +57,19 @@ public class ConsultaDeSaldoActualEnDolaresCLI {
     
     private boolean validarDatos(String pNumeroDeCuenta, String pPin) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(pNumeroDeCuenta, pPin);
             if(pinCorrespondeACuenta) {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido());
+                System.out.println(mensajeDeError.imprimirMensajeFormatoDePinInvalido());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }
@@ -75,6 +80,7 @@ public class ConsultaDeSaldoActualEnDolaresCLI {
         double saldoActualColones = cuentaPorConsultar.consultarSaldoActual(pNumeroDeCuenta);
         double valorDeCompra = tipoDeCambioDelDolar.obtenerValorCompra();
         double saldoConvertidoADolares = saldoActualColones / valorDeCompra;
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra));
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
+        System.out.println(mensajeDeInformacion.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra));
     }
 }

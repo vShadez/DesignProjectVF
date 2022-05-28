@@ -6,6 +6,10 @@ package vistaCLI;
 
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -49,11 +53,12 @@ public class CambiarPinCLI {
     
     private boolean validarNumeroDeCuenta(String pNumeroDeCuenta) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             return true;
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }
@@ -90,16 +95,18 @@ public class CambiarPinCLI {
     
     private boolean validarPinCorrespondeACuenta(String pNumeroDeCuenta, String pPin) {
         boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(pNumeroDeCuenta, pPin);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(pinCorrespondeACuenta) {
             return true;
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(pNumeroDeCuenta, pPin));
+            System.out.println(mensajeDeError.imprimirMensajePinNoCorrespondeACuenta(pNumeroDeCuenta, pPin));
             return false;
         }
     }
     
     private void recibirNuevoPin(String pNumeroDeCuenta) throws Exception {
+        MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
         try {
             System.out.println("Ingrese el nuevo pin de su cuenta");
             String nuevoPin = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -107,7 +114,7 @@ public class CambiarPinCLI {
             if(formatoDePinEsCorrecto) {
                 IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
                 daoCuenta.cambiarPin(pNumeroDeCuenta, nuevoPin);
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeCambioDePinExitoso(pNumeroDeCuenta));
+                System.out.println(mensajeDeExito.imprimirMensajeCambioDePinExitoso(pNumeroDeCuenta));
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }
             else {
@@ -134,11 +141,12 @@ public class CambiarPinCLI {
     
     private boolean validarFormatoDePin(String pPin) {
         boolean formatoDePinEsCorrecto = ValidacionCuenta.validarFormatoDePin(pPin);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(formatoDePinEsCorrecto) {
             return true;
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido());
+            System.out.println(mensajeDeError.imprimirMensajeFormatoDePinInvalido());
             return false;
         }
     }

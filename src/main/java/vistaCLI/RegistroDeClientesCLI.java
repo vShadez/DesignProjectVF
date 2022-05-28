@@ -14,6 +14,10 @@ import logicaDeNegocios.ICliente;
 import validacion.ValidacionCliente;
 import validacion.ValidacionTipoDeDato;
 import clasesUtilitarias.Conversion;
+import mensajesDeUsuario.MensajeDeErrorDeCliente;
+import mensajesDeUsuario.MensajeDeMovimientoDeClienteExitoso;
+import singletonMensajesDeUsuario.ErrorDeClienteSingleton;
+import singletonMensajesDeUsuario.MovimientoDeClienteExitosoSingleton;
 
 /**
  *
@@ -76,6 +80,7 @@ public class RegistroDeClientesCLI {
     
     private boolean validarDatos(String pIdentificacion, String pFechaDeNacimiento, String pNumeroDeTelefono, String pCorreoElectronico) {
         boolean identificacionEsDeTipoEntero = ValidacionTipoDeDato.verificarEsEntero(pIdentificacion);
+        MensajeDeErrorDeCliente mensajeDeError = ErrorDeClienteSingleton.instanciar();
         if(identificacionEsDeTipoEntero) {
             boolean fechaDeNacimientoEsValida = ValidacionCliente.validarFechaNacimiento(pFechaDeNacimiento);
             if(fechaDeNacimientoEsValida) {
@@ -90,27 +95,27 @@ public class RegistroDeClientesCLI {
                             return true;
                         }
                         else {
-                            System.out.println(MensajeEnConsolaCliente.imprimirErrorIdentificacionExistente());
+                            System.out.println(mensajeDeError.imprimirErrorIdentificacionExistente());
                             return false;
                         }
                     }
                     else {
-                        System.out.println(MensajeEnConsolaCliente.imprimirErrorFormatoDeCorreoIncorrecto());
+                        System.out.println(mensajeDeError.imprimirErrorFormatoDeCorreoIncorrecto());
                         return false;
                     }
                 }
                 else {
-                    System.out.println(MensajeEnConsolaCliente.imprimirErrorFormatoDeNumeroDeTelefonoIncorrecto());
+                    System.out.println(mensajeDeError.imprimirErrorFormatoDeNumeroDeTelefonoIncorrecto());
                     return false;
                 }
             }
             else {
-                System.out.println(MensajeEnConsolaCliente.imprimirErrorFechaDeNacimientoIncorrecta());
+                System.out.println(mensajeDeError.imprimirErrorFechaDeNacimientoIncorrecta());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCliente.imprimirErrorIdentificacionInvalida());
+            System.out.println(mensajeDeError.imprimirErrorIdentificacionInvalida());
             return false;
         }
     }
@@ -121,6 +126,7 @@ public class RegistroDeClientesCLI {
         String codigo = "CIF-" + numeroDeClientePorRegistrar;
         String fecha = pDia + "/" + pMes + "/" + pAno;
         ICliente nuevoCliente = new Cliente(codigo, pNombre, pPrimerApellido, pSegundoApellido, pIdentificacionEnFormatoEntero, pDia, pMes, pAno, pNumeroTelefonicoEnFormatoEntero, pCorreoElectronico);
-        System.out.println(MensajeEnConsolaCliente.imprimirMensajeCreadoExitoso(codigo, pNombre, String.valueOf(pIdentificacionEnFormatoEntero), fecha, String.valueOf(pNumeroTelefonicoEnFormatoEntero)));
+        MensajeDeMovimientoDeClienteExitoso mensajeDeExito = MovimientoDeClienteExitosoSingleton.instanciar();
+        System.out.println(mensajeDeExito.imprimirMensajeClienteCreadoExitoso(codigo, pNombre, String.valueOf(pIdentificacionEnFormatoEntero), fecha, String.valueOf(pNumeroTelefonicoEnFormatoEntero)));
     }
 }

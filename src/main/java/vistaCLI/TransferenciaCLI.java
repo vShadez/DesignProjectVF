@@ -14,8 +14,14 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
+import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
+import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -64,24 +70,26 @@ public class TransferenciaCLI {
     
     private boolean validarDatos(String pNumeroDeCuenta, String pPin) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(pNumeroDeCuenta, pPin);
             if(pinCorrespondeACuenta) {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido());
+                System.out.println(mensajeDeError.imprimirMensajeFormatoDePinInvalido());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }
     
     private void enviarMensajeDeTexto(String pNumeroDeCuentaDeOrigen) throws Exception {
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje());
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
+        System.out.println(mensajeDeInformacion.imprimirMensajeNotificacionDeEnvioDeMensaje());
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuentaDeOrigen);
         int numeroDeTelefonoDeDuenoDeLaCuentaDeOrigen = clienteAsociadoACuenta.numeroTelefono;
@@ -95,6 +103,7 @@ public class TransferenciaCLI {
     }
     
     private void recibirMensajeDeTexto(String pNumeroDeCuenta, String pMensajeDeTextoEnviado) throws Exception {
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
         try {
             String mensajeIngresado = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             this.cantidadDeIntentosRealizados++;
@@ -113,7 +122,7 @@ public class TransferenciaCLI {
                     }
                     else {
                         this.enviarMensajeDeTexto(pNumeroDeCuenta);
-                        MensajeEnConsolaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                        mensajeDeInformacion.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
                     }
                 }
             }
@@ -134,7 +143,8 @@ public class TransferenciaCLI {
     private void inactivarCuenta(String pNumeroDeCuenta) {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         daoCuenta.actualizarEstatus(pNumeroDeCuenta, "Inactiva");
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta());
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
+        System.out.println(mensajeDeInformacion.imprimirMensajeAlertaDeInactivacionDeCuenta());
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
         String correoDestinatario = clienteAsociadoACuenta.correoElectronico;
@@ -178,6 +188,7 @@ public class TransferenciaCLI {
     
     private boolean validarMontoDeTransferencia(String pNumeroDeCuenta, String pMontoDeTransferencia) {
         boolean montoDeTransferenciaEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeTransferencia);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(montoDeTransferenciaEsValido) {
             double montoDeTransferencia = Conversion.convertirStringEnDecimal(pMontoDeTransferencia);
             boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeTransferencia);
@@ -185,12 +196,12 @@ public class TransferenciaCLI {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFondosInsuficientes());
+                System.out.println(mensajeDeError.imprimirMensajeFondosInsuficientes());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroODepositoIncorrecto());
+            System.out.println(mensajeDeError.imprimirMensajeFormatoDeMontoDeRetiroODepositoIncorrecto());
             return false;
         }
     }
@@ -227,11 +238,12 @@ public class TransferenciaCLI {
     
     private boolean validarNumeroDeCuentaDeDestino(String pNumeroDeCuentaDeDestino) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuentaDeDestino);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             return true;
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuentaDeDestino));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuentaDeDestino));
             return false;
         }
     }
@@ -252,7 +264,8 @@ public class TransferenciaCLI {
         Cuenta cuentaDeDestino = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuentaDeDestino);
         cuentaDeOrigen.transferir(cuentaDeDestino, montoDeTransferencia);
         double montoComision = this.calcularMontoComision(numeroDeCuentaDeOrigen, montoDeTransferencia);
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeTransferenciaExitosa(montoDeTransferencia, montoComision));
+        MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
+        System.out.println(mensajeDeExito.imprimirMensajeTransferenciaExitosa(montoDeTransferencia, montoComision));
         MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
     }
 }

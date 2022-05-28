@@ -13,6 +13,10 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICliente;
 import logicaDeNegocios.ICuenta;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCliente;
 import validacion.ValidacionCuenta;
 
@@ -26,6 +30,7 @@ public class RegistroDeCuentasCLI {
     }
     
     private void solicitarDatos() throws Exception {
+        MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
         try {
             System.out.println("Ingrese el pin de la cuenta");
             String pin = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
@@ -54,7 +59,7 @@ public class RegistroDeCuentasCLI {
                     nuevaCuenta.asignarPropietario(clienteAsociadoConCuenta);
                     nuevaCuenta.depositar(montoInicialConvetidoDouble);
                     clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
-                    System.out.println(MensajeEnConsolaCuenta.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, depositoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente));
+                    System.out.println(mensajeDeExito.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, depositoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente));
                     MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
                 }
                 catch (Exception ex) {
@@ -92,6 +97,7 @@ public class RegistroDeCuentasCLI {
     
     private boolean validarDatos(String pPin, String pDepositoInicial, String pIdentificacionCliente) {
         boolean formatoDePinEsCorrecto = ValidacionCuenta.validarFormatoDePin(pPin);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(formatoDePinEsCorrecto) {
             boolean formatoDeDepositoInicialEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pDepositoInicial);
             if(formatoDeDepositoInicialEsCorrecto) {
@@ -100,17 +106,17 @@ public class RegistroDeCuentasCLI {
                     return true;
                 }
                 else {
-                    System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorClienteAsociadoNoExiste());
+                    System.out.println(mensajeDeError.imprimirMensajeClienteAsociadoNoExiste());
                     return false;
                 }
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroODepositoIncorrecto());
+                System.out.println(mensajeDeError.imprimirMensajeFormatoDeMontoDeRetiroODepositoIncorrecto());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido());
+            System.out.println(mensajeDeError.imprimirMensajeFormatoDePinInvalido());
             return false;
         }
     }

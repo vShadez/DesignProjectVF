@@ -15,6 +15,8 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.Cuenta;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -84,11 +86,12 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
     
     private boolean validarDatos(String pNumeroDeCuenta) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta == true) {
             return true;
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }

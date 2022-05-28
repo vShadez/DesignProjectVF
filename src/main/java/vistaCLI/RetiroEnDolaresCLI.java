@@ -14,9 +14,15 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
+import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
 import serviciosExternos.TipoCambioBCCR;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
+import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -65,24 +71,26 @@ public class RetiroEnDolaresCLI {
     
     private boolean validarDatos(String pNumeroDeCuenta, String pPin) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(pNumeroDeCuenta, pPin);
             if(pinCorrespondeACuenta) {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido());
+                System.out.println(mensajeDeError.imprimirMensajeFormatoDePinInvalido());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }
     
     private void enviarMensajeDeTexto(String pNumeroDeCuenta) throws Exception {
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje());
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
+        System.out.println(mensajeDeInformacion.imprimirMensajeNotificacionDeEnvioDeMensaje());
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
         int numeroDeTelefonoDeDuenoDeLaCuenta = clienteAsociadoACuenta.numeroTelefono;
@@ -96,6 +104,7 @@ public class RetiroEnDolaresCLI {
     }
     
     private void recibirMensajeDeTexto(String pNumeroDeCuenta, String pMensajeDeTextoEnviado) throws Exception {
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
         try {
             String mensajeIngresado = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             this.cantidadDeIntentosRealizados++;
@@ -114,7 +123,7 @@ public class RetiroEnDolaresCLI {
                     }
                     else {
                         this.enviarMensajeDeTexto(pNumeroDeCuenta);
-                        MensajeEnConsolaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                        mensajeDeInformacion.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
                     }
                 }
             }
@@ -135,7 +144,8 @@ public class RetiroEnDolaresCLI {
     private void inactivarCuenta(String pNumeroDeCuenta) {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         daoCuenta.actualizarEstatus(pNumeroDeCuenta, "Inactiva");
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta());
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
+        System.out.println(mensajeDeInformacion.imprimirMensajeAlertaDeInactivacionDeCuenta());
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
         String correoDestinatario = clienteAsociadoACuenta.correoElectronico;
@@ -181,6 +191,7 @@ public class RetiroEnDolaresCLI {
     
     private boolean validarMontoDeRetiro(String pNumeroDeCuenta, String pMontoDeRetiro) {
         boolean montoDeRetiroEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeRetiro);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(montoDeRetiroEsValido) {
             double montoDeRetiro = Conversion.convertirStringEnDecimal(pMontoDeRetiro);
             boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeRetiro);
@@ -188,12 +199,12 @@ public class RetiroEnDolaresCLI {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFondosInsuficientes());
+                System.out.println(mensajeDeError.imprimirMensajeFondosInsuficientes());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroODepositoIncorrecto());
+            System.out.println(mensajeDeError.imprimirMensajeFormatoDeMontoDeRetiroODepositoIncorrecto());
             return false;
         }
     }
@@ -213,7 +224,8 @@ public class RetiroEnDolaresCLI {
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuenta);
         cuenta.retirar(pMontoDeRetiro * pTipoDeCambio);
         double montoComision = this.calcularMontoComision(pNumeroDeCuenta, pMontoDeRetiro * pTipoDeCambio);
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeRetiroEnDolaresExitoso(pMontoDeRetiro * pTipoDeCambio, pMontoDeRetiro, pTipoDeCambio, montoComision));
+        MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
+        System.out.println(mensajeDeExito.imprimirMensajeRetiroEnDolaresExitoso(pMontoDeRetiro * pTipoDeCambio, pMontoDeRetiro, pTipoDeCambio, montoComision));
         MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
     }
 }

@@ -6,6 +6,10 @@ package vistaCLI;
 
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -50,11 +54,12 @@ public class ConsultaDeEstatusDeCuentaCLI {
     
     private boolean validarNumeroDeCuenta(String pNumeroDeCuentaDeDestino) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuentaDeDestino);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             return true;
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuentaDeDestino));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuentaDeDestino));
             return false;
         }
     }
@@ -62,6 +67,7 @@ public class ConsultaDeEstatusDeCuentaCLI {
     private void mostrarEstatusDeCuenta(String pNumeroDeCuenta) {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         String estatusCuentaActual = daoCuenta.consultarEstatusCuenta(pNumeroDeCuenta);
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeEstatusDeCuenta(pNumeroDeCuenta, estatusCuentaActual));
+        MensajeDeInformacionDeCuenta mensajeDeAviso = InformacionDeCuentaSingleton.instanciar();
+        System.out.println(mensajeDeAviso.imprimirMensajeEstatusDeCuenta(pNumeroDeCuenta, estatusCuentaActual));
     }
 }

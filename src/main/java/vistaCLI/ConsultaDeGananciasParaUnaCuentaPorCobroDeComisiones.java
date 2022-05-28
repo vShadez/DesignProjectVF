@@ -10,7 +10,9 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import serviciosExternos.TipoCambioBCCR;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 import vistaGUI.MenuPrincipal;
 
@@ -55,11 +57,12 @@ public class ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones {
     
     private boolean validarNumeroDeCuenta(String pNumeroDeCuenta) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             return true;
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }

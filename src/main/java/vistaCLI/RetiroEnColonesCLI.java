@@ -14,8 +14,14 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
+import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
+import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
+import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
+import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
+import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -64,24 +70,26 @@ public class RetiroEnColonesCLI {
     
     private boolean validarDatos(String pNumeroDeCuenta, String pPin) {
         boolean existeCuenta = ValidacionCuenta.validarExisteCuenta(pNumeroDeCuenta);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(existeCuenta) {
             boolean pinCorrespondeACuenta = ValidacionCuenta.validarPinCorrespondeACuenta(pNumeroDeCuenta, pPin);
             if(pinCorrespondeACuenta) {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorPinNoCorrespondeAAcuenta(pNumeroDeCuenta, pPin));
+                System.out.println(mensajeDeError.imprimirMensajePinNoCorrespondeACuenta(pNumeroDeCuenta, pPin));
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorCuentaNoExiste(pNumeroDeCuenta));
+            System.out.println(mensajeDeError.imprimirMensajeCuentaNoExiste(pNumeroDeCuenta));
             return false;
         }
     }
     
     private void enviarMensajeDeTexto(String pNumeroDeCuenta) throws Exception {
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeNotificacionDeEnvioDeMensaje());
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
+        System.out.println(mensajeDeInformacion.imprimirMensajeNotificacionDeEnvioDeMensaje());
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
         int numeroDeTelefonoDeDuenoDeLaCuenta = clienteAsociadoACuenta.numeroTelefono;
@@ -95,6 +103,7 @@ public class RetiroEnColonesCLI {
     }
     
     private void recibirMensajeDeTexto(String pNumeroDeCuenta, String pMensajeDeTextoEnviado) throws Exception {
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
         try {
             String mensajeIngresado = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             this.cantidadDeIntentosRealizados++;
@@ -113,7 +122,7 @@ public class RetiroEnColonesCLI {
                     }
                     else {
                         this.enviarMensajeDeTexto(pNumeroDeCuenta);
-                        MensajeEnConsolaCuenta.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
+                        mensajeDeInformacion.imprimirMensajeAdvertenciaSegundoIntentoPalabraSecreta();
                     }
                 }
             }
@@ -134,7 +143,8 @@ public class RetiroEnColonesCLI {
     private void inactivarCuenta(String pNumeroDeCuenta) {
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         daoCuenta.actualizarEstatus(pNumeroDeCuenta, "Inactiva");
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeAlertaDeInactivacionDeCuenta());
+        MensajeDeInformacionDeCuenta mensajeDeInformacion = InformacionDeCuentaSingleton.instanciar();
+        System.out.println(mensajeDeInformacion.imprimirMensajeAlertaDeInactivacionDeCuenta());
         IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
         String correoDestinatario = clienteAsociadoACuenta.correoElectronico;
@@ -178,6 +188,7 @@ public class RetiroEnColonesCLI {
     
     private boolean validarMontoDeRetiro(String pNumeroDeCuenta, String pMontoDeRetiro) {
         boolean montoDeRetiroEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeRetiro);
+        MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(montoDeRetiroEsValido) {
             double montoDeRetiro = Conversion.convertirStringEnDecimal(pMontoDeRetiro);
             boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeRetiro);
@@ -185,12 +196,12 @@ public class RetiroEnColonesCLI {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFondosInsuficientes());
+                System.out.println(mensajeDeError.imprimirMensajeFondosInsuficientes());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCuenta.imprimirMensajeDeErrorFormatoDeMontoDeRetiroODepositoIncorrecto());
+            System.out.println(mensajeDeError.imprimirMensajeFormatoDeMontoDeRetiroODepositoIncorrecto());
             return false;
         }
     }
@@ -210,7 +221,8 @@ public class RetiroEnColonesCLI {
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
         cuenta.retirar(montoDeRetiro);
         double montoComision = this.calcularMontoComision(numeroDeCuenta, montoDeRetiro);
-        System.out.println(MensajeEnConsolaCuenta.imprimirMensajeRetiroEnColonesExitoso(montoDeRetiro, montoComision));
+        MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
+        System.out.println(mensajeDeExito.imprimirMensajeRetiroEnColonesExitoso(montoDeRetiro, montoComision));
         MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
     }
 }

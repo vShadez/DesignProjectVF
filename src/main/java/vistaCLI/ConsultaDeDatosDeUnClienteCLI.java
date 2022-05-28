@@ -20,6 +20,8 @@ import validacion.ValidacionCliente;
 import validacion.ValidacionTipoDeDato;
 import listaDinamica.Nodo;
 import logicaDeNegocios.Cuenta;
+import mensajesDeUsuario.MensajeDeErrorDeCliente;
+import singletonMensajesDeUsuario.ErrorDeClienteSingleton;
 
 /**
  *
@@ -72,18 +74,19 @@ public class ConsultaDeDatosDeUnClienteCLI {
     
     private boolean validarDatos(String pIdentificacion) {
         boolean formatoDeIdentificacionEsCorrecto = ValidacionTipoDeDato.verificarEsEntero(pIdentificacion);
+        MensajeDeErrorDeCliente mensajeDeError = ErrorDeClienteSingleton.instanciar();
         if(formatoDeIdentificacionEsCorrecto) {
             boolean noExisteCliente = ValidacionCliente.existeCliente(Conversion.convertirStringEnEntero(pIdentificacion));
             if(noExisteCliente == false) {
                 return true;
             }
             else {
-                System.out.println(MensajeEnConsolaCliente.imprimirErrorIdentificacionInexistente());
+                System.out.println(mensajeDeError.imprimirErrorIdentificacionInexistente());
                 return false;
             }
         }
         else {
-            System.out.println(MensajeEnConsolaCliente.imprimirErrorIdentificacionInvalida());
+            System.out.println(mensajeDeError.imprimirErrorIdentificacionInvalida());
             return false;
         }
     }

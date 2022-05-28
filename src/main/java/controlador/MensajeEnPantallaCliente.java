@@ -5,44 +5,46 @@
 package controlador;
 
 import javax.swing.JOptionPane;
+import mensajesDeUsuario.MensajeDeErrorDeCliente;
+import mensajesDeUsuario.MensajeDeMovimientoDeClienteExitoso;
+import singletonMensajesDeUsuario.ErrorDeClienteSingleton;
+import singletonMensajesDeUsuario.MovimientoDeClienteExitosoSingleton;
 
 /**
  *
  * @author Jairo Calderón
  */
 public class MensajeEnPantallaCliente {
+    private static MensajeDeMovimientoDeClienteExitoso mensajeDeExito = MovimientoDeClienteExitosoSingleton.instanciar();
+    private static MensajeDeErrorDeCliente mensajeDeError = ErrorDeClienteSingleton.instanciar();
+    
     public static void imprimirMensajeCreadoExitoso(String pCodigo, String pNombre, String pIdentificacion, String pFechaNacimiento, String pNumeroTelefono) {
-        String mensaje = "Se ha creado un nuevo cliente en el sistema, los datos que fueron almacenados son: \n";
-        mensaje += "Código: " + pCodigo + "\n";
-        mensaje += "Nombre: " + pNombre + "\n";
-        mensaje += "Identificación: " + pIdentificacion + "\n";
-        mensaje += "Fecha de nacimiento: " + pFechaNacimiento+ "\n";
-        mensaje += "Número de teléfono: " + pNumeroTelefono;
+        String mensaje = mensajeDeExito.imprimirMensajeClienteCreadoExitoso(pCodigo, pNombre, pIdentificacion, pFechaNacimiento, pNumeroTelefono);
         JOptionPane.showMessageDialog(null, mensaje, "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public static void imprimirErrorIdentificacionInvalida() {
-        String mensaje = "La identificación debe ser un número entero";
+        String mensaje = mensajeDeError.imprimirErrorIdentificacionInvalida();
         JOptionPane.showMessageDialog(null, mensaje,"Error", JOptionPane.ERROR_MESSAGE);
     }
     
     public static void imprimirErrorFormatoDeNumeroDeTelefonoIncorrecto() {
-        String mensaje = "Asegúrese de que su número de telefono incluya ocho dígitos";
+        String mensaje = mensajeDeError.imprimirErrorFormatoDeNumeroDeTelefonoIncorrecto();
         JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
     public static void imprimirErrorFormatoDeCorreoIncorrecto() {
-        String mensaje = "Asegúrese de que su correo tenga un formato correcto";
+        String mensaje = mensajeDeError.imprimirErrorFormatoDeCorreoIncorrecto();
         JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
        
     public static void imprimirErrorIdentificacionExistente() {
-        String mensaje = "La identificación no existe.";
+        String mensaje = mensajeDeError.imprimirErrorIdentificacionInexistente();
         JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
     public static void imprimirErrorIdentificacionYaExistente() {
-        String mensaje = "La identificación ya existe.";
+        String mensaje = mensajeDeError.imprimirErrorIdentificacionExistente();
         JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
