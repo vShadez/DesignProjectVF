@@ -15,6 +15,7 @@ import logicaDeNegocios.ICliente;
 import logicaDeNegocios.ICuenta;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
+import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCliente;
@@ -41,9 +42,10 @@ public class RegistroDeCuentasCLI {
             boolean datosIngresadosSonCorrectos = validarDatos(pin, depositoInicial, identificacionCliente);
             if(datosIngresadosSonCorrectos) {
                 try {
-                    double montoInicialConvetidoDouble = Conversion.convertirStringEnDecimal(depositoInicial);
+                    Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                    double montoInicialConvetidoDouble = convertidorDeDatos.convertirStringEnDecimal(depositoInicial);
                     IDAOCliente DAOCliente = new DAOCliente();
-                    ICliente clienteAsociadoConCuenta = DAOCliente.consultarCliente(Conversion.convertirStringEnEntero(identificacionCliente));
+                    ICliente clienteAsociadoConCuenta = DAOCliente.consultarCliente(convertidorDeDatos.convertirStringEnEntero(identificacionCliente));
                     Cliente cliente = (Cliente) clienteAsociadoConCuenta;
                     String nombreCliente = cliente.nombre;
                     String primerApellido = cliente.primerApellido;
@@ -101,7 +103,8 @@ public class RegistroDeCuentasCLI {
         if(formatoDePinEsCorrecto) {
             boolean formatoDeDepositoInicialEsCorrecto = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pDepositoInicial);
             if(formatoDeDepositoInicialEsCorrecto) {
-                boolean noExisteCliente = ValidacionCliente.existeCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
+                Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                boolean noExisteCliente = ValidacionCliente.existeCliente(convertidorDeDatos.convertirStringEnEntero(pIdentificacionCliente));
                 if(noExisteCliente == false) {
                     return true;
                 }

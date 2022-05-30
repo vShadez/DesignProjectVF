@@ -20,6 +20,8 @@ import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
 import serviciosExternos.TipoCambioBCCR;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.PalabraSecretaSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
@@ -95,7 +97,8 @@ public class RetiroEnDolaresCLI {
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuenta);
         int numeroDeTelefonoDeDuenoDeLaCuenta = clienteAsociadoACuenta.numeroTelefono;
         EnvioMensajeDeTexto mensajeDeTexto = new EnvioMensajeDeTexto();
-        String mensajeSecreto = PalabraSecreta.generarPalabraSecreta();
+        PalabraSecreta generadorDePalabraSecreta = PalabraSecretaSingleton.instanciar();
+        String mensajeSecreto = generadorDePalabraSecreta.generarPalabraSecreta();
         String mensaje = "Estimado usuario de la cuenta: " + pNumeroDeCuenta + " su palabra secreta es: \n";
         mensaje += mensajeSecreto + "\n";
         mensaje += "Ingrese esta palabra correctamente para proceder con su retiro";
@@ -164,7 +167,8 @@ public class RetiroEnDolaresCLI {
             if(montoDeRetiroEsValido) {
                 TipoCambioBCCR tipoDeCambio = new TipoCambioBCCR();
                 double tipoDeCambioDeVenta = tipoDeCambio.obtenerValorVenta();
-                double montoDeRetiroEnDolaresEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiro);
+                Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                double montoDeRetiroEnDolaresEnFormatoDecimal = convertidorDeDatos.convertirStringEnDecimal(montoDeRetiro);
                 this.efectuarRetiro(pNumeroDeCuenta, montoDeRetiroEnDolaresEnFormatoDecimal, tipoDeCambioDeVenta);
             }
             else {
@@ -193,7 +197,8 @@ public class RetiroEnDolaresCLI {
         boolean montoDeRetiroEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeRetiro);
         MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(montoDeRetiroEsValido) {
-            double montoDeRetiro = Conversion.convertirStringEnDecimal(pMontoDeRetiro);
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            double montoDeRetiro = convertidorDeDatos.convertirStringEnDecimal(pMontoDeRetiro);
             boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeRetiro);
             if(hayFondosSuficientes) {
                 return true;

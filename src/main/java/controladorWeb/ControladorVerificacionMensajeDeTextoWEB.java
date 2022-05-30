@@ -19,6 +19,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.Cliente;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
+import singletonClasesUtilitarias.PalabraSecretaSingleton;
 
 /**
  *
@@ -75,7 +76,8 @@ public class ControladorVerificacionMensajeDeTextoWEB extends HttpServlet {
     
     private void enviarMensajeDeTexto() {
         EnvioMensajeDeTexto mensajeDeTexto = new EnvioMensajeDeTexto();
-        this.mensajeSecreto = PalabraSecreta.generarPalabraSecreta();
+        PalabraSecreta generadorDePalabraSecreta = PalabraSecretaSingleton.instanciar();
+        this.mensajeSecreto = generadorDePalabraSecreta.generarPalabraSecreta();
         String mensaje = "Estimado usuario de la cuenta: " + this.numeroDeCuenta + " su palabra secreta es: \n";
         mensaje += this.mensajeSecreto + "\n";
         mensaje += "Ingrese esta palabra correctamente para proceder con su retiro";

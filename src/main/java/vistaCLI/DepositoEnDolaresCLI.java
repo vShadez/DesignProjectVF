@@ -14,6 +14,7 @@ import logicaDeNegocios.Cuenta;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.TipoCambioBCCR;
+import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCuenta;
@@ -80,7 +81,8 @@ public class DepositoEnDolaresCLI {
         if(montoDeDepositoEsValido) {
             TipoCambioBCCR tipoDeCambio = new TipoCambioBCCR();
             double tipoDeCambioDeCompra = tipoDeCambio.obtenerValorCompra();
-            double montoDeDeposito = Conversion.convertirStringEnDecimal(pMontoDeDeposito) * tipoDeCambioDeCompra;
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            double montoDeDeposito = convertidorDeDatos.convertirStringEnDecimal(pMontoDeDeposito) * tipoDeCambioDeCompra;
             boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeDeposito);
             if(hayFondosSuficientes) {
                 return true;
@@ -97,7 +99,8 @@ public class DepositoEnDolaresCLI {
     }
     
     private void efectuarDeposito(String numeroDeCuenta, String montoDeDeposito, double pTipoDeCambio) {
-        double montoDeDepositoEnFormatoDecimal = Conversion.convertirStringEnEntero(montoDeDeposito) * pTipoDeCambio;
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        double montoDeDepositoEnFormatoDecimal = convertidorDeDatos.convertirStringEnEntero(montoDeDeposito) * pTipoDeCambio;
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
         cuenta.depositar(montoDeDepositoEnFormatoDecimal);

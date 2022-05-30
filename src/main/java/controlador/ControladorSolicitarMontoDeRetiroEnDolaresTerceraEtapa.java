@@ -15,6 +15,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -41,7 +42,8 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapa implements A
                 if(existeCuenta) {
                     boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuenta);
                     if(cuentaEstaActiva) {
-                        double montoDeRetiroEnDolaresEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiroEnDolares);
+                        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                        double montoDeRetiroEnDolaresEnFormatoDecimal = convertidorDeDatos.convertirStringEnDecimal(montoDeRetiroEnDolares);
                         TipoCambioBCCR tipoDeCambioDolar = new TipoCambioBCCR();
                         double tipoDeCambioDeDolarVenta = tipoDeCambioDolar.obtenerValorVenta();
                         double montoDeRetiroEnColones = montoDeRetiroEnDolaresEnFormatoDecimal * tipoDeCambioDeDolarVenta;

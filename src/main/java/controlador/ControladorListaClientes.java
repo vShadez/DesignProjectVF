@@ -17,6 +17,8 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICliente;
 import vistaGUI.DetalleCliente;
 import java.awt.event.ActionListener;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.OrdenamientoSingleton;
 import vistaGUI.ColorCelda;
 
 /**
@@ -40,7 +42,8 @@ public class ControladorListaClientes implements ActionListener{
                 
                 String clienteSeleccionado = vistaGUI.tblListaClientes.getValueAt(filaSeleccionada, columnaSeleccionada).toString();
                 DetalleCliente vistaDetalleCliente = new DetalleCliente();
-                ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente(Conversion.convertirStringEnEntero(clienteSeleccionado), vistaDetalleCliente);
+                Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente(convertidorDeDatos.convertirStringEnEntero(clienteSeleccionado), vistaDetalleCliente);
                 controladorDetalleCliente.vistaGUI.setVisible(true);
                 controladorDetalleCliente.vistaGUI.setLocationRelativeTo(null);
                 vistaGUI.setVisible(false);
@@ -66,8 +69,10 @@ public class ControladorListaClientes implements ActionListener{
         
         Lista<ICliente> consultarListaCliente = daoCatalogoDeClientes.consultarListaDeClientes();
         
-        arregloClientesDesordenados = Conversion.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
-        Cliente cliente[] = Ordenamiento.ordenarAscendentemente(arregloClientesDesordenados);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        arregloClientesDesordenados = convertidorDeDatos.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
+        Ordenamiento ordenamientoDeClientes = OrdenamientoSingleton.instanciar();
+        Cliente cliente[] = ordenamientoDeClientes.ordenarAscendentemente(arregloClientesDesordenados);
       
         for (int i = 0; i < cantidadDeClientes; i++) {
             String primerApellido = cliente[i].primerApellido;

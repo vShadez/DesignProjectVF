@@ -8,6 +8,7 @@ import clasesUtilitarias.Conversion;
 import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCatalogoDeClientes;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
+import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -18,12 +19,13 @@ public class ValidacionCliente {
         boolean formatoDeFechaDeNacimientoEsCorrecto = ExpresionRegular.verificarFormatoDeFecha(pFechaPorValidar);
         if(formatoDeFechaDeNacimientoEsCorrecto) {
             String[] partesDeString = pFechaPorValidar.split("/");
-            int dia = Conversion.convertirStringEnEntero(partesDeString[0]);
-            int mes = Conversion.convertirStringEnEntero(partesDeString[1]);
-            int ano = Conversion.convertirStringEnEntero(partesDeString[2]);
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            int dia = convertidorDeDatos.convertirStringEnEntero(partesDeString[0]);
+            int mes = convertidorDeDatos.convertirStringEnEntero(partesDeString[1]);
+            int ano = convertidorDeDatos.convertirStringEnEntero(partesDeString[2]);
             boolean existeFecha = ValidacionTipoDeDato.verificarFechaValida(dia, mes, ano);
             if(existeFecha) {
-                LocalDate fecha = Conversion.convertirStringEnLocalDate(pFechaPorValidar);
+                LocalDate fecha = convertidorDeDatos.convertirStringEnLocalDate(pFechaPorValidar);
                 return fecha.isBefore(LocalDate.now()) || fecha.equals(LocalDate.now());
             }
             else {

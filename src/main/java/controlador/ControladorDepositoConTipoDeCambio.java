@@ -16,6 +16,7 @@ import validacion.ValidacionCuenta;
 import vistaGUI.DepositoConTipoDeCambio;
 import serviciosExternos.TipoCambioBCCR;
 import java.time.LocalDate;
+import singletonClasesUtilitarias.ConversionSingleton;
 import vistaGUI.SeleccionDeDeposito;
 
 /**
@@ -78,7 +79,8 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
     public static void efectuarDeposito(String pNumeroDeCuenta, String pMontoDeDepositoEnDolares) {
         TipoCambioBCCR tipoDeCambioDeDolar = new TipoCambioBCCR();
         double tipoDeCambioDeDolarCompra = tipoDeCambioDeDolar.obtenerValorCompra();
-        double montoDeDepositoEnColonesEnFormatoDecimal = (Conversion.convertirStringEnDecimal(pMontoDeDepositoEnDolares)) * tipoDeCambioDeDolarCompra;
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        double montoDeDepositoEnColonesEnFormatoDecimal = (convertidorDeDatos.convertirStringEnDecimal(pMontoDeDepositoEnDolares)) * tipoDeCambioDeDolarCompra;
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(pNumeroDeCuenta);
         cuenta.depositar(montoDeDepositoEnColonesEnFormatoDecimal);
@@ -88,6 +90,6 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
         if(cantidadDeRetirosYDepositosRealizados >= 3) {
             montoComision += montoDeDepositoEnColonesEnFormatoDecimal * 0.02;
         }
-        MensajeEnPantallaCuenta.imprimirMensajeDepositoEnDolaresExitoso(pNumeroDeCuenta, Conversion.convertirStringEnDecimal(pMontoDeDepositoEnDolares), montoDeDepositoEnColonesEnFormatoDecimal, tipoDeCambioDeDolarCompra, montoComision, LocalDate.now());
+        MensajeEnPantallaCuenta.imprimirMensajeDepositoEnDolaresExitoso(pNumeroDeCuenta, convertidorDeDatos.convertirStringEnDecimal(pMontoDeDepositoEnDolares), montoDeDepositoEnColonesEnFormatoDecimal, tipoDeCambioDeDolarCompra, montoComision, LocalDate.now());
     }
 }

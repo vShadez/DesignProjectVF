@@ -4,6 +4,7 @@
  */
 package validacion;
 
+import clasesUtilitarias.Conversion;
 import controlador.MensajeEnPantallaCuenta;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
@@ -11,6 +12,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -44,7 +46,8 @@ public class ValidacionCuenta {
         if(validacion.ExpresionRegular.verificarEsNumero(pMontoRetiroODeposito)) {
             boolean montoDeRetiroEsUnNumeroEntero = validacion.ValidacionTipoDeDato.verificarEsEntero(pMontoRetiroODeposito);
             if(montoDeRetiroEsUnNumeroEntero) {
-                int montoRetiro = clasesUtilitarias.Conversion.convertirStringEnEntero(pMontoRetiroODeposito);
+                Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                int montoRetiro = convertidorDeDatos.convertirStringEnEntero(pMontoRetiroODeposito);
                 boolean montoDeRetiroEsUnNumeroPositivo = validacion.ValidacionTipoDeDato.esPositivo(montoRetiro);
                 if(montoDeRetiroEsUnNumeroPositivo) {
                     return true;

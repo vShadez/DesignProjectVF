@@ -17,6 +17,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -47,7 +48,8 @@ public class ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapaWEB extends H
                 if(existeCuenta) {
                     boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuentaOrigen);
                     if(cuentaEstaActiva) {
-                        double montoDeRetiroEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiro);
+                        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                        double montoDeRetiroEnFormatoDecimal = convertidorDeDatos.convertirStringEnDecimal(montoDeRetiro);
                         double montoComision = calcularMontoComision(montoDeRetiroEnFormatoDecimal, numeroDeCuentaOrigen);
                         boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(numeroDeCuentaOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {

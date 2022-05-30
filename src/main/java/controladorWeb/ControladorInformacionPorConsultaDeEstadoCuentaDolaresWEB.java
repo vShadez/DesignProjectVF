@@ -19,6 +19,7 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
 import serviciosExternos.TipoCambioBCCR;
+import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -53,7 +54,8 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolaresWEB extends H
         
         if(cantidadOperaciones > 0){
         Lista<Operacion> operaciones = operacion.consultarOperacionesCuenta(numeroCuenta);
-        operacionesTotales = Conversion.convertirListaOperacionEnArreglo(operaciones, cantidadOperaciones);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        operacionesTotales = convertidorDeDatos.convertirListaOperacionEnArreglo(operaciones, cantidadOperaciones);
        
         List<OperacionDto> operacionesAMostrar =  new LinkedList<>();
         for (int i = 0; i < cantidadOperaciones; i++) {

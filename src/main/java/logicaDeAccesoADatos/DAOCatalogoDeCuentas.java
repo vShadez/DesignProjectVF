@@ -17,6 +17,8 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 import org.bson.Document;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.EncriptacionSingleton;
 
 /**
  *
@@ -39,9 +41,11 @@ public class DAOCatalogoDeCuentas implements IDAOCatalogoDeCuentas{
             String pPinEncriptado = documento.getString("pin");
             LocalDate fechaCreacionEnFormatoLocalDate = LocalDate.parse(fechaCreacion);
             try {
-                String saldoDesencriptado = Encriptacion.desencriptar(saldoEncriptado);
-                String pinDesencriptado = Encriptacion.desencriptar(pPinEncriptado);
-                double saldoConvertido = Conversion.convertirStringEnDecimal(saldoDesencriptado);
+                Encriptacion encriptacionDeDatos = EncriptacionSingleton.instanciar();
+                String saldoDesencriptado = encriptacionDeDatos.desencriptar(saldoEncriptado);
+                String pinDesencriptado = encriptacionDeDatos.desencriptar(pPinEncriptado);
+                Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                double saldoConvertido = convertidorDeDatos.convertirStringEnDecimal(saldoDesencriptado);
                 IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
                 Cliente duenoDeCuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(numeroCuenta);
                 Cuenta cuentaEncontrada = new Cuenta(numeroCuenta, fechaCreacionEnFormatoLocalDate, saldoConvertido, estatus, pinDesencriptado, duenoDeCuenta);

@@ -16,6 +16,7 @@ import validacion.ValidacionTipoDeDato;
 import clasesUtilitarias.Conversion;
 import mensajesDeUsuario.MensajeDeErrorDeCliente;
 import mensajesDeUsuario.MensajeDeMovimientoDeClienteExitoso;
+import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeClienteSingleton;
 import singletonMensajesDeUsuario.MovimientoDeClienteExitosoSingleton;
 
@@ -47,12 +48,13 @@ public class RegistroDeClientesCLI {
             String correoElectronico = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             boolean datosFueronIngresadosCorrectamente = validarDatos(identificacion, fechaDeNacimiento, numeroDeTelefono, correoElectronico);
             if(datosFueronIngresadosCorrectamente) {
-                int identificacionEnFormatoEntero = Conversion.convertirStringEnEntero(identificacion);
-                int numeroDeTelefonoEnFormatoEntero = Conversion.convertirStringEnEntero(numeroDeTelefono);
+                Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                int identificacionEnFormatoEntero = convertidorDeDatos.convertirStringEnEntero(identificacion);
+                int numeroDeTelefonoEnFormatoEntero = convertidorDeDatos.convertirStringEnEntero(numeroDeTelefono);
                 String[] partesDeString = fechaDeNacimiento.split("/");
-                int dia = Conversion.convertirStringEnEntero(partesDeString[0]);
-                int mes = Conversion.convertirStringEnEntero(partesDeString[1]);
-                int ano = Conversion.convertirStringEnEntero(partesDeString[2]);
+                int dia = convertidorDeDatos.convertirStringEnEntero(partesDeString[0]);
+                int mes = convertidorDeDatos.convertirStringEnEntero(partesDeString[1]);
+                int ano = convertidorDeDatos.convertirStringEnEntero(partesDeString[2]);
                 this.registrarCliente(nombre, primerApellido, segundoApellido, identificacionEnFormatoEntero, dia, mes, ano, numeroDeTelefonoEnFormatoEntero, correoElectronico);
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }
@@ -89,7 +91,8 @@ public class RegistroDeClientesCLI {
                     boolean correoEsValido = ValidacionCliente.verificarFormatoDeCorreoElectronico(pCorreoElectronico);
                     if(correoEsValido) {
                         IDAOCatalogoDeClientes daoClientes = new DAOCatalogoDeClientes();
-                        int identificacion = Conversion.convertirStringEnEntero(pIdentificacion);
+                        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                        int identificacion = convertidorDeDatos.convertirStringEnEntero(pIdentificacion);
                         boolean noExisteCliente = daoClientes.consultarSiExisteCliente(identificacion);
                         if(noExisteCliente) {
                             return true;

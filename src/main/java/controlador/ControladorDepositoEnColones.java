@@ -12,6 +12,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 import vistaGUI.DepositoEnColones;
 import vistaGUI.SeleccionDeDeposito;
@@ -75,7 +76,8 @@ public class ControladorDepositoEnColones implements ActionListener{
     }
     
     private static void efectuarDeposito(String numeroDeCuenta, String montoDeDeposito) {
-        int montoDeDepositoEnFormatoEntero = Conversion.convertirStringEnEntero(montoDeDeposito);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        int montoDeDepositoEnFormatoEntero = convertidorDeDatos.convertirStringEnEntero(montoDeDeposito);
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
         cuenta.depositar(montoDeDepositoEnFormatoEntero);

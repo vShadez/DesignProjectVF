@@ -19,6 +19,7 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
+import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -48,7 +49,8 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
         
         if(cantidadOperaciones > 0){
          operaciones = operacion.consultarOperacionesCuenta(numeroCuenta);
-         operacionesTotales = Conversion.convertirListaOperacionEnArreglo(operaciones, cantidadOperaciones);
+         Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+         operacionesTotales = convertidorDeDatos.convertirListaOperacionEnArreglo(operaciones, cantidadOperaciones);
          
          List<OperacionDto> operacionesAMostrar =  new LinkedList<>();
         for (int i = 0; i < cantidadOperaciones; i++) {

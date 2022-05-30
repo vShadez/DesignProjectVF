@@ -19,6 +19,8 @@ import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.PalabraSecretaSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
@@ -94,7 +96,8 @@ public class TransferenciaCLI {
         Cliente clienteAsociadoACuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroDeCuentaDeOrigen);
         int numeroDeTelefonoDeDuenoDeLaCuentaDeOrigen = clienteAsociadoACuenta.numeroTelefono;
         EnvioMensajeDeTexto mensajeDeTexto = new EnvioMensajeDeTexto();
-        String mensajeSecreto = PalabraSecreta.generarPalabraSecreta();
+        PalabraSecreta generadorDePalabraSecreta = PalabraSecretaSingleton.instanciar();
+        String mensajeSecreto = generadorDePalabraSecreta.generarPalabraSecreta();
         String mensaje = "Estimado usuario de la cuenta: " + pNumeroDeCuentaDeOrigen + " su palabra secreta es: \n";
         mensaje += mensajeSecreto + "\n";
         mensaje += "Ingrese esta palabra correctamente para proceder con su transferencia";
@@ -161,7 +164,8 @@ public class TransferenciaCLI {
             String montoDeTransferencia = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             boolean montoDeTransferenciaEsValido = this.validarMontoDeTransferencia(pNumeroDeCuenta, montoDeTransferencia);
             if(montoDeTransferenciaEsValido) {
-                double montoDeTransferenciaEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeTransferencia);
+                Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                double montoDeTransferenciaEnFormatoDecimal = convertidorDeDatos.convertirStringEnDecimal(montoDeTransferencia);
                 this.recibirCuentaDeDestino(pNumeroDeCuenta, montoDeTransferenciaEnFormatoDecimal);
             }
             else {
@@ -190,7 +194,8 @@ public class TransferenciaCLI {
         boolean montoDeTransferenciaEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeTransferencia);
         MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(montoDeTransferenciaEsValido) {
-            double montoDeTransferencia = Conversion.convertirStringEnDecimal(pMontoDeTransferencia);
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            double montoDeTransferencia = convertidorDeDatos.convertirStringEnDecimal(pMontoDeTransferencia);
             boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeTransferencia);
             if(hayFondosSuficientes) {
                 return true;

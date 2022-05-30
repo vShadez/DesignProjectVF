@@ -16,6 +16,7 @@ import validacion.ValidacionTipoDeDato;
 import vistaGUI.RegistroClientes;
 import clasesUtilitarias.Conversion;
 import java.util.Date;
+import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -65,11 +66,12 @@ public class ControladorRegistroClientes implements ActionListener{
     }
     
     public static boolean registrarCliente(String nombre, String primerApellido, String segundoApellido, String identificacion, String diaDeFechaDeNacimiento, String mesDeFechaDeNacimiento, String anoDeFechaDeNacimiento, String numeroDeTelefono, String correoElectronico) {
-        int identificacionEnFormatoEntero = Conversion.convertirStringEnEntero(identificacion);
-        int dia = Conversion.convertirStringEnEntero(diaDeFechaDeNacimiento);
-        int mes = Conversion.convertirStringEnEntero(mesDeFechaDeNacimiento);
-        int ano = Conversion.convertirStringEnEntero(anoDeFechaDeNacimiento);
-        int numeroTelefonicoEnFormatoEntero = Conversion.convertirStringEnEntero(numeroDeTelefono);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        int identificacionEnFormatoEntero = convertidorDeDatos.convertirStringEnEntero(identificacion);
+        int dia = convertidorDeDatos.convertirStringEnEntero(diaDeFechaDeNacimiento);
+        int mes = convertidorDeDatos.convertirStringEnEntero(mesDeFechaDeNacimiento);
+        int ano = convertidorDeDatos.convertirStringEnEntero(anoDeFechaDeNacimiento);
+        int numeroTelefonicoEnFormatoEntero = convertidorDeDatos.convertirStringEnEntero(numeroDeTelefono);
         
         String fechaDeNacimiento = dia+"/"+mes+"/"+ano;
         if(validarTipoDeDatos(identificacion) && validarFormatoDeDatos(numeroDeTelefono, correoElectronico) && validarExistenciaCliente(identificacionEnFormatoEntero)) {

@@ -17,6 +17,8 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.OrdenamientoSingleton;
 
 /**
  *
@@ -33,9 +35,11 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
         int cantidadCuentas = daoCatalogoDeCuentas.consultarCantidadCuentas();
         
         Lista<ICuenta> consultarListaCuentas = daoCatalogoDeCuentas.consultarListaDeCuentas();
-            
-        arregloCuentasDesordenadas = Conversion.convertirListaCuentaEnArreglo(consultarListaCuentas, cantidadCuentas);
-        Cuenta cuenta[] = Ordenamiento.ordenarDescendentemente(arregloCuentasDesordenadas);
+        
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        arregloCuentasDesordenadas = convertidorDeDatos.convertirListaCuentaEnArreglo(consultarListaCuentas, cantidadCuentas);
+        Ordenamiento ordenamientoDeCuentas = OrdenamientoSingleton.instanciar();
+        Cuenta cuenta[] = ordenamientoDeCuentas.ordenarDescendentemente(arregloCuentasDesordenadas);
         
         List<OperacionDto> operacionesAMostrar =  new LinkedList<OperacionDto>();
         

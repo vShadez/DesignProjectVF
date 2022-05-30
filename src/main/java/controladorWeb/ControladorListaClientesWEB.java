@@ -19,6 +19,8 @@ import logicaDeAccesoADatos.DAOCatalogoDeClientes;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICliente;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.OrdenamientoSingleton;
 
 /**
  *
@@ -36,8 +38,10 @@ public class ControladorListaClientesWEB extends HttpServlet {
         
         Lista<ICliente> consultarListaCliente = daoCatalogoDeClientes.consultarListaDeClientes();
         
-        arregloClientesDesordenados = Conversion.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
-        Cliente cliente[] = Ordenamiento.ordenarAscendentemente(arregloClientesDesordenados);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        arregloClientesDesordenados = convertidorDeDatos.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
+        Ordenamiento ordenamientoDeClientes = OrdenamientoSingleton.instanciar();
+        Cliente cliente[] = ordenamientoDeClientes.ordenarAscendentemente(arregloClientesDesordenados);
         List<ClienteDto> dtos =  new LinkedList<ClienteDto>();
       
         for (int i = 0; i < cantidadDeClientes; i++) {

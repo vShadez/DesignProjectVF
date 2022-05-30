@@ -22,6 +22,7 @@ import logicaDeAccesoADatos.IDAOClienteCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -34,7 +35,8 @@ public class ControladorDetalleClienteWEB extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         String identificacionClienteWEB = request.getParameter("identificacion");
-        int identificacionCliente = clasesUtilitarias.Conversion.convertirStringEnEntero(identificacionClienteWEB);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        int identificacionCliente = convertidorDeDatos.convertirStringEnEntero(identificacionClienteWEB);
         
         Cuenta[] arregloDeCuentasDeCliente;
         IDAOCliente daoCliente = new DAOCliente();
@@ -45,7 +47,7 @@ public class ControladorDetalleClienteWEB extends HttpServlet {
         int cantidadCuentasCliente = daoClienteCuenta.consultarCantidadDeCuentasDeCliente(identificacionCliente);
         if(cantidadCuentasCliente > 0){
             consultarListaCuenta = daoClienteCuenta.consultarCuentasDeCliente(identificacionCliente);
-            arregloDeCuentasDeCliente = Conversion.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
+            arregloDeCuentasDeCliente = convertidorDeDatos.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
             List<CuentaDto> cuentas =  new LinkedList<CuentaDto>();
             for (int i = 0; i < cantidadCuentasCliente; i++) {
                 cuentas.add(new CuentaDto(arregloDeCuentasDeCliente[i].numeroCuenta));

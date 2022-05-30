@@ -20,7 +20,7 @@ import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
 import logicaDeAccesoADatos.DAOCatalogoDeClientes;
-import controlador.MensajeEnPantallaCliente;
+import singletonClasesUtilitarias.ConversionSingleton;
 /**
  *
  * @author estadm
@@ -55,14 +55,15 @@ public class ControladorRegistroCuentas implements ActionListener{
     
     public static boolean registrarCuenta(String pPin, String pMontoInicial, String pIdentificacionCliente){
         IDAOCatalogoDeClientes obtenerCliente = new DAOCatalogoDeClientes();
-        boolean validarClienteSiYaExiste = obtenerCliente.consultarSiNOExisteCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        boolean validarClienteSiYaExiste = obtenerCliente.consultarSiNOExisteCliente(convertidorDeDatos.convertirStringEnEntero(pIdentificacionCliente));
         if(validacion.ValidacionCuenta.validarFormatoDePin(pPin)){
                 if(validacion.ValidacionTipoDeDato.verificarEsEntero(pMontoInicial)){
                     if(validarClienteSiYaExiste){
                         try {
-                            double montoInicialConvetidoDouble = Conversion.convertirStringEnDecimal(pMontoInicial);
+                            double montoInicialConvetidoDouble = convertidorDeDatos.convertirStringEnDecimal(pMontoInicial);
                             IDAOCliente DAOCliente = new DAOCliente();
-                            ICliente clienteAsociadoConCuenta = DAOCliente.consultarCliente(Conversion.convertirStringEnEntero(pIdentificacionCliente));
+                            ICliente clienteAsociadoConCuenta = DAOCliente.consultarCliente(convertidorDeDatos.convertirStringEnEntero(pIdentificacionCliente));
                             Cliente cliente = (Cliente) clienteAsociadoConCuenta;
                             String nombreCliente = cliente.nombre;
                             String primerApellido = cliente.primerApellido;

@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Jairo Calderón
  */
 public class NumeroAleatorio {
-    public static int generarNumeroAleatorioEnRango(int pValorMinimo, int pValorMaximo) {
+    public int generarNumeroAleatorioEnRango(int pValorMinimo, int pValorMaximo) {
         ThreadLocalRandom aleatorio = ThreadLocalRandom.current();
         int numeroAleatorio = aleatorio.nextInt(pValorMinimo, pValorMaximo + 1);
         return numeroAleatorio;

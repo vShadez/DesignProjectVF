@@ -17,6 +17,7 @@ import logicaDeNegocios.ICuenta;
 import clasesUtilitarias.Conversion;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -42,7 +43,8 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
             int cantidadCuentas = cuentas.consultarCantidadCuentas();
             listaCuentas = cuentas.consultarListaDeCuentas();
             
-            arregloCuentasOrdenadas = Conversion.convertirListaCuentaEnArreglo(listaCuentas, cantidadCuentas);
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            arregloCuentasOrdenadas = convertidorDeDatos.convertirListaCuentaEnArreglo(listaCuentas, cantidadCuentas);
             
             JTable tabla = this.vistaGUI.tblMontosTotalesDeCadaCuenta; 
         

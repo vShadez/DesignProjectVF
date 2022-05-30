@@ -18,15 +18,15 @@ import logicaDeNegocios.Operacion;
  * @author Jairo Calderon
  */
 public class Conversion {
-    public static int convertirStringEnEntero(String pCadena) {
+    public int convertirStringEnEntero(String pCadena) {
         return Integer.parseInt(pCadena);
     }
     
-    public static double convertirStringEnDecimal(String pCadena) {
+    public double convertirStringEnDecimal(String pCadena) {
         return Double.parseDouble(pCadena);
     }
     
-    public static LocalDate convertirStringEnLocalDate(String pCadena) {
+    public LocalDate convertirStringEnLocalDate(String pCadena) {
         String[] partesDeString = pCadena.split("/");
         int dia = convertirStringEnEntero(partesDeString[0]);
         int mes = convertirStringEnEntero(partesDeString[1]);
@@ -34,7 +34,7 @@ public class Conversion {
         return LocalDate.of(ano, mes, dia);
     }
     
-    public static Cliente[] convertirListaClienteEnArreglo(Lista<ICliente> pLista, int tamano) {
+    public Cliente[] convertirListaClienteEnArreglo(Lista<ICliente> pLista, int tamano) {
         Cliente[] arregloCliente = new Cliente[tamano];
         Nodo puntero = pLista.inicio;
         int indiceArreglo = 0;
@@ -47,7 +47,7 @@ public class Conversion {
         return arregloCliente;
     }
     
-    public static Cuenta[] convertirListaCuentaEnArreglo(Lista<ICuenta> pLista, int tamano) {
+    public Cuenta[] convertirListaCuentaEnArreglo(Lista<ICuenta> pLista, int tamano) {
         Cuenta[] arregloCuenta = new Cuenta[tamano];
         Nodo puntero = pLista.inicio;
         int indiceArreglo = 0;
@@ -60,7 +60,7 @@ public class Conversion {
         return arregloCuenta;
     }
     
-    public static Operacion[] convertirListaOperacionEnArreglo(Lista<Operacion> pLista, int tamano) {
+    public Operacion[] convertirListaOperacionEnArreglo(Lista<Operacion> pLista, int tamano) {
         Operacion[] arregloOperacion = new Operacion[tamano];
         Nodo puntero = pLista.inicio;
         int indiceArreglo = 0;

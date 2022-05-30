@@ -11,10 +11,9 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
-import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
+import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
-import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCuenta;
 
@@ -76,7 +75,8 @@ public class DepositoEnColonesCLI {
         boolean montoDeDepositoEsValido = ValidacionCuenta.validarFormatoDeMontoDeRetiroODeposito(pMontoDeDeposito);
         MensajeDeErrorDeCuenta mensajeDeError = ErrorDeCuentaSingleton.instanciar();
         if(montoDeDepositoEsValido) {
-            double montoDeDeposito = Conversion.convertirStringEnDecimal(pMontoDeDeposito);
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            double montoDeDeposito = convertidorDeDatos.convertirStringEnDecimal(pMontoDeDeposito);
             boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(pNumeroDeCuenta, montoDeDeposito);
             if(hayFondosSuficientes) {
                 return true;
@@ -93,7 +93,8 @@ public class DepositoEnColonesCLI {
     }
     
     private void efectuarDeposito(String numeroDeCuenta, String montoDeDeposito) {
-        int montoDeDepositoEnFormatoEntero = Conversion.convertirStringEnEntero(montoDeDeposito);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        int montoDeDepositoEnFormatoEntero = convertidorDeDatos.convertirStringEnEntero(montoDeDeposito);
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
         cuenta.depositar(montoDeDepositoEnFormatoEntero);

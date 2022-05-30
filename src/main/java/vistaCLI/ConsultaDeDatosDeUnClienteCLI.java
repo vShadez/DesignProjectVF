@@ -21,6 +21,8 @@ import validacion.ValidacionTipoDeDato;
 import listaDinamica.Nodo;
 import logicaDeNegocios.Cuenta;
 import mensajesDeUsuario.MensajeDeErrorDeCliente;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.OrdenamientoSingleton;
 import singletonMensajesDeUsuario.ErrorDeClienteSingleton;
 
 /**
@@ -37,8 +39,10 @@ public class ConsultaDeDatosDeUnClienteCLI {
         IDAOCatalogoDeClientes daoCatalogoDeClientes = new DAOCatalogoDeClientes();
         int cantidadDeClientes = daoCatalogoDeClientes.consultarCantidadDeClientes();
         Lista<ICliente> consultarListaCliente = daoCatalogoDeClientes.consultarListaDeClientes();
-        arregloClientesOrdenados = Conversion.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
-        arregloClientesOrdenados = Ordenamiento.ordenarAscendentemente(arregloClientesOrdenados);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        arregloClientesOrdenados = convertidorDeDatos.convertirListaClienteEnArreglo(consultarListaCliente, cantidadDeClientes);
+        Ordenamiento ordenamientoDeClientes = OrdenamientoSingleton.instanciar();
+        arregloClientesOrdenados = ordenamientoDeClientes.ordenarAscendentemente(arregloClientesOrdenados);
         System.out.println("Lista de clientes registrados en el sistema:");
         for (int i = 0; i < cantidadDeClientes; i++) {
             String primerApellido = arregloClientesOrdenados[i].primerApellido;
@@ -76,7 +80,8 @@ public class ConsultaDeDatosDeUnClienteCLI {
         boolean formatoDeIdentificacionEsCorrecto = ValidacionTipoDeDato.verificarEsEntero(pIdentificacion);
         MensajeDeErrorDeCliente mensajeDeError = ErrorDeClienteSingleton.instanciar();
         if(formatoDeIdentificacionEsCorrecto) {
-            boolean noExisteCliente = ValidacionCliente.existeCliente(Conversion.convertirStringEnEntero(pIdentificacion));
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            boolean noExisteCliente = ValidacionCliente.existeCliente(convertidorDeDatos.convertirStringEnEntero(pIdentificacion));
             if(noExisteCliente == false) {
                 return true;
             }
@@ -92,7 +97,8 @@ public class ConsultaDeDatosDeUnClienteCLI {
     }
     
     private void mostrarDetallesDeCliente(String pIdentificacionDeCliente) throws Exception {
-        int identificacionDeCliente = Conversion.convertirStringEnEntero(pIdentificacionDeCliente);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        int identificacionDeCliente = convertidorDeDatos.convertirStringEnEntero(pIdentificacionDeCliente);
         IDAOCliente daoCliente = new DAOCliente();
         Cliente cliente = (Cliente) daoCliente.consultarCliente(identificacionDeCliente);
         System.out.println("Información del cliente: ");

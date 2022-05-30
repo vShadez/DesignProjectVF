@@ -18,6 +18,7 @@ import logicaDeAccesoADatos.IDAOClienteCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
 import vistaGUI.DetalleCliente;
 import vistaGUI.ListaClientes;
 
@@ -45,7 +46,8 @@ public class ControladorDetalleCliente implements ActionListener{
        
         if(cantidadCuentasCliente > 0){
              consultarListaCuenta = daoClienteCuenta.consultarCuentasDeCliente(pIdentificacionCliente);
-             arregloDeCuentasDeCliente = Conversion.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
+             Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+             arregloDeCuentasDeCliente = convertidorDeDatos.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
              cargarCuentasATabla(arregloDeCuentasDeCliente,cantidadCuentasCliente);
         }else{
             Cuenta[] arrayCuentaVacio = null;

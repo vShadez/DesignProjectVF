@@ -8,6 +8,7 @@ import clasesUtilitarias.ContenidoXML;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import clasesUtilitarias.ContenidoHTML;
+import singletonClasesUtilitarias.ContenidoHTMLSingleton;
 
 /**
  *
@@ -39,7 +40,8 @@ public class TipoCambioBCCR {
     private String obtenerValorDeEtiqueta(){
         try {
             generarURL();
-            String contenidoHTML = ContenidoHTML.obtenerContenidoHTML(direccionUrl);
+            ContenidoHTML convertidorDeTextoHTML = ContenidoHTMLSingleton.instanciar();
+            String contenidoHTML = convertidorDeTextoHTML.obtenerContenidoHTML(direccionUrl);
             ContenidoXML xml = new ContenidoXML(contenidoHTML);
             return xml.obtenerValorDeEtiqueta("NUM_VALOR");
         } 

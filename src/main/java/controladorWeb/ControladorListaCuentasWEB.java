@@ -20,6 +20,8 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.OrdenamientoSingleton;
 
 /**
  *
@@ -37,8 +39,10 @@ public class ControladorListaCuentasWEB extends HttpServlet {
         
         Lista<ICuenta> consultarListaCuentas = daoCatalogoDeCuentas.consultarListaDeCuentas();
         
-        arregloCuentasDesordenadas = Conversion.convertirListaCuentaEnArreglo(consultarListaCuentas, cantidadDeCuentas);
-        Cuenta cuenta[] = Ordenamiento.ordenarDescendentemente(arregloCuentasDesordenadas);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        arregloCuentasDesordenadas = convertidorDeDatos.convertirListaCuentaEnArreglo(consultarListaCuentas, cantidadDeCuentas);
+        Ordenamiento ordenamientoDeCuentas = OrdenamientoSingleton.instanciar();
+        Cuenta cuenta[] = ordenamientoDeCuentas.ordenarDescendentemente(arregloCuentasDesordenadas);
         
         List<CuentaDto> dtos =  new LinkedList<CuentaDto>();
         

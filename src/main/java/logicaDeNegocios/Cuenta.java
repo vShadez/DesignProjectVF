@@ -12,6 +12,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import clasesUtilitarias.Encriptacion;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
+import singletonClasesUtilitarias.EncriptacionSingleton;
 /**
  *
  * @author Jairo Calderón
@@ -33,7 +34,8 @@ public class Cuenta implements ICuenta, Comparable{
         this.pin = pPin;
         this.operacionesRealizadas = new Lista<>();
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
-        daoCuenta.registrarCuenta(this.numeroCuenta, Encriptacion.encriptar(this.pin), this.fechaCreacion.toString(), Encriptacion.encriptar(String.valueOf(this.saldo)), pEstatus);
+        Encriptacion encriptacionDeDatos = EncriptacionSingleton.instanciar();
+        daoCuenta.registrarCuenta(this.numeroCuenta, encriptacionDeDatos.encriptar(this.pin), this.fechaCreacion.toString(), encriptacionDeDatos.encriptar(String.valueOf(this.saldo)), pEstatus);
     }
     
     public Cuenta(String pNumeroCuenta, LocalDate pFechaCreacion, double pSaldo, String pEstatus, String pPin, ICliente pPropietario) throws Exception {

@@ -16,6 +16,8 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.Cuenta;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.OrdenamientoSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 
@@ -32,8 +34,10 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
         IDAOCatalogoDeCuentas daoCatalogoDeCuentas = new DAOCatalogoDeCuentas();
         Lista<ICuenta> listaDeCuentasDesordenada = daoCatalogoDeCuentas.consultarListaDeCuentas();
         int cantidadDeCuentas = daoCatalogoDeCuentas.consultarCantidadCuentas();
-        Cuenta[] listaDeCuentasOrdenada = Conversion.convertirListaCuentaEnArreglo(listaDeCuentasDesordenada, cantidadDeCuentas);
-        Ordenamiento.ordenarDescendentemente(listaDeCuentasOrdenada);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        Cuenta[] listaDeCuentasOrdenada = convertidorDeDatos.convertirListaCuentaEnArreglo(listaDeCuentasDesordenada, cantidadDeCuentas);
+        Ordenamiento ordenamientoDeCuentas = OrdenamientoSingleton.instanciar();
+        ordenamientoDeCuentas.ordenarDescendentemente(listaDeCuentasOrdenada);
         System.out.println("Lista de cuentas registradas en el sistema:");
         for (int i = 0; i < cantidadDeCuentas; i++) {
             Cuenta cuenta = listaDeCuentasOrdenada[i];

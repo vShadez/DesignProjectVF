@@ -15,6 +15,7 @@ import clasesUtilitarias.PalabraSecreta;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import serviciosExternos.EnvioCorreoElectronico;
+import singletonClasesUtilitarias.PalabraSecretaSingleton;
 import vistaGUI.SeleccionDeRetiroEnDolaresOColones;
 import vistaGUI.SolicitarMontoDepositoYCuentaDestinoDeTransferencia;
 
@@ -84,7 +85,8 @@ public class ControladorVerificacionMensajeDeTexto implements ActionListener{
     
     private void enviarMensaje() {
         EnvioMensajeDeTexto mensajeDeTexto = new EnvioMensajeDeTexto();
-        this.mensajeSecreto = PalabraSecreta.generarPalabraSecreta();
+        PalabraSecreta generadorDePalabraSecreta = PalabraSecretaSingleton.instanciar();
+        this.mensajeSecreto = generadorDePalabraSecreta.generarPalabraSecreta();
         String mensaje = "Estimado usuario de la cuenta: " + this.numeroDeCuenta + " su palabra secreta es: \n";
         mensaje += this.mensajeSecreto + "\n";
         mensaje += "Ingrese esta palabra correctamente para proceder con su retiro";

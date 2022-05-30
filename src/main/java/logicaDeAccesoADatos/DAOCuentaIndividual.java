@@ -14,6 +14,8 @@ import org.bson.conversions.Bson;
 import clasesUtilitarias.Encriptacion;
 import java.time.LocalDate;
 import clasesUtilitarias.Conversion;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.EncriptacionSingleton;
 
 
 
@@ -51,10 +53,12 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
         String saldoNuevamenteEncriptado;
         double saldo;
         try {
-            String saldoDesencriptado = Encriptacion.desencriptar(saldoEncriptado);
-            saldo = Conversion.convertirStringEnDecimal(saldoDesencriptado);
+            Encriptacion encriptacionDeDatos = EncriptacionSingleton.instanciar();
+            String saldoDesencriptado = encriptacionDeDatos.desencriptar(saldoEncriptado);
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            saldo = convertidorDeDatos.convertirStringEnDecimal(saldoDesencriptado);
             saldo = saldo + pMontoDeposito;
-            saldoNuevamenteEncriptado = Encriptacion.encriptar(String.valueOf(saldo));
+            saldoNuevamenteEncriptado = encriptacionDeDatos.encriptar(String.valueOf(saldo));
             
         } catch (Exception ex) {
             return false;
@@ -78,10 +82,12 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
         double saldo;
         
         try {
-            String saldoDesencriptado = Encriptacion.desencriptar(saldoEncriptado);
-            saldo = Conversion.convertirStringEnDecimal(saldoDesencriptado);
+            Encriptacion encriptacionDeDatos = EncriptacionSingleton.instanciar();
+            String saldoDesencriptado = encriptacionDeDatos.desencriptar(saldoEncriptado);
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            saldo = convertidorDeDatos.convertirStringEnDecimal(saldoDesencriptado);
             saldo = saldo - pMontoRetiro;
-            saldoNuevamenteEncriptado = Encriptacion.encriptar(String.valueOf(saldo));
+            saldoNuevamenteEncriptado = encriptacionDeDatos.encriptar(String.valueOf(saldo));
             
         } catch (Exception ex) {
             return false;
@@ -102,7 +108,8 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
         Document actualizarDocumento = (Document) coleccionCuentas.find(new Document("numeroCuenta", pNumeroCuenta)).first();
         String pinEncriptado = null;
         try {
-            pinEncriptado = Encriptacion.encriptar(pNuevoPin);
+            Encriptacion encriptacionDeDatos = EncriptacionSingleton.instanciar();
+            pinEncriptado = encriptacionDeDatos.encriptar(pNuevoPin);
         } catch (Exception ex) {
             return false;
         }
@@ -145,9 +152,11 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
         LocalDate fechaCreacionEnFormatoLocalDate = LocalDate.parse(fechaCreacion);
 
         try {
-            String saldoDesencriptado = Encriptacion.desencriptar(saldoEncriptado);
-            String pinDesencriptado = Encriptacion.desencriptar(pPinEncriptado);
-            double saldoConvertido = Conversion.convertirStringEnDecimal(saldoDesencriptado);
+            Encriptacion encriptacionDeDatos = EncriptacionSingleton.instanciar();
+            String saldoDesencriptado = encriptacionDeDatos.desencriptar(saldoEncriptado);
+            String pinDesencriptado = encriptacionDeDatos.desencriptar(pPinEncriptado);
+            Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+            double saldoConvertido = convertidorDeDatos.convertirStringEnDecimal(saldoDesencriptado);
             IDAOClienteCuenta daoClienteCuenta = new DAOClienteCuenta();
             Cliente duenoDeCuenta = (Cliente) daoClienteCuenta.consultarClienteAsociadoACuenta(pNumeroCuenta);
             Cuenta cuenta = new Cuenta(numeroCuenta, fechaCreacionEnFormatoLocalDate, saldoConvertido, estatus, pinDesencriptado, duenoDeCuenta);
@@ -164,8 +173,10 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
         if (documento != null){
             String saldoEncriptado = documento.getString("saldo");
             try {
-                String saldoDesencriptado = Encriptacion.desencriptar(saldoEncriptado);
-                return Conversion.convertirStringEnDecimal(saldoDesencriptado);
+                Encriptacion encriptacionDeDatos = EncriptacionSingleton.instanciar();
+                String saldoDesencriptado = encriptacionDeDatos.desencriptar(saldoEncriptado);
+                Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                return convertidorDeDatos.convertirStringEnDecimal(saldoDesencriptado);
             } catch (Exception ex) {
                 return -1;
             }
@@ -196,7 +207,8 @@ public class DAOCuentaIndividual implements IDAOCuentaIndividual{
         try {
             documento = (Document) coleccionCuentas.find(new BasicDBObject("numeroCuenta", pNumeroCuenta)).projection(Projections.fields(Projections.include("numeroCuenta"), Projections.include("pin"))).first();
             pinRealEncriptado = documento.getString("pin");
-            String pinRealDesencriptado = Encriptacion.desencriptar(pinRealEncriptado);
+            Encriptacion encriptacionDeDatos = EncriptacionSingleton.instanciar();
+            String pinRealDesencriptado = encriptacionDeDatos.desencriptar(pinRealEncriptado);
             return pinRealDesencriptado.equals(pPin);
         } 
         catch (Exception ex) {

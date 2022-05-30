@@ -17,6 +17,8 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
+import singletonClasesUtilitarias.OrdenamientoSingleton;
 import vistaGUI.ColorCelda;
 import vistaGUI.DetalleCuenta;
 import vistaGUI.ListaCuentas;
@@ -66,8 +68,10 @@ public class ControladorListaCuentas implements ActionListener{
         IDAOCatalogoDeCuentas daoCatalogoDeCuentas = new DAOCatalogoDeCuentas();
         Lista<ICuenta> listaDeCuentasDesordenada = daoCatalogoDeCuentas.consultarListaDeCuentas();
         int tamanoListaCuenta = daoCatalogoDeCuentas.consultarCantidadCuentas();
-        Cuenta[] listaDeCuentasOrdenada = Conversion.convertirListaCuentaEnArreglo(listaDeCuentasDesordenada, tamanoListaCuenta);
-        Ordenamiento.ordenarDescendentemente(listaDeCuentasOrdenada);
+        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+        Cuenta[] listaDeCuentasOrdenada = convertidorDeDatos.convertirListaCuentaEnArreglo(listaDeCuentasDesordenada, tamanoListaCuenta);
+        Ordenamiento ordenamientoDeCuentas = OrdenamientoSingleton.instanciar();
+        ordenamientoDeCuentas.ordenarDescendentemente(listaDeCuentasOrdenada);
         
         for(int i = 0; i < tamanoListaCuenta; i++) {
             Cuenta cuenta = listaDeCuentasOrdenada[i];

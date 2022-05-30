@@ -18,6 +18,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import serviciosExternos.TipoCambioBCCR;
+import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -48,7 +49,8 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapaWEB extends H
             if(existeCuenta) {
                 boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuentaOrigen);
                 if(cuentaEstaActiva) {
-                    double montoDeRetiroEnDolaresEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiroEnDolares);
+                    Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                    double montoDeRetiroEnDolaresEnFormatoDecimal = convertidorDeDatos.convertirStringEnDecimal(montoDeRetiroEnDolares);
                     TipoCambioBCCR tipoDeCambioDolar = new TipoCambioBCCR();
                     double tipoDeCambioDeDolarVenta = tipoDeCambioDolar.obtenerValorVenta();
                     double montoARetirarEnColones = montoDeRetiroEnDolaresEnFormatoDecimal * tipoDeCambioDeDolarVenta;

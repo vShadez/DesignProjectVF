@@ -12,6 +12,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 import vistaGUI.SolicitarMontoDepositoYCuentaDestinoDeTransferencia;
 
@@ -41,7 +42,8 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
                 if(existeCuenta) {
                     boolean cuentaEstaActiva = ValidacionCuenta.validarCuentaEstaActiva(numeroDeCuentaDeDestino);
                     if(cuentaEstaActiva) {
-                        double montoDeRetiroEnFormatoDecimal = Conversion.convertirStringEnDecimal(montoDeRetiro);
+                        Conversion convertidorDeDatos = ConversionSingleton.instanciar();
+                        double montoDeRetiroEnFormatoDecimal = convertidorDeDatos.convertirStringEnDecimal(montoDeRetiro);
                         double montoComision = this.calcularMontoComision(montoDeRetiroEnFormatoDecimal);
                         boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuentaDeOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {
