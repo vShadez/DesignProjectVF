@@ -4,11 +4,16 @@
  */
 package pruebas;
 
+import com.google.cloud.translate.Detection;
 import java.time.LocalDate;
 import logicaDeNegocios.Bitacora;
 import logicaDeNegocios.BitacoraCSV;
 import logicaDeNegocios.BitacoraXML;
 import logicaDeNegocios.RegistroDeBitacora;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.Translate.TranslateOption;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 
 /**
  *
@@ -20,6 +25,7 @@ public class prueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
+        /*
         RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
         RegistroDeBitacora registro2 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "GUI");
         RegistroDeBitacora registro3 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "CLI");
@@ -40,6 +46,11 @@ public class prueba {
         registro3.registrarEnBitacoras();
         System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
         //System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
+        */
+        System.setProperty("GOOGLE_API_KEY", "AIzaSyAa5fnltG5HikNxs6unxMr_zfB1dTUWeZc");
+        Translate translate = TranslateOptions.getDefaultInstance().getService();
+        Translation translation = translate.translate("The shirt is red", TranslateOption.sourceLanguage("en"),TranslateOption.targetLanguage("es"));
+        System.out.printf("%s%n", translation.getTranslatedText());
     }
     
 }
