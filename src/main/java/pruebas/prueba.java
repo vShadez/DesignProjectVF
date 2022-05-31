@@ -1,0 +1,45 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package pruebas;
+
+import java.time.LocalDate;
+import logicaDeNegocios.Bitacora;
+import logicaDeNegocios.BitacoraCSV;
+import logicaDeNegocios.BitacoraXML;
+import logicaDeNegocios.RegistroDeBitacora;
+
+/**
+ *
+ * @author calde
+ */
+public class prueba {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws Exception {
+        RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
+        RegistroDeBitacora registro2 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "GUI");
+        RegistroDeBitacora registro3 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "CLI");
+        Bitacora bitacoraXML1 = new BitacoraXML(registro1);
+        Bitacora bitacoraXML2 = new BitacoraXML(registro2);
+        Bitacora bitacoraXML3 = new BitacoraXML(registro3);
+        Bitacora bitacoraCSV1 = new BitacoraCSV(registro1);
+        Bitacora bitacoraCSV2 = new BitacoraCSV(registro2);
+        Bitacora bitacoraCSV3 = new BitacoraCSV(registro3);
+        registro1.agregarBitacora(bitacoraXML1);
+        registro1.agregarBitacora(bitacoraCSV1);
+        registro2.agregarBitacora(bitacoraXML2);
+        registro2.agregarBitacora(bitacoraCSV2);
+        registro3.agregarBitacora(bitacoraXML3);
+        registro3.agregarBitacora(bitacoraCSV3);
+        registro1.registrarEnBitacoras();
+        registro2.registrarEnBitacoras();
+        registro3.registrarEnBitacoras();
+        System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
+        //System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
+    }
+    
+}
