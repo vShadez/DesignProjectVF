@@ -11,7 +11,7 @@ import listaDinamica.Lista;
  * @author Jairo Calderón
  */
 public abstract class Bitacora {
-    protected abstract void agregarRegistro();
+    protected abstract boolean agregarRegistro();
     protected abstract String visualizarBitacora() throws Exception;
     protected abstract void vaciarVisualizadorDeBitacora() throws Exception;
     protected abstract void cargarVisualizadorDeBitacora(Lista<RegistroDeBitacora> pListaDeRegistros) throws Exception;

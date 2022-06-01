@@ -4,8 +4,6 @@
  */
 package logicaDeNegocios;
 
-import clasesUtilitarias.Conversion;
-import com.ctc.wstx.shaded.msv_core.grammar.xmlschema.XPath;
 import java.io.File;
 import java.io.StringWriter;
 import java.time.LocalDate;
@@ -25,7 +23,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -39,7 +36,7 @@ public class BitacoraXML extends Bitacora{
     }
 
     @Override
-    protected void agregarRegistro() {
+    protected boolean agregarRegistro() {
         try {
             DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
             DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
@@ -55,8 +52,11 @@ public class BitacoraXML extends Bitacora{
             DOMSource fuente = new DOMSource(documento);
             StreamResult resultado = new StreamResult(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\Bitacora.xml"));
             transformadorDeDatos.transform(fuente, resultado);
+            return true;
         }
-        catch (Exception excepcion) {}
+        catch (Exception excepcion) {
+            return false;
+        }
     }
     
     @Override

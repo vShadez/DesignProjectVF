@@ -4,7 +4,6 @@
  */
 package logicaDeNegocios;
 
-import clasesUtilitarias.Conversion;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import java.io.File;
@@ -12,11 +11,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import listaDinamica.Lista;
 import listaDinamica.Nodo;
-import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
  *
@@ -30,15 +26,17 @@ public class BitacoraCSV extends Bitacora{
     }
 
     @Override
-    protected void agregarRegistro() {
+    protected boolean agregarRegistro() {
         try {
             String [] registro = {this.registroGuardado.fecha.toString(), this.registroGuardado.tipoDeAccion, this.registroGuardado.vista};
             String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
             CSVWriter escritorDeArchivoCSV = new CSVWriter(new FileWriter(archivoCSV, true));
             escritorDeArchivoCSV.writeNext(registro);
             escritorDeArchivoCSV.close();
-        } catch (IOException ex) {
-            Logger.getLogger(BitacoraCSV.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
+        } 
+        catch (IOException ex) {
+            return false;
         }
     }
 
