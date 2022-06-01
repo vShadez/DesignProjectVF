@@ -30,9 +30,9 @@ public class BitacoraCSV extends Bitacora{
         try {
             String [] registro = {this.registroGuardado.fecha.toString(), this.registroGuardado.tipoDeAccion, this.registroGuardado.vista};
             String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
-            CSVWriter escritorDeArchivoCSV = new CSVWriter(new FileWriter(archivoCSV, true));
-            escritorDeArchivoCSV.writeNext(registro);
-            escritorDeArchivoCSV.close();
+            try (CSVWriter escritorDeArchivoCSV = new CSVWriter(new FileWriter(archivoCSV, true))) {
+                escritorDeArchivoCSV.writeNext(registro);
+            }
             return true;
         } 
         catch (IOException ex) {
@@ -43,16 +43,17 @@ public class BitacoraCSV extends Bitacora{
     @Override
     protected String visualizarBitacora() throws Exception {
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\VisualizacionDeBitacora.csv";
-        CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV));
-        String[] fila = null;
-        String resultado = "Fecha de Registro,Tipo de acción,Vista desde donde se accedió \n";
-        while((fila = lectorDeArchivoCSV.readNext()) != null) {
-            String fechaDeRegistro = fila[0];
-            String tipoDeAccion = fila[1];
-            String vista = fila[2];
-            resultado += fechaDeRegistro + "," + tipoDeAccion + "," + vista + "\n";
+        String resultado;
+        try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
+            String[] fila = null;
+            resultado = "Fecha de Registro,Tipo de acción,Vista desde donde se accedió \n";
+            while((fila = lectorDeArchivoCSV.readNext()) != null) {
+                String fechaDeRegistro = fila[0];
+                String tipoDeAccion = fila[1];
+                String vista = fila[2];
+                resultado += fechaDeRegistro + "," + tipoDeAccion + "," + vista + "\n";
+            }
         }
-        lectorDeArchivoCSV.close();
         return resultado;
     }
 
@@ -67,15 +68,15 @@ public class BitacoraCSV extends Bitacora{
     @Override
     protected void cargarVisualizadorDeBitacora(Lista<RegistroDeBitacora> pListaDeRegistros) throws Exception {
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\VisualizacionDeBitacora.csv";
-        CSVWriter escritorDeArchivoCSV = new CSVWriter(new FileWriter(archivoCSV, true));
-        Nodo puntero = pListaDeRegistros.inicio;
-        while(puntero != null) {
-            RegistroDeBitacora registro = (RegistroDeBitacora) puntero.objeto;
-            String[] nuevoRegistro = {registro.fecha.toString(), registro.tipoDeAccion, registro.vista};
-            escritorDeArchivoCSV.writeNext(nuevoRegistro);
-            puntero = puntero.siguiente;
+        try (CSVWriter escritorDeArchivoCSV = new CSVWriter(new FileWriter(archivoCSV, true))) {
+            Nodo puntero = pListaDeRegistros.inicio;
+            while(puntero != null) {
+                RegistroDeBitacora registro = (RegistroDeBitacora) puntero.objeto;
+                String[] nuevoRegistro = {registro.fecha.toString(), registro.tipoDeAccion, registro.vista};
+                escritorDeArchivoCSV.writeNext(nuevoRegistro);
+                puntero = puntero.siguiente;
+            }
         }
-        escritorDeArchivoCSV.close();
     }
 
     @Override
@@ -83,19 +84,19 @@ public class BitacoraCSV extends Bitacora{
         this.vaciarVisualizadorDeBitacora();
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
-        CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV));
-        String[] fila = null;
-        while((fila = lectorDeArchivoCSV.readNext()) != null) {
-            String fechaDeRegistro = fila[0];
-            if(fechaDeRegistro.equals(LocalDate.now().toString())) {
-                String tipoDeAccion = fila[1];
-                String vista = fila[2];
-                LocalDate fechaEnFormatoLocalDate = LocalDate.parse(fechaDeRegistro);
-                RegistroDeBitacora registro = new RegistroDeBitacora(fechaEnFormatoLocalDate, tipoDeAccion, vista);
-                resultadosDeConsulta.agregarNodo(registro);
+        try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
+            String[] fila = null;
+            while((fila = lectorDeArchivoCSV.readNext()) != null) {
+                String fechaDeRegistro = fila[0];
+                if(fechaDeRegistro.equals(LocalDate.now().toString())) {
+                    String tipoDeAccion = fila[1];
+                    String vista = fila[2];
+                    LocalDate fechaEnFormatoLocalDate = LocalDate.parse(fechaDeRegistro);
+                    RegistroDeBitacora registro = new RegistroDeBitacora(fechaEnFormatoLocalDate, tipoDeAccion, vista);
+                    resultadosDeConsulta.agregarNodo(registro);
+                }
             }
         }
-        lectorDeArchivoCSV.close();
         this.cargarVisualizadorDeBitacora(resultadosDeConsulta);
         return this.visualizarBitacora();
     }
@@ -105,19 +106,19 @@ public class BitacoraCSV extends Bitacora{
         this.vaciarVisualizadorDeBitacora();
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
-        CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV));
-        String[] fila = null;
-        while((fila = lectorDeArchivoCSV.readNext()) != null) {
-            String vista = fila[2];
-            if(vista.equals(pVista)) {
-                String fechaDeRegistro = fila[0];
-                String tipoDeAccion = fila[1];
-                LocalDate fechaEnFormatoLocalDate = LocalDate.parse(fechaDeRegistro);
-                RegistroDeBitacora registro = new RegistroDeBitacora(fechaEnFormatoLocalDate, tipoDeAccion, vista);
-                resultadosDeConsulta.agregarNodo(registro);
+        try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
+            String[] fila = null;
+            while((fila = lectorDeArchivoCSV.readNext()) != null) {
+                String vista = fila[2];
+                if(vista.equals(pVista)) {
+                    String fechaDeRegistro = fila[0];
+                    String tipoDeAccion = fila[1];
+                    LocalDate fechaEnFormatoLocalDate = LocalDate.parse(fechaDeRegistro);
+                    RegistroDeBitacora registro = new RegistroDeBitacora(fechaEnFormatoLocalDate, tipoDeAccion, vista);
+                    resultadosDeConsulta.agregarNodo(registro);
+                }
             }
         }
-        lectorDeArchivoCSV.close();
         this.cargarVisualizadorDeBitacora(resultadosDeConsulta);
         return this.visualizarBitacora();
     }
@@ -127,17 +128,17 @@ public class BitacoraCSV extends Bitacora{
         this.vaciarVisualizadorDeBitacora();
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
-        CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV));
-        String[] fila = null;
-        while((fila = lectorDeArchivoCSV.readNext()) != null) {
-            String fechaDeRegistro = fila[0];
-            String tipoDeAccion = fila[1];
-            String vista = fila[2];
-            LocalDate fechaEnFormatoLocalDate = LocalDate.parse(fechaDeRegistro);
-            RegistroDeBitacora registro = new RegistroDeBitacora(fechaEnFormatoLocalDate, tipoDeAccion, vista);
-            resultadosDeConsulta.agregarNodo(registro);
+        try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
+            String[] fila = null;
+            while((fila = lectorDeArchivoCSV.readNext()) != null) {
+                String fechaDeRegistro = fila[0];
+                String tipoDeAccion = fila[1];
+                String vista = fila[2];
+                LocalDate fechaEnFormatoLocalDate = LocalDate.parse(fechaDeRegistro);
+                RegistroDeBitacora registro = new RegistroDeBitacora(fechaEnFormatoLocalDate, tipoDeAccion, vista);
+                resultadosDeConsulta.agregarNodo(registro);
+            }
         }
-        lectorDeArchivoCSV.close();
         this.cargarVisualizadorDeBitacora(resultadosDeConsulta);
         return this.visualizarBitacora();
     }
