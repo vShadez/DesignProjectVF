@@ -46,16 +46,6 @@ public class prueba {
         registro1.registrarEnBitacoras();
         registro2.registrarEnBitacoras();
         registro3.registrarEnBitacoras();
-<<<<<<< Updated upstream
-        System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
-        //System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
-=======
-        //System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
-        */
-        Bitacora bitacoraXML1 = new BitacoraXML(null);
-        System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
->>>>>>> Stashed changes
-        
         /*
         System.setProperty("GOOGLE_API_KEY", "AIzaSyAa5fnltG5HikNxs6unxMr_zfB1dTUWeZc");
         Translate translate = TranslateOptions.getDefaultInstance().getService();

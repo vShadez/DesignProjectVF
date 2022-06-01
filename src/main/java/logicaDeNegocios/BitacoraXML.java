@@ -14,10 +14,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
 import listaDinamica.Lista;
 import listaDinamica.Nodo;
 import org.w3c.dom.Document;
@@ -119,8 +115,8 @@ public class BitacoraXML extends Bitacora{
         }
         TransformerFactory fabricaDeTrabsformadoresDeDatos = TransformerFactory.newInstance();
         Transformer transformadorDeDatos = fabricaDeTrabsformadoresDeDatos.newTransformer();
-        transformadorDeDatos.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformadorDeDatos.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2"); 
+        //transformadorDeDatos.setOutputProperty(OutputKeys.INDENT, "yes");
+        //transformadorDeDatos.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2"); 
         DOMSource fuente = new DOMSource(documento);
         StreamResult resultado = new StreamResult(new File(System. getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
         transformadorDeDatos.transform(fuente, resultado);
