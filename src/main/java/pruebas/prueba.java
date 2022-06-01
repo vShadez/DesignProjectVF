@@ -34,20 +34,27 @@ public class prueba {
         Bitacora bitacoraXML1 = new BitacoraXML(registro1);
         Bitacora bitacoraXML2 = new BitacoraXML(registro2);
         Bitacora bitacoraXML3 = new BitacoraXML(registro3);
-        Bitacora bitacoraCSV1 = new BitacoraCSV(registro1);
-        Bitacora bitacoraCSV2 = new BitacoraCSV(registro2);
-        Bitacora bitacoraCSV3 = new BitacoraCSV(registro3);
+        //Bitacora bitacoraCSV1 = new BitacoraCSV(registro1);
+        //Bitacora bitacoraCSV2 = new BitacoraCSV(registro2);
+        //Bitacora bitacoraCSV3 = new BitacoraCSV(registro3);
         registro1.agregarBitacora(bitacoraXML1);
-        registro1.agregarBitacora(bitacoraCSV1);
+        //registro1.agregarBitacora(bitacoraCSV1);
         registro2.agregarBitacora(bitacoraXML2);
-        registro2.agregarBitacora(bitacoraCSV2);
+        //registro2.agregarBitacora(bitacoraCSV2);
         registro3.agregarBitacora(bitacoraXML3);
-        registro3.agregarBitacora(bitacoraCSV3);
+        //registro3.agregarBitacora(bitacoraCSV3);
         registro1.registrarEnBitacoras();
         registro2.registrarEnBitacoras();
         registro3.registrarEnBitacoras();
+<<<<<<< Updated upstream
         System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
         //System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
+=======
+        //System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
+        */
+        Bitacora bitacoraXML1 = new BitacoraXML(null);
+        System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
+>>>>>>> Stashed changes
         
         /*
         System.setProperty("GOOGLE_API_KEY", "AIzaSyAa5fnltG5HikNxs6unxMr_zfB1dTUWeZc");
