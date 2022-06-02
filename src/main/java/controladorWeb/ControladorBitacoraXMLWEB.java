@@ -26,13 +26,13 @@ public class ControladorBitacoraXMLWEB extends HttpServlet {
             throws ServletException, IOException {
          try {
              //response.setContentType("text/html;charset=UTF-8");
-             RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
-             Bitacora bitacoraXML1 = new BitacoraXML(registro1);
-             registro1.agregarBitacora(bitacoraXML1);
-             registro1.registrarEnBitacoras();
+             //RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
+             Bitacora bitacoraXML1 = new BitacoraXML(null);
+             //registro1.agregarBitacora(bitacoraXML1);
+             //registro1.registrarEnBitacoras();
              
              String bitacoraXml;
-         
+             
              bitacoraXml = bitacoraXML1.consultarRegistrosDelDia();
              bitacoraXml = bitacoraXml.replace("<","");
              bitacoraXml = bitacoraXml.replace(">","\n");
