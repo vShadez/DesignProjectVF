@@ -60,16 +60,26 @@ public class BitacoraXML extends Bitacora{
     
     @Override
     protected String visualizarBitacora() throws Exception {
+        String resultadoDeConsulta = "";
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
-        Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
-        TransformerFactory fabricaDeTransformadoresDeFormato = TransformerFactory.newInstance();
-        Transformer transformadorDeFormato = fabricaDeTransformadoresDeFormato.newTransformer();
-        transformadorDeFormato.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        StringWriter writer = new StringWriter();
-        transformadorDeFormato.transform(new DOMSource(documento), new StreamResult(writer));
-        String resultado = writer.getBuffer().toString();
-        return resultado;
+        Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\Bitacora.xml"));
+        documento.getDocumentElement().normalize();
+        NodeList listaDeNodos = documento.getElementsByTagName("Registro");
+        resultadoDeConsulta += "<Registros>";
+        for (int indice = 0; indice < listaDeNodos.getLength(); indice++) 
+        {
+            Node nodo = listaDeNodos.item(indice);
+            Element elemento = (Element) nodo;
+            String fechaDeRegistro = elemento.getAttribute("Fecha");
+            String tipoDeAccion = elemento.getAttribute("AccionEjecutada");
+            String vista = elemento.getAttribute("VistaDeAcceso");
+            resultadoDeConsulta += "\n\t <Registro AccionEjecutada=\"" + tipoDeAccion + "\" ";
+            resultadoDeConsulta += "Fecha=\"" + fechaDeRegistro + "\" ";
+            resultadoDeConsulta += "VistaDeAcceso=\"" + vista + "\" />";
+        }
+        resultadoDeConsulta += "\n</Registros>";
+        return resultadoDeConsulta;
     }
 
     @Override
@@ -80,7 +90,6 @@ public class BitacoraXML extends Bitacora{
         documento.getDocumentElement().normalize();
         NodeList listaDeNodos = documento.getElementsByTagName("Registro");
         int cantidadDeNodos = listaDeNodos.getLength();
-        System.out.println("Vaciar :" + listaDeNodos.getLength());
         for (int indice = 0; indice < cantidadDeNodos; indice++) 
         {
             Node nodo = listaDeNodos.item(0);
@@ -89,7 +98,6 @@ public class BitacoraXML extends Bitacora{
                 nodo.getParentNode().removeChild(nodo);
             }
         }
-        System.out.println("Vaciar :" + listaDeNodos.getLength());
         TransformerFactory fabricaDeTrabsformadoresDeDatos = TransformerFactory.newInstance();
         Transformer transformadorDeDatos = fabricaDeTrabsformadoresDeDatos.newTransformer();
         DOMSource fuente = new DOMSource(documento);
@@ -131,7 +139,6 @@ public class BitacoraXML extends Bitacora{
         Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\Bitacora.xml"));
         documento.getDocumentElement().normalize();
         NodeList listaDeNodos = documento.getElementsByTagName("Registro");
-        System.out.println("Consulta :" + listaDeNodos.getLength());
         for (int indice = 0; indice < listaDeNodos.getLength(); indice++) 
         {
             Node nodo = listaDeNodos.item(indice);

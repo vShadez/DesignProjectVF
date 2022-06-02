@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><Registros>
                                                               
 <Registro AccionEjecutada="Consulta" Fecha="2022-06-01" VistaDeAcceso="Web"/><Registro AccionEjecutada="Consulta" Fecha="2022-06-01" VistaDeAcceso="GUI"/><Registro AccionEjecutada="Consulta" Fecha="2022-06-01" VistaDeAcceso="CLI"/></Registros>
-=======
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Registros><Registro AccionEjecutada="Consulta" Fecha="2022-06-01" VistaDeAcceso="Web"/><Registro AccionEjecutada="Consulta" Fecha="2022-06-01" VistaDeAcceso="GUI"/><Registro AccionEjecutada="Consulta" Fecha="2022-06-01" VistaDeAcceso="CLI"/></Registros>
->>>>>>> Stashed changes
