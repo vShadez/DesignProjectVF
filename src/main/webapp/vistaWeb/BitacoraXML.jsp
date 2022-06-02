@@ -4,22 +4,22 @@
     Author     : sebashdez
 --%>
 
-<%@page import="logicaDeNegocios.Bitacora"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Detalle de la cuenta</title>
+        <title>Consulta de bitácora por acciones de hoy</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     </head>
     
     <body>
+        <table class="table table-striped">
         <div class="card-body">
             <div class ="mb-4">
                 <div class = "mb-4 text-center">
-                    <h1> Detalle de la cuenta </h1>
+                    <h1> Consulta de bitácora por acciones de hoy </h1>
                     <div>
                         <img src="../imagenesVista/Imagen25.png"/>
                     </div>
@@ -30,6 +30,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-header">
+                                        
                                         <p class = "lead"> ${bitacora} </p>
                                      
                                     </div>
@@ -40,6 +41,7 @@
                 </div>
             </div>
         </div>
+    </table>
     <div class="form-group text-center">
         <a href="../index.html">Volver</a>
     </div>       

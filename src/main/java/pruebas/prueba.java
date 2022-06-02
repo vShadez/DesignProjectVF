@@ -27,7 +27,7 @@ public class prueba {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        /*
+        
         RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
         RegistroDeBitacora registro2 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "GUI");
         RegistroDeBitacora registro3 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "CLI");
@@ -46,14 +46,13 @@ public class prueba {
         registro1.registrarEnBitacoras();
         registro2.registrarEnBitacoras();
         registro3.registrarEnBitacoras();
-<<<<<<< HEAD
+
         //System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
-        System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
-        
-=======
-        */
-        Bitacora bitacoraXML1 = new BitacoraXML(null);
         System.out.println(bitacoraXML1.consultarTodosLosRegistros());
+       
+        
+        //Bitacora bitacoraXML1 = new BitacoraXML(null);
+        //System.out.println(bitacoraXML1.consultarTodosLosRegistros());
         /*
         System.setProperty("GOOGLE_API_KEY", "AIzaSyAa5fnltG5HikNxs6unxMr_zfB1dTUWeZc");
         Translate translate = TranslateOptions.getDefaultInstance().getService();

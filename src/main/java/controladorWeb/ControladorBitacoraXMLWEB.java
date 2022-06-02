@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controladorWeb;
 
 import java.io.IOException;
@@ -28,22 +24,25 @@ public class ControladorBitacoraXMLWEB extends HttpServlet {
      @Override
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         response.setContentType("text/html;charset=UTF-8");
-         RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
-         Bitacora bitacoraXML1 = new BitacoraXML(registro1);
-         
          try {
-             ServletContext sc = this.getServletContext();
-             String pp = bitacoraXML1.consultarRegistrosDelDia();
-             String path = sc.getRealPath("C:\\Users\\estadm\\OneDrive - Estudiantes ITCR\\TEC\\Semestres\\I semestre 2022\\Diseño de software\\I proyecto\\apache-tomcat-9.0.62\\bin\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml");
-             //path = path.replace('\\','/');
+             //response.setContentType("text/html;charset=UTF-8");
+             RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
+             Bitacora bitacoraXML1 = new BitacoraXML(registro1);
+             registro1.agregarBitacora(bitacoraXML1);
+             registro1.registrarEnBitacoras();
              
-             System.out.println(path);
-             request.setAttribute("bitacora", path);
+             String bitacoraXml;
+         
+             bitacoraXml = bitacoraXML1.consultarRegistrosDelDia();
+             bitacoraXml = bitacoraXml.replace("<","");
+             bitacoraXml = bitacoraXml.replace(">","\n");
+             bitacoraXml = bitacoraXml.replace("\n", "<br>");
+             request.setAttribute("bitacora", bitacoraXml);
+             request.getRequestDispatcher("BitacoraXML.jsp").forward(request, response);
+             
          } catch (Exception ex) {
              Logger.getLogger(ControladorBitacoraXMLWEB.class.getName()).log(Level.SEVERE, null, ex);
          }
-          request.getRequestDispatcher("BitacoraXML.jsp").forward(request, response);
-     }
+         }
    
 }
