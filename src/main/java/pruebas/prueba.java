@@ -46,8 +46,8 @@ public class prueba {
         registro1.registrarEnBitacoras();
         registro2.registrarEnBitacoras();
         registro3.registrarEnBitacoras();
-        System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
-        //System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
+        //System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
+        System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
         
         /*
         System.setProperty("GOOGLE_API_KEY", "AIzaSyAa5fnltG5HikNxs6unxMr_zfB1dTUWeZc");
