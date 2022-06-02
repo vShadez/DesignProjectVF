@@ -14,9 +14,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
 import listaDinamica.Lista;
 import listaDinamica.Nodo;
 import org.w3c.dom.Document;
@@ -50,6 +47,8 @@ public class BitacoraXML extends Bitacora{
             elemento.setAttribute("VistaDeAcceso", this.registroGuardado.vista);
             TransformerFactory fabricaDeTransformadoresDeDatos = TransformerFactory.newInstance();
             Transformer transformadorDeDatos = fabricaDeTransformadoresDeDatos.newTransformer();
+            //transformadorDeDatos.setOutputProperty(OutputKeys.INDENT, "yes");
+            //transformadorDeDatos.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2"); 
             DOMSource fuente = new DOMSource(documento);
             StreamResult resultado = new StreamResult(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\Bitacora.xml"));
             transformadorDeDatos.transform(fuente, resultado);
@@ -62,30 +61,49 @@ public class BitacoraXML extends Bitacora{
     
     @Override
     protected String visualizarBitacora() throws Exception {
+        String resultadoDeConsulta = "";
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
-        Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
-        TransformerFactory fabricaDeTransformadoresDeFormato = TransformerFactory.newInstance();
-        Transformer transformadorDeFormato = fabricaDeTransformadoresDeFormato.newTransformer();
-        transformadorDeFormato.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        StringWriter writer = new StringWriter();
-        transformadorDeFormato.transform(new DOMSource(documento), new StreamResult(writer));
-        String resultado = writer.getBuffer().toString();
-        return resultado;
+        Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\Bitacora.xml"));
+        documento.getDocumentElement().normalize();
+        NodeList listaDeNodos = documento.getElementsByTagName("Registro");
+        resultadoDeConsulta += "<Registros>";
+        for (int indice = 0; indice < listaDeNodos.getLength(); indice++) 
+        {
+            Node nodo = listaDeNodos.item(indice);
+            Element elemento = (Element) nodo;
+            String fechaDeRegistro = elemento.getAttribute("Fecha");
+            String tipoDeAccion = elemento.getAttribute("AccionEjecutada");
+            String vista = elemento.getAttribute("VistaDeAcceso");
+            resultadoDeConsulta += "\n\t <Registro AccionEjecutada=\"" + tipoDeAccion + "\" ";
+            resultadoDeConsulta += "Fecha=\"" + fechaDeRegistro + "\" ";
+            resultadoDeConsulta += "VistaDeAcceso=\"" + vista + "\" />";
+        }
+        resultadoDeConsulta += "\n</Registros>";
+        return resultadoDeConsulta;
     }
 
     @Override
     protected void vaciarVisualizadorDeBitacora() throws Exception {
-        XPathFactory xPathFactory = XPathFactory.newInstance();
-        javax.xml.xpath.XPath xpath = xPathFactory.newXPath();
-        XPathExpression expresion = xpath.compile("Registros");
-        DocumentBuilderFactory fabricaDeConstructorDeDocumentos = DocumentBuilderFactory.newInstance();
-        Document documento = fabricaDeConstructorDeDocumentos.newDocumentBuilder().parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
-        Node nodo = (Node) expresion.evaluate(documento, XPathConstants.NODE);
-        nodo.getParentNode().removeChild(nodo);
-        TransformerFactory fabricaDeTransformadores = TransformerFactory.newInstance();
-        Transformer transformador = fabricaDeTransformadores.newTransformer();
-        transformador.transform(new DOMSource(documento), new StreamResult(System.out));
+        DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
+        DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
+        Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
+        documento.getDocumentElement().normalize();
+        NodeList listaDeNodos = documento.getElementsByTagName("Registro");
+        int cantidadDeNodos = listaDeNodos.getLength();
+        for (int indice = 0; indice < cantidadDeNodos; indice++) 
+        {
+            Node nodo = listaDeNodos.item(0);
+            if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                Element elemento = (Element) nodo;
+                nodo.getParentNode().removeChild(nodo);
+            }
+        }
+        TransformerFactory fabricaDeTrabsformadoresDeDatos = TransformerFactory.newInstance();
+        Transformer transformadorDeDatos = fabricaDeTrabsformadoresDeDatos.newTransformer();
+        DOMSource fuente = new DOMSource(documento);
+        StreamResult resultado = new StreamResult(new File(System. getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
+        transformadorDeDatos.transform(fuente, resultado);
     }
     
     @Override
@@ -106,9 +124,11 @@ public class BitacoraXML extends Bitacora{
         }
         TransformerFactory fabricaDeTrabsformadoresDeDatos = TransformerFactory.newInstance();
         Transformer transformadorDeDatos = fabricaDeTrabsformadoresDeDatos.newTransformer();
-        DOMSource source = new DOMSource(documento);
-        StreamResult result = new StreamResult(new File(System. getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
-        transformadorDeDatos.transform(source, result);
+        //transformadorDeDatos.setOutputProperty(OutputKeys.INDENT, "yes");
+        //transformadorDeDatos.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2"); 
+        DOMSource fuente = new DOMSource(documento);
+        StreamResult resultado = new StreamResult(new File(System. getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
+        transformadorDeDatos.transform(fuente, resultado);
     }
     
     @Override
@@ -170,6 +190,7 @@ public class BitacoraXML extends Bitacora{
 
     @Override
     public String consultarTodosLosRegistros() throws Exception {
+        this.vaciarVisualizadorDeBitacora();
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
