@@ -46,6 +46,11 @@ public class prueba {
         registro1.registrarEnBitacoras();
         registro2.registrarEnBitacoras();
         registro3.registrarEnBitacoras();
+<<<<<<< HEAD
+        //System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
+        System.out.println(bitacoraXML1.consultarRegistrosDeVista("Web"));
+        
+=======
         */
         Bitacora bitacoraXML1 = new BitacoraXML(null);
         System.out.println(bitacoraXML1.consultarTodosLosRegistros());

@@ -24,6 +24,7 @@ import logicaDeNegocios.Cuenta;
 @WebServlet(name = "ControladorDetalleCuentaWEB", urlPatterns = {"/vistaWeb/DetalleCuenta"})
 public class ControladorDetalleCuentaWEB extends HttpServlet {
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String numeroCuenta = request.getParameter("numeroCuenta");
@@ -41,6 +42,7 @@ public class ControladorDetalleCuentaWEB extends HttpServlet {
         int cantidadOperaciones = obtenerCantidadRetirosYDepositos.consultarCantidadDeDepositosYRetirosRealizados(numeroCuenta);
         request.setAttribute("cantidadDepositosYRetiros", cantidadOperaciones);
         request.setAttribute("nombrePropietario", nombreDePropietario);
+        
         request.getRequestDispatcher("DetalleCuenta.jsp").forward(request, response);
         
         }

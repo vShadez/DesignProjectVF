@@ -38,6 +38,7 @@ public class BitacoraXML extends Bitacora{
         try {
             DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
             DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
+            
             Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\Bitacora.xml"));
             Element documentoRaiz = documento.getDocumentElement();
             Element elemento = documento.createElement("Registro");
@@ -136,7 +137,10 @@ public class BitacoraXML extends Bitacora{
         this.vaciarVisualizadorDeBitacora();
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
+        fabricaDeDocumentos.setIgnoringComments(true);
+        fabricaDeDocumentos.setIgnoringElementContentWhitespace(true);
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
+        
         Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\Bitacora.xml"));
         documento.getDocumentElement().normalize();
         NodeList listaDeNodos = documento.getElementsByTagName("Registro");
