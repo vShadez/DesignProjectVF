@@ -18,6 +18,7 @@ import listaDinamica.Lista;
 import listaDinamica.Nodo;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -71,12 +72,12 @@ public class BitacoraXML extends Bitacora{
         {
             Node nodo = listaDeNodos.item(indice);
             Element elemento = (Element) nodo;
-            String fechaDeRegistro = elemento.getAttribute("Fecha");
-            String tipoDeAccion = elemento.getAttribute("AccionEjecutada");
-            String vista = elemento.getAttribute("VistaDeAcceso");
-            resultadoDeConsulta += "\n\t <Registro AccionEjecutada=\"" + tipoDeAccion + "\" ";
-            resultadoDeConsulta += "Fecha=\"" + fechaDeRegistro + "\" ";
-            resultadoDeConsulta += "VistaDeAcceso=\"" + vista + "\" />";
+            NamedNodeMap listaDeAtributos = elemento.getAttributes();
+            resultadoDeConsulta += "\n\t <" + elemento.getNodeName() + " ";
+            for (int indiceDeAtributo = 0; indiceDeAtributo < listaDeAtributos.getLength(); indiceDeAtributo++) {
+                resultadoDeConsulta += " " + listaDeAtributos.item(indiceDeAtributo).getNodeName() + "=" + listaDeAtributos.item(indiceDeAtributo).getNodeValue();
+            }
+            resultadoDeConsulta += "/>";
         }
         resultadoDeConsulta += "\n</Registros>";
         return resultadoDeConsulta;
