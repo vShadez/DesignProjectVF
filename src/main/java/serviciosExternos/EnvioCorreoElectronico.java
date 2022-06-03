@@ -20,12 +20,12 @@ import javax.mail.internet.MimeMultipart;
  * @author calde
  */
 public class EnvioCorreoElectronico {
-    private static final String correoEmisor = "bancojfs@gmail.com";
+    private static final String correoEmisor = "bancojfs@outlook.es";
     
     public static boolean enviarCorreo(String pCorreoDestinatario, String pAsunto, String pMensaje) {
         try {
             Properties propiedad = new Properties();
-            propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
+            propiedad.setProperty("mail.smtp.host", "smtp.office365.com");
             propiedad.setProperty("mail.smtp.starttls.enable", "true");
             propiedad.setProperty("mail.smtp.port", "587");
             propiedad.setProperty("mail.smtp.auth", "true");

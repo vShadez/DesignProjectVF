@@ -15,6 +15,7 @@ import com.google.cloud.translate.Translate.TranslateOption;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
 import logicaDeNegocios.BitacoraTramaPlana;
+import serviciosExternos.EnvioCorreoElectronico;
 
 /**
  *
@@ -27,7 +28,7 @@ public class prueba {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        
+        /*
         RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
         RegistroDeBitacora registro2 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "GUI");
         RegistroDeBitacora registro3 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "CLI");
@@ -50,7 +51,7 @@ public class prueba {
         //System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
         System.out.println(bitacoraXML1.consultarTodosLosRegistros());
        
-        
+        */
         //Bitacora bitacoraXML1 = new BitacoraXML(null);
         //System.out.println(bitacoraXML1.consultarTodosLosRegistros());
         /*
@@ -74,5 +75,6 @@ public class prueba {
         System.out.println(bitacoraTP1.consultarRegistrosDelDia());
         System.out.println(bitacoraTP1.consultarRegistrosDeVista("CLI"));
         */
+        EnvioCorreoElectronico.enviarCorreo("calderonjairo88@gmail.com", "prueba", "hola mae");
     }
 }
