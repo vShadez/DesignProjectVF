@@ -8,6 +8,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import clasesUtilitarias.Encriptacion;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
+import serviciosExternos.EnvioCorreoElectronico;
 import singletonClasesUtilitarias.EncriptacionSingleton;
 /**
  *
@@ -129,5 +130,31 @@ public class Cuenta implements ICuenta, Comparable{
 
     public String getPin() {
         return pin;
+    }
+    
+    public void inactivarCuenta(String pMotivoInactivacion) {
+        this.estatus = "Inactiva";
+        IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
+        daoCuenta.actualizarEstatus(this.numeroCuenta, this.estatus);
+        String asuntoDeCorreo = this.generarAsuntoDeCorreoInactivacionDeCuenta();
+        String mensajeDeCorreo = this.generarMensajeDeCorreoInactivacionDeCuenta(pMotivoInactivacion);
+        this.enviarCorreoDeInactivacionDeCuenta(asuntoDeCorreo, mensajeDeCorreo);
+    }
+    
+    protected String generarMensajeDeCorreoInactivacionDeCuenta(String pMotivoInactivacion) {
+        String mensajeDeCorreo = "";
+        mensajeDeCorreo += "Estimado cliente: su cuenta " + this.numeroCuenta + " ha sido desactividada \n";
+        mensajeDeCorreo += "La inactivación se debe a: " + pMotivoInactivacion + "\n";
+        return mensajeDeCorreo;
+    }
+    
+    protected String generarAsuntoDeCorreoInactivacionDeCuenta() {
+        String asuntoDeCorreo = "Inactivación de cuenta " + this.numeroCuenta;
+        return asuntoDeCorreo;
+    }
+    
+    protected void enviarCorreoDeInactivacionDeCuenta(String pAsunto, String pMensaje) {
+        Cliente clienteAsociadoACuenta = (Cliente) this.propietario;
+        EnvioCorreoElectronico.enviarCorreo(clienteAsociadoACuenta.correoElectronico, pAsunto, pMensaje);
     }
 }
