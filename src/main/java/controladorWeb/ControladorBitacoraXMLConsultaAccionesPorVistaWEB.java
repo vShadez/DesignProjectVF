@@ -31,18 +31,12 @@ public class ControladorBitacoraXMLConsultaAccionesPorVistaWEB extends HttpServl
              Bitacora bitacoraXML1 = new BitacoraXML(null);
              if(formato.equals("CLI")){
                  bitacoraXml = bitacoraXML1.consultarRegistrosDeVista("CLI");
-                 System.out.println("LLega1");
-                 System.out.println(bitacoraXml);
              }
              if(formato.equals("GUI")){
                  bitacoraXml = bitacoraXML1.consultarRegistrosDeVista("GUI");
-                 System.out.println("LLega2");
-                 System.out.println(bitacoraXml);
              }
              if(formato.equals("WEB")){
                  bitacoraXml = bitacoraXML1.consultarRegistrosDeVista("Web");
-                 System.out.println("LLega3");
-                 System.out.println(bitacoraXml);
              }
              
              bitacoraXml = bitacoraXml.replace("<","");

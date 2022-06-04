@@ -65,7 +65,7 @@ public class BitacoraXML extends Bitacora{
         String resultadoDeConsulta = "";
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
-        Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\Bitacora.xml"));
+        Document documento = constructor.parse(new File(System.getProperty("user.dir") + "\\src\\main\\java\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
         documento.getDocumentElement().normalize();
         NodeList listaDeNodos = documento.getElementsByTagName("Registro");
         resultadoDeConsulta += "<Registros>";

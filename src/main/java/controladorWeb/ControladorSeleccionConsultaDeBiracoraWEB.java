@@ -44,15 +44,51 @@ public class ControladorSeleccionConsultaDeBiracoraWEB extends HttpServlet {
         }
            
         if(event.equals("Consulta por acciones de la vista CLI")) {
-           response.sendRedirect("BitacoraXMLConsultaDeAccionesPorVista?formato=CLI");
+             if(formato.equals("XML")){
+                response.sendRedirect("BitacoraXMLConsultaDeAccionesPorVista?formato=CLI");
+            }
+            if(formato.equals("CSV")){
+                
+            }
+            if(formato.equals("TXT")){
+                
+            }
+           
         }
         if(event.equals("Consulta por acciones de la vista GUI")) {
-            response.sendRedirect("BitacoraXMLConsultaDeAccionesPorVista?formato=GUI");
+            if(formato.equals("XML")){
+                response.sendRedirect("BitacoraXMLConsultaDeAccionesPorVista?formato=GUI");
+            }
+            if(formato.equals("CSV")){
+                
+            }
+            if(formato.equals("TXT")){
+                
+            }
+            
         }
         if(event.equals("Consulta por acciones de la vista WEB")) {
-            response.sendRedirect("BitacoraXMLConsultaDeAccionesPorVista?formato=WEB");
+            if(formato.equals("XML")){
+                response.sendRedirect("BitacoraXMLConsultaDeAccionesPorVista?formato=WEB");
+            }
+            if(formato.equals("CSV")){
+                
+            }
+            if(formato.equals("TXT")){
+                
+            }
+            
         }
         if(event.equals("Consulta de todos las acciones")) {
+            if(formato.equals("XML")){
+                response.sendRedirect("BitacoraXMLConsultaDeTodasLasAcciones");
+            }
+            if(formato.equals("CSV")){
+                
+            }
+            if(formato.equals("TXT")){
+                
+            }
             
         }
         
