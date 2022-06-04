@@ -14,7 +14,7 @@ import singletonClasesUtilitarias.EncriptacionSingleton;
  *
  * @author Jairo Calderón
  */
-public class Cuenta implements ICuenta, Comparable{
+public class Cuenta implements ICuenta, Comparable, CorreoDeCuenta{
     public String numeroCuenta;
     public LocalDate fechaCreacion;
     private double saldo;
@@ -132,28 +132,28 @@ public class Cuenta implements ICuenta, Comparable{
         return pin;
     }
     
-    public void inactivarCuenta(String pMotivoInactivacion) {
+    public void inactivarCuenta(String pAsuntoCorreo, String pMensajeCorreo) {
         this.estatus = "Inactiva";
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         daoCuenta.actualizarEstatus(this.numeroCuenta, this.estatus);
-        String asuntoDeCorreo = this.generarAsuntoDeCorreoInactivacionDeCuenta();
-        String mensajeDeCorreo = this.generarMensajeDeCorreoInactivacionDeCuenta(pMotivoInactivacion);
-        this.enviarCorreoDeInactivacionDeCuenta(asuntoDeCorreo, mensajeDeCorreo);
+        this.enviarCorreoDeInactivacionDeCuenta(pAsuntoCorreo, pMensajeCorreo);
     }
     
-    protected String generarMensajeDeCorreoInactivacionDeCuenta(String pMotivoInactivacion) {
+    @Override
+    public String generarMensajeDeCorreoInactivacionDeCuenta(String pMotivoInactivacion) {
         String mensajeDeCorreo = "";
         mensajeDeCorreo += "Estimado cliente: su cuenta " + this.numeroCuenta + " ha sido desactividada \n";
         mensajeDeCorreo += "La inactivación se debe a: " + pMotivoInactivacion + "\n";
         return mensajeDeCorreo;
     }
     
-    protected String generarAsuntoDeCorreoInactivacionDeCuenta() {
+    @Override
+    public String generarAsuntoDeCorreoInactivacionDeCuenta() {
         String asuntoDeCorreo = "Inactivación de cuenta " + this.numeroCuenta;
         return asuntoDeCorreo;
     }
     
-    protected void enviarCorreoDeInactivacionDeCuenta(String pAsunto, String pMensaje) {
+    private void enviarCorreoDeInactivacionDeCuenta(String pAsunto, String pMensaje) {
         Cliente clienteAsociadoACuenta = (Cliente) this.propietario;
         EnvioCorreoElectronico.enviarCorreo(clienteAsociadoACuenta.correoElectronico, pAsunto, pMensaje);
     }

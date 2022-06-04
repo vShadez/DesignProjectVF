@@ -14,7 +14,11 @@ import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.Translate.TranslateOption;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
+import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeNegocios.BitacoraTramaPlana;
+import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.DecoradorCorreoDeCuenta;
+import logicaDeNegocios.DecoradorCorreoEspanolEInglesDeCuenta;
 import serviciosExternos.EnvioCorreoElectronico;
 
 /**
@@ -75,6 +79,13 @@ public class prueba {
         System.out.println(bitacoraTP1.consultarRegistrosDelDia());
         System.out.println(bitacoraTP1.consultarRegistrosDeVista("CLI"));
         */
-        EnvioCorreoElectronico.enviarCorreo("calderonjairo88@gmail.com", "prueba", "hola mae");
+        /*
+        DAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
+        Cuenta cuenta = daoCuenta.consultarCuenta("CU-1");
+        DecoradorCorreoDeCuenta decoradorCorreo = new DecoradorCorreoEspanolEInglesDeCuenta(cuenta);
+        String asuntoDeCorreo = decoradorCorreo.generarAsuntoDeCorreoInactivacionDeCuenta();
+        String mensajeDeCorreo = decoradorCorreo.generarMensajeDeCorreoInactivacionDeCuenta("Nada");
+        cuenta.inactivarCuenta(asuntoDeCorreo, mensajeDeCorreo);
+        */
     }
 }
