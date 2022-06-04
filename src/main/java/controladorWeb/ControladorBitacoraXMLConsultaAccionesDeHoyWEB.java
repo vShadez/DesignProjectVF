@@ -18,15 +18,13 @@ import logicaDeNegocios.RegistroDeBitacora;
  *
  * @author estadm
  */
-@WebServlet(name = "ControladorBitacoraXMLWEB", urlPatterns = {"/vistaWeb/BitacoraXML"})
-public class ControladorBitacoraXMLWEB extends HttpServlet {
+@WebServlet(name = "ControladorBitacoraXMLConsultaAccionesDeHoyWEB", urlPatterns = {"/vistaWeb/BitacoraXMLConsultaDeAccionesDeHoy"})
+public class ControladorBitacoraXMLConsultaAccionesDeHoyWEB extends HttpServlet {
 
      @Override
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          try {
-             //response.setContentType("text/html;charset=UTF-8");
-             //RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
              Bitacora bitacoraXML1 = new BitacoraXML(null);
              //registro1.agregarBitacora(bitacoraXML1);
              //registro1.registrarEnBitacoras();
@@ -38,11 +36,12 @@ public class ControladorBitacoraXMLWEB extends HttpServlet {
              bitacoraXml = bitacoraXml.replace(">","\n");
              bitacoraXml = bitacoraXml.replace("\n", "<br>");
              request.setAttribute("bitacora", bitacoraXml);
-             request.getRequestDispatcher("BitacoraXML.jsp").forward(request, response);
              
          } catch (Exception ex) {
-             Logger.getLogger(ControladorBitacoraXMLWEB.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(ControladorBitacoraXMLConsultaAccionesDeHoyWEB.class.getName()).log(Level.SEVERE, null, ex);
          }
-         }
+         request.getRequestDispatcher("BitacoraXMLConsultaDeAccionesDeHoy.jsp").forward(request, response);
+         
+    }
    
 }

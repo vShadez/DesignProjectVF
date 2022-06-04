@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Consulta de bitácora por acciones de hoy</title>
+        <title>Consulta de bitácora</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     </head>
     
@@ -19,7 +19,7 @@
         <div class="card-body">
             <div class ="mb-4">
                 <div class = "mb-4 text-center">
-                    <h1> Consulta de bitácora por acciones de hoy </h1>
+                    <h1> Consulta de bitácora </h1>
                     <div>
                         <img src="../imagenesVista/Imagen25.png"/>
                     </div>
@@ -30,7 +30,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-header">
-                                        
+                                        <input type="hidden" name = "formato" value="${formato}" />
                                         <p class = "lead"> ${bitacora} </p>
                                      
                                     </div>

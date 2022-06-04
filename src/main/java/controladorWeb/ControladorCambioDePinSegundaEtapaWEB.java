@@ -36,8 +36,6 @@ public class ControladorCambioDePinSegundaEtapaWEB extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        
-        
         IDAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         String pin = request.getParameter("pinActual");
         this.cantidadDeIntentos++;
