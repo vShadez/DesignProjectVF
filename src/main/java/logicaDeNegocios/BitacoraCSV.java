@@ -43,6 +43,7 @@ public class BitacoraCSV extends Bitacora{
     @Override
     protected String visualizarBitacora() throws Exception {
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\VisualizacionDeBitacora.csv";
+        
         String resultado;
         try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
             String[] fila = null;
@@ -84,6 +85,7 @@ public class BitacoraCSV extends Bitacora{
         this.vaciarVisualizadorDeBitacora();
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
+        System.out.println(archivoCSV);
         try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
             String[] fila = null;
             while((fila = lectorDeArchivoCSV.readNext()) != null) {

@@ -36,7 +36,7 @@ public class ControladorSeleccionConsultaDeBiracoraWEB extends HttpServlet {
                 response.sendRedirect("BitacoraXMLConsultaDeAccionesDeHoy");
             }
             if(formato.equals("CSV")){
-                
+                response.sendRedirect("BitacoraCSVConsultaDeAccionesDeHoy");
             }
             if(formato.equals("TXT")){
                 
