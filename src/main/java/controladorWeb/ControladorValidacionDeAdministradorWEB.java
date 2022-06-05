@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import static seguridad.seguridadAdministrador.inicioSesionAdministrador;
 import serviciosExternos.TipoCambioBCCR;
 import validacion.ValidacionCuenta;
 
@@ -23,8 +24,7 @@ import validacion.ValidacionCuenta;
  */
 @WebServlet(name = "ControladorValidacionDeAdministradorWEB", urlPatterns = {"/vistaWeb/ValidacionDeAdministrador"})
 public class ControladorValidacionDeAdministradorWEB extends HttpServlet {
-    private String usuarioRegistrado = "JFS";
-    private String pinRegistrado = "123";
+    
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -37,13 +37,14 @@ public class ControladorValidacionDeAdministradorWEB extends HttpServlet {
             throws ServletException, IOException {
         String usuario = request.getParameter("usuario");
         String pin = request.getParameter("pin");
-        
-        if(usuarioRegistrado.equals(usuario) && pinRegistrado.equals(pin)){
+        boolean validarUsuarioPin = inicioSesionAdministrador(usuario,pin);
+        if(validarUsuarioPin){
             response.sendRedirect("SeleccionConsultaDeBitacora");
-        } else{
+        }else{
             JOptionPane.showMessageDialog(null, "Los credenciales no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
             request.getRequestDispatcher("ValidacionDeAdministrador.jsp").forward(request, response);
-            }
         }
+        
+    }
    
 }
