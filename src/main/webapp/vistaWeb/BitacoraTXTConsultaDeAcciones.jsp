@@ -43,7 +43,7 @@
         </div>
     </table>
     <div class="form-group text-center">
-        <a href="../index.html">Volver</a>
+        <a href="SeleccionConsultaDeBitacora">Volver</a>
     </div>       
     </body>
 </html>
