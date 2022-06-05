@@ -32,7 +32,7 @@ public class prueba {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        
+        /*
         RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
         RegistroDeBitacora registro2 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "GUI");
         RegistroDeBitacora registro3 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "CLI");
@@ -56,7 +56,7 @@ public class prueba {
         //System.out.println(bitacoraCSV1.consultarRegistrosDelDia());
         System.out.println(bitacoraCSV1.consultarRegistrosDeVista("Web"));
        
-        
+        */
         //Bitacora bitacoraXML1 = new BitacoraXML(null);
         //System.out.println(bitacoraXML1.consultarTodosLosRegistros());
         /*
@@ -67,8 +67,9 @@ public class prueba {
         */
         /*
         RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta de primer tipo", "Web");
-        RegistroDeBitacora registro2 = new RegistroDeBitacora(LocalDate.now(), "Consulta de segundo tipo", "GUI");
+        RegistroDeBitacora registro2 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "GUI");
         RegistroDeBitacora registro3 = new RegistroDeBitacora(LocalDate.now(), "Consulta de tercer tipo", "CLI");
+        Bitacora bitacoraTP1 = new BitacoraTramaPlana(registro1);
         Bitacora bitacoraTP2 = new BitacoraTramaPlana(registro2);
         Bitacora bitacoraTP3 = new BitacoraTramaPlana(registro3);
         registro1.agregarBitacora(bitacoraTP1);
@@ -77,9 +78,12 @@ public class prueba {
         registro1.registrarEnBitacoras();
         registro2.registrarEnBitacoras();
         registro3.registrarEnBitacoras();
-        System.out.println(bitacoraTP1.consultarRegistrosDelDia());
-        System.out.println(bitacoraTP1.consultarRegistrosDeVista("CLI"));
         */
+         Bitacora bitacoraTP1 = new BitacoraTramaPlana(null);
+        //System.out.println(bitacoraTP1.consultarRegistrosDelDia());
+        System.out.println(bitacoraTP1.consultarRegistrosDeVista("Web"));
+        //System.out.println(bitacoraTP1.consultarRegistrosDeVista("CLI"));
+        
         /*
         DAOCuentaIndividual daoCuenta = new DAOCuentaIndividual();
         Cuenta cuenta = daoCuenta.consultarCuenta("CU-1");

@@ -30,7 +30,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-header">
-                                        
+                                        <input type="hidden" name = "formato" value="${formato}" />
                                         <p class = "lead"> ${bitacora} </p>
                                      
                                     </div>

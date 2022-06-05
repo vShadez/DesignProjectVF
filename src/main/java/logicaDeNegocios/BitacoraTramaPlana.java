@@ -4,6 +4,7 @@
  */
 package logicaDeNegocios;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -56,10 +57,16 @@ public class BitacoraTramaPlana extends Bitacora{
 
     @Override
     protected void vaciarVisualizadorDeBitacora() throws Exception {
+        /*
         File archivoDeVisualizacionDeBitacoraPorBorrar = new File(System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\VisualizacionDeBitacora.txt"); 
         archivoDeVisualizacionDeBitacoraPorBorrar.delete();
         File archivoDeVisualizacionDeBitacoraPorCrear = new File(System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\VisualizacionDeBitacora.txt"); 
         archivoDeVisualizacionDeBitacoraPorCrear.createNewFile();
+        */
+        File archivoDeVisualizacionDeBitacoraPorBorrar = new File(System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\VisualizacionDeBitacora.txt"); 
+        BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDeVisualizacionDeBitacoraPorBorrar));
+        bw.write("");
+        bw.close();
     }
 
     @Override
@@ -131,7 +138,7 @@ public class BitacoraTramaPlana extends Bitacora{
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         while (objetoDeLectura.hasNextLine()){
             String linea = objetoDeLectura.nextLine();
-            String fechaDeRegistro = linea.substring(0, 11);
+            String fechaDeRegistro = linea.substring(0, 10);
             String tipoDeAccion = linea.substring(11, limiteDeCaracteresDeTipoDeAccion + 1);
             String vista = linea.substring(11 + limiteDeCaracteresDeTipoDeAccion + 1, 11 + limiteDeCaracteresDeTipoDeAccion + 1 + limiteDeCaracteresDeVista);
             java.time.LocalDate fechaEnFormatoLocalDate = java.time.LocalDate.parse(fechaDeRegistro);

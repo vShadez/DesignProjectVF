@@ -1,3 +1,3 @@
-2022-05-31 Consulta de primer tipo                  Web
-2022-05-31 Consulta de segundo tipo                 GUI
-2022-05-31 Consulta de tercer tipo                  CLI
+2022-06-04 Consulta de primer tipo                  Web
+2022-06-04 Consulta                                 GUI
+2022-06-04 Consulta de tercer tipo                  CLI

@@ -30,6 +30,7 @@ public class BitacoraCSV extends Bitacora{
         try {
             String [] registro = {this.registroGuardado.fecha.toString(), this.registroGuardado.tipoDeAccion, this.registroGuardado.vista};
             String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
+            
             try (CSVWriter escritorDeArchivoCSV = new CSVWriter(new FileWriter(archivoCSV, true))) {
                 escritorDeArchivoCSV.writeNext(registro);
             }
@@ -43,16 +44,17 @@ public class BitacoraCSV extends Bitacora{
     @Override
     protected String visualizarBitacora() throws Exception {
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\VisualizacionDeBitacora.csv";
-        
+       
         String resultado;
         try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
             String[] fila = null;
-            resultado = "Fecha de Registro,Tipo de acción,Vista desde donde se accedió \n";
+            //resultado = "Fecha de Registro,Tipo de acción,Vista desde donde se accedió \n";
+            resultado = "";
             while((fila = lectorDeArchivoCSV.readNext()) != null) {
                 String fechaDeRegistro = fila[0];
                 String tipoDeAccion = fila[1];
                 String vista = fila[2];
-                resultado += fechaDeRegistro + "," + tipoDeAccion + "," + vista + "\n";
+                resultado += fechaDeRegistro + ", " + tipoDeAccion + ", " + vista + "\n";
             }
         }
         return resultado;
@@ -85,7 +87,7 @@ public class BitacoraCSV extends Bitacora{
         this.vaciarVisualizadorDeBitacora();
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
-        System.out.println(archivoCSV);
+        
         try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
             String[] fila = null;
             while((fila = lectorDeArchivoCSV.readNext()) != null) {
@@ -108,6 +110,7 @@ public class BitacoraCSV extends Bitacora{
         this.vaciarVisualizadorDeBitacora();
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
+        
         try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
             String[] fila = null;
             while((fila = lectorDeArchivoCSV.readNext()) != null) {
@@ -130,6 +133,7 @@ public class BitacoraCSV extends Bitacora{
         this.vaciarVisualizadorDeBitacora();
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         String archivoCSV = System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\Bitacora.csv";
+        
         try (CSVReader lectorDeArchivoCSV = new CSVReader(new FileReader(archivoCSV))) {
             String[] fila = null;
             while((fila = lectorDeArchivoCSV.readNext()) != null) {

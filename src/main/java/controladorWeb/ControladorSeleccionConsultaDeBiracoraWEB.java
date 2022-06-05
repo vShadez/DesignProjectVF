@@ -30,64 +30,64 @@ public class ControladorSeleccionConsultaDeBiracoraWEB extends HttpServlet {
             throws ServletException, IOException {
         String event = request.getParameter("event");
         String formato = request.getParameter("formatos");
-    
+        
         if(event.equals("Consulta por acciones de hoy")) {
             if(formato.equals("XML")){
-                response.sendRedirect("BitacoraXMLConsultaDeAccionesDeHoy");
+                response.sendRedirect("BitacoraXMLConsultaDeAcciones?formato=HOY");
             }
             if(formato.equals("CSV")){
-                response.sendRedirect("BitacoraCSVConsultaDeAccionesDeHoy");
+                response.sendRedirect("BitacoraCSVConsultaDeAcciones?formato=HOY");
             }
             if(formato.equals("TXT")){
-                
+                response.sendRedirect("BitacoraTXTConsultaDeAcciones?formato=HOY");
             }
         }
            
         if(event.equals("Consulta por acciones de la vista CLI")) {
              if(formato.equals("XML")){
-                response.sendRedirect("BitacoraXMLConsultaDeAccionesPorVista?formato=CLI");
+                response.sendRedirect("BitacoraXMLConsultaDeAcciones?formato=CLI");
             }
             if(formato.equals("CSV")){
-                
+                response.sendRedirect("BitacoraCSVConsultaDeAcciones?formato=CLI");
             }
             if(formato.equals("TXT")){
-                
+                response.sendRedirect("BitacoraTXTConsultaDeAcciones?formato=CLI");
             }
            
         }
         if(event.equals("Consulta por acciones de la vista GUI")) {
             if(formato.equals("XML")){
-                response.sendRedirect("BitacoraXMLConsultaDeAccionesPorVista?formato=GUI");
+                response.sendRedirect("BitacoraXMLConsultaDeAcciones?formato=GUI");
             }
             if(formato.equals("CSV")){
-                
+                response.sendRedirect("BitacoraCSVConsultaDeAcciones?formato=GUI");
             }
             if(formato.equals("TXT")){
-                
+                response.sendRedirect("BitacoraTXTConsultaDeAcciones?formato=GUI");
             }
             
         }
         if(event.equals("Consulta por acciones de la vista WEB")) {
             if(formato.equals("XML")){
-                response.sendRedirect("BitacoraXMLConsultaDeAccionesPorVista?formato=WEB");
+                response.sendRedirect("BitacoraXMLConsultaDeAcciones?formato=WEB");
             }
             if(formato.equals("CSV")){
-                
+                response.sendRedirect("BitacoraCSVConsultaDeAcciones?formato=WEB");
             }
             if(formato.equals("TXT")){
-                
+                response.sendRedirect("BitacoraTXTConsultaDeAcciones?formato=WEB");
             }
             
         }
         if(event.equals("Consulta de todos las acciones")) {
             if(formato.equals("XML")){
-                response.sendRedirect("BitacoraXMLConsultaDeTodasLasAcciones");
+                response.sendRedirect("BitacoraXMLConsultaDeAcciones?formato=Todas");
             }
             if(formato.equals("CSV")){
-                
+                response.sendRedirect("BitacoraCSVConsultaDeAcciones?formato=Todas");
             }
             if(formato.equals("TXT")){
-                
+                response.sendRedirect("BitacoraTXTConsultaDeAcciones?formato=Todas");
             }
             
         }

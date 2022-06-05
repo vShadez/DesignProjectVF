@@ -18,25 +18,30 @@ import logicaDeNegocios.RegistroDeBitacora;
  *
  * @author estadm
  */
-@WebServlet(name = "ControladorBitacoraXMLConsultaAccionesPorVistaWEB", urlPatterns = {"/vistaWeb/BitacoraXMLConsultaDeAccionesPorVista"})
-public class ControladorBitacoraXMLConsultaAccionesPorVistaWEB extends HttpServlet {
+@WebServlet(name = "ControladorBitacoraXMLConsultaDeAccionesWEB", urlPatterns = {"/vistaWeb/BitacoraXMLConsultaDeAcciones"})
+public class ControladorBitacoraXMLConsultaDeAccionesWEB extends HttpServlet {
     String bitacoraXml;
      @Override
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          String formato = request.getParameter("formato");
          request.setAttribute("formato", formato);
-         
          try {
              Bitacora bitacoraXML1 = new BitacoraXML(null);
              if(formato.equals("CLI")){
                  bitacoraXml = bitacoraXML1.consultarRegistrosDeVista("CLI");
              }
-             if(formato.equals("GUI")){
+             else if(formato.equals("GUI")){
                  bitacoraXml = bitacoraXML1.consultarRegistrosDeVista("GUI");
              }
-             if(formato.equals("WEB")){
+             else if(formato.equals("WEB")){
                  bitacoraXml = bitacoraXML1.consultarRegistrosDeVista("Web");
+             }
+             else if(formato.equals("HOY")){
+                 bitacoraXml = bitacoraXML1.consultarRegistrosDelDia();
+             }
+             else{
+                 bitacoraXml = bitacoraXML1.consultarTodosLosRegistros();
              }
              
              bitacoraXml = bitacoraXml.replace("<","");
@@ -45,16 +50,15 @@ public class ControladorBitacoraXMLConsultaAccionesPorVistaWEB extends HttpServl
              request.setAttribute("bitacora", bitacoraXml);
              
          } catch (Exception ex) {
-             Logger.getLogger(ControladorBitacoraXMLConsultaAccionesPorVistaWEB.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(ControladorBitacoraXMLConsultaDeAccionesWEB.class.getName()).log(Level.SEVERE, null, ex);
          }
-         request.getRequestDispatcher("BitacoraXMLConsultaDeAccionesPorVista.jsp").forward(request, response);
+         request.getRequestDispatcher("BitacoraXMLConsultaDeAcciones.jsp").forward(request, response);
          
     }
     
      @Override
      protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         System.out.println("Llega acá");
      }
    
 }
