@@ -49,6 +49,7 @@ public class ControladorDetalleCliente implements ActionListener{
              Conversion convertidorDeDatos = ConversionSingleton.instanciar();
              arregloDeCuentasDeCliente = convertidorDeDatos.convertirListaCuentaEnArreglo(consultarListaCuenta, cantidadCuentasCliente);
              cargarCuentasATabla(arregloDeCuentasDeCliente,cantidadCuentasCliente);
+             
         }else{
             Cuenta[] arrayCuentaVacio = null;
             cargarCuentasATabla(arrayCuentaVacio,cantidadCuentasCliente);

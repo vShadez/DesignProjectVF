@@ -24,8 +24,6 @@ import validacion.ValidacionCuenta;
  */
 @WebServlet(name = "ControladorValidacionDeAdministradorWEB", urlPatterns = {"/vistaWeb/ValidacionDeAdministrador"})
 public class ControladorValidacionDeAdministradorWEB extends HttpServlet {
-    
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {

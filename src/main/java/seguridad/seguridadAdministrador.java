@@ -12,5 +12,4 @@ public class seguridadAdministrador {
         return "JSF".equals(pUsuario) && "123".equals(pPin);
     }
     
-    
 }
