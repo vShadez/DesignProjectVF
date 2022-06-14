@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
-import static seguridad.seguridadAdministrador.inicioSesionAdministrador;
 import serviciosExternos.TipoCambioBCCR;
 import validacion.ValidacionCuenta;
+import static seguridad.seguridadAdministrador.iniciarSesionAdministrador;
 
 /**
  *
@@ -35,7 +35,7 @@ public class ControladorValidacionDeAdministradorWEB extends HttpServlet {
             throws ServletException, IOException {
         String usuario = request.getParameter("usuario");
         String pin = request.getParameter("pin");
-        boolean validarUsuarioPin = inicioSesionAdministrador(usuario,pin);
+        boolean validarUsuarioPin = iniciarSesionAdministrador(usuario,pin);
         if(validarUsuarioPin){
             response.sendRedirect("SeleccionConsultaDeBitacora");
         }else{
