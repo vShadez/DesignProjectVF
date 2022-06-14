@@ -65,9 +65,9 @@ public class prueba {
         Translation translation = translate.translate("La camisa es roja", TranslateOption.sourceLanguage("es"),TranslateOption.targetLanguage("en"));
         System.out.printf("%s%n", translation.getTranslatedText());
         */
-        /*
-        RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta de primer tipo", "Web");
-        RegistroDeBitacora registro2 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "GUI");
+        
+        RegistroDeBitacora registro1 = new RegistroDeBitacora(LocalDate.now(), "Consulta", "Web");
+        RegistroDeBitacora registro2 = new RegistroDeBitacora(LocalDate.now(), "Consulta a", "GUI");
         RegistroDeBitacora registro3 = new RegistroDeBitacora(LocalDate.now(), "Consulta de tercer tipo", "CLI");
         Bitacora bitacoraTP1 = new BitacoraTramaPlana(registro1);
         Bitacora bitacoraTP2 = new BitacoraTramaPlana(registro2);
@@ -78,10 +78,10 @@ public class prueba {
         registro1.registrarEnBitacoras();
         registro2.registrarEnBitacoras();
         registro3.registrarEnBitacoras();
-        */
-         Bitacora bitacoraTP1 = new BitacoraTramaPlana(null);
+        
+         //Bitacora bitacoraTP1 = new BitacoraTramaPlana(null);
         //System.out.println(bitacoraTP1.consultarRegistrosDelDia());
-        System.out.println(bitacoraTP1.consultarRegistrosDeVista("Web"));
+        System.out.println(bitacoraTP1.consultarTodosLosRegistros());
         //System.out.println(bitacoraTP1.consultarRegistrosDeVista("CLI"));
         
         /*

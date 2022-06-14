@@ -148,4 +148,11 @@ public class BitacoraCSV extends Bitacora{
         this.cargarVisualizadorDeBitacora(resultadosDeConsulta);
         return this.visualizarBitacora();
     }
+    
+    public static void registrarBitacoraCSV(LocalDate pFecha, String pAccion, String pVista){
+        RegistroDeBitacora registro = new RegistroDeBitacora(pFecha, pAccion, pVista);
+        Bitacora bitacora = new BitacoraXML(registro);
+        registro.agregarBitacora(bitacora);
+        registro.registrarEnBitacoras();
+    }
 }

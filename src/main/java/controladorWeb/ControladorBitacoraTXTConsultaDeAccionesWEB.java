@@ -46,7 +46,11 @@ public class ControladorBitacoraTXTConsultaDeAccionesWEB extends HttpServlet {
              else{
                   bitacoraTxt = bitacoraTXT.consultarTodosLosRegistros();
              }
+             System.out.println(bitacoraTxt);
              bitacoraTxt = bitacoraTxt.replace("\n", "<br>");
+             
+             //bitacoraTxt = bitacoraTxt.replace(" ", "&nbsp");
+             System.out.println(bitacoraTxt);
              request.setAttribute("bitacora", bitacoraTxt);
              
          } catch (Exception ex) {
