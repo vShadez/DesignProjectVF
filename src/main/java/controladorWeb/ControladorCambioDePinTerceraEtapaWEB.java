@@ -7,11 +7,14 @@ package controladorWeb;
 import static controlador.ControladorCambioDePinTerceraEtapa.registrarCambioDePin;
 import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *
@@ -46,6 +49,8 @@ public class ControladorCambioDePinTerceraEtapaWEB extends HttpServlet {
             request.getRequestDispatcher("CambioDePinTerceraEtapa.jsp?numeroCuenta=" + numeroDeCuenta).forward(request, response);
         }else{
             MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(numeroDeCuenta);
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Cambio de pin", "Web");
             response.sendRedirect("../index.html");
         }
     }

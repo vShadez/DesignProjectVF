@@ -51,6 +51,9 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
                         boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuentaDeOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {
                             efectuarTransferencia(numeroDeCuentaDeDestino, montoDeRetiroEnFormatoDecimal);
+                            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                            accion.registrarEnBitacoras(LocalDate.now(), "Transferencia", "GUI");
+                            
                             ControladorMenuPrincipal.volverMenuPrincipal();
                             vistaGUI.setVisible(false);
                         }
@@ -94,8 +97,6 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
         cuentaDeOrigen.transferir(cuentaDeDestino, pMontoTransferido);
         //cuentaDeOrigen.retirar(pMontoTransferido);
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarEnBitacoras(LocalDate.now(), "Transferencia", "GUI");
             
         MensajeEnPantallaCuenta.imprimirMensajeTransferenciaExitosa(pMontoTransferido, montoComision);
     }

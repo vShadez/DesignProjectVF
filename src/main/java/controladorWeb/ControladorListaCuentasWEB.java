@@ -7,6 +7,7 @@ package controladorWeb;
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.Ordenamiento;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -20,6 +21,8 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 
@@ -57,7 +60,8 @@ public class ControladorListaCuentasWEB extends HttpServlet {
             dtos.add(new CuentaDto(cuenta[i].numeroCuenta, String.format("%.2f",saldoConvertido), cuenta[i].estatus, nombreCompletoDePropietarioDeCuenta, identificacionDePropietarioDeCuenta));
         }
         request.setAttribute("dtos", dtos);
-        
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Listar cuentas", "Web");
         request.getRequestDispatcher("ListaCuentas.jsp").forward(request, response);
     }
     
@@ -95,5 +99,4 @@ public class ControladorListaCuentasWEB extends HttpServlet {
             return identificacion;
         }
     }
-    }
-
+}

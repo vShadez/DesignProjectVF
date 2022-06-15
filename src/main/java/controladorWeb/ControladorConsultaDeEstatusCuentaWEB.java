@@ -6,11 +6,14 @@ package controladorWeb;
 
 import static controlador.ControladorConsultaDeEstatusCuenta.consultarEstatusCuenta;
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *
@@ -31,6 +34,8 @@ public class ControladorConsultaDeEstatusCuentaWEB extends HttpServlet {
         String numeroDeCuenta = request.getParameter("numeroCuenta");
         
         if (consultarEstatusCuenta(numeroDeCuenta) == true){
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Consultar estatus de cuenta", "Web");
             response.sendRedirect("../index.html");
         }else{
             request.setAttribute("error", "La cuenta no existe");

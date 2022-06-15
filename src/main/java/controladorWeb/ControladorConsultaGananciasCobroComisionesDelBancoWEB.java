@@ -5,6 +5,7 @@
 package controladorWeb;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logicaDeAccesoADatos.DAOOperacionCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCatalogoDeCuentas;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *
@@ -40,7 +43,8 @@ public class ControladorConsultaGananciasCobroComisionesDelBancoWEB extends Http
         request.setAttribute("montoRetirosDolares", (String.format("%.2f",comisionesTotalesRetiros/tipoCompra)));
         request.setAttribute("montoDepositosYRetirosDolares", (String.format("%.2f",comisionesTotalesDepositoRetiros/tipoCompra)));
         
-        
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Consulta de ganancias por cobro del banco", "Web");
         
         request.getRequestDispatcher("ConsultaGananciasCobroComisionesDelBanco.jsp").forward(request, response);
     }

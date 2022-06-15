@@ -3,6 +3,7 @@ package controladorWeb;
 import clasesUtilitarias.Conversion;
 import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,8 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 
@@ -52,6 +55,8 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferenciaWEB e
                         boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuentaOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {
                             efectuarTransferencia(numeroCuentaDestino, montoDeRetiroEnFormatoDecimal);
+                            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                            accion.registrarEnBitacoras(LocalDate.now(), "Transferencia", "Web");
                         }
                         else {
                             MensajeEnPantallaCuenta.imprimirMensajeDeErrorFondosInsuficientes();

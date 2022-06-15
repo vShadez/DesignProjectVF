@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controlador.ControladorRegistroCuentas;
+import java.time.LocalDate;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *
@@ -31,6 +34,8 @@ public class ControladorRegistroCuentasWEB extends HttpServlet{
         response.setContentType("text/html; charset=UTF-8");
         
         if (ControladorRegistroCuentas.registrarCuenta(pin,montoInicial,identificacionCliente) == true){
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Registrar cuenta", "Web");
             response.sendRedirect("../index.html");
         } else {
             request.getRequestDispatcher("RegistroCuentas.jsp").forward(request, response);

@@ -35,8 +35,6 @@ public class ControladorListaClientesWEB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        String direccion = System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml";
-        System.out.println(direccion);
         RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Listar clientes", "Web");
         

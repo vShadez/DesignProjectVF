@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controlador.ControladorDepositoEnColones;
+import java.time.LocalDate;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *
@@ -31,6 +34,8 @@ public class ControladorDepositoEnColonesWEB extends HttpServlet{
         response.setContentType("text/html; charset=UTF-8");
         
         if (ControladorDepositoEnColones.depositarColonesACuenta(cuenta,montoDeposito) == true){
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Depósito en colones", "Web");
             response.sendRedirect("../index.html");
         } else {
             request.getRequestDispatcher("DepositoEnColones.jsp").forward(request, response);

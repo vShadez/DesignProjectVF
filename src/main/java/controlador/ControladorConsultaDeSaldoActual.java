@@ -53,7 +53,7 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
                         double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
                         
                         RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
-                        accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual", "GUI");
+                        accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual en colones", "GUI");
                         
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(saldoActualColones);
                     }
@@ -63,6 +63,10 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
                         double saldoActualColones = cuentaAconsultarDolares.consultarSaldoActual(numeroDeCuenta);
                         double valorDeCompra = tc.obtenerValorCompra();
                         double saldoConvertidoADolares = saldoActualColones / valorDeCompra;
+                        
+                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                        accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual en dólares", "GUI");
+                        
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra);
                     }
                 } else {

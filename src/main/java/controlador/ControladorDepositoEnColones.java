@@ -39,6 +39,9 @@ public class ControladorDepositoEnColones implements ActionListener{
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaDeposito.getText();
             String montoDeDeposito = this.vistaGUI.txtMontoDeposito.getText();
             depositarColonesACuenta(numeroDeCuenta, montoDeDeposito);
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Depósito en colones", "GUI");
+            
             this.vistaGUI.txtNumeroCuentaDeposito.setText("");
             this.vistaGUI.txtMontoDeposito.setText("");
             ControladorMenuPrincipal.volverMenuPrincipal();
@@ -90,9 +93,6 @@ public class ControladorDepositoEnColones implements ActionListener{
         if(cantidadDeRetirosYDepositosRealizados >= 3) {
             montoComision += montoDeDepositoEnFormatoEntero * 0.02;
         }
-        
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarEnBitacoras(LocalDate.now(), "Depósito en colones", "GUI");
         
         MensajeEnPantallaCuenta.imprimirMensajeDepositoEnColonesExitoso(numeroDeCuenta, montoDeDepositoEnFormatoEntero, montoComision);
     }

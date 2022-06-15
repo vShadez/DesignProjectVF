@@ -5,12 +5,15 @@
 package controladorWeb;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *
@@ -24,6 +27,8 @@ public class ControladorConsultaTipoCambioDeCompraWEB extends HttpServlet {
         TipoCambioBCCR tc = new TipoCambioBCCR();
         double tipoCompra = tc.obtenerValorCompra();
         request.setAttribute("tipoDeCambioCompra", tipoCompra);
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Consultar tipo cambio compra", "Web");
         request.getRequestDispatcher("ConsultaTipoCambioDeCompra.jsp").forward(request, response);
     }
 }

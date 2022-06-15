@@ -19,6 +19,8 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
@@ -34,7 +36,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         numeroCuenta = request.getParameter("numeroCuenta");
-        System.out.println("Llegando");
+        
         Operacion[] operacionesTotales;
         IDAOCuentaIndividual cuenta = new DAOCuentaIndividual();
         Cuenta cuentaRecibida = (Cuenta) cuenta.consultarCuenta(numeroCuenta);
@@ -73,6 +75,10 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
         request.setAttribute("propietario", clientePropietario.nombre +" "+ clientePropietario.primerApellido +" "+ clientePropietario.segundoApellido);
         request.setAttribute("correoElectronico", clientePropietario.correoElectronico);
         request.setAttribute("numeroTelefono", clientePropietario.numeroTelefono);
+        
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Consulta estado de cuenta en colones", "Web");
+        
         request.getRequestDispatcher("InformacionPorConsultaDeEstadoCuentaColones.jsp").forward(request, response);
         }
   

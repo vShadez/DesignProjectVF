@@ -7,6 +7,7 @@ package controladorWeb;
 import clasesUtilitarias.Conversion;
 import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,8 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 
@@ -93,6 +96,8 @@ public class ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapaWEB extends H
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
         cuenta.retirar(montoDeRetiro);
         double montoComision = calcularMontoComision(montoDeRetiro, numeroDeCuenta);
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Retiro en colones", "Web");
         MensajeEnPantallaCuenta.imprimirMensajeRetiroEnColonesExitoso(montoDeRetiro, montoComision);
     }
 }

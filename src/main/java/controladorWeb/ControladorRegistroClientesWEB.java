@@ -6,11 +6,14 @@ package controladorWeb;
 
 import controlador.ControladorRegistroClientes;
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *
@@ -41,6 +44,8 @@ public class ControladorRegistroClientesWEB extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         
         if (ControladorRegistroClientes.registrarCliente(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico) == true){
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Registrar cliente", "Web");
             response.sendRedirect("../index.html");
         } else {
             request.getRequestDispatcher("RegistroClientes.jsp").forward(request, response);

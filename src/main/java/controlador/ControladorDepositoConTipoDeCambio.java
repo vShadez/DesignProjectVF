@@ -40,6 +40,9 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaDepositarDolares.getText();
             String montoDeDepositoEnDolares = this.vistaGUI.txtMontoDolares.getText();
             depositarDolaresACuenta(numeroDeCuenta, montoDeDepositoEnDolares);
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Depósito en dólares", "GUI");
+            
             this.vistaGUI.txtNumeroCuentaDepositarDolares.setText("");
             this.vistaGUI.txtMontoDolares.setText("");
             ControladorMenuPrincipal.volverMenuPrincipal();
@@ -92,9 +95,6 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
         if(cantidadDeRetirosYDepositosRealizados >= 3) {
             montoComision += montoDeDepositoEnColonesEnFormatoDecimal * 0.02;
         }
-        
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarEnBitacoras(LocalDate.now(), "Depósito en dólares", "GUI");
         
         MensajeEnPantallaCuenta.imprimirMensajeDepositoEnDolaresExitoso(pNumeroDeCuenta, convertidorDeDatos.convertirStringEnDecimal(pMontoDeDepositoEnDolares), montoDeDepositoEnColonesEnFormatoDecimal, tipoDeCambioDeDolarCompra, montoComision, LocalDate.now());
     }

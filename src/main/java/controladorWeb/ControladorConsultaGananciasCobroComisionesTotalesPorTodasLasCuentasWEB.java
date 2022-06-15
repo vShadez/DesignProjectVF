@@ -3,6 +3,7 @@ package controladorWeb;
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.Ordenamiento;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 
@@ -54,6 +57,8 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
         }
         
         request.setAttribute("operacionesAMostrar", operacionesAMostrar);
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Ganancias de comisiones en todas las cuentas", "Web");
         
         request.getRequestDispatcher("ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas.jsp").forward(request, response);
     }

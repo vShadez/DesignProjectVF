@@ -7,6 +7,7 @@ package controladorWeb;
 import clasesUtilitarias.Conversion;
 import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,9 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 
@@ -97,6 +100,8 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapaWEB extends H
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
         cuenta.retirar(pMontoRetiradoColones);
         double montoComision = calcularMontoComision(pMontoRetiradoColones, numeroDeCuenta);
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Retiro en dólares", "Web");
         MensajeEnPantallaCuenta.imprimirMensajeRetiroEnDolaresExitoso(pMontoRetiradoColones, pMontoRetiradoDolares, pTipoCambio, montoComision);
     }
 }

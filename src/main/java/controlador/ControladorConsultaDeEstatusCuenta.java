@@ -28,6 +28,8 @@ public class ControladorConsultaDeEstatusCuenta implements ActionListener{
         if(evento.getActionCommand().equals("Consultar")) {
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaConsultarEstatus.getText();
             consultarEstatusCuenta(numeroDeCuenta);
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Consultar estatus de cuenta", "GUI");
         }
         if(evento.getActionCommand().equals("Cancelar")) {
            ControladorMenuPrincipal.volverMenuPrincipal();
@@ -39,9 +41,6 @@ public class ControladorConsultaDeEstatusCuenta implements ActionListener{
         String estatusCuentaActual = estadoCuenta.consultarEstatusCuenta(numeroDeCuenta);
 
         if(ValidacionCuenta.validarExisteCuenta(numeroDeCuenta)){
-            
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
-            accion.registrarEnBitacoras(LocalDate.now(), "Consultar estatus de cuenta", "GUI");
             
             MensajeEnPantallaCuenta.imprimirMensajeEstatusDeCuenta(numeroDeCuenta, estatusCuentaActual);
             return true;

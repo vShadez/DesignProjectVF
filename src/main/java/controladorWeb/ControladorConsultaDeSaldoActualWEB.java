@@ -6,6 +6,7 @@ package controladorWeb;
 
 import controlador.MensajeEnPantallaCuenta;
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -48,6 +51,9 @@ public class ControladorConsultaDeSaldoActualWEB extends HttpServlet {
                         IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
                         double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(saldoActualColones);
+                        
+                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                        accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual en colones", "Web");
                         response.sendRedirect("../index.html");
                     }
                     if(event.equals("Consultar en dolares")) {
@@ -56,6 +62,9 @@ public class ControladorConsultaDeSaldoActualWEB extends HttpServlet {
                         double saldoActualColones = cuentaAconsultarDolares.consultarSaldoActual(numeroDeCuenta);
                         double valorDeCompra = tc.obtenerValorCompra();
                         double saldoConvertidoADolares = saldoActualColones / valorDeCompra;
+                        
+                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                        accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual en dólares", "Web");
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra);
                         response.sendRedirect("../index.html");
                     }
