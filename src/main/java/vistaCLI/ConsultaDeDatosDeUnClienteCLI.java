@@ -6,6 +6,7 @@ package vistaCLI;
 
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.Ordenamiento;
+import java.time.LocalDate;
 import listaDinamica.Lista;
 import logicaDeAccesoADatos.DAOCatalogoDeClientes;
 import logicaDeAccesoADatos.DAOCliente;
@@ -20,7 +21,9 @@ import validacion.ValidacionCliente;
 import validacion.ValidacionTipoDeDato;
 import listaDinamica.Nodo;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCliente;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 import singletonMensajesDeUsuario.ErrorDeClienteSingleton;
@@ -55,6 +58,8 @@ public class ConsultaDeDatosDeUnClienteCLI {
             System.out.println("Identificación: " + identificacion);
         }
         System.out.println("\nDigite la identificación del cliente sobre el cual desea conocer los detalles:");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Consulta de datos de un cliente", "CLI");
         this.recibirIdentificacionDeCliente();
     }
     

@@ -5,6 +5,7 @@
 package vistaCLI;
 
 import clasesUtilitarias.Conversion;
+import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCliente;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
@@ -13,8 +14,10 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICliente;
 import logicaDeNegocios.ICuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
@@ -62,6 +65,8 @@ public class RegistroDeCuentasCLI {
                     nuevaCuenta.depositar(montoInicialConvetidoDouble);
                     clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
                     System.out.println(mensajeDeExito.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, depositoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente));
+                    RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                    accion.registrarEnBitacoras(LocalDate.now(), "Registro de cuentas", "CLI");
                     MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
                 }
                 catch (Exception ex) {

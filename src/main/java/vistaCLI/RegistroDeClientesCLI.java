@@ -14,8 +14,11 @@ import logicaDeNegocios.ICliente;
 import validacion.ValidacionCliente;
 import validacion.ValidacionTipoDeDato;
 import clasesUtilitarias.Conversion;
+import java.time.LocalDate;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCliente;
 import mensajesDeUsuario.MensajeDeMovimientoDeClienteExitoso;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeClienteSingleton;
 import singletonMensajesDeUsuario.MovimientoDeClienteExitosoSingleton;
@@ -56,6 +59,10 @@ public class RegistroDeClientesCLI {
                 int mes = convertidorDeDatos.convertirStringEnEntero(partesDeString[1]);
                 int ano = convertidorDeDatos.convertirStringEnEntero(partesDeString[2]);
                 this.registrarCliente(nombre, primerApellido, segundoApellido, identificacionEnFormatoEntero, dia, mes, ano, numeroDeTelefonoEnFormatoEntero, correoElectronico);
+                
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                accion.registrarEnBitacoras(LocalDate.now(), "Registro de clientes", "CLI");
+                
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }
             else {

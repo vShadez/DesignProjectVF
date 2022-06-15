@@ -5,6 +5,7 @@
 package vistaCLI;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import listaDinamica.Lista;
 import listaDinamica.Nodo;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
@@ -14,8 +15,10 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 
@@ -36,6 +39,8 @@ public class ConsultaDeEstadoDeCuentaEnDolaresCLI {
             String pin = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             boolean datosIngresadosSonValidos = this.validarDatos(numeroDeCuenta, pin);
             if(datosIngresadosSonValidos) {
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                accion.registrarEnBitacoras(LocalDate.now(), "Consulta de estado en dólares", "CLI");
                 this.mostrarEstadoDeCuenta(numeroDeCuenta);
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }

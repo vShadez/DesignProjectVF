@@ -11,9 +11,11 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
@@ -39,6 +41,10 @@ public class DepositoEnDolaresCLI {
                 TipoCambioBCCR tipoDeCambio = new TipoCambioBCCR();
                 double tipoDeCambioDeCompra = tipoDeCambio.obtenerValorCompra();
                 this.efectuarDeposito(numeroDeCuenta, montoDeDeposito, tipoDeCambioDeCompra);
+                
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                accion.registrarEnBitacoras(LocalDate.now(), "Depósito en dólares", "CLI");
+                
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }
             else {
