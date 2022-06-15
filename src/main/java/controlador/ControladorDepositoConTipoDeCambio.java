@@ -17,7 +17,7 @@ import vistaGUI.DepositoConTipoDeCambio;
 import serviciosExternos.TipoCambioBCCR;
 import java.time.LocalDate;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import vistaGUI.SeleccionDeDeposito;
 

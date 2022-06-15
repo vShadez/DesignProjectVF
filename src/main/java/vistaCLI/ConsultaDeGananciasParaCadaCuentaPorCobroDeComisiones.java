@@ -16,7 +16,7 @@ import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import vistaGUI.MenuPrincipal;
 
 /**

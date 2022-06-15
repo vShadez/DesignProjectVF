@@ -13,7 +13,7 @@ import vistaGUI.ConsultaDeSaldoActual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 /**
  *
  * @author estadm

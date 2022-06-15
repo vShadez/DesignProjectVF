@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author estadm
  */
 @WebServlet(name = "ControladorSeleccionConsultaDeBitacoraWEB", urlPatterns = {"/vistaWeb/SeleccionConsultaDeBitacora"})
-public class ControladorSeleccionConsultaDeBiracoraWEB extends HttpServlet {
+public class ControladorSeleccionConsultaDeBitacoraWEB extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

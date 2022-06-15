@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCliente;
 import mensajesDeUsuario.MensajeDeMovimientoDeClienteExitoso;
-import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeClienteSingleton;
 import singletonMensajesDeUsuario.MovimientoDeClienteExitosoSingleton;

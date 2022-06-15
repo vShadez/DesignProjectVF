@@ -18,7 +18,7 @@ import clasesUtilitarias.Conversion;
 import java.time.LocalDate;
 import java.util.Date;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
 /**

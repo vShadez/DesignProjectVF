@@ -22,7 +22,7 @@ import logicaDeNegocios.Bitacora;
 import logicaDeNegocios.BitacoraXML;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import logicaDeNegocios.RegistroDeBitacora;
-import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 import vistaGUI.ColorCelda;

@@ -12,7 +12,7 @@ import vistaGUI.ConsultaGananciasCobroComisionesTotalesPorCadaCuenta;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *

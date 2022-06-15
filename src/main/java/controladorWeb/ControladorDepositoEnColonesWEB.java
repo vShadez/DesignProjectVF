@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import controlador.ControladorDepositoEnColones;
 import java.time.LocalDate;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *

@@ -17,7 +17,7 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import logicaDeNegocios.Operacion;
-import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import vistaGUI.ConsultaEstadoDeCuenta;
 import vistaGUI.InformacionPorConsultaDeEstadoCuentaDolares;
 
