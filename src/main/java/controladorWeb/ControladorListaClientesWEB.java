@@ -7,6 +7,7 @@ package controladorWeb;
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.Ordenamiento;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -19,6 +20,8 @@ import logicaDeAccesoADatos.DAOCatalogoDeClientes;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICliente;
+import logicaDeNegocios.ObjetosTipoBitacora;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 
@@ -32,6 +35,11 @@ public class ControladorListaClientesWEB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarBitacoraXML(LocalDate.now(), "Listar clientes", "Web");
+        accion.registrarBitacoraCSV(LocalDate.now(), "Listar clientes", "Web");
+        accion.registrarBitacoraTXT(LocalDate.now(), "Listar clientes", "Web");
+        
         Cliente[] arregloClientesDesordenados;
         IDAOCatalogoDeClientes daoCatalogoDeClientes = new DAOCatalogoDeClientes();
         int cantidadDeClientes = daoCatalogoDeClientes.consultarCantidadDeClientes();
