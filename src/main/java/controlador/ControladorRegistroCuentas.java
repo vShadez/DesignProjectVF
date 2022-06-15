@@ -45,6 +45,12 @@ public class ControladorRegistroCuentas implements ActionListener{
             String identificacionCliente = this.vistaGUI.txtIdentificacionDatodCuenta.getText();
             
             registrarCuenta(pin, montoInicial, identificacionCliente);
+            
+            ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarBitacoraXML(LocalDate.now(), "Registrar cuenta", "GUI");
+            accion.registrarBitacoraCSV(LocalDate.now(), "Registrar cuenta", "GUI");
+            accion.registrarBitacoraTXT(LocalDate.now(), "Registrar cuenta", "GUI");
+            
             this.vistaGUI.txtPinDatosCuenta.setText("");
             this.vistaGUI.txtMontoInicial.setText("");
             this.vistaGUI.txtIdentificacionDatodCuenta.setText("");
@@ -60,12 +66,6 @@ public class ControladorRegistroCuentas implements ActionListener{
         IDAOCatalogoDeClientes obtenerCliente = new DAOCatalogoDeClientes();
         Conversion convertidorDeDatos = ConversionSingleton.instanciar();
         boolean validarClienteSiYaExiste = obtenerCliente.consultarSiNOExisteCliente(convertidorDeDatos.convertirStringEnEntero(pIdentificacionCliente));
-        
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Registrar cuenta", "GUI");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Registrar cuenta", "GUI");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Registrar cuenta", "GUI");
-        
         if(validacion.ValidacionCuenta.validarFormatoDePin(pPin)){
                 if(validacion.ValidacionTipoDeDato.verificarEsEntero(pMontoInicial)){
                     if(validarClienteSiYaExiste){

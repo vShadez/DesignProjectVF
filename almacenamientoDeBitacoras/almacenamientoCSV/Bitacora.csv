@@ -4,4 +4,10 @@
 "2022-06-03","Consulta","Web"
 "2022-06-03","Consulta","GUI"
 "2022-06-03","Consulta","CLI"
+<<<<<<< Updated upstream:almacenamientoDeBitacoras/almacenamientoCSV/Bitacora.csv
 "2022-06-14","Listar clientes","Web"
+=======
+"2022-06-14","Listar clientes","GUI"
+"2022-06-14","Listar clientes","GUI"
+"2022-06-14","Listar cuentas","GUI"
+>>>>>>> Stashed changes:almacenamientoDeBitacoras/Bitacora.csv

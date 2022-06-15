@@ -38,6 +38,7 @@ public class ControladorListaCuentas implements ActionListener{
         this.vistaGUI = pVistaGUI;
         this.vistaGUI.btnVolverListaCuentas.addActionListener(this);
         this.cargarCuentasDeTabla();
+        
         ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
         accion.registrarBitacoraXML(LocalDate.now(), "Listar cuentas", "GUI");
         accion.registrarBitacoraCSV(LocalDate.now(), "Listar cuentas", "GUI");

@@ -6,7 +6,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import logicaDeNegocios.ObjetosTipoBitacora;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import vistaGUI.ConsultaTipoCambioDeCompra;
 
 /**
@@ -27,6 +30,11 @@ public class ControladorConsultaTipoCambioDeCompra implements ActionListener{
         double tipoCompra = tc.obtenerValorCompra();
         
         vistaGUI.txtCambioCompra.setText(""+tipoCompra+" ₡");
+        
+        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarBitacoraXML(LocalDate.now(), "Consultar tipo cambio compra", "GUI");
+        accion.registrarBitacoraCSV(LocalDate.now(), "Consultar tipo cambio compra", "GUI");
+        accion.registrarBitacoraTXT(LocalDate.now(), "Consultar tipo cambio compra", "GUI");
     }
 
     @Override

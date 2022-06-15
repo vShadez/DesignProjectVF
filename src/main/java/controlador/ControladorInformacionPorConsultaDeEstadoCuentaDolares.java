@@ -15,7 +15,9 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.ObjetosTipoBitacora;
 import logicaDeNegocios.Operacion;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import vistaGUI.ConsultaEstadoDeCuenta;
 import vistaGUI.InformacionPorConsultaDeEstadoCuentaDolares;
 
@@ -47,6 +49,11 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolares implements A
         this.vistaGUI.txtCorreoEstadoDolares.setText(clientePropietario.correoElectronico);
         int obtenerNumeroCliente = clientePropietario.numeroTelefono;
         this.vistaGUI.txtNumeroEstadoDolares.setText(""+obtenerNumeroCliente);
+        
+        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarBitacoraXML(LocalDate.now(), "Consulta estado de cuenta en dólares", "GUI");
+        accion.registrarBitacoraCSV(LocalDate.now(), "Consulta estado de cuenta en dólares", "GUI");
+        accion.registrarBitacoraTXT(LocalDate.now(), "Consulta estado de cuenta en dólares", "GUI");
         
         cargarDatosAOperacion(operaciones);
         

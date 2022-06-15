@@ -7,10 +7,13 @@ package controlador;
 import serviciosExternos.TipoCambioBCCR;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import validacion.ValidacionCuenta;
 import vistaGUI.ConsultaDeSaldoActual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
+import logicaDeNegocios.ObjetosTipoBitacora;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 /**
  *
  * @author estadm
@@ -48,6 +51,12 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
                     if(evento.getActionCommand().equals("Consultar colones")) {
                         IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
                         double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
+                        
+                        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                        accion.registrarBitacoraXML(LocalDate.now(), "Consulta de saldo actual", "GUI");
+                        accion.registrarBitacoraCSV(LocalDate.now(), "Consulta de saldo actual", "GUI");
+                        accion.registrarBitacoraTXT(LocalDate.now(), "Consulta de saldo actual", "GUI");
+                        
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(saldoActualColones);
                     }
                     if(evento.getActionCommand().equals("Consultar dólares")) {

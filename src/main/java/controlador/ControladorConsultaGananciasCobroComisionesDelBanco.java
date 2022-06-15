@@ -3,10 +3,13 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOOperacionCatalogoDeCuentas;
 import vistaGUI.ConsultaGananciasCobroComisionesDelBanco;
 import logicaDeAccesoADatos.IDAOOperacionCatalogoDeCuentas;
+import logicaDeNegocios.ObjetosTipoBitacora;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *
@@ -38,6 +41,11 @@ public class ControladorConsultaGananciasCobroComisionesDelBanco implements Acti
             vistaGUI.txtMontoTotalOperacionesDepositosDolares.setText("$" + String.format("%.2f",comisionesTotalesDeposito/tipoCompra));
             vistaGUI.txtMontoTotalOperacionesRetirosDolares.setText("$" + String.format("%.2f",comisionesTotalesRetiros/tipoCompra));
             vistaGUI.txtMontoTotalOperacionesDepositosRetirosDolares.setText("$" + String.format("%.2f",comisionesTotalesDepositoRetiros/tipoCompra));
+            
+            ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarBitacoraXML(LocalDate.now(), "Consulta de ganancias por cobro del banco", "GUI");
+            accion.registrarBitacoraCSV(LocalDate.now(), "Consulta de ganancias por cobro del banco", "GUI");
+            accion.registrarBitacoraTXT(LocalDate.now(), "Consulta de ganancias por cobro del banco", "GUI");
             
         }
         if(evento.getActionCommand().equals("Cancelar")) {

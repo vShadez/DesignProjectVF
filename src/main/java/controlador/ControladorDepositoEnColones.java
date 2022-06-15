@@ -90,6 +90,12 @@ public class ControladorDepositoEnColones implements ActionListener{
         if(cantidadDeRetirosYDepositosRealizados >= 3) {
             montoComision += montoDeDepositoEnFormatoEntero * 0.02;
         }
+        
+        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarBitacoraXML(LocalDate.now(), "Depósito en colones", "GUI");
+        accion.registrarBitacoraCSV(LocalDate.now(), "Depósito en colones", "GUI");
+        accion.registrarBitacoraTXT(LocalDate.now(), "Depósito en colones", "GUI");
+        
         MensajeEnPantallaCuenta.imprimirMensajeDepositoEnColonesExitoso(numeroDeCuenta, montoDeDepositoEnFormatoEntero, montoComision);
     }
 }

@@ -15,8 +15,11 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeNegocios.ICuenta;
 import clasesUtilitarias.Conversion;
+import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import logicaDeNegocios.ObjetosTipoBitacora;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
@@ -35,7 +38,10 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Consultar")) {
-            
+            ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarBitacoraXML(LocalDate.now(), "Ganancias de comisiones en todas las cuentas", "GUI");
+            accion.registrarBitacoraCSV(LocalDate.now(), "Ganancias de comisiones en todas las cuentas", "GUI");
+            accion.registrarBitacoraTXT(LocalDate.now(), "Ganancias de comisiones en todas las cuentas", "GUI");
             Lista<ICuenta> listaCuentas;
             Cuenta[] arregloCuentasOrdenadas;
             

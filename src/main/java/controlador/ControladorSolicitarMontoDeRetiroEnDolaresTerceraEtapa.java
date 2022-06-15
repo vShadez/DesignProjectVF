@@ -7,6 +7,7 @@ package controlador;
 import clasesUtilitarias.Conversion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import validacion.ValidacionCuenta;
 import vistaGUI.SolicitarMontoDeRetiroEnDolaresTerceraEtapa;
 import serviciosExternos.TipoCambioBCCR;
@@ -15,6 +16,8 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.ObjetosTipoBitacora;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
@@ -91,6 +94,12 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapa implements A
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
         cuenta.retirar(pMontoRetiradoColones);
         double montoComision = this.calcularMontoComision(pMontoRetiradoColones);
+        
+        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarBitacoraXML(LocalDate.now(), "Retiro en dólares", "GUI");
+        accion.registrarBitacoraCSV(LocalDate.now(), "Retiro en dólares", "GUI");
+        accion.registrarBitacoraTXT(LocalDate.now(), "Retiro en dólares", "GUI");
+        
         MensajeEnPantallaCuenta.imprimirMensajeRetiroEnDolaresExitoso(pMontoRetiradoColones, pMontoRetiradoDolares, pTipoCambio, montoComision);
     }
 }

@@ -7,11 +7,14 @@ package controlador;
 import clasesUtilitarias.Conversion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.ObjetosTipoBitacora;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 import vistaGUI.SolicitarMontoDepositoYCuentaDestinoDeTransferencia;
@@ -90,6 +93,12 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
         double montoComision = calcularMontoComision(pMontoTransferido);
         cuentaDeOrigen.transferir(cuentaDeDestino, pMontoTransferido);
         //cuentaDeOrigen.retirar(pMontoTransferido);
+        
+        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarBitacoraXML(LocalDate.now(), "Transferencia", "GUI");
+        accion.registrarBitacoraCSV(LocalDate.now(), "Transferencia", "GUI");
+        accion.registrarBitacoraTXT(LocalDate.now(), "Transferencia", "GUI");
+            
         MensajeEnPantallaCuenta.imprimirMensajeTransferenciaExitosa(pMontoTransferido, montoComision);
     }
 }

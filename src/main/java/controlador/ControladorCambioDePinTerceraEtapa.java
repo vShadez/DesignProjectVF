@@ -6,8 +6,11 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
+import logicaDeNegocios.ObjetosTipoBitacora;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import vistaGUI.CambioDePinTerceraEtapa;
 
 /**
@@ -30,6 +33,12 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
         if(evento.getActionCommand().equals("Aceptar")) {
             String nuevoPin = this.vistaGUI.txtPinNuevo.getText();
             if (registrarCambioDePin(nuevoPin, numeroDeCuenta)){
+                
+                ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                accion.registrarBitacoraXML(LocalDate.now(), "Cambio de pin", "GUI");
+                accion.registrarBitacoraCSV(LocalDate.now(), "Cambio de pin", "GUI");
+                accion.registrarBitacoraTXT(LocalDate.now(), "Cambio de pin", "GUI");
+                
                 MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(numeroDeCuenta);
                 ControladorMenuPrincipal.volverMenuPrincipal();
                 vistaGUI.setVisible(false);
