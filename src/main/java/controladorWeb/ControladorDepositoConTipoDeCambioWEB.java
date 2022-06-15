@@ -37,7 +37,7 @@ public class ControladorDepositoConTipoDeCambioWEB extends HttpServlet{
         
         if (ControladorDepositoConTipoDeCambio.depositarDolaresACuenta(cuenta,montoDeposito) == true){
             RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
-            accion.registrarEnBitacoras(LocalDate.now(), "Depósito en colones", "Web");
+            accion.registrarEnBitacoras(LocalDate.now(), "Depósito en dólares", "Web");
             response.sendRedirect("../index.html");
         } else {
             request.getRequestDispatcher("DepositoConTipoDeCambio.jsp").forward(request, response);
