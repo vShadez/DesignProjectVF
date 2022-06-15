@@ -9,6 +9,7 @@ import clasesUtilitarias.Ordenamiento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import listaDinamica.Lista;
@@ -17,6 +18,8 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
+import logicaDeNegocios.ObjetosTipoBitacora;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 import vistaGUI.ColorCelda;
@@ -35,8 +38,12 @@ public class ControladorListaCuentas implements ActionListener{
         this.vistaGUI = pVistaGUI;
         this.vistaGUI.btnVolverListaCuentas.addActionListener(this);
         this.cargarCuentasDeTabla();
+        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarBitacoraXML(LocalDate.now(), "Listar cuentas", "GUI");
+        accion.registrarBitacoraCSV(LocalDate.now(), "Listar cuentas", "GUI");
+        accion.registrarBitacoraTXT(LocalDate.now(), "Listar cuentas", "GUI");
+        
         this.vistaGUI.tblListaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
-            
         @Override
         public void mouseClicked(MouseEvent evento) {
             if(evento.getComponent() == vistaGUI.tblListaCuentas) {

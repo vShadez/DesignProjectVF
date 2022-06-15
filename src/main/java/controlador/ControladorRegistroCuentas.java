@@ -16,10 +16,13 @@ import logicaDeAccesoADatos.IDAOCliente;
 import clasesUtilitarias.Conversion;
 import static controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorFormatoDePinInvalido;
 import static controlador.MensajeEnPantallaCuenta.imprimirMensajeDeErrorSaldoNoEsEntero;
+import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
 import logicaDeAccesoADatos.DAOCatalogoDeClientes;
+import logicaDeNegocios.ObjetosTipoBitacora;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 /**
  *
@@ -57,6 +60,12 @@ public class ControladorRegistroCuentas implements ActionListener{
         IDAOCatalogoDeClientes obtenerCliente = new DAOCatalogoDeClientes();
         Conversion convertidorDeDatos = ConversionSingleton.instanciar();
         boolean validarClienteSiYaExiste = obtenerCliente.consultarSiNOExisteCliente(convertidorDeDatos.convertirStringEnEntero(pIdentificacionCliente));
+        
+        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarBitacoraXML(LocalDate.now(), "Registrar cuenta", "GUI");
+        accion.registrarBitacoraCSV(LocalDate.now(), "Registrar cuenta", "GUI");
+        accion.registrarBitacoraTXT(LocalDate.now(), "Registrar cuenta", "GUI");
+        
         if(validacion.ValidacionCuenta.validarFormatoDePin(pPin)){
                 if(validacion.ValidacionTipoDeDato.verificarEsEntero(pMontoInicial)){
                     if(validarClienteSiYaExiste){
@@ -94,7 +103,8 @@ public class ControladorRegistroCuentas implements ActionListener{
             }else{
                 imprimirMensajeDeErrorFormatoDePinInvalido();
         }
+        
             
-            return false;
+        return false;
         }
 }

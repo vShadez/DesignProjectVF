@@ -15,7 +15,10 @@ import validacion.ExpresionRegular;
 import validacion.ValidacionTipoDeDato;
 import vistaGUI.RegistroClientes;
 import clasesUtilitarias.Conversion;
+import java.time.LocalDate;
 import java.util.Date;
+import logicaDeNegocios.ObjetosTipoBitacora;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
@@ -52,6 +55,12 @@ public class ControladorRegistroClientes implements ActionListener{
             String anoDeFechaDeNacimiento = split[2];
             
             registrarCliente(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
+            
+            ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarBitacoraXML(LocalDate.now(), "Registrar cliente", "GUI");
+            accion.registrarBitacoraCSV(LocalDate.now(), "Registrar cliente", "GUI");
+            accion.registrarBitacoraTXT(LocalDate.now(), "Registrar cliente", "GUI");
+            
             this.vistaGUI.txtPrimerApellido.setText("");
             this.vistaGUI.txtSegundoApellido.setText("");
             this.vistaGUI.txtNombre.setText("");
@@ -63,6 +72,7 @@ public class ControladorRegistroClientes implements ActionListener{
            ControladorMenuPrincipal.volverMenuPrincipal();
            vistaGUI.setVisible(false);
        }
+        
     }
     
     public static boolean registrarCliente(String nombre, String primerApellido, String segundoApellido, String identificacion, String diaDeFechaDeNacimiento, String mesDeFechaDeNacimiento, String anoDeFechaDeNacimiento, String numeroDeTelefono, String correoElectronico) {

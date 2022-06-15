@@ -17,7 +17,11 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICliente;
 import vistaGUI.DetalleCliente;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import logicaDeNegocios.Bitacora;
+import logicaDeNegocios.BitacoraXML;
 import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroDeBitacora;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
@@ -34,10 +38,13 @@ public class ControladorListaClientes implements ActionListener{
         this.vistaGUI = pVistaGUI;
         this.vistaGUI.btnVolverListaClientes.addActionListener(this);
         iniciarListaClientes();
+        
+        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarBitacoraXML(LocalDate.now(), "Listar clientes", "GUI");
+        accion.registrarBitacoraCSV(LocalDate.now(), "Listar clientes", "GUI");
+        accion.registrarBitacoraTXT(LocalDate.now(), "Listar clientes", "GUI");
+
         this.vistaGUI.tblListaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-        ObjetosTipoBitacora listaClientes = ObjetosTipoBitacoraSinglenton.instanciar();
-        
-        
         @Override
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             int filaSeleccionada = vistaGUI.tblListaClientes.getSelectedRow();
@@ -90,6 +97,7 @@ public class ControladorListaClientes implements ActionListener{
         tabla.setModel(model);
         ColorCelda color = new ColorCelda(3);
         tabla.getColumnModel().getColumn(3).setCellRenderer(color);
+        
     }
 
     @Override
