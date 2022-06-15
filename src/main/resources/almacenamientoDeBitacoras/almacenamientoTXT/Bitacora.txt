@@ -1,20 +1,5 @@
-2022-06-15 Registrar cliente                        Web
-2022-06-15 Registrar cuenta                         Web
-2022-06-15 Listar clientes                          Web
+2022-06-15 Registrar cliente                        GUI
+2022-06-15 Registrar cuenta                         CLI
+2022-06-15 Listar clientes                          CLI
 2022-06-15 Listar cuentas                           Web
-2022-06-15 Depósito en colones                      Web
-2022-06-15 Registrar cuenta                         Web
-2022-06-15 Transferencia                            Web
-2022-06-15 Retiro en dólares                        Web
-2022-06-15 Cambio de pin                            Web
-2022-06-15 Consulta de saldo actual en colones      Web
-2022-06-15 Consulta de saldo actual en dólares      Web
-2022-06-15 Consulta estado de cuenta en colones     Web
-2022-06-15 Consulta estado de cuenta en dólares     Web
-2022-06-15 Consultar estatus de cuenta              Web
-2022-06-15 Consultar tipo cambio compra             Web
-2022-06-15 Consultar tipo cambio venta              Web
-2022-06-15 Ganancias por comisiones en cada cuenta  Web
-2022-06-15 Consulta de ganancias por cobro del banco Web
-2022-06-15 Ganancias de comisiones en todas las cuentas Web
-2022-06-15 Depósito en dólares                      Web
+2022-06-15 Depósito en colones                      GUI

@@ -27,7 +27,7 @@
                 <br>
                 <form method="post" action="<c:url value="/vistaWeb/ValidacionDeAdministrador"/>" >
                     <div class="form-group">
-                        <label>Numero de cuenta</label>
+                        <label>User</label>
                         <input type="text" class "form-control" name = "usuario" placeholder="Usuario" required>
                     </div>
                     <div class="form-group">
