@@ -18,7 +18,7 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
@@ -39,10 +39,8 @@ public class ControladorListaCuentas implements ActionListener{
         this.vistaGUI.btnVolverListaCuentas.addActionListener(this);
         this.cargarCuentasDeTabla();
         
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Listar cuentas", "GUI");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Listar cuentas", "GUI");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Listar cuentas", "GUI");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Listar cuentas", "GUI");
         
         this.vistaGUI.tblListaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override

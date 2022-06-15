@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import vistaGUI.ConsultaDeEstatusCuenta;
 import validacion.ValidacionCuenta;
@@ -40,10 +40,8 @@ public class ControladorConsultaDeEstatusCuenta implements ActionListener{
 
         if(ValidacionCuenta.validarExisteCuenta(numeroDeCuenta)){
             
-            ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-            accion.registrarBitacoraXML(LocalDate.now(), "Consultar estatus de cuenta", "GUI");
-            accion.registrarBitacoraCSV(LocalDate.now(), "Consultar estatus de cuenta", "GUI");
-            accion.registrarBitacoraTXT(LocalDate.now(), "Consultar estatus de cuenta", "GUI");
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Consultar estatus de cuenta", "GUI");
             
             MensajeEnPantallaCuenta.imprimirMensajeEstatusDeCuenta(numeroDeCuenta, estatusCuentaActual);
             return true;

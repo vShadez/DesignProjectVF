@@ -16,7 +16,7 @@ import validacion.ValidacionCuenta;
 import vistaGUI.DepositoConTipoDeCambio;
 import serviciosExternos.TipoCambioBCCR;
 import java.time.LocalDate;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import vistaGUI.SeleccionDeDeposito;
@@ -93,10 +93,8 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
             montoComision += montoDeDepositoEnColonesEnFormatoDecimal * 0.02;
         }
         
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Depósito en dólares", "GUI");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Depósito en dólares", "GUI");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Depósito en dólares", "GUI");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Depósito en dólares", "GUI");
         
         MensajeEnPantallaCuenta.imprimirMensajeDepositoEnDolaresExitoso(pNumeroDeCuenta, convertidorDeDatos.convertirStringEnDecimal(pMontoDeDepositoEnDolares), montoDeDepositoEnColonesEnFormatoDecimal, tipoDeCambioDeDolarCompra, montoComision, LocalDate.now());
     }

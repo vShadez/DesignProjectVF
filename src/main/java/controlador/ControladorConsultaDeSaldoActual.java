@@ -12,7 +12,7 @@ import validacion.ValidacionCuenta;
 import vistaGUI.ConsultaDeSaldoActual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 /**
  *
@@ -52,10 +52,8 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
                         IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
                         double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
                         
-                        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-                        accion.registrarBitacoraXML(LocalDate.now(), "Consulta de saldo actual", "GUI");
-                        accion.registrarBitacoraCSV(LocalDate.now(), "Consulta de saldo actual", "GUI");
-                        accion.registrarBitacoraTXT(LocalDate.now(), "Consulta de saldo actual", "GUI");
+                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                        accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual", "GUI");
                         
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(saldoActualColones);
                     }

@@ -4,7 +4,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import vistaGUI.DepositoConTipoDeCambio;
 import vistaGUI.DepositoEnColones;

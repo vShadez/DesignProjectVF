@@ -17,7 +17,7 @@ import vistaGUI.RegistroClientes;
 import clasesUtilitarias.Conversion;
 import java.time.LocalDate;
 import java.util.Date;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
@@ -56,10 +56,8 @@ public class ControladorRegistroClientes implements ActionListener{
             
             registrarCliente(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
             
-            ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-            accion.registrarBitacoraXML(LocalDate.now(), "Registrar cliente", "GUI");
-            accion.registrarBitacoraCSV(LocalDate.now(), "Registrar cliente", "GUI");
-            accion.registrarBitacoraTXT(LocalDate.now(), "Registrar cliente", "GUI");
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            accion.registrarEnBitacoras(LocalDate.now(), "Registrar cliente", "GUI");
             
             this.vistaGUI.txtPrimerApellido.setText("");
             this.vistaGUI.txtSegundoApellido.setText("");

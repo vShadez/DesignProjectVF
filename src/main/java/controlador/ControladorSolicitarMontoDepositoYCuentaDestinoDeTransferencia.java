@@ -13,7 +13,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
@@ -94,10 +94,8 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
         cuentaDeOrigen.transferir(cuentaDeDestino, pMontoTransferido);
         //cuentaDeOrigen.retirar(pMontoTransferido);
         
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Transferencia", "GUI");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Transferencia", "GUI");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Transferencia", "GUI");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Transferencia", "GUI");
             
         MensajeEnPantallaCuenta.imprimirMensajeTransferenciaExitosa(pMontoTransferido, montoComision);
     }

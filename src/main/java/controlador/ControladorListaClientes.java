@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import logicaDeNegocios.Bitacora;
 import logicaDeNegocios.BitacoraXML;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import logicaDeNegocios.RegistroDeBitacora;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
@@ -39,10 +39,8 @@ public class ControladorListaClientes implements ActionListener{
         this.vistaGUI.btnVolverListaClientes.addActionListener(this);
         iniciarListaClientes();
         
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Listar clientes", "GUI");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Listar clientes", "GUI");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Listar clientes", "GUI");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Listar clientes", "GUI");
 
         this.vistaGUI.tblListaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override

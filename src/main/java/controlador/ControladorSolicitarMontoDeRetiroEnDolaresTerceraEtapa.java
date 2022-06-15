@@ -16,7 +16,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
@@ -95,10 +95,8 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapa implements A
         cuenta.retirar(pMontoRetiradoColones);
         double montoComision = this.calcularMontoComision(pMontoRetiradoColones);
         
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Retiro en dólares", "GUI");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Retiro en dólares", "GUI");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Retiro en dólares", "GUI");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Retiro en dólares", "GUI");
         
         MensajeEnPantallaCuenta.imprimirMensajeRetiroEnDolaresExitoso(pMontoRetiradoColones, pMontoRetiradoDolares, pTipoCambio, montoComision);
     }

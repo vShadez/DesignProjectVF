@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import vistaGUI.ConsultaGananciasCobroComisionesTotalesPorCadaCuenta;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
@@ -45,10 +45,8 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorCadaCuenta imp
         vistaGUI.txtMontoTotalRetiroCuentaIndividualDolares.setText(String.format("%.2f",montoTotalRetiros/tipoCompra)+" $");
         vistaGUI.txtMontoTotalDepositoRetiroCuentaIndividualDolares.setText(String.format("%.2f",montoTotalDepositosRetiros/tipoCompra)+" $");
         
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Ganancias por comisiones en cada cuenta", "GUI");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Ganancias por comisiones en cada cuenta", "GUI");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Ganancias por comisiones en cada cuenta", "GUI");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Ganancias por comisiones en cada cuenta", "GUI");
     }
 
     @Override

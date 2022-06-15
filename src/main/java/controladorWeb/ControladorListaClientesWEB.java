@@ -20,7 +20,7 @@ import logicaDeAccesoADatos.DAOCatalogoDeClientes;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICliente;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
@@ -37,7 +37,7 @@ public class ControladorListaClientesWEB extends HttpServlet {
             throws ServletException, IOException {
         String direccion = System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml";
         System.out.println(direccion);
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
         accion.registrarBitacoraXML(LocalDate.now(), "Listar clientes", "Web");
         accion.registrarBitacoraCSV(LocalDate.now(), "Listar clientes", "Web");
         accion.registrarBitacoraTXT(LocalDate.now(), "Listar clientes", "Web");

@@ -13,7 +13,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
@@ -91,10 +91,8 @@ public class ControladorDepositoEnColones implements ActionListener{
             montoComision += montoDeDepositoEnFormatoEntero * 0.02;
         }
         
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Depósito en colones", "GUI");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Depósito en colones", "GUI");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Depósito en colones", "GUI");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Depósito en colones", "GUI");
         
         MensajeEnPantallaCuenta.imprimirMensajeDepositoEnColonesExitoso(numeroDeCuenta, montoDeDepositoEnFormatoEntero, montoComision);
     }

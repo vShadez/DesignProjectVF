@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import listaDinamica.Nodo;
-import logicaDeNegocios.ObjetosTipoBitacora;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import vistaGUI.ConsultaEstadoDeCuenta;
 
@@ -52,10 +52,8 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColones implements A
         int obtenerNumeroCliente = clientePropietario.numeroTelefono;
         this.vistaGUI.txtNumeroEstadoColones.setText(""+obtenerNumeroCliente);
         
-        ObjetosTipoBitacora accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Consulta estado de cuenta en colones", "GUI");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Consulta estado de cuenta en colones", "GUI");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Consulta estado de cuenta en colones", "GUI");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Consulta estado de cuenta en colones", "GUI");
         
         cargarDatosAOperacion(operaciones);
         
