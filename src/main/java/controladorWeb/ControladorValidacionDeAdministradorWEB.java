@@ -16,7 +16,7 @@ import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import serviciosExternos.TipoCambioBCCR;
 import validacion.ValidacionCuenta;
-import static seguridad.seguridadAdministrador.iniciarSesionAdministrador;
+import static seguridad.SeguridadAdministrador.iniciarSesionAdministrador;
 
 /**
  *

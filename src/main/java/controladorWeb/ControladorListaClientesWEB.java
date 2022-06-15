@@ -38,9 +38,7 @@ public class ControladorListaClientesWEB extends HttpServlet {
         String direccion = System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml";
         System.out.println(direccion);
         RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
-        accion.registrarBitacoraXML(LocalDate.now(), "Listar clientes", "Web");
-        accion.registrarBitacoraCSV(LocalDate.now(), "Listar clientes", "Web");
-        accion.registrarBitacoraTXT(LocalDate.now(), "Listar clientes", "Web");
+        accion.registrarEnBitacoras(LocalDate.now(), "Listar clientes", "Web");
         
         Cliente[] arregloClientesDesordenados;
         IDAOCatalogoDeClientes daoCatalogoDeClientes = new DAOCatalogoDeClientes();
