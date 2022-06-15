@@ -5,9 +5,12 @@
 package vistaCLI;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOOperacionCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCatalogoDeCuentas;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import vistaGUI.MenuPrincipal;
 
 /**
@@ -25,6 +28,8 @@ public class ConsultaDeGananciasTotalesDeBancoPorComisionesCLI {
         this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnColones();
         System.out.println("\nResultados en dólares: ");
         this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnDolares();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Ganancia por comisión del banco", "CLI");
         MenuPrincipal volverAMenuPrincipal = new MenuPrincipal();
     }
     

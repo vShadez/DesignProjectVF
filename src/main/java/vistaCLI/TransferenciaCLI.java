@@ -6,6 +6,7 @@ package vistaCLI;
 
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.PalabraSecreta;
+import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOClienteCuenta;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
@@ -14,11 +15,13 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.PalabraSecretaSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
@@ -271,6 +274,9 @@ public class TransferenciaCLI {
         double montoComision = this.calcularMontoComision(numeroDeCuentaDeOrigen, montoDeTransferencia);
         MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
         System.out.println(mensajeDeExito.imprimirMensajeTransferenciaExitosa(montoDeTransferencia, montoComision));
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Transferencia", "CLI");
+        
         MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
     }
 }

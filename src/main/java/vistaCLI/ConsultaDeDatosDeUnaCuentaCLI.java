@@ -7,6 +7,7 @@ package vistaCLI;
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.Ordenamiento;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import listaDinamica.Lista;
 import logicaDeAccesoADatos.DAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
@@ -15,7 +16,9 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
@@ -55,6 +58,8 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
             System.out.println("Nombre del dueño de la cuenta: " + duenoDeCuenta.nombre + " " + duenoDeCuenta.primerApellido + " " + duenoDeCuenta.segundoApellido);
         }
         System.out.println("\nDigite el número de cuenta de la cuenta sobre la cual desea conocer los detalles:");
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Consulta de datos de una cuenta", "CLI");
         this.recibirNumeroDeCuenta();
     }
     

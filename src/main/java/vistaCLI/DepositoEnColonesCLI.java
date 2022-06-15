@@ -5,13 +5,16 @@
 package vistaCLI;
 
 import clasesUtilitarias.Conversion;
+import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
@@ -34,6 +37,8 @@ public class DepositoEnColonesCLI {
             String montoDeDeposito = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             boolean datosIngresadosSonValidos = this.validarNumeroDeCuenta(numeroDeCuenta) && this.validarMontoDeDeposito(numeroDeCuenta, montoDeDeposito);
             if(datosIngresadosSonValidos) {
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                accion.registrarEnBitacoras(LocalDate.now(), "Depósito en colones", "CLI");
                 this.efectuarDeposito(numeroDeCuenta, montoDeDeposito);
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }

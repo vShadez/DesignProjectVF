@@ -6,7 +6,9 @@ package vistaCLI;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 
 /**
  *
@@ -25,6 +27,8 @@ public class TipoDeCambioDeCompraCLI {
         DecimalFormat formatoDeNumeroDecimal = new DecimalFormat("#.00");
         mensaje += formatoDeNumeroDecimal.format(tipoDeCambioDeCompra);
         System.out.println(mensaje);
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Tipo de cambio de compra", "CLI");
         MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
     }
 }

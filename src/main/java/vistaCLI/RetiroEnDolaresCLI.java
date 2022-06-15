@@ -6,6 +6,7 @@ package vistaCLI;
 
 import clasesUtilitarias.Conversion;
 import clasesUtilitarias.PalabraSecreta;
+import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOClienteCuenta;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOOperacionCuenta;
@@ -14,12 +15,14 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
+import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
 import serviciosExternos.TipoCambioBCCR;
+import singlentonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.PalabraSecretaSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
@@ -231,6 +234,10 @@ public class RetiroEnDolaresCLI {
         double montoComision = this.calcularMontoComision(pNumeroDeCuenta, pMontoDeRetiro * pTipoDeCambio);
         MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
         System.out.println(mensajeDeExito.imprimirMensajeRetiroEnDolaresExitoso(pMontoDeRetiro * pTipoDeCambio, pMontoDeRetiro, pTipoDeCambio, montoComision));
+        
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Retiro en dólares", "CLI");
+        
         MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
     }
 }
