@@ -30,7 +30,7 @@ public class BitacoraTramaPlana extends Bitacora{
         FileWriter escritorDeArchivos = null;
         try {
             
-            File archivo = new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoTXT\\Bitacora.txt");
+            File archivo = new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoTXT\\Bitacora.txt");
             escritorDeArchivos = new FileWriter(archivo, true);
             String fecha = this.registroGuardado.fecha.toString();
             String tipoDeAccion = this.rellenarEspaciosDeCampo(limiteDeCaracteresDeTipoDeAccion, this.registroGuardado.tipoDeAccion);
@@ -48,7 +48,7 @@ public class BitacoraTramaPlana extends Bitacora{
     @Override
     protected String visualizarBitacora() throws Exception {
         String resultado = "";
-        File documento = new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoTXT\\VisualizacionDeBitacora.txt");
+        File documento = new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoTXT\\VisualizacionDeBitacora.txt");
         Scanner objetoDeLectura = new Scanner(documento);
         while (objetoDeLectura.hasNextLine()){
             resultado += objetoDeLectura.nextLine() + "\n";
@@ -64,7 +64,7 @@ public class BitacoraTramaPlana extends Bitacora{
         File archivoDeVisualizacionDeBitacoraPorCrear = new File(System.getProperty("user.dir") + "\\almacenamientoDeBitacoras\\VisualizacionDeBitacora.txt"); 
         archivoDeVisualizacionDeBitacoraPorCrear.createNewFile();
         */
-        File archivoDeVisualizacionDeBitacoraPorBorrar = new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoTXT\\VisualizacionDeBitacora.txt");
+        File archivoDeVisualizacionDeBitacoraPorBorrar = new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoTXT\\VisualizacionDeBitacora.txt");
         BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDeVisualizacionDeBitacoraPorBorrar));
         bw.write("");
         bw.close();
@@ -75,7 +75,7 @@ public class BitacoraTramaPlana extends Bitacora{
         this.vaciarVisualizadorDeBitacora();
         Nodo puntero = pListaDeRegistros.inicio;
         FileWriter escritorDeArchivos = null;
-        File archivo = new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoTXT\\VisualizacionDeBitacora.txt");
+        File archivo = new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoTXT\\VisualizacionDeBitacora.txt");
         escritorDeArchivos = new FileWriter(archivo, true);
         while(puntero != null) {
             RegistroDeBitacora registro = (RegistroDeBitacora) puntero.objeto;
@@ -92,7 +92,7 @@ public class BitacoraTramaPlana extends Bitacora{
     @Override
     public String consultarRegistrosDelDia() throws Exception {
         this.vaciarVisualizadorDeBitacora();
-        File documento = new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoTXT\\Bitacora.txt");
+        File documento = new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoTXT\\Bitacora.txt");
         Scanner objetoDeLectura = new Scanner(documento);
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         while (objetoDeLectura.hasNextLine()){
@@ -113,7 +113,7 @@ public class BitacoraTramaPlana extends Bitacora{
     @Override
     public String consultarRegistrosDeVista(String pVista) throws Exception {
         this.vaciarVisualizadorDeBitacora();
-        File documento = new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoTXT\\Bitacora.txt");
+        File documento = new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoTXT\\Bitacora.txt");
         Scanner objetoDeLectura = new Scanner(documento);
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         while (objetoDeLectura.hasNextLine()){
@@ -134,7 +134,7 @@ public class BitacoraTramaPlana extends Bitacora{
     @Override
     public String consultarTodosLosRegistros() throws Exception {
         this.vaciarVisualizadorDeBitacora();
-        File documento = new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoTXT\\Bitacora.txt");
+        File documento = new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoTXT\\Bitacora.txt");
         Scanner objetoDeLectura = new Scanner(documento);
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         while (objetoDeLectura.hasNextLine()){

@@ -39,7 +39,7 @@ public class BitacoraXML extends Bitacora{
             DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
             DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
             
-            Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
+            Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
             Element documentoRaiz = documento.getDocumentElement();
             Element elemento = documento.createElement("Registro");
             documentoRaiz.appendChild(elemento);
@@ -52,7 +52,7 @@ public class BitacoraXML extends Bitacora{
             //transformadorDeDatos.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2"); 
             DOMSource fuente = new DOMSource(documento);
             
-            StreamResult resultado = new StreamResult(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
+            StreamResult resultado = new StreamResult(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
             transformadorDeDatos.transform(fuente, resultado);
             return true;
         }
@@ -67,7 +67,7 @@ public class BitacoraXML extends Bitacora{
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
         
-        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
+        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
         documento.getDocumentElement().normalize();
         NodeList listaDeNodos = documento.getElementsByTagName("Registro");
         resultadoDeConsulta += "<Registros>";
@@ -90,7 +90,7 @@ public class BitacoraXML extends Bitacora{
     protected void vaciarVisualizadorDeBitacora() throws Exception {
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
-        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
+        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
         documento.getDocumentElement().normalize();
         NodeList listaDeNodos = documento.getElementsByTagName("Registro");
         int cantidadDeNodos = listaDeNodos.getLength();
@@ -105,7 +105,7 @@ public class BitacoraXML extends Bitacora{
         TransformerFactory fabricaDeTrabsformadoresDeDatos = TransformerFactory.newInstance();
         Transformer transformadorDeDatos = fabricaDeTrabsformadoresDeDatos.newTransformer();
         DOMSource fuente = new DOMSource(documento);
-        StreamResult resultado = new StreamResult(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
+        StreamResult resultado = new StreamResult(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
         transformadorDeDatos.transform(fuente, resultado);
     }
     
@@ -113,7 +113,7 @@ public class BitacoraXML extends Bitacora{
     protected void cargarVisualizadorDeBitacora(Lista<RegistroDeBitacora> pListaDeRegistros) throws Exception{
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
-        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
+        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
         Element documentoRaiz = documento.getDocumentElement();
         Nodo puntero = pListaDeRegistros.inicio;
         while(puntero != null) {
@@ -130,7 +130,7 @@ public class BitacoraXML extends Bitacora{
         //transformadorDeDatos.setOutputProperty(OutputKeys.INDENT, "yes");
         //transformadorDeDatos.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2"); 
         DOMSource fuente = new DOMSource(documento);
-        StreamResult resultado = new StreamResult(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
+        StreamResult resultado = new StreamResult(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\VisualizacionDeBitacora.xml"));
         transformadorDeDatos.transform(fuente, resultado);
     }
     
@@ -143,7 +143,7 @@ public class BitacoraXML extends Bitacora{
         fabricaDeDocumentos.setIgnoringElementContentWhitespace(true);
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
         
-        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
+        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
         documento.getDocumentElement().normalize();
         NodeList listaDeNodos = documento.getElementsByTagName("Registro");
         for (int indice = 0; indice < listaDeNodos.getLength(); indice++) 
@@ -170,7 +170,7 @@ public class BitacoraXML extends Bitacora{
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
-        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
+        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
         documento.getDocumentElement().normalize();
         NodeList listaDeNodos = documento.getElementsByTagName("Registro");
         for (int indice = 0; indice < listaDeNodos.getLength(); indice++) 
@@ -197,7 +197,7 @@ public class BitacoraXML extends Bitacora{
         Lista<RegistroDeBitacora> resultadosDeConsulta = new Lista<>();
         DocumentBuilderFactory fabricaDeDocumentos = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructor = fabricaDeDocumentos.newDocumentBuilder();
-        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
+        Document documento = constructor.parse(new File(System.getProperty("user.home") + "\\DesignProject.VF\\src\\main\\resources\\almacenamientoDeBitacoras\\almacenamientoXML\\Bitacora.xml"));
         documento.getDocumentElement().normalize();
         NodeList listaDeNodos = documento.getElementsByTagName("Registro");
         for (int indice = 0; indice < listaDeNodos.getLength(); indice++) 
