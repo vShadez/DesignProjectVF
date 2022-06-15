@@ -20,7 +20,7 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 
@@ -100,7 +100,7 @@ public class ControladorSolicitarMontoDeRetiroEnDolaresTerceraEtapaWEB extends H
         Cuenta cuenta = (Cuenta) daoCuenta.consultarCuenta(numeroDeCuenta);
         cuenta.retirar(pMontoRetiradoColones);
         double montoComision = calcularMontoComision(pMontoRetiradoColones, numeroDeCuenta);
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Retiro en dólares", "Web");
         MensajeEnPantallaCuenta.imprimirMensajeRetiroEnDolaresExitoso(pMontoRetiradoColones, pMontoRetiradoDolares, pTipoCambio, montoComision);
     }

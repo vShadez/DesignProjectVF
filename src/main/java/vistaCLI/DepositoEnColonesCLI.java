@@ -14,7 +14,7 @@ import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
@@ -37,7 +37,7 @@ public class DepositoEnColonesCLI {
             String montoDeDeposito = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             boolean datosIngresadosSonValidos = this.validarNumeroDeCuenta(numeroDeCuenta) && this.validarMontoDeDeposito(numeroDeCuenta, montoDeDeposito);
             if(datosIngresadosSonValidos) {
-                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                 accion.registrarEnBitacoras(LocalDate.now(), "Depósito en colones", "CLI");
                 this.efectuarDeposito(numeroDeCuenta, montoDeDeposito);
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();

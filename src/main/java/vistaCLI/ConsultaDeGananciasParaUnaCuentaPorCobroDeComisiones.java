@@ -14,7 +14,7 @@ import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 import vistaGUI.MenuPrincipal;
@@ -34,7 +34,7 @@ public class ConsultaDeGananciasParaUnaCuentaPorCobroDeComisiones {
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             boolean numeroDeCuentaEsValido = this.validarNumeroDeCuenta(numeroDeCuenta);
             if(numeroDeCuentaEsValido) {
-                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                 accion.registrarEnBitacoras(LocalDate.now(), "Ganancia por comisión para una cuenta", "CLI");
                 this.mostrarGananciasTotalesDeBancoPorCobroDeComisiones(numeroDeCuenta);
             }

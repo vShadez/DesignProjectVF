@@ -10,7 +10,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.InformacionDeCuentaSingleton;
 import validacion.ValidacionCuenta;
@@ -30,7 +30,7 @@ public class ConsultaDeEstatusDeCuentaCLI {
             String numeroDeCuenta = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             boolean datosIngresadosSonValidos = this.validarNumeroDeCuenta(numeroDeCuenta);
             if(datosIngresadosSonValidos) {
-                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                 accion.registrarEnBitacoras(LocalDate.now(), "Consulta de estatus", "CLI");
                 this.mostrarEstatusDeCuenta(numeroDeCuenta);
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();

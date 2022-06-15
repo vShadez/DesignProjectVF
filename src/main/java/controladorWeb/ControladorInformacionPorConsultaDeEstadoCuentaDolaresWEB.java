@@ -20,7 +20,7 @@ import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
@@ -77,7 +77,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolaresWEB extends H
         request.setAttribute("operacionesAsociadas", operacionesAMostrar);
         }
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Consulta estado de cuenta en dólares", "Web");
         
         request.getRequestDispatcher("InformacionPorConsultaDeEstadoCuentaDolares.jsp").forward(request, response);

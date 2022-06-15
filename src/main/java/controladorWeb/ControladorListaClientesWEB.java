@@ -21,7 +21,7 @@ import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
 import logicaDeNegocios.Cliente;
 import logicaDeNegocios.ICliente;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 
@@ -35,7 +35,7 @@ public class ControladorListaClientesWEB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Listar clientes", "Web");
         
         Cliente[] arregloClientesDesordenados;

@@ -12,7 +12,7 @@ import vistaGUI.ConsultaGananciasCobroComisionesTotalesPorCadaCuenta;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 
 /**
  *
@@ -45,7 +45,7 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorCadaCuenta imp
         vistaGUI.txtMontoTotalRetiroCuentaIndividualDolares.setText(String.format("%.2f",montoTotalRetiros/tipoCompra)+" $");
         vistaGUI.txtMontoTotalDepositoRetiroCuentaIndividualDolares.setText(String.format("%.2f",montoTotalDepositosRetiros/tipoCompra)+" $");
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Ganancias por comisiones en cada cuenta", "GUI");
     }
 

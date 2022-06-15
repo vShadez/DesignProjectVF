@@ -20,7 +20,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import listaDinamica.Nodo;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import vistaGUI.ConsultaEstadoDeCuenta;
 
 /**
@@ -52,7 +52,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColones implements A
         int obtenerNumeroCliente = clientePropietario.numeroTelefono;
         this.vistaGUI.txtNumeroEstadoColones.setText(""+obtenerNumeroCliente);
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Consulta estado de cuenta en colones", "GUI");
         
         cargarDatosAOperacion(operaciones);

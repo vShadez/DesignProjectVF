@@ -21,7 +21,7 @@ import mensajesDeUsuario.MensajeDeInformacionDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.PalabraSecretaSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
@@ -274,7 +274,7 @@ public class TransferenciaCLI {
         double montoComision = this.calcularMontoComision(numeroDeCuentaDeOrigen, montoDeTransferencia);
         MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
         System.out.println(mensajeDeExito.imprimirMensajeTransferenciaExitosa(montoDeTransferencia, montoComision));
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Transferencia", "CLI");
         
         MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();

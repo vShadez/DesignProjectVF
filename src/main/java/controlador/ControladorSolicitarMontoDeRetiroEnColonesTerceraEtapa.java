@@ -14,7 +14,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 import vistaGUI.SolicitarMontoDeRetiroEnColonesTerceraEtapa;
@@ -91,7 +91,7 @@ public class ControladorSolicitarMontoDeRetiroEnColonesTerceraEtapa implements A
         cuenta.retirar(montoDeRetiro);
         double montoComision = this.calcularMontoComision(montoDeRetiro);
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Retiro en colones", "GUI");
         
         MensajeEnPantallaCuenta.imprimirMensajeRetiroEnColonesExitoso(montoDeRetiro, montoComision);

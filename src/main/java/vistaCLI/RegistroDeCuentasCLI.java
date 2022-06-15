@@ -17,7 +17,7 @@ import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
@@ -65,7 +65,7 @@ public class RegistroDeCuentasCLI {
                     nuevaCuenta.depositar(montoInicialConvetidoDouble);
                     clienteAsociadoConCuenta.asignarCuenta(nuevaCuenta);
                     System.out.println(mensajeDeExito.imprimirMensajeRegistroExitoso(numeroCuenta, estatusCuenta, depositoInicial, nombreCliente, primerApellido, segundoApellido, telefonoCliente, correoElectronicoCliente));
-                    RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                    RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                     accion.registrarEnBitacoras(LocalDate.now(), "Registro de cuentas", "CLI");
                     MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();
                 }

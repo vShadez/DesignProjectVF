@@ -10,7 +10,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
 import validacion.ValidacionCuenta;
@@ -119,7 +119,7 @@ public class CambiarPinCLI {
                 daoCuenta.cambiarPin(pNumeroDeCuenta, nuevoPin);
                 System.out.println(mensajeDeExito.imprimirMensajeCambioDePinExitoso(pNumeroDeCuenta));
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
-                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                 accion.registrarEnBitacoras(LocalDate.now(), "Cambiar pin", "CLI");
             }
             else {

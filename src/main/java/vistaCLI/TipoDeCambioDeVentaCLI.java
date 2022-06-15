@@ -7,7 +7,7 @@ package vistaCLI;
 import java.time.LocalDate;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 
 /**
  *
@@ -25,7 +25,7 @@ public class TipoDeCambioDeVentaCLI {
         mensaje += "El tipo de cambio del dólar de venta para hoy: " + LocalDate.now().toString() + " es: ";
         mensaje += tipoDeCambioDeVenta;
         System.out.println(mensaje);
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Tipo de cambio de venta", "CLI");
         
         MenuPrincipalCLI volverAMenuPrincipal = new MenuPrincipalCLI();

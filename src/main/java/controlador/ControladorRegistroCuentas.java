@@ -22,7 +22,7 @@ import logicaDeAccesoADatos.IDAOCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOCatalogoDeClientes;
 import logicaDeAccesoADatos.DAOCatalogoDeClientes;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 /**
  *
@@ -46,7 +46,7 @@ public class ControladorRegistroCuentas implements ActionListener{
             
             registrarCuenta(pin, montoInicial, identificacionCliente);
             
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Registrar cuenta", "GUI");
             
             this.vistaGUI.txtPinDatosCuenta.setText("");

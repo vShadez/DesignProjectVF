@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
@@ -38,7 +38,7 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getActionCommand().equals("Consultar")) {
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Ganancias de comisiones en todas las cuentas", "GUI");
             Lista<ICuenta> listaCuentas;
             Cuenta[] arregloCuentasOrdenadas;

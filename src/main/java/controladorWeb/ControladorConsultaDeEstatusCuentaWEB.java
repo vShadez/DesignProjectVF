@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 
 /**
  *
@@ -34,7 +34,7 @@ public class ControladorConsultaDeEstatusCuentaWEB extends HttpServlet {
         String numeroDeCuenta = request.getParameter("numeroCuenta");
         
         if (consultarEstatusCuenta(numeroDeCuenta) == true){
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Consultar estatus de cuenta", "Web");
             response.sendRedirect("../index.html");
         }else{

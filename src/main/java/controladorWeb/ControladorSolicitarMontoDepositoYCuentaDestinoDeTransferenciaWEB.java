@@ -15,7 +15,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 
@@ -55,7 +55,7 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferenciaWEB e
                         boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuentaOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {
                             efectuarTransferencia(numeroCuentaDestino, montoDeRetiroEnFormatoDecimal);
-                            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                             accion.registrarEnBitacoras(LocalDate.now(), "Transferencia", "Web");
                         }
                         else {

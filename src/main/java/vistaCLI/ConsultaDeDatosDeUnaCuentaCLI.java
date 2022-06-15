@@ -18,7 +18,7 @@ import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
@@ -58,7 +58,7 @@ public class ConsultaDeDatosDeUnaCuentaCLI {
             System.out.println("Nombre del dueño de la cuenta: " + duenoDeCuenta.nombre + " " + duenoDeCuenta.primerApellido + " " + duenoDeCuenta.segundoApellido);
         }
         System.out.println("\nDigite el número de cuenta de la cuenta sobre la cual desea conocer los detalles:");
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Consulta de datos de una cuenta", "CLI");
         this.recibirNumeroDeCuenta();
     }

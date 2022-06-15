@@ -10,7 +10,7 @@ import logicaDeAccesoADatos.DAOOperacionCatalogoDeCuentas;
 import logicaDeAccesoADatos.IDAOOperacionCatalogoDeCuentas;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import vistaGUI.MenuPrincipal;
 
 /**
@@ -28,7 +28,7 @@ public class ConsultaDeGananciasTotalesDeBancoPorComisionesCLI {
         this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnColones();
         System.out.println("\nResultados en dólares: ");
         this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnDolares();
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Ganancia por comisión del banco", "CLI");
         MenuPrincipal volverAMenuPrincipal = new MenuPrincipal();
     }

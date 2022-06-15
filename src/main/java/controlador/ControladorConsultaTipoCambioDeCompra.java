@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import vistaGUI.ConsultaTipoCambioDeCompra;
 
 /**
@@ -31,7 +31,7 @@ public class ControladorConsultaTipoCambioDeCompra implements ActionListener{
         
         vistaGUI.txtCambioCompra.setText(""+tipoCompra+" ₡");
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Consultar tipo cambio compra", "GUI");
     }
 

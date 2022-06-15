@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import controlador.ControladorDepositoEnColones;
 import java.time.LocalDate;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 
 /**
  *
@@ -34,7 +34,7 @@ public class ControladorDepositoEnColonesWEB extends HttpServlet{
         response.setContentType("text/html; charset=UTF-8");
         
         if (ControladorDepositoEnColones.depositarColonesACuenta(cuenta,montoDeposito) == true){
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Depósito en colones", "Web");
             response.sendRedirect("../index.html");
         } else {

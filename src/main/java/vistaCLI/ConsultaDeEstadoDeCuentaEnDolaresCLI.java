@@ -18,7 +18,7 @@ import logicaDeNegocios.Operacion;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 
@@ -39,7 +39,7 @@ public class ConsultaDeEstadoDeCuentaEnDolaresCLI {
             String pin = TextoIngresadoPorElUsuario.solicitarIngresoDeTextoAlUsuario();
             boolean datosIngresadosSonValidos = this.validarDatos(numeroDeCuenta, pin);
             if(datosIngresadosSonValidos) {
-                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                 accion.registrarEnBitacoras(LocalDate.now(), "Consulta de estado en dólares", "CLI");
                 this.mostrarEstadoDeCuenta(numeroDeCuenta);
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();

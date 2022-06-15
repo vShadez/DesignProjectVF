@@ -14,7 +14,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 import vistaGUI.SolicitarMontoDepositoYCuentaDestinoDeTransferencia;
@@ -51,7 +51,7 @@ public class ControladorSolicitarMontoDepositoYCuentaDestinoDeTransferencia impl
                         boolean hayFondosSuficientes = ValidacionCuenta.validarHayFondosSuficientes(this.numeroDeCuentaDeOrigen, montoDeRetiroEnFormatoDecimal + montoComision);
                         if(hayFondosSuficientes) {
                             efectuarTransferencia(numeroDeCuentaDeDestino, montoDeRetiroEnFormatoDecimal);
-                            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                             accion.registrarEnBitacoras(LocalDate.now(), "Transferencia", "GUI");
                             
                             ControladorMenuPrincipal.volverMenuPrincipal();

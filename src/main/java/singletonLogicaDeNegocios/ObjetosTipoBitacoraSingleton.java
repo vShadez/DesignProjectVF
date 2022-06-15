@@ -8,10 +8,10 @@ import logicaDeNegocios.RegistroGeneralBitacoras;
  *
  * @author estadm
  */
-public class ObjetosTipoBitacoraSinglenton {
+public class ObjetosTipoBitacoraSingleton {
     private static RegistroGeneralBitacoras instancia;
     
-    private ObjetosTipoBitacoraSinglenton() {}
+    private ObjetosTipoBitacoraSingleton() {}
     
     public static synchronized RegistroGeneralBitacoras instanciar() {
         if(instancia == null) {

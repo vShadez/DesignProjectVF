@@ -16,7 +16,7 @@ import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import vistaGUI.MenuPrincipal;
 
 /**
@@ -42,7 +42,7 @@ public class ConsultaDeGananciasParaCadaCuentaPorCobroDeComisiones {
             this.mostrarGananciasTotalesDeBancoPorCobroDeComisionesEnDolares(numeroDeCuenta);
             puntero = puntero.siguiente;
         }
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Ganancia por comisión cada cuenta", "CLI");
         MenuPrincipal volverAMenuPrincipal = new MenuPrincipal();
     }

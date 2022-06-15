@@ -17,7 +17,7 @@ import vistaGUI.DepositoConTipoDeCambio;
 import serviciosExternos.TipoCambioBCCR;
 import java.time.LocalDate;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import vistaGUI.SeleccionDeDeposito;
 
@@ -40,7 +40,7 @@ public class ControladorDepositoConTipoDeCambio implements ActionListener{
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaDepositarDolares.getText();
             String montoDeDepositoEnDolares = this.vistaGUI.txtMontoDolares.getText();
             depositarDolaresACuenta(numeroDeCuenta, montoDeDepositoEnDolares);
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Depósito en dólares", "GUI");
             
             this.vistaGUI.txtNumeroCuentaDepositarDolares.setText("");

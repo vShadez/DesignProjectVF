@@ -14,7 +14,7 @@ import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import validacion.ValidacionCuenta;
 import vistaGUI.DepositoEnColones;
@@ -39,7 +39,7 @@ public class ControladorDepositoEnColones implements ActionListener{
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaDeposito.getText();
             String montoDeDeposito = this.vistaGUI.txtMontoDeposito.getText();
             depositarColonesACuenta(numeroDeCuenta, montoDeDeposito);
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Depósito en colones", "GUI");
             
             this.vistaGUI.txtNumeroCuentaDeposito.setText("");

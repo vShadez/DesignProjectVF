@@ -18,7 +18,7 @@ import clasesUtilitarias.Conversion;
 import java.time.LocalDate;
 import java.util.Date;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
@@ -56,7 +56,7 @@ public class ControladorRegistroClientes implements ActionListener{
             
             registrarCliente(nombre, primerApellido, segundoApellido, identificacion, diaDeFechaDeNacimiento, mesDeFechaDeNacimiento, anoDeFechaDeNacimiento, numeroDeTelefono, correoElectronico);
             
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Registrar cliente", "GUI");
             
             this.vistaGUI.txtPrimerApellido.setText("");

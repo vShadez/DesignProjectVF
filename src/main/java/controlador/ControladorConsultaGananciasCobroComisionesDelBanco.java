@@ -9,7 +9,7 @@ import vistaGUI.ConsultaGananciasCobroComisionesDelBanco;
 import logicaDeAccesoADatos.IDAOOperacionCatalogoDeCuentas;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 
 /**
  *
@@ -42,7 +42,7 @@ public class ControladorConsultaGananciasCobroComisionesDelBanco implements Acti
             vistaGUI.txtMontoTotalOperacionesRetirosDolares.setText("$" + String.format("%.2f",comisionesTotalesRetiros/tipoCompra));
             vistaGUI.txtMontoTotalOperacionesDepositosRetirosDolares.setText("$" + String.format("%.2f",comisionesTotalesDepositoRetiros/tipoCompra));
             
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Consulta de ganancias por cobro del banco", "GUI");
             
         }

@@ -23,7 +23,7 @@ import listaDinamica.Nodo;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCliente;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 import singletonMensajesDeUsuario.ErrorDeClienteSingleton;
@@ -58,7 +58,7 @@ public class ConsultaDeDatosDeUnClienteCLI {
             System.out.println("Identificación: " + identificacion);
         }
         System.out.println("\nDigite la identificación del cliente sobre el cual desea conocer los detalles:");
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Consulta de datos de un cliente", "CLI");
         this.recibirIdentificacionDeCliente();
     }

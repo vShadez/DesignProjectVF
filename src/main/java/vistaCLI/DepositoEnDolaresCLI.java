@@ -15,7 +15,7 @@ import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
 import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import singletonMensajesDeUsuario.MovimientoDeCuentaExitosoSingleton;
@@ -42,7 +42,7 @@ public class DepositoEnDolaresCLI {
                 double tipoDeCambioDeCompra = tipoDeCambio.obtenerValorCompra();
                 this.efectuarDeposito(numeroDeCuenta, montoDeDeposito, tipoDeCambioDeCompra);
                 
-                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                 accion.registrarEnBitacoras(LocalDate.now(), "Depósito en dólares", "CLI");
                 
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();

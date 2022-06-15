@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controlador.ControladorDepositoConTipoDeCambio;
 import java.time.LocalDate;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 
 /**
  *
@@ -36,7 +36,7 @@ public class ControladorDepositoConTipoDeCambioWEB extends HttpServlet{
         response.setContentType("text/html; charset=UTF-8");
         
         if (ControladorDepositoConTipoDeCambio.depositarDolaresACuenta(cuenta,montoDeposito) == true){
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Depósito en dólares", "Web");
             response.sendRedirect("../index.html");
         } else {

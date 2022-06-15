@@ -22,7 +22,7 @@ import mensajesDeUsuario.MensajeDeMovimientoDeCuentaExitoso;
 import serviciosExternos.EnvioCorreoElectronico;
 import serviciosExternos.EnvioMensajeDeTexto;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.PalabraSecretaSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
@@ -235,7 +235,7 @@ public class RetiroEnDolaresCLI {
         MensajeDeMovimientoDeCuentaExitoso mensajeDeExito = MovimientoDeCuentaExitosoSingleton.instanciar();
         System.out.println(mensajeDeExito.imprimirMensajeRetiroEnDolaresExitoso(pMontoDeRetiro * pTipoDeCambio, pMontoDeRetiro, pTipoDeCambio, montoComision));
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Retiro en dólares", "CLI");
         
         MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();

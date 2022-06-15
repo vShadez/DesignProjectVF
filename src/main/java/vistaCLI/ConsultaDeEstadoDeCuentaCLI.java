@@ -17,7 +17,7 @@ import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import mensajesDeUsuario.MensajeDeErrorDeCuenta;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonMensajesDeUsuario.ErrorDeCuentaSingleton;
 import validacion.ValidacionCuenta;
 
@@ -39,7 +39,7 @@ public class ConsultaDeEstadoDeCuentaCLI {
             boolean datosIngresadosSonValidos = this.validarDatos(numeroDeCuenta, pin);
             if(datosIngresadosSonValidos) {
                 this.mostrarEstadoDeCuenta(numeroDeCuenta);
-                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                 accion.registrarEnBitacoras(LocalDate.now(), "Consulta de estado de cuenta", "CLI");
                 MenuPrincipalCLI menuPrincipal = new MenuPrincipalCLI();
             }

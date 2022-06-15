@@ -15,7 +15,7 @@ import logicaDeAccesoADatos.DAOOperacionCuenta;
 import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 
 /**
  *
@@ -43,7 +43,7 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorCadaCuentaWEB 
         request.setAttribute("montoRetirosDolares", String.format("%.2f",montoTotalRetiros/tipoCompra));
         request.setAttribute("montoDepositosYRetirosDolares", String.format("%.2f",montoTotalDepositosRetiros/tipoCompra));
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Ganancias por comisiones en cada cuenta", "Web");
         
         request.getRequestDispatcher("ConsultaGananciasCobroComisionesTotalesPorCadaCuenta.jsp").forward(request, response);

@@ -16,7 +16,7 @@ import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import validacion.ValidacionCuenta;
 
 /**
@@ -52,7 +52,7 @@ public class ControladorConsultaDeSaldoActualWEB extends HttpServlet {
                         double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(saldoActualColones);
                         
-                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                         accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual en colones", "Web");
                         response.sendRedirect("../index.html");
                     }
@@ -63,7 +63,7 @@ public class ControladorConsultaDeSaldoActualWEB extends HttpServlet {
                         double valorDeCompra = tc.obtenerValorCompra();
                         double saldoConvertidoADolares = saldoActualColones / valorDeCompra;
                         
-                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                         accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual en dólares", "Web");
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra);
                         response.sendRedirect("../index.html");

@@ -13,7 +13,7 @@ import vistaGUI.ConsultaDeSaldoActual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 /**
  *
  * @author estadm
@@ -52,7 +52,7 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
                         IDAOCuentaIndividual cuentaAconsultarColones = new DAOCuentaIndividual();
                         double saldoActualColones = cuentaAconsultarColones.consultarSaldoActual(numeroDeCuenta);
                         
-                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                         accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual en colones", "GUI");
                         
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualColones(saldoActualColones);
@@ -64,7 +64,7 @@ public class ControladorConsultaDeSaldoActual implements ActionListener{
                         double valorDeCompra = tc.obtenerValorCompra();
                         double saldoConvertidoADolares = saldoActualColones / valorDeCompra;
                         
-                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                         accion.registrarEnBitacoras(LocalDate.now(), "Consulta de saldo actual en dólares", "GUI");
                         
                         MensajeEnPantallaCuenta.imprimirMensajeSaldoCuentaActualDolares(saldoConvertidoADolares, valorDeCompra);

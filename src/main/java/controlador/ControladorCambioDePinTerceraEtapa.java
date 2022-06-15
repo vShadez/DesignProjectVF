@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import vistaGUI.CambioDePinTerceraEtapa;
 
 /**
@@ -34,7 +34,7 @@ public class ControladorCambioDePinTerceraEtapa implements ActionListener{
             String nuevoPin = this.vistaGUI.txtPinNuevo.getText();
             if (registrarCambioDePin(nuevoPin, numeroDeCuenta)){
                 
-                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+                RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
                 accion.registrarEnBitacoras(LocalDate.now(), "Cambio de pin", "GUI");
                 
                 MensajeEnPantallaCuenta.imprimirMensajeCambioDePinExitoso(numeroDeCuenta);

@@ -20,7 +20,7 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.Operacion;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 
 /**
@@ -76,7 +76,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaColonesWEB extends H
         request.setAttribute("correoElectronico", clientePropietario.correoElectronico);
         request.setAttribute("numeroTelefono", clientePropietario.numeroTelefono);
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Consulta estado de cuenta en colones", "Web");
         
         request.getRequestDispatcher("InformacionPorConsultaDeEstadoCuentaColones.jsp").forward(request, response);

@@ -19,7 +19,7 @@ import logicaDeAccesoADatos.IDAOOperacionCuenta;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 
@@ -57,7 +57,7 @@ public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuenta
         }
         
         request.setAttribute("operacionesAMostrar", operacionesAMostrar);
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Ganancias de comisiones en todas las cuentas", "Web");
         
         request.getRequestDispatcher("ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas.jsp").forward(request, response);

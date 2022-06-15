@@ -17,7 +17,7 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import logicaDeNegocios.Operacion;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import vistaGUI.ConsultaEstadoDeCuenta;
 import vistaGUI.InformacionPorConsultaDeEstadoCuentaDolares;
 
@@ -50,7 +50,7 @@ public class ControladorInformacionPorConsultaDeEstadoCuentaDolares implements A
         int obtenerNumeroCliente = clientePropietario.numeroTelefono;
         this.vistaGUI.txtNumeroEstadoDolares.setText(""+obtenerNumeroCliente);
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Consulta estado de cuenta en dólares", "GUI");
         
         cargarDatosAOperacion(operaciones);

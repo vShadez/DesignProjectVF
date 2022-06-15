@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logicaDeNegocios.RegistroGeneralBitacoras;
 import serviciosExternos.TipoCambioBCCR;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 
 /**
  *
@@ -27,7 +27,7 @@ public class ControladorConsultaTipoCambioDeVentaWEB extends HttpServlet {
         TipoCambioBCCR tc = new TipoCambioBCCR();
         double tipoVenta = tc.obtenerValorVenta();
         request.setAttribute("tipoDeCambioVenta", tipoVenta);
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Consultar tipo cambio venta", "Web");
         request.getRequestDispatcher("ConsultaTipoCambioDeVenta.jsp").forward(request, response);
     }

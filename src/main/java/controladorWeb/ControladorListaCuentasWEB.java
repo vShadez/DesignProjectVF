@@ -22,7 +22,7 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 
@@ -60,7 +60,7 @@ public class ControladorListaCuentasWEB extends HttpServlet {
             dtos.add(new CuentaDto(cuenta[i].numeroCuenta, String.format("%.2f",saldoConvertido), cuenta[i].estatus, nombreCompletoDePropietarioDeCuenta, identificacionDePropietarioDeCuenta));
         }
         request.setAttribute("dtos", dtos);
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Listar cuentas", "Web");
         request.getRequestDispatcher("ListaCuentas.jsp").forward(request, response);
     }

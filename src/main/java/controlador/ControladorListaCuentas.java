@@ -19,7 +19,7 @@ import logicaDeNegocios.Cliente;
 import logicaDeNegocios.Cuenta;
 import logicaDeNegocios.ICuenta;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import singletonClasesUtilitarias.ConversionSingleton;
 import singletonClasesUtilitarias.OrdenamientoSingleton;
 import vistaGUI.ColorCelda;
@@ -39,7 +39,7 @@ public class ControladorListaCuentas implements ActionListener{
         this.vistaGUI.btnVolverListaCuentas.addActionListener(this);
         this.cargarCuentasDeTabla();
         
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Listar cuentas", "GUI");
         
         this.vistaGUI.tblListaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {

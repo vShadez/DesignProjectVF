@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import logicaDeAccesoADatos.DAOCuentaIndividual;
 import logicaDeAccesoADatos.IDAOCuentaIndividual;
 import logicaDeNegocios.RegistroGeneralBitacoras;
-import singletonLogicaDeNegocios.ObjetosTipoBitacoraSinglenton;
+import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
 import vistaGUI.ConsultaDeEstatusCuenta;
 import validacion.ValidacionCuenta;
 
@@ -28,7 +28,7 @@ public class ControladorConsultaDeEstatusCuenta implements ActionListener{
         if(evento.getActionCommand().equals("Consultar")) {
             String numeroDeCuenta = this.vistaGUI.txtNumeroCuentaConsultarEstatus.getText();
             consultarEstatusCuenta(numeroDeCuenta);
-            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSinglenton.instanciar();
+            RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
             accion.registrarEnBitacoras(LocalDate.now(), "Consultar estatus de cuenta", "GUI");
         }
         if(evento.getActionCommand().equals("Cancelar")) {
