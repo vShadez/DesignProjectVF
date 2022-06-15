@@ -1,5 +1,0 @@
-2022-06-15 Registrar cliente                        GUI
-2022-06-15 Registrar cuenta                         CLI
-2022-06-15 Listar clientes                          CLI
-2022-06-15 Listar cuentas                           Web
-2022-06-15 Depósito en colones                      GUI
