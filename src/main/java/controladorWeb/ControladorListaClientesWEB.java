@@ -35,8 +35,7 @@ public class ControladorListaClientesWEB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
-        accion.registrarEnBitacoras(LocalDate.now(), "Listar clientes", "Web");
+        
         
         Cliente[] arregloClientesDesordenados;
         IDAOCatalogoDeClientes daoCatalogoDeClientes = new DAOCatalogoDeClientes();
@@ -55,7 +54,8 @@ public class ControladorListaClientesWEB extends HttpServlet {
         }
         
         request.setAttribute("dtos", dtos);
-        
+        RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
+        accion.registrarEnBitacoras(LocalDate.now(), "Listar clientes", "Web");
         request.getRequestDispatcher("ListaClientes.jsp").forward(request, response);
     }
     
