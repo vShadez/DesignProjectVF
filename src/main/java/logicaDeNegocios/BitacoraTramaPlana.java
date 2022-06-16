@@ -17,7 +17,7 @@ import org.threeten.bp.LocalDate;
  * @author Jairo Calderón
  */
 public class BitacoraTramaPlana extends Bitacora{
-    private static final int limiteDeCaracteresDeTipoDeAccion = 40;
+    private static final int limiteDeCaracteresDeTipoDeAccion = 50;
     private static final int limiteDeCaracteresDeVista = 3;
     private RegistroDeBitacora registroGuardado;
     
@@ -100,7 +100,7 @@ public class BitacoraTramaPlana extends Bitacora{
             String fechaDeRegistro = linea.substring(0, 10);
             if(fechaDeRegistro.equals(LocalDate.now().toString())) {
                 String tipoDeAccion = linea.substring(11, limiteDeCaracteresDeTipoDeAccion + 1);
-                String vista = linea.substring(10 + limiteDeCaracteresDeTipoDeAccion + 2, 10 + limiteDeCaracteresDeTipoDeAccion + 2 + limiteDeCaracteresDeVista);
+                String vista = linea.substring(11 + limiteDeCaracteresDeTipoDeAccion + 1, 11 + limiteDeCaracteresDeTipoDeAccion + 1 + limiteDeCaracteresDeVista);
                 java.time.LocalDate fechaEnFormatoLocalDate = java.time.LocalDate.parse(fechaDeRegistro);
                 RegistroDeBitacora registro = new RegistroDeBitacora(fechaEnFormatoLocalDate, tipoDeAccion, vista);
                 resultadosDeConsulta.agregarNodo(registro);
