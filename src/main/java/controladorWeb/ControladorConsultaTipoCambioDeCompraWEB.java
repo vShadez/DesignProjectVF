@@ -19,14 +19,14 @@ import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
  *
  * @author sebashdez
  */
-@WebServlet(name = "", urlPatterns = {"/vistaWeb/ConsultaTipoCambioDeCompra"})
+@WebServlet(name = "ControladorConsultaTipoCambioDeCompraWEB", urlPatterns = {})
 public class ControladorConsultaTipoCambioDeCompraWEB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         TipoCambioBCCR tc = new TipoCambioBCCR();
-        double tipoCompra = tc.obtenerValorCompra();
-        request.setAttribute("tipoDeCambioCompra", tipoCompra);
+        //double tipoCompra = tc.obtenerValorCompra();
+        //request.setAttribute("tipoDeCambioCompra", tipoCompra);
         RegistroGeneralBitacoras accion = ObjetosTipoBitacoraSingleton.instanciar();
         accion.registrarEnBitacoras(LocalDate.now(), "Consultar tipo cambio compra", "Web");
         request.getRequestDispatcher("ConsultaTipoCambioDeCompra.jsp").forward(request, response);
