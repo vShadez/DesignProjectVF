@@ -19,7 +19,7 @@ import singletonLogicaDeNegocios.ObjetosTipoBitacoraSingleton;
  *
  * @author sebashdez
  */
-@WebServlet(name = "ControladorConsultaTipoCambioDeCompraWEB", urlPatterns = {"/vistaWeb/ConsultaTipoCambioDeCompra"})
+@WebServlet(name = "", urlPatterns = {"/vistaWeb/ConsultaTipoCambioDeCompra"})
 public class ControladorConsultaTipoCambioDeCompraWEB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
