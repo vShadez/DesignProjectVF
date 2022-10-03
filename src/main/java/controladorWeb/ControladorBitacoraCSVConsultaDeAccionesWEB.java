@@ -19,7 +19,7 @@ import logicaDeNegocios.RegistroDeBitacora;
  *
  * @author estadm
  */
-@WebServlet(name = "ControladorBitacoraCSVConsultaDeAccionesWEB", urlPatterns = {"/vistaWeb/BitacoraCSVConsultaDeAcciones"})
+@WebServlet(name = "", urlPatterns = {"/vistaWeb/BitacoraCSVConsultaDeAcciones"})
 public class ControladorBitacoraCSVConsultaDeAccionesWEB extends HttpServlet {
     String bitacoraCsv;
      @Override

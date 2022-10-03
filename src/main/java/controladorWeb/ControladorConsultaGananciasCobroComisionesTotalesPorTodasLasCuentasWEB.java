@@ -27,7 +27,7 @@ import singletonClasesUtilitarias.OrdenamientoSingleton;
  *
  * @author estadm
  */
-@WebServlet(name = "", urlPatterns = {""})
+@WebServlet(name = "ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentasWEB", urlPatterns = {"/vistaWeb/ConsultaGananciasCobroComisionesTotalesPorTodasLasCuentas"})
 public class ControladorConsultaGananciasCobroComisionesTotalesPorTodasLasCuentasWEB extends HttpServlet {
 
     @Override
